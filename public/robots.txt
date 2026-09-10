@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://printzen.app/sitemap-index.xml
+Sitemap: https://printzen.app/sitemap.xml

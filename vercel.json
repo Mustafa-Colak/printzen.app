@@ -5,10 +5,42 @@
       "destination": "https://github.com/Mustafa-Colak/mobile-print-service-android/releases/latest/download/MobilePrintService-v2.3.4.apk",
       "permanent": false
     },
-    { "source": "/terms.html", "destination": "/terms", "permanent": true },
-    { "source": "/privacy.html", "destination": "/privacy", "permanent": true },
-    { "source": "/refund.html", "destination": "/refund", "permanent": true },
-    { "source": "/activate.html", "destination": "/activate", "permanent": true },
-    { "source": "/index.html", "destination": "/", "permanent": true }
+    {
+      "source": "/terms.html",
+      "destination": "/terms",
+      "permanent": true
+    },
+    {
+      "source": "/privacy.html",
+      "destination": "/privacy",
+      "permanent": true
+    },
+    {
+      "source": "/refund.html",
+      "destination": "/refund",
+      "permanent": true
+    },
+    {
+      "source": "/activate.html",
+      "destination": "/activate",
+      "permanent": true
+    },
+    {
+      "source": "/index.html",
+      "destination": "/",
+      "permanent": true
+    }
+  ],
+  "cleanUrls": true,
+  "trailingSlash": false,
+  "rewrites": [
+    {
+      "source": "/tr/rehber/:slug",
+      "destination": "/tr/rehber/:slug.html"
+    },
+    {
+      "source": "/guides/:slug",
+      "destination": "/guides/:slug.html"
+    }
   ]
 }

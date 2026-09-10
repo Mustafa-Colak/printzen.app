@@ -1,0 +1,189 @@
+<!doctype html>
+<html lang="tr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Epson TM-P80II Offline Kuyruklama ve Ağ Kesintisi Dayanıklılığı Kılavuzu — Printzen</title>
+  <meta name="description" content="Epson TM-P80II Mobil 80mm Saha Yazıcısı için offline kuyruklama ve ağ kesintisi dayanıklılığı adımları, ESC/POS komut yapısı, Bluetooth/Wi-Fi bağlantı ayarları ve çözüm yolları.">
+  <link rel="canonical" href="https://printzen.app/tr/rehber/epson-tm-p80ii-offline-kuyruklama-ve-ag-kesintisi-dayanikliligi">
+  <link rel="alternate" hreflang="tr" href="https://printzen.app/tr/rehber/epson-tm-p80ii-offline-kuyruklama-ve-ag-kesintisi-dayanikliligi">
+  <link rel="alternate" hreflang="en" href="https://printzen.app/guides/epson-tm-p80ii-offline-print-queueing-network-fault-tolerance">
+  <link rel="alternate" hreflang="x-default" href="https://printzen.app/guides/epson-tm-p80ii-offline-print-queueing-network-fault-tolerance">
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="Epson TM-P80II Offline Kuyruklama ve Ağ Kesintisi Dayanıklılığı Kılavuzu — Printzen">
+  <meta property="og:description" content="Epson TM-P80II Mobil 80mm Saha Yazıcısı üzerinde offline kuyruklama ve ağ kesintisi dayanıklılığı kurulumu ve sorunsuz çalışma yöntemleri.">
+  <meta property="og:url" content="https://printzen.app/tr/rehber/epson-tm-p80ii-offline-kuyruklama-ve-ag-kesintisi-dayanikliligi">
+  <script src="https://cdn.tailwindcss.com?plugins=typography"></script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "TechArticle",
+        "headline": "Epson TM-P80II Offline Kuyruklama ve Ağ Kesintisi Dayanıklılığı Kılavuzu",
+        "description": "Epson TM-P80II Mobil 80mm Saha Yazıcısı için offline kuyruklama ve ağ kesintisi dayanıklılığı rehberi ve teknik ayarlar.",
+        "url": "https://printzen.app/tr/rehber/epson-tm-p80ii-offline-kuyruklama-ve-ag-kesintisi-dayanikliligi",
+        "datePublished": "2026-09-10",
+        "dateModified": "2026-09-11",
+        "author": { "@type": "Organization", "name": "Printzen Engineering Team", "url": "https://printzen.app" },
+        "publisher": { "@type": "Organization", "name": "Printzen", "logo": { "@type": "ImageObject", "url": "https://printzen.app/favicon.svg" } }
+      },
+      {
+        "@type": "FAQPage",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "Epson TM-P80II hangi komut protokolünü kullanır?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Epson TM-P80II cihazı yerel olarak ESC/POS komut setini ve 203 DPI baskı çözünürlüğünü destekler."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Epson TM-P80II web tarayıcısından doğrudan yazdırılabilir mi?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Evet. Printzen Web SDK veya Mobile Print Service köprüsü sayesinde Chrome ve Edge üzerinden Bluetooth, Wi-Fi arayüzleriyle doğrudan sessiz baskı alınabilir."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Epson TM-P80II Türkçe karakter veya etiket kayma problemi nasıl çözülür?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Yazıcı donanım kod sayfasını CP857 (ESC t 19) moduna alarak ve Printzen otomatik sensör kalibrasyon yönergelerini uygulayarak problem tamamen giderilir."
+            }
+          }
+        ]
+      }
+    ]
+  }
+  </script>
+</head>
+<body class="bg-gray-50 text-gray-900 font-sans antialiased">
+  <nav class="bg-white shadow-sm sticky top-0 z-20 border-b border-gray-100">
+    <div class="max-w-5xl mx-auto px-4 py-4 flex items-center justify-between">
+      <a href="/tr/" class="text-2xl font-bold text-blue-600">Printzen</a>
+      <div class="flex items-center gap-4 text-sm">
+        <a href="/tr/rehberler" class="text-gray-600 hover:text-blue-600 font-medium">Rehberler</a>
+        <a href="/tr/rehberler/offline-kuyruklama-ve-ag-kesintisi-dayanikliligi" class="text-blue-600 hover:underline">Ana Konu Hub'ı</a>
+        <a href="/guides/epson-tm-p80ii-offline-print-queueing-network-fault-tolerance" class="border border-gray-300 rounded px-2.5 py-1 text-xs font-semibold hover:bg-gray-50">EN</a>
+      </div>
+    </div>
+  </nav>
+
+  <main class="max-w-4xl mx-auto px-4 py-12">
+    <div class="text-sm text-gray-500 mb-4 flex items-center gap-2">
+      <a href="/tr/rehberler" class="hover:underline">Rehberler</a>
+      <span>/</span>
+      <a href="/tr/rehberler/offline-kuyruklama-ve-ag-kesintisi-dayanikliligi" class="text-blue-600 hover:underline">Offline Kuyruklama ve Ağ Kesintisi Dayanıklılığı</a>
+      <span>/</span>
+      <span class="text-gray-700">Epson TM-P80II</span>
+    </div>
+
+    <span class="inline-block text-xs font-semibold text-blue-700 bg-blue-100 px-3 py-1 rounded-full mb-3">
+      Donanım Rehberi · Epson · ESC/POS
+    </span>
+    <h1 class="text-3xl sm:text-4xl font-extrabold text-gray-900 tracking-tight mb-4">
+      Epson TM-P80II Offline Kuyruklama ve Ağ Kesintisi Dayanıklılığı Rehberi
+    </h1>
+    <p class="text-lg text-gray-600 leading-relaxed mb-8">
+      <strong>Epson TM-P80II</strong> (Mobil 80mm Saha Yazıcısı), işletmelerde yoğun fiş, adisyon ve etiket yazdırma operasyonlarında en çok tercih edilen modeller arasındadır. Bu kapsamlı teknik rehberde, cihazın <strong>offline kuyruklama ve ağ kesintisi dayanıklılığı</strong> süreçlerini, ESC/POS protokol parametrelerini, Bluetooth, Wi-Fi arayüz konfigürasyonunu ve sahada karşılaşılan kritik hataların kesin çözümlerini adım adım inceleyeceğiz.
+    </p>
+
+    <!-- Donanım Özellikleri Tablosu -->
+    <div class="bg-white rounded-2xl p-6 shadow-sm border border-gray-200 mb-10">
+      <h2 class="text-xl font-bold text-gray-900 mb-4 flex items-center gap-2">
+        <span>⚙️</span> Epson TM-P80II Teknik Donanım Parametreleri
+      </h2>
+      <div class="overflow-x-auto">
+        <table class="w-full text-left text-sm text-gray-700">
+          <tbody class="divide-y divide-gray-100">
+            <tr><td class="py-2.5 font-medium text-gray-500 w-1/3">Üretici Marka</td><td class="py-2.5 font-bold text-gray-900">Epson</td></tr>
+            <tr><td class="py-2.5 font-medium text-gray-500">Model Adı</td><td class="py-2.5 font-bold text-gray-900">TM-P80II</td></tr>
+            <tr><td class="py-2.5 font-medium text-gray-500">Cihaz Kategorisi</td><td class="py-2.5">Mobil 80mm Saha Yazıcısı</td></tr>
+            <tr><td class="py-2.5 font-medium text-gray-500">Yerel Komut Dili</td><td class="py-2.5 font-mono text-blue-600 font-semibold">ESC/POS</td></tr>
+            <tr><td class="py-2.5 font-medium text-gray-500">Baskı Çözünürlüğü</td><td class="py-2.5">203 DPI (Nokta / İnç)</td></tr>
+            <tr><td class="py-2.5 font-medium text-gray-500">Desteklenen Arayüzler</td><td class="py-2.5">Bluetooth · Wi-Fi</td></tr>
+            <tr><td class="py-2.5 font-medium text-gray-500">Kağıt / Rulo Genişliği</td><td class="py-2.5">80mm</td></tr>
+            <tr><td class="py-2.5 font-medium text-gray-500">Otomatik Kağıt Kesici</td><td class="py-2.5">Yok (Tear-bar)</td></tr>
+            <tr><td class="py-2.5 font-medium text-gray-500">Seri Baud Hızı (Varsayılan)</td><td class="py-2.5 font-mono">115200 bps</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- Adım Adım Kurulum ve Entegrasyon -->
+    <div class="prose max-w-none prose-blue mb-10">
+      <h2>1. Epson TM-P80II İçin Offline Kuyruklama ve Ağ Kesintisi Dayanıklılığı Yapılandırması</h2>
+      <p>
+        Epson TM-P80II modelinde bu süreci başarıyla tamamlamak için donanım ile işletim sistemi kuyruğu (spooler) arasındaki veri akışının kesintisiz ve doğru baud hızında iletilmesi şarttır. ESC/POS mimarisi gereğince gönderilen byte dizilerinin yazıcı tampon belleğinde (receive buffer) taşma yaratmaması için donanımsal akış kontrolü (RTS/CTS veya XON/XOFF) dikkate alınmalıdır.
+      </p>
+
+      <h3>Kritik Kurulum Adımları:</h3>
+      <ol>
+        <li><strong>Fiziksel Bağlantı ve Arayüz Seçimi:</strong> Cihazı Bluetooth portu üzerinden ana terminale veya yerel ağa bağlayın. Ağ bağlantısı kullanılıyorsa DHCP yerine sabit bir IP adresi atayın.</li>
+        <li><strong>Protokol ve Kod Sayfası Ataması:</strong> Fiş veya etiket çıktısında Türkçe karakterlerin bozulmaması için yazıcı başlangıç komut dizisine <code>ESC t 19</code> (CP857) veya ilgili ZPL/TSPL kod sayfası komutunu ekleyin.</li>
+        <li><strong>Genişlik ve Marjin Doğrulaması:</strong> 80mm kağıt standardına uygun olarak baskı genişliğini (örneğin 80mm için 48/42 kolon, 58mm için 32 kolon) yazılım tarafında sabitleyin.</li>
+        <li><strong>Kesici ve Çekmece Tetikleme:</strong> İşlem tamamlandığında otomatik kağıt kesimi için cihazın tırtıklı yırtma çubuğunu (tear-bar) kullanın.</li>
+      </ol>
+
+      <h2>2. Sahada En Sık Karşılaşılan Sorunlar ve Pratik Çözümler</h2>
+      <p>
+        Epson TM-P80II cihazlarında karşılaşılan sorunlar çoğunlukla sürücü uyumsuzluğu, yanlış kod sayfası seçimi veya Bluetooth/Ağ zaman aşımı (timeout) kaynaklıdır:
+      </p>
+      <ul>
+        <li><strong>Çıktıda Soru İşareti veya Bozuk Karakterler:</strong> Türkçe karakterlerin '?' çıkması, yazıcı belleğinin UTF-8 yerine varsayılan ASCII tablosunda kalmasından kaynaklanır. Printzen SDK, metinleri otomatik olarak donanımın desteklediği kod sayfasına transcode eder.</li>
+        <li><strong>Baskı Sırasında Satır Atlama veya Yarım Kalma:</strong> Özellikle Bluetooth bağlantılarında MTU paket boyutu 20 byte sınırını aştığında veri kaybı yaşanır. Veri paketleri 20'şer baytlık dilimler halinde parçalanarak (chunking) gönderilmelidir.</li>
+        <li><strong>Sensör Kalibrasyon Uyarısı (Kırmızı Işık / Hata Bipi):</strong> Etiket rulosu değiştirildiğinde yazıcının boşluk (Gap) veya siyah çizgi (Black Mark) sensörünü tanıyabilmesi için FEED tuşuna basılı tutularak otomatik kalibrasyon çalıştırılmalıdır.</li>
+      </ul>
+    </div>
+
+    <!-- Sıkça Sorulan Sorular -->
+    <div class="bg-white rounded-2xl p-6 shadow-sm border border-gray-200 mb-10">
+      <h2 class="text-xl font-bold text-gray-900 mb-6 flex items-center gap-2">
+        <span>❓</span> Sıkça Sorulan Sorular (Epson TM-P80II)
+      </h2>
+      <div class="space-y-4">
+        <div>
+          <h3 class="text-base font-semibold text-gray-900 mb-1">Epson TM-P80II hangi komut protokolünü kullanır?</h3>
+          <p class="text-sm text-gray-600">Epson TM-P80II cihazı yerel olarak ESC/POS komut setini ve 203 DPI baskı çözünürlüğünü destekler.</p>
+        </div>
+        <div>
+          <h3 class="text-base font-semibold text-gray-900 mb-1">Epson TM-P80II web tarayıcısından doğrudan yazdırılabilir mi?</h3>
+          <p class="text-sm text-gray-600">Evet. Printzen Web SDK veya Mobile Print Service köprüsü sayesinde Chrome ve Edge üzerinden Bluetooth, Wi-Fi arayüzleriyle doğrudan sessiz baskı alınabilir.</p>
+        </div>
+        <div>
+          <h3 class="text-base font-semibold text-gray-900 mb-1">Epson TM-P80II Türkçe karakter veya etiket kayma problemi nasıl çözülür?</h3>
+          <p class="text-sm text-gray-600">Yazıcı donanım kod sayfasını CP857 (ESC t 19) moduna alarak ve Printzen otomatik sensör kalibrasyon yönergelerini uygulayarak problem tamamen giderilir.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- İlgili İçerikler & CTA -->
+    <div class="bg-blue-50 border border-blue-200 rounded-2xl p-6 sm:p-8 text-center mb-12">
+      <h3 class="text-xl font-bold text-blue-900 mb-2">Epson TM-P80II Yazıcınızı Web ve Buluta Bağlayın</h3>
+      <p class="text-sm text-blue-700 max-w-xl mx-auto mb-6">
+        Printzen ile hiçbir sürücü karmaşası yaşamadan Android, iOS, Windows ve macOS cihazlardan Epson TM-P80II yazıcınıza anında sessiz fiş ve etiket yazdırın.
+      </p>
+      <div class="flex flex-wrap justify-center gap-4">
+        <a href="/tr/rehberler/offline-kuyruklama-ve-ag-kesintisi-dayanikliligi" class="bg-blue-600 text-white text-sm font-semibold px-5 py-2.5 rounded-xl hover:bg-blue-700 transition">
+          Offline Kuyruklama ve Ağ Kesintisi Dayanıklılığı Ana Rehberini Oku →
+        </a>
+        <a href="https://play.google.com/store/apps/details?id=com.mobileprint.service" target="_blank" rel="noopener" class="bg-white text-blue-700 border border-blue-300 text-sm font-semibold px-5 py-2.5 rounded-xl hover:bg-blue-50 transition">
+          Printzen Uygulamasını İndir
+        </a>
+      </div>
+    </div>
+  </main>
+
+  <footer class="bg-gray-900 text-gray-400 py-10 border-t border-gray-800 text-center text-sm">
+    <div class="max-w-5xl mx-auto px-4">
+      <p class="mb-2">© 2026 Printzen.app — Tüm Hakları Saklıdır.</p>
+      <p class="text-xs text-gray-500">Termal ve barkod yazıcılar için modern bulut ve web SDK altyapısı.</p>
+    </div>
+  </footer>
+</body>
+</html>

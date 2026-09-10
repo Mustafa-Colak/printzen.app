@@ -1,0 +1,189 @@
+<!doctype html>
+<html lang="tr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Bixolon SRP-350III Wi-Fi Termal Yazıcı Altyapısı ve Ağ Güvenliği Kılavuzu — Printzen</title>
+  <meta name="description" content="Bixolon SRP-350III Endüstri Standardı Restoran Fiş Yazıcısı için wi-fi termal yazıcı altyapısı ve ağ güvenliği adımları, ESC/POS komut yapısı, USB/Ethernet/Seri bağlantı ayarları ve çözüm yolları.">
+  <link rel="canonical" href="https://printzen.app/tr/rehber/bixolon-srp-350iii-wifi-termal-yazici-altyapisi-ve-ag-guvenligi">
+  <link rel="alternate" hreflang="tr" href="https://printzen.app/tr/rehber/bixolon-srp-350iii-wifi-termal-yazici-altyapisi-ve-ag-guvenligi">
+  <link rel="alternate" hreflang="en" href="https://printzen.app/guides/bixolon-srp-350iii-wifi-thermal-printer-setup-network-security">
+  <link rel="alternate" hreflang="x-default" href="https://printzen.app/guides/bixolon-srp-350iii-wifi-thermal-printer-setup-network-security">
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="Bixolon SRP-350III Wi-Fi Termal Yazıcı Altyapısı ve Ağ Güvenliği Kılavuzu — Printzen">
+  <meta property="og:description" content="Bixolon SRP-350III Endüstri Standardı Restoran Fiş Yazıcısı üzerinde wi-fi termal yazıcı altyapısı ve ağ güvenliği kurulumu ve sorunsuz çalışma yöntemleri.">
+  <meta property="og:url" content="https://printzen.app/tr/rehber/bixolon-srp-350iii-wifi-termal-yazici-altyapisi-ve-ag-guvenligi">
+  <script src="https://cdn.tailwindcss.com?plugins=typography"></script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "TechArticle",
+        "headline": "Bixolon SRP-350III Wi-Fi Termal Yazıcı Altyapısı ve Ağ Güvenliği Kılavuzu",
+        "description": "Bixolon SRP-350III Endüstri Standardı Restoran Fiş Yazıcısı için wi-fi termal yazıcı altyapısı ve ağ güvenliği rehberi ve teknik ayarlar.",
+        "url": "https://printzen.app/tr/rehber/bixolon-srp-350iii-wifi-termal-yazici-altyapisi-ve-ag-guvenligi",
+        "datePublished": "2026-09-10",
+        "dateModified": "2026-09-11",
+        "author": { "@type": "Organization", "name": "Printzen Engineering Team", "url": "https://printzen.app" },
+        "publisher": { "@type": "Organization", "name": "Printzen", "logo": { "@type": "ImageObject", "url": "https://printzen.app/favicon.svg" } }
+      },
+      {
+        "@type": "FAQPage",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "Bixolon SRP-350III hangi komut protokolünü kullanır?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Bixolon SRP-350III cihazı yerel olarak ESC/POS komut setini ve 180 DPI baskı çözünürlüğünü destekler."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Bixolon SRP-350III web tarayıcısından doğrudan yazdırılabilir mi?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Evet. Printzen Web SDK veya Mobile Print Service köprüsü sayesinde Chrome ve Edge üzerinden USB, Ethernet, Seri arayüzleriyle doğrudan sessiz baskı alınabilir."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Bixolon SRP-350III Türkçe karakter veya etiket kayma problemi nasıl çözülür?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Yazıcı donanım kod sayfasını CP857 (ESC t 19) moduna alarak ve Printzen otomatik sensör kalibrasyon yönergelerini uygulayarak problem tamamen giderilir."
+            }
+          }
+        ]
+      }
+    ]
+  }
+  </script>
+</head>
+<body class="bg-gray-50 text-gray-900 font-sans antialiased">
+  <nav class="bg-white shadow-sm sticky top-0 z-20 border-b border-gray-100">
+    <div class="max-w-5xl mx-auto px-4 py-4 flex items-center justify-between">
+      <a href="/tr/" class="text-2xl font-bold text-blue-600">Printzen</a>
+      <div class="flex items-center gap-4 text-sm">
+        <a href="/tr/rehberler" class="text-gray-600 hover:text-blue-600 font-medium">Rehberler</a>
+        <a href="/tr/rehberler/wifi-termal-yazici-altyapisi-ve-ag-guvenligi" class="text-blue-600 hover:underline">Ana Konu Hub'ı</a>
+        <a href="/guides/bixolon-srp-350iii-wifi-thermal-printer-setup-network-security" class="border border-gray-300 rounded px-2.5 py-1 text-xs font-semibold hover:bg-gray-50">EN</a>
+      </div>
+    </div>
+  </nav>
+
+  <main class="max-w-4xl mx-auto px-4 py-12">
+    <div class="text-sm text-gray-500 mb-4 flex items-center gap-2">
+      <a href="/tr/rehberler" class="hover:underline">Rehberler</a>
+      <span>/</span>
+      <a href="/tr/rehberler/wifi-termal-yazici-altyapisi-ve-ag-guvenligi" class="text-blue-600 hover:underline">Wi-Fi Termal Yazıcı Altyapısı ve Ağ Güvenliği</a>
+      <span>/</span>
+      <span class="text-gray-700">Bixolon SRP-350III</span>
+    </div>
+
+    <span class="inline-block text-xs font-semibold text-blue-700 bg-blue-100 px-3 py-1 rounded-full mb-3">
+      Donanım Rehberi · Bixolon · ESC/POS
+    </span>
+    <h1 class="text-3xl sm:text-4xl font-extrabold text-gray-900 tracking-tight mb-4">
+      Bixolon SRP-350III Wi-Fi Termal Yazıcı Altyapısı ve Ağ Güvenliği Rehberi
+    </h1>
+    <p class="text-lg text-gray-600 leading-relaxed mb-8">
+      <strong>Bixolon SRP-350III</strong> (Endüstri Standardı Restoran Fiş Yazıcısı), işletmelerde yoğun fiş, adisyon ve etiket yazdırma operasyonlarında en çok tercih edilen modeller arasındadır. Bu kapsamlı teknik rehberde, cihazın <strong>wi-fi termal yazıcı altyapısı ve ağ güvenliği</strong> süreçlerini, ESC/POS protokol parametrelerini, USB, Ethernet, Seri arayüz konfigürasyonunu ve sahada karşılaşılan kritik hataların kesin çözümlerini adım adım inceleyeceğiz.
+    </p>
+
+    <!-- Donanım Özellikleri Tablosu -->
+    <div class="bg-white rounded-2xl p-6 shadow-sm border border-gray-200 mb-10">
+      <h2 class="text-xl font-bold text-gray-900 mb-4 flex items-center gap-2">
+        <span>⚙️</span> Bixolon SRP-350III Teknik Donanım Parametreleri
+      </h2>
+      <div class="overflow-x-auto">
+        <table class="w-full text-left text-sm text-gray-700">
+          <tbody class="divide-y divide-gray-100">
+            <tr><td class="py-2.5 font-medium text-gray-500 w-1/3">Üretici Marka</td><td class="py-2.5 font-bold text-gray-900">Bixolon</td></tr>
+            <tr><td class="py-2.5 font-medium text-gray-500">Model Adı</td><td class="py-2.5 font-bold text-gray-900">SRP-350III</td></tr>
+            <tr><td class="py-2.5 font-medium text-gray-500">Cihaz Kategorisi</td><td class="py-2.5">Endüstri Standardı Restoran Fiş Yazıcısı</td></tr>
+            <tr><td class="py-2.5 font-medium text-gray-500">Yerel Komut Dili</td><td class="py-2.5 font-mono text-blue-600 font-semibold">ESC/POS</td></tr>
+            <tr><td class="py-2.5 font-medium text-gray-500">Baskı Çözünürlüğü</td><td class="py-2.5">180 DPI (Nokta / İnç)</td></tr>
+            <tr><td class="py-2.5 font-medium text-gray-500">Desteklenen Arayüzler</td><td class="py-2.5">USB · Ethernet · Seri</td></tr>
+            <tr><td class="py-2.5 font-medium text-gray-500">Kağıt / Rulo Genişliği</td><td class="py-2.5">80mm</td></tr>
+            <tr><td class="py-2.5 font-medium text-gray-500">Otomatik Kağıt Kesici</td><td class="py-2.5">Var</td></tr>
+            <tr><td class="py-2.5 font-medium text-gray-500">Seri Baud Hızı (Varsayılan)</td><td class="py-2.5 font-mono">38400 bps</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- Adım Adım Kurulum ve Entegrasyon -->
+    <div class="prose max-w-none prose-blue mb-10">
+      <h2>1. Bixolon SRP-350III İçin Wi-Fi Termal Yazıcı Altyapısı ve Ağ Güvenliği Yapılandırması</h2>
+      <p>
+        Bixolon SRP-350III modelinde bu süreci başarıyla tamamlamak için donanım ile işletim sistemi kuyruğu (spooler) arasındaki veri akışının kesintisiz ve doğru baud hızında iletilmesi şarttır. ESC/POS mimarisi gereğince gönderilen byte dizilerinin yazıcı tampon belleğinde (receive buffer) taşma yaratmaması için donanımsal akış kontrolü (RTS/CTS veya XON/XOFF) dikkate alınmalıdır.
+      </p>
+
+      <h3>Kritik Kurulum Adımları:</h3>
+      <ol>
+        <li><strong>Fiziksel Bağlantı ve Arayüz Seçimi:</strong> Cihazı USB portu üzerinden ana terminale veya yerel ağa bağlayın. Ağ bağlantısı kullanılıyorsa DHCP yerine sabit bir IP adresi atayın.</li>
+        <li><strong>Protokol ve Kod Sayfası Ataması:</strong> Fiş veya etiket çıktısında Türkçe karakterlerin bozulmaması için yazıcı başlangıç komut dizisine <code>ESC t 19</code> (CP857) veya ilgili ZPL/TSPL kod sayfası komutunu ekleyin.</li>
+        <li><strong>Genişlik ve Marjin Doğrulaması:</strong> 80mm kağıt standardına uygun olarak baskı genişliğini (örneğin 80mm için 48/42 kolon, 58mm için 32 kolon) yazılım tarafında sabitleyin.</li>
+        <li><strong>Kesici ve Çekmece Tetikleme:</strong> İşlem tamamlandığında otomatik kağıt kesimi için <code>GS V 66 0</code> komutunu gönderin.</li>
+      </ol>
+
+      <h2>2. Sahada En Sık Karşılaşılan Sorunlar ve Pratik Çözümler</h2>
+      <p>
+        Bixolon SRP-350III cihazlarında karşılaşılan sorunlar çoğunlukla sürücü uyumsuzluğu, yanlış kod sayfası seçimi veya Bluetooth/Ağ zaman aşımı (timeout) kaynaklıdır:
+      </p>
+      <ul>
+        <li><strong>Çıktıda Soru İşareti veya Bozuk Karakterler:</strong> Türkçe karakterlerin '?' çıkması, yazıcı belleğinin UTF-8 yerine varsayılan ASCII tablosunda kalmasından kaynaklanır. Printzen SDK, metinleri otomatik olarak donanımın desteklediği kod sayfasına transcode eder.</li>
+        <li><strong>Baskı Sırasında Satır Atlama veya Yarım Kalma:</strong> Özellikle Bluetooth bağlantılarında MTU paket boyutu 20 byte sınırını aştığında veri kaybı yaşanır. Veri paketleri 20'şer baytlık dilimler halinde parçalanarak (chunking) gönderilmelidir.</li>
+        <li><strong>Sensör Kalibrasyon Uyarısı (Kırmızı Işık / Hata Bipi):</strong> Etiket rulosu değiştirildiğinde yazıcının boşluk (Gap) veya siyah çizgi (Black Mark) sensörünü tanıyabilmesi için FEED tuşuna basılı tutularak otomatik kalibrasyon çalıştırılmalıdır.</li>
+      </ul>
+    </div>
+
+    <!-- Sıkça Sorulan Sorular -->
+    <div class="bg-white rounded-2xl p-6 shadow-sm border border-gray-200 mb-10">
+      <h2 class="text-xl font-bold text-gray-900 mb-6 flex items-center gap-2">
+        <span>❓</span> Sıkça Sorulan Sorular (Bixolon SRP-350III)
+      </h2>
+      <div class="space-y-4">
+        <div>
+          <h3 class="text-base font-semibold text-gray-900 mb-1">Bixolon SRP-350III hangi komut protokolünü kullanır?</h3>
+          <p class="text-sm text-gray-600">Bixolon SRP-350III cihazı yerel olarak ESC/POS komut setini ve 180 DPI baskı çözünürlüğünü destekler.</p>
+        </div>
+        <div>
+          <h3 class="text-base font-semibold text-gray-900 mb-1">Bixolon SRP-350III web tarayıcısından doğrudan yazdırılabilir mi?</h3>
+          <p class="text-sm text-gray-600">Evet. Printzen Web SDK veya Mobile Print Service köprüsü sayesinde Chrome ve Edge üzerinden USB, Ethernet, Seri arayüzleriyle doğrudan sessiz baskı alınabilir.</p>
+        </div>
+        <div>
+          <h3 class="text-base font-semibold text-gray-900 mb-1">Bixolon SRP-350III Türkçe karakter veya etiket kayma problemi nasıl çözülür?</h3>
+          <p class="text-sm text-gray-600">Yazıcı donanım kod sayfasını CP857 (ESC t 19) moduna alarak ve Printzen otomatik sensör kalibrasyon yönergelerini uygulayarak problem tamamen giderilir.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- İlgili İçerikler & CTA -->
+    <div class="bg-blue-50 border border-blue-200 rounded-2xl p-6 sm:p-8 text-center mb-12">
+      <h3 class="text-xl font-bold text-blue-900 mb-2">Bixolon SRP-350III Yazıcınızı Web ve Buluta Bağlayın</h3>
+      <p class="text-sm text-blue-700 max-w-xl mx-auto mb-6">
+        Printzen ile hiçbir sürücü karmaşası yaşamadan Android, iOS, Windows ve macOS cihazlardan Bixolon SRP-350III yazıcınıza anında sessiz fiş ve etiket yazdırın.
+      </p>
+      <div class="flex flex-wrap justify-center gap-4">
+        <a href="/tr/rehberler/wifi-termal-yazici-altyapisi-ve-ag-guvenligi" class="bg-blue-600 text-white text-sm font-semibold px-5 py-2.5 rounded-xl hover:bg-blue-700 transition">
+          Wi-Fi Termal Yazıcı Altyapısı ve Ağ Güvenliği Ana Rehberini Oku →
+        </a>
+        <a href="https://play.google.com/store/apps/details?id=com.mobileprint.service" target="_blank" rel="noopener" class="bg-white text-blue-700 border border-blue-300 text-sm font-semibold px-5 py-2.5 rounded-xl hover:bg-blue-50 transition">
+          Printzen Uygulamasını İndir
+        </a>
+      </div>
+    </div>
+  </main>
+
+  <footer class="bg-gray-900 text-gray-400 py-10 border-t border-gray-800 text-center text-sm">
+    <div class="max-w-5xl mx-auto px-4">
+      <p class="mb-2">© 2026 Printzen.app — Tüm Hakları Saklıdır.</p>
+      <p class="text-xs text-gray-500">Termal ve barkod yazıcılar için modern bulut ve web SDK altyapısı.</p>
+    </div>
+  </footer>
+</body>
+</html>
