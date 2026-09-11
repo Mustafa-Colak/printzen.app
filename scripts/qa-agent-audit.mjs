@@ -72,6 +72,50 @@ for (const dir of GUIDES_DIRS) {
       }
     }
 
+    // Word count floor (editorial handbook: Satellite 800-1200, Pillar 1500-2500+ words).
+    // Warning only, not error — most of the current corpus is below this and we don't
+    // want to brick the build over a backlog; this exists to stop new thin content and
+    // track the debt. Consider promoting to an error once the backlog is cleared.
+    const body = content.slice(fmMatch[0].length);
+    const wordCount = (body.match(/\S+/g) || []).length;
+    const MIN_WORDS = 800;
+    if (wordCount < MIN_WORDS) {
+      reportWarning(filePath, null, `Guide is ${wordCount} words, below the ${MIN_WORDS}-word editorial minimum (printzen-editorial-handbook.md §4)`);
+    }
+
+    // FAQ requirement: a "Sıkça/Sık Sorulan Sorular" or "Frequently Asked Questions"
+    // H2 with at least 4 H3 sub-questions under it (editorial handbook §4).
+    {
+      const faqHeadingRe = /^##\s+.*(Sıkça\s+Sorulan\s+Sorular|Sık\s+Sorulan\s+Sorular|Frequently\s+Asked\s+Questions)/im;
+      const faqMatch = body.match(faqHeadingRe);
+      if (!faqMatch) {
+        reportWarning(filePath, null, 'No FAQ ("Sıkça/Sık Sorulan Sorular" or "Frequently Asked Questions") section found');
+      } else {
+        const afterFaq = body.slice(body.indexOf(faqMatch[0]) + faqMatch[0].length);
+        const nextH2Idx = afterFaq.search(/\n##\s+/);
+        const faqBody = nextH2Idx === -1 ? afterFaq : afterFaq.slice(0, nextH2Idx);
+        const questionCount = (faqBody.match(/^###\s+/gm) || []).length;
+        if (questionCount < 4) {
+          reportWarning(filePath, null, `FAQ section has only ${questionCount} question(s), below the 4-question editorial minimum`);
+        }
+      }
+    }
+
+    // Banned marketing language (printzen-editorial-handbook.md §2 "Yasaklı kalıplar").
+    // Error, not warning — zero known violations in the current corpus, safe to block.
+    const BANNED_PHRASES = [
+      /inanılmaz hızlı/i,
+      /dünyanın en iyi(si)?\b/i,
+      /incredibly fast/i,
+      /best in the world\b/i,
+    ];
+    for (const re of BANNED_PHRASES) {
+      const m = body.match(re);
+      if (m) {
+        reportError(filePath, null, `Banned marketing phrase "${m[0]}" violates brand voice guidelines (printzen-editorial-handbook.md §2)`);
+      }
+    }
+
     // Line by line content checks
     let inCodeBlock = false;
     let codeBlockCount = 0;
