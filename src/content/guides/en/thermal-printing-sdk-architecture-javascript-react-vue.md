@@ -277,3 +277,37 @@ export function usePrintQueue(transport: IPrinterTransport) {
 
 ### Does Printzen provide an official open-source JavaScript SDK?
 **Yes, the official `@printzen/sdk` package provides production-hardened implementations of all four architectural tiers.** It includes native WebUSB, Web Bluetooth, Local Agent, and Cloud WebSocket transports, along with built-in Atkinson/Floyd-Steinberg image dithering algorithms for crisp monochrome bitmap printing.
+
+## Modern Thermal Printing SDK Architecture (TypeScript / NPM)
+
+The primary engineering challenge when integrating thermal printing into web applications is transport fragmentation: Web Bluetooth, WebUSB, Raw TCP, and Cloud Queues all expose completely different asynchronous communication semantics. A world-class Thermal Printing SDK resolves this by implementing a unified Hardware Abstraction Layer (HAL).
+
+### The Multi-Tier Architecture
+
+```
+[React / Vue / Svelte Host Application]
+                  │
+         [Printzen Core SDK]
+    (Templating, Dithering, Font Tables)
+                  │
+    [Hardware Abstraction Layer (HAL)]
+  ┌───────────────┼───────────────┬───────────────┐
+  ▼               ▼               ▼               ▼
+[Web Bluetooth] [WebUSB]     [Raw Socket TCP] [Cloud REST API]
+  (BLE GATT)      (Bulk OUT)   (Port 9100)      (MQTT / Push)
+```
+
+### Unified TypeScript Transport Contract
+
+```typescript
+export interface IThermalTransport {
+  connect(): Promise<void>;
+  disconnect(): Promise<void>;
+  send(payload: Uint8Array): Promise<void>;
+  queryStatus(): Promise<{ paperOk: boolean; coverClosed: boolean }>;
+}
+```
+
+## Device-Specific Guides for This Topic
+
+

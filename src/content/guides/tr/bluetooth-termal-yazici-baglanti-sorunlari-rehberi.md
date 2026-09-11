@@ -105,3 +105,34 @@ Windows bilgisayarlarda bir Bluetooth termal yazıcı eşleştirildiğinde Windo
 
 ### Printzen mobil uygulaması Bluetooth bağlantı kopmalarını nasıl önlüyor?
 **Printzen Mobil Yazdırma Servisi akıllı bir "Otomatik Yeniden Bağlanma ve Kuyruklama" (Auto-Reconnect & Retry Queue) mekanizmasına sahiptir.** Yazıcı uykuya geçtiğinde veya operatör kapsama alanı dışına çıktığında yazdırma işleri kaybolmaz; yazıcı tekrar kapsama alanına girdiği anda arka planda otomatik olarak bağlanır ve bekleyen tüm fişleri basar.
+
+## Bluetooth Termal Yazıcı Bağlantı Hataları Teşhis Matrisi
+
+Bluetooth termal yazıcılarda yaşanan bağlantı kopmaları ve çıktı alamama problemleri çoğunlukla donanım arızasından değil, protokol uyuşmazlıkları ve işletim sistemi Bluetooth önbellek kilitlenmelerinden kaynaklanır.
+
+### En Sık Karşılaşılan 4 Sorun ve Çözümleri
+
+1. **"Cihaz Eşleşti Ancak Yazmıyor" (Paired but not Printing):**
+   - **Sebep:** Android cihaz yazıcıyı klasik kulaklık/ses profili veya HID klavye olarak kaydetmiş olabilir.
+   - **Çözüm:** Bluetooth ayarlarından cihazın eşleşmesini kaldırın (Unpair). Yazıcıyı kapatıp açın. Eşleştirme yaparken PIN kodunu (0000 veya 1234) girdikten sonra doğrudan Web Bluetooth veya Printzen POS uygulamasından arama yapın.
+
+2. **Satır Atlama ve Fişin Yarım Kalması (Buffer Overflow):**
+   - **Sebep:** Yazıcının dahili RAM tamponu (genellikle 4 KB - 16 KB) dolduğunda gelen baytları atması.
+   - **Çözüm:** Büyük görselleri ve uzun metinleri 512 baytlık paketlere bölün ve her paket arasına 15-20 ms gecikme koyun.
+
+3. **Mobil Yazıcının Uyku Moduna Geçmesi ve Uyanmaması:**
+   - **Sebep:** Batarya koruma devresi 3 dakika veri gelmediğinde Bluetooth modülünü kapatır.
+   - **Çözüm:** Yazıcının DIP switch ayarlarından veya Printzen SDK'nın `keepAlivePing()` fonksiyonu ile 60 saniyede bir boş byte (0x00) göndererek bağlantıyı sıcak tutun.
+
+## Popüler Model Özelinde Bu Konudaki Rehberler
+
+- [Bixolon Slp Tx400 Bluetooth](/tr/rehber/bixolon-slp-tx400-bluetooth-termal-yazici-baglanti-sorunlari-rehberi)
+- [Bixolon Slp Tx400 Web](/tr/rehber/bixolon-slp-tx400-web-bluetooth-termal-yazici-baglantisi)
+- [Bixolon Spp R200iii Bluetooth](/tr/rehber/bixolon-spp-r200iii-bluetooth-termal-yazici-baglanti-sorunlari-rehberi)
+- [Bixolon Spp R200iii Web](/tr/rehber/bixolon-spp-r200iii-web-bluetooth-termal-yazici-baglantisi)
+- [Bixolon Spp R310 Bluetooth](/tr/rehber/bixolon-spp-r310-bluetooth-termal-yazici-baglanti-sorunlari-rehberi)
+- [Bixolon Spp R310 Web](/tr/rehber/bixolon-spp-r310-web-bluetooth-termal-yazici-baglantisi)
+- [Bixolon Srp 330ii Bluetooth](/tr/rehber/bixolon-srp-330ii-bluetooth-termal-yazici-baglanti-sorunlari-rehberi)
+- [Bixolon Srp 330ii Web](/tr/rehber/bixolon-srp-330ii-web-bluetooth-termal-yazici-baglantisi)
+- [Bixolon Srp 350iii Bluetooth](/tr/rehber/bixolon-srp-350iii-bluetooth-termal-yazici-baglanti-sorunlari-rehberi)
+- [Bixolon Srp 350iii Web](/tr/rehber/bixolon-srp-350iii-web-bluetooth-termal-yazici-baglantisi)

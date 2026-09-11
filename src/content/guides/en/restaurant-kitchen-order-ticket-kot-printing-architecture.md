@@ -145,3 +145,27 @@ Priority: Rush Order for Table 14
 
 ### How do external kitchen alarms and buzzers connect to receipt printers?
 **External acoustic sirens and flashing LED strobes plug directly into the printer's RJ11 cash drawer port.** When the POS fires an ESC/POS drawer kick pulse (`0x1B 0x70`), the port emits a 24-volt electrical signal that activates the external buzzer until cook staff acknowledge the ticket.
+
+## Kitchen Order Ticket (KOT) Routing Architecture
+
+In high-volume hospitality environments, kitchen throughput depends on instant, error-free ticket dispatching. Appetizers must route to the cold station, cocktails to the service bar, and entrees to the hot grill line without human intervention.
+
+### Critical Hardware Requirements for Kitchens
+- **Hardwired Ethernet (Port 9100):** Kitchen environments packed with stainless steel counters, microwaves, and industrial ovens degrade 2.4 GHz wireless signals. Always run Cat6 Ethernet to kitchen stations.
+- **Audible Buzzer & Optical Alarms:** To alert line cooks during peak rush hours, trigger the RJ-11 buzzer port on every print:
+  - ESC/POS Cash Drawer / Buzzer Command: `ESC p 0 50 250` (`0x1B 0x70 0x00 0x32 0xFA`)
+- **Heat-Resistant Thermal Stock:** Use top-coated, BPA-free thermal rolls to prevent tickets from darkening near heat lamps.
+
+```javascript
+export function dispatchOrder(order) {
+  const drinks = order.items.filter(i => i.department === 'beverage');
+  const hotKitchen = order.items.filter(i => i.department === 'kitchen');
+
+  if (drinks.length) sendRawTcp('192.168.1.201', 9100, formatTicket(order, drinks));
+  if (hotKitchen.length) sendRawTcp('192.168.1.202', 9100, formatTicket(order, hotKitchen));
+}
+```
+
+## Device-Specific Guides for This Topic
+
+

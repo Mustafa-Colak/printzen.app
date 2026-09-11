@@ -211,3 +211,47 @@ Aşağıdaki JavaScript kodu; cihaz eşleştirme, bağlantı kurma, ESC/POS fiş
 
 ### iOS (iPhone ve iPad) cihazlarda tarayıcıdan Bluetooth fiş yazdırmak mümkün müdür?
 **Apple Safari Web Bluetooth API'sini desteklememektedir.** Ancak App Store'dan indirebileceğiniz **Bluefy** veya **WebBLE** gibi özel geliştirici tarayıcıları Web Bluetooth standardını iOS üzerinde tam olarak destekler. Kurumsal projelerde saha ekiplerine bu tarayıcılar üzerinden Web POS kullandırılabilir veya Printzen Cloud Print servisi tercih edilebilir.
+
+## Web Bluetooth API ile Mobil ve Web POS Mimarisi
+
+Modern Chrome, Edge ve Chromium tabanlı tarayıcılarda çalışan Web Bluetooth API, web sayfalarının kullanıcı cihazına hiçbir ek yazılım, sürücü ya da köprü kurmadan taşınabilir Bluetooth termal yazıcılarla doğrudan BLE (Bluetooth Low Energy) üzerinden konuşmasını sağlar.
+
+### GATT Protokolü ve Yazıcı Servisleri
+Termal yazıcılar veri iletimi için standart veya özel GATT servis UUID'leri kullanır:
+- Standart Yazıcı Servis UUID'si: `000018f0-0000-1000-8000-00805f9b34fb`
+- Veri Yazma Karakteristiği: `00002af1-0000-1000-8000-00805f9b34fb`
+- Şeffaf Seri Aktarım (ISSC / Vendor-specific): `e7810a71-73ae-499d-8c15-faa9aef0c3f2`
+
+### Bluetooth MTU Limiti ve 20-Bayt Parçalama (Chunking)
+
+Bluetooth LE bağlantılarında varsayılan MTU (Maximum Transmission Unit) değeri 23 bayttır (3 bayt protokol başlığı düşüldüğünde efektif veri kapasitesi **20 bayt** kalır). Tek seferde 20 bayttan büyük bir fiş verisi göndermeye çalışırsanız tarayıcı `GATT operation failed` hatası fırlatır veya yazıcı veriyi eksik alıp satır atlar:
+
+```javascript
+async function sendRawInChunks(characteristic, data, chunkSize = 20, delayMs = 15) {
+  for (let i = 0; i < data.length; i += chunkSize) {
+    const chunk = data.slice(i, i + chunkSize);
+    await characteristic.writeValueWithoutResponse(chunk);
+    if (delayMs > 0) {
+      await new Promise(resolve => setTimeout(resolve, delayMs));
+    }
+  }
+}
+```
+
+## iOS (iPhone / iPad) Web Bluetooth Kısıtları ve Çözümü
+Apple, Safari tarayıcısında Web Bluetooth standardını gizlilik gerekçesiyle yerel olarak desteklemez. iOS ortamında web tabanlı termal yazdırma yapmanın iki kanıtlanmış yolu vardır:
+1. **Bluefy / WebBLE Tarayıcıları:** App Store'da bulunan ve Web Bluetooth API'sini JavaScript bridge üzerinden enjekte eden özel tarayıcılar.
+2. **Printzen Cloud Print Köprüsü:** iOS cihazı doğrudan bulut sunucusuna WebSocket veya HTTP POST ile fişi iletir, restorandaki veya mağazadaki yazıcıya bağlı Printzen ajanı saniyeler içinde çıktıyı verir.
+
+## Popüler Model Özelinde Bu Konudaki Rehberler
+
+- [Bixolon Slp Tx400 Web](/tr/rehber/bixolon-slp-tx400-web-bluetooth-termal-yazici-baglantisi)
+- [Bixolon Spp R200iii Web](/tr/rehber/bixolon-spp-r200iii-web-bluetooth-termal-yazici-baglantisi)
+- [Bixolon Spp R310 Web](/tr/rehber/bixolon-spp-r310-web-bluetooth-termal-yazici-baglantisi)
+- [Bixolon Srp 330ii Web](/tr/rehber/bixolon-srp-330ii-web-bluetooth-termal-yazici-baglantisi)
+- [Bixolon Srp 350iii Web](/tr/rehber/bixolon-srp-350iii-web-bluetooth-termal-yazici-baglantisi)
+- [Bixolon Srp Q300 Web](/tr/rehber/bixolon-srp-q300-web-bluetooth-termal-yazici-baglantisi)
+- [Epson Tm L90 Web](/tr/rehber/epson-tm-l90-web-bluetooth-termal-yazici-baglantisi)
+- [Epson Tm M30ii Web](/tr/rehber/epson-tm-m30ii-web-bluetooth-termal-yazici-baglantisi)
+- [Epson Tm P20ii Web](/tr/rehber/epson-tm-p20ii-web-bluetooth-termal-yazici-baglantisi)
+- [Epson Tm P80ii Web](/tr/rehber/epson-tm-p80ii-web-bluetooth-termal-yazici-baglantisi)

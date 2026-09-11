@@ -184,3 +184,55 @@ This is cleanly implemented in PHP by evaluating `$item->get_product()->get_cate
 
 ### Are carrier formats like FedEx, UPS, DHL, or regional couriers supported?
 **Yes, major carrier shipping APIs provide label data as 4x6 inch ZPL or raw thermal streams.** Printzen ingests carrier tracking identifiers and renders compliant Code 128 / PDF417 barcodes directly onto your Zebra, TSC, or Xprinter industrial label units.
+
+## Automated WooCommerce Print Pipeline Architecture
+
+When an order transitions to "Processing" or "Completed" in WooCommerce, dispatching a 4x6" shipping barcode to the warehouse printer and a packing receipt to the fulfilment desk automatically prevents manual bottlenecking.
+
+### Webhook Configuration Workflow
+1. Navigate to **WooCommerce > Settings > Advanced > Webhooks**.
+2. Create a new trigger:
+   - **Topic:** Order created (`order.created`) or Order updated (`order.updated`)
+   - **Status:** Active
+   - **Delivery URL:** `https://api.printzen.app/v1/webhooks/woocommerce`
+   - **Secret:** Generate a high-entropy HMAC secret
+
+```php
+// Optional custom webhook hook in WordPress:
+add_action('woocommerce_order_status_processing', 'printzen_dispatch_cloud_print', 10, 1);
+
+function printzen_dispatch_cloud_print($order_id) {
+    $order = wc_get_order($order_id);
+    $payload = [
+        'order_id' => $order_id,
+        'shipping_name' => $order->get_formatted_shipping_full_name(),
+        'total' => $order->get_total(),
+        'items' => array_map(fn($item) => [
+            'title' => $item->get_name(),
+            'qty' => $item->get_quantity(),
+            'sku' => $item->get_product()->get_sku()
+        ], $order->get_items())
+    ];
+
+    wp_remote_post('https://api.printzen.app/v1/jobs/auto', [
+        'headers' => [
+            'Authorization' => 'Bearer ' . PRINTZEN_API_KEY,
+            'Content-Type' => 'application/json'
+        ],
+        'body' => json_encode($payload)
+    ]);
+}
+```
+
+## Device-Specific Guides for This Topic
+
+- [Bixolon Slp Tx400 Woocommerce](/guides/bixolon-slp-tx400-woocommerce-automatic-thermal-receipt-shipping-label-printing)
+- [Bixolon Spp R200iii Woocommerce](/guides/bixolon-spp-r200iii-woocommerce-automatic-thermal-receipt-shipping-label-printing)
+- [Bixolon Spp R310 Woocommerce](/guides/bixolon-spp-r310-woocommerce-automatic-thermal-receipt-shipping-label-printing)
+- [Bixolon Srp 330ii Woocommerce](/guides/bixolon-srp-330ii-woocommerce-automatic-thermal-receipt-shipping-label-printing)
+- [Bixolon Srp 350iii Woocommerce](/guides/bixolon-srp-350iii-woocommerce-automatic-thermal-receipt-shipping-label-printing)
+- [Bixolon Srp Q300 Woocommerce](/guides/bixolon-srp-q300-woocommerce-automatic-thermal-receipt-shipping-label-printing)
+- [Epson Tm L90 Woocommerce](/guides/epson-tm-l90-woocommerce-automatic-thermal-receipt-shipping-label-printing)
+- [Epson Tm M30ii Woocommerce](/guides/epson-tm-m30ii-woocommerce-automatic-thermal-receipt-shipping-label-printing)
+- [Epson Tm P20ii Woocommerce](/guides/epson-tm-p20ii-woocommerce-automatic-thermal-receipt-shipping-label-printing)
+- [Epson Tm P80ii Woocommerce](/guides/epson-tm-p80ii-woocommerce-automatic-thermal-receipt-shipping-label-printing)

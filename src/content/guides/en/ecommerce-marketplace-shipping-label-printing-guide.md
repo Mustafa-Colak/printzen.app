@@ -135,3 +135,29 @@ Selecting the proper thermal media prevents barcode degradation during cross-doc
 
 ### How does Printzen simplify multichannel marketplace label printing?
 **Printzen aggregates order queues across Amazon, Shopify, WooCommerce, and regional marketplaces into a unified print stream.** It automatically detects label formats, applies necessary cropping or rotation, and routes 4x6 inch jobs to your designated packing station label printers without requiring manual PDF downloading.
+
+## Marketplace Shipping Label Transformation & PDF Cropping
+
+E-commerce marketplaces (Amazon, eBay, Walmart, Trendyol) frequently generate shipping barcodes as full-page A4/Letter PDF sheets flanked by wide white margins. Sending these directly to 4x6" thermal label printers (Zebra, TSC, Xprinter) causes heavy scaling degradation, rendering high-density Code 128 and 2D barcodes unreadable by courier optical scanners.
+
+### The Automated Thermal Transformation Pipeline
+1. **Bounding Box Detection:** Parse the PDF vector tree to locate the primary shipping barcode coordinates.
+2. **Margin Trimming:** Strip away non-essential white space and crop tightly around the 100x150 mm boundary.
+3. **Orientation Normalization:** Rotate landscape labels 90° clockwise to align with vertical thermal feed direction.
+4. **Monochrome Quantization:** Convert multi-shade documents into 1-bit binary raster maps at native 203/300 DPI.
+
+```javascript
+import { processShippingLabel } from '@printzen/label-processor';
+
+const binaryPayload = await processShippingLabel({
+  pdfData: incomingPdfBuffer,
+  dpi: 203,
+  widthInches: 4,
+  heightInches: 6,
+  targetProtocol: 'ZPL' // Outputs optimized ^GFA vector blocks
+});
+```
+
+## Device-Specific Guides for This Topic
+
+

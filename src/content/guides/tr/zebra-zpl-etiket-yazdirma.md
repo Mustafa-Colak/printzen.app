@@ -186,3 +186,47 @@ async function printZplWebUSB(zplString) {
 
 ### ZPL ile yazdırırken Türkçe karakterler neden bozuluyor?
 **ZPL'in varsayılan fontları (Font 0) standart ASCII tablosunu kullanır ve Türkçe `Ş, Ğ, İ, ı, ç, ö, ü` karakterlerini doğrudan tanımaz.** Çözüm için etiket başında `^CI28` (UTF-8 modunu açan komut) verilmeli veya `_C5_9F` gibi ZPL hex kaçış karakterleri (Hex Escape) tercih edilmelidir.
+
+## ZPL II Komut Yapısı ve Temel Mimarisi
+
+Zebra Programlama Dili (ZPL II), barkod ve kargo etiketleri tasarımında küresel standarttır. Tüm ZPL kodları `^XA` ile başlar ve `^XZ` ile sonlanır. ZPL'in temel avantajı, raster grafik göndermek yerine etiket yazıcısının dahili işlemcisine komut vererek metin, çizgi ve barkodları yerel donanım çözünürlüğünde (203 DPI, 300 DPI veya 600 DPI) piksel hassasiyetinde çizdirmesidir.
+
+### Koordinat Sistemi (^FO vs ^FT)
+- **^FO (Field Origin):** Belirtilen X ve Y koordinatını metnin veya nesnenin **sol üst** köşesi olarak kabul eder.
+- **^FT (Field Typeset):** Taban çizgisi (baseline) orijinli yerleşim sağlar, özellikle farklı font boyutlarının aynı taban çizgisinde hizalanmasında kullanılır.
+
+```zpl
+^XA
+^PW812
+^LL1218
+^FO50,50^A0N,40,40^FDPRINTZEN BULUT ETİKET SİSTEMİ^FS
+^FO50,110^GB712,3,3^FS
+^FO50,150^BY3,3,100^BCN,100,Y,N,N^FD1234567890^FS
+^FO50,290^A0N,30,30^FDGonderici: Printzen Depo A.S.^FS
+^FO50,330^A0N,30,30^FDAlici: Ahmet Yilmaz - Kadikoy / Istanbul^FS
+^FO50,380^GB712,2,2^FS
+^FO50,420^BQN,2,6^FDQA,https://printzen.app/track/1234567890^FS
+^FO220,440^A0N,32,32^FDKARGO TAKIP KAREKODU^FS
+^FO220,480^A0N,24,24^FDSon Teslimat: 24 Saat Icinde^FS
+^XZ
+```
+
+## ZPL ile Yüksek Hızlı Baskı Optimizasyonu
+
+Büyük depolarda dakikada yüzlerce etiket basılırken ZPL şablonlarının performansı doğrudan ciroya etki eder:
+1. **Şablon Saklama (^DF ve ^XF):** Sürekli aynı tasarımı göndermek yerine etiket şablonunu yazıcının Flash belleğine `^DFE:CARGO.ZPL` ile kaydedip, yalnızca değişken verileri `^XFE:CARGO.ZPL^FN1^FDVeri^FS` şeklinde aktarabilirsiniz. Bu işlem ağ trafiğini %90 oranında düşürür.
+2. **Grafik Formatlama (^GF vs PNG):** Etiket üzerine logo basarken doğrudan bitmap göndermek yerine ZPL'in `^GF` (Graphic Field) sıkıştırılmış ASCII hex formatını kullanın. Printzen SDK, logolarınızı tarayıcıda doğrudan optimize edilmiş `^GF` koduna çevirir.
+3. **DPI Farklılıklarını Yönetme:** 203 DPI yazıcıda 8 nokta/mm (100x150 mm = 812x1218 nokta) hesaplanırken, 300 DPI yazıcıda 12 nokta/mm (1200x1800 nokta) hesaplanır. ZPL koordinatlarını dinamik katsayı ile çarparak tüm modellere uyumlu kılabilirsiniz.
+
+## Popüler Model Özelinde Bu Konudaki Rehberler
+
+- [Bixolon Slp Tx400 Zebra](/tr/rehber/bixolon-slp-tx400-zebra-zpl-etiket-yazdirma)
+- [Bixolon Spp R200iii Zebra](/tr/rehber/bixolon-spp-r200iii-zebra-zpl-etiket-yazdirma)
+- [Bixolon Spp R310 Zebra](/tr/rehber/bixolon-spp-r310-zebra-zpl-etiket-yazdirma)
+- [Bixolon Srp 330ii Zebra](/tr/rehber/bixolon-srp-330ii-zebra-zpl-etiket-yazdirma)
+- [Bixolon Srp 350iii Zebra](/tr/rehber/bixolon-srp-350iii-zebra-zpl-etiket-yazdirma)
+- [Bixolon Srp Q300 Zebra](/tr/rehber/bixolon-srp-q300-zebra-zpl-etiket-yazdirma)
+- [Epson Tm L90 Zebra](/tr/rehber/epson-tm-l90-zebra-zpl-etiket-yazdirma)
+- [Epson Tm M30ii Zebra](/tr/rehber/epson-tm-m30ii-zebra-zpl-etiket-yazdirma)
+- [Epson Tm P20ii Zebra](/tr/rehber/epson-tm-p20ii-zebra-zpl-etiket-yazdirma)
+- [Epson Tm P80ii Zebra](/tr/rehber/epson-tm-p80ii-zebra-zpl-etiket-yazdirma)

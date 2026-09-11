@@ -199,3 +199,46 @@ async function printZplOverWebUSB(zplString: string): Promise<void> {
 
 ### How do I handle international and special characters in ZPL?
 **By default, ZPL's internal scalable font uses standard 7-bit ASCII and will corrupt accented characters.** You can enable complete UTF-8 character encoding by declaring `^CI28` at the beginning of the label format immediately following `^XA`, or by uploading custom TrueType/OpenType font files (`.TTF`) to the printer's E: flash memory via `~DU`.
+
+## ZPL II Architecture and Coordinate Mechanics
+
+Zebra Programming Language (ZPL II) is the global benchmark for thermal barcode and shipping label generation. All ZPL payloads begin with `^XA` and terminate with `^XZ`. Rather than sending heavy raster bitmaps over the network, ZPL instructs the printer's onboard firmware to render scalable fonts, geometric shapes, and barcode vectors at native printhead resolution (203, 300, or 600 DPI).
+
+### Positioning with ^FO vs ^FT
+- **^FO (Field Origin):** Anchors elements at the **top-left** corner coordinates (X, Y).
+- **^FT (Field Typeset):** Anchors elements at the **baseline**, ideal for multilingual typesetting where different font sizes share a common baseline.
+
+```zpl
+^XA
+^PW812
+^LL1218
+^FO50,50^A0N,40,40^FDPRINTZEN CLOUD PRINT SYSTEM^FS
+^FO50,110^GB712,3,3^FS
+^FO50,150^BY3,3,100^BCN,100,Y,N,N^FD1234567890^FS
+^FO50,290^A0N,30,30^FDSender: Warehouse Hub Logistics^FS
+^FO50,330^A0N,30,30^FDRecipient: John Doe - London UK^FS
+^FO50,380^GB712,2,2^FS
+^FO50,420^BQN,2,6^FDQA,https://printzen.app/track/1234567890^FS
+^FO220,440^A0N,32,32^FDSCAN TO TRACK SHIPMENT^FS
+^XZ
+```
+
+## High-Throughput Warehouse ZPL Optimizations
+
+In high-velocity fulfilment centres printing thousands of labels per hour, payload size and transmission latency are critical:
+1. **Template Storage (^DF and ^XF):** Store recurring layouts in printer flash memory using `^DFR:TEMPLATE.ZPL` and recall them dynamically with `^XFR:TEMPLATE.ZPL^FN1^FDData^FS`. This reduces network payload by up to 90%.
+2. **Graphic Optimization (^GF):** Compress brand logos into native ASCII hex graphic blocks (`^GF`) instead of sending raw image bitmaps. Printzen SDK performs this conversion automatically in the client browser.
+3. **DPI Cross-Compatibility:** 203 DPI printers use 8 dots/mm (812x1218 for 4x6"), whereas 300 DPI printers use 12 dots/mm (1200x1800). Scale coordinates dynamically using Printzen's unified resolution driver.
+
+## Device-Specific Guides for This Topic
+
+- [Bixolon Slp Tx400 Zebra](/guides/bixolon-slp-tx400-zebra-zpl-label-printing)
+- [Bixolon Spp R200iii Zebra](/guides/bixolon-spp-r200iii-zebra-zpl-label-printing)
+- [Bixolon Spp R310 Zebra](/guides/bixolon-spp-r310-zebra-zpl-label-printing)
+- [Bixolon Srp 330ii Zebra](/guides/bixolon-srp-330ii-zebra-zpl-label-printing)
+- [Bixolon Srp 350iii Zebra](/guides/bixolon-srp-350iii-zebra-zpl-label-printing)
+- [Bixolon Srp Q300 Zebra](/guides/bixolon-srp-q300-zebra-zpl-label-printing)
+- [Epson Tm L90 Zebra](/guides/epson-tm-l90-zebra-zpl-label-printing)
+- [Epson Tm M30ii Zebra](/guides/epson-tm-m30ii-zebra-zpl-label-printing)
+- [Epson Tm P20ii Zebra](/guides/epson-tm-p20ii-zebra-zpl-label-printing)
+- [Epson Tm P80ii Zebra](/guides/epson-tm-p80ii-zebra-zpl-label-printing)
