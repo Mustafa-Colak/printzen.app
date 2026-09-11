@@ -13,26 +13,229 @@ const classLabels: Record<string, string> = {
   desktop: 'Desktop',
   industrial: 'Industrial',
 };
+
+const HARDWARE_SHOWCASE = [
+  { brand: 'Epson', models: ['TM-T20III', 'TM-T88VI', 'TM-T88VII', 'TM-m30II', 'TM-P20II', 'TM-P80II'] },
+  { brand: 'Zebra', models: ['ZD220', 'ZD420', 'ZD421', 'GK420d', 'ZT411', 'ZQ320 Plus'] },
+  { brand: 'Xprinter', models: ['XP-420B', 'XP-365B', 'XP-470B', 'XP-N160II', 'XP-58IIH'] },
+  { brand: 'Bixolon', models: ['SRP-330II', 'SRP-350III', 'SRP-Q300', 'SPP-R200III', 'SLP-TX400'] },
+  { brand: 'Star Micronics', models: ['TSP143III', 'TSP654II', 'mC-Print3', 'SM-L200'] },
+  { brand: 'TSC', models: ['TE200', 'TTP-244 Pro', 'DA210', 'DA220', 'Alpha-3R'] },
+  { brand: 'Godex', models: ['G500', 'RT700', 'DT4x'] },
+  { brand: 'Rongta', models: ['RPP02N', 'RP326', 'RP410', 'RP80'] },
+];
 ---
-<BaseLayout lang="en" title="Setup Guides — Printzen" description="Step-by-step setup guides for mobile, desktop, and industrial thermal printers." alternatePath="/tr/rehberler/">
+<BaseLayout lang="en" title="Thermal Printer Guides & Knowledge Base — Printzen" description="Step-by-step developer guides and documentation for ESC/POS, ZPL, Bluetooth, WebUSB, and network printers." alternatePath="/tr/rehberler/">
   <Nav wide lang="en" alternatePath="/tr/rehberler/" />
 
-  <main class="max-w-5xl mx-auto px-4 py-16">
-    <h1 class="text-3xl font-bold mb-2">Setup Guides</h1>
-    <p class="text-gray-500 mb-10">Step-by-step setup guides for mobile, desktop, and industrial thermal printers.</p>
-
-    <div class="grid md:grid-cols-2 gap-6">
-      {guides.map((guide) => (
-        <a href={`/guides/${guide.slug.replace(/^en\//, '')}`} class="block bg-white rounded-2xl p-6 shadow-sm border border-gray-100 hover:border-blue-200 transition">
-          <span class="inline-block text-xs font-medium text-blue-600 bg-blue-50 rounded-full px-3 py-1 mb-3">
-            {classLabels[guide.data.printerClass]}{guide.data.brand ? ` · ${guide.data.brand}` : ''}
-          </span>
-          <h2 class="text-lg font-bold mb-2">{guide.data.title}</h2>
-          <p class="text-gray-500 text-sm">{guide.data.description}</p>
+  <!-- Hero Header -->
+  <header class="bg-linear-to-b from-blue-50/50 to-white py-12 border-b border-gray-100">
+    <div class="max-w-6xl mx-auto px-4">
+      
+      <!-- Android App Promo Banner -->
+      <div class="mb-8 bg-blue-600 text-white rounded-2xl p-6 md:p-8 flex flex-col md:flex-row items-center justify-between gap-6 shadow-lg shadow-blue-500/10">
+        <div class="space-y-2 text-center md:text-left">
+          <div class="inline-flex items-center gap-2 bg-white/20 text-white text-xs font-semibold px-3 py-1 rounded-full uppercase tracking-wider">
+            <span>📱</span> Mobile Print Service for Android
+          </div>
+          <h2 class="text-2xl md:text-3xl font-bold tracking-tight">Print Directly to Any Thermal Printer from Android</h2>
+          <p class="text-blue-100 text-sm md:text-base max-w-2xl">
+            Stop searching for proprietary manufacturer drivers. Printzen Mobile Print Service integrates directly with the native Android Print Spooler across Bluetooth, Wi-Fi, and USB OTG.
+          </p>
+        </div>
+        <a
+          href="https://play.google.com/store/apps/details?id=com.mobileprint.service"
+          target="_blank"
+          rel="noopener"
+          class="shrink-0 bg-white text-blue-700 hover:bg-blue-50 text-sm md:text-base font-bold px-6 py-3.5 rounded-xl shadow-md transition flex items-center gap-2"
+        >
+          <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" viewBox="0 0 24 24" fill="currentColor"><path d="M3 20.5v-17c0-.83 1.01-1.3 1.66-.78l15 8.5a1 1 0 010 1.56l-15 8.5C4.01 21.8 3 21.33 3 20.5z"/></svg>
+          Get on Google Play
         </a>
-      ))}
+      </div>
+
+      <div class="flex flex-col md:flex-row md:items-end justify-between gap-4">
+        <div>
+          <h1 class="text-3xl md:text-4xl font-black text-gray-900 tracking-tight">Thermal Printer Guides & Hubs</h1>
+          <p class="text-gray-500 mt-2 text-base md:text-lg">
+            Engineering documentation, protocol guides, and hardware-specific configurations for modern development.
+          </p>
+        </div>
+        <div class="text-xs font-semibold text-gray-400 bg-white border border-gray-200 px-4 py-2 rounded-xl shrink-0 self-start md:self-auto">
+          📚 94 Flagship Guides + 2,500 Device Handbooks
+        </div>
+      </div>
+
+      <!-- Quick Category Tabs (Filter Bar) -->
+      <div class="mt-8 flex flex-wrap gap-2 pt-4 border-t border-gray-100" id="filter-tabs">
+        <button class="filter-tab active bg-blue-600 text-white text-xs font-semibold px-4 py-2 rounded-xl transition" data-filter="all">All ({guides.length})</button>
+        <button class="filter-tab bg-white hover:bg-gray-100 text-gray-600 border border-gray-200 text-xs font-semibold px-4 py-2 rounded-xl transition" data-filter="esc-pos">ESC/POS & Receipts</button>
+        <button class="filter-tab bg-white hover:bg-gray-100 text-gray-600 border border-gray-200 text-xs font-semibold px-4 py-2 rounded-xl transition" data-filter="zpl">Zebra & ZPL</button>
+        <button class="filter-tab bg-white hover:bg-gray-100 text-gray-600 border border-gray-200 text-xs font-semibold px-4 py-2 rounded-xl transition" data-filter="bluetooth">Bluetooth & BLE</button>
+        <button class="filter-tab bg-white hover:bg-gray-100 text-gray-600 border border-gray-200 text-xs font-semibold px-4 py-2 rounded-xl transition" data-filter="usb">WebUSB & Wired</button>
+        <button class="filter-tab bg-white hover:bg-gray-100 text-gray-600 border border-gray-200 text-xs font-semibold px-4 py-2 rounded-xl transition" data-filter="silent">Silent Print</button>
+        <button class="filter-tab bg-white hover:bg-gray-100 text-gray-600 border border-gray-200 text-xs font-semibold px-4 py-2 rounded-xl transition" data-filter="ecommerce">E-Commerce & Shipping</button>
+        <button class="filter-tab bg-white hover:bg-gray-100 text-gray-600 border border-gray-200 text-xs font-semibold px-4 py-2 rounded-xl transition" data-filter="troubleshooting">Troubleshooting</button>
+      </div>
+
+      <!-- Inline Live Search Input -->
+      <div class="mt-4 relative">
+        <input
+          type="text"
+          id="inline-search-input"
+          placeholder="Filter guides by topic, command language, or hardware model..."
+          class="w-full bg-white border border-gray-200 rounded-xl px-4 py-3 pl-11 text-sm text-gray-900 placeholder-gray-400 outline-none focus:border-blue-600 focus:ring-2 focus:ring-blue-100 transition shadow-2xs"
+        />
+        <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 text-gray-400 absolute left-3.5 top-3.5 pointer-events-none" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <circle cx="11" cy="11" r="8"></circle>
+          <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+        </svg>
+      </div>
     </div>
+  </header>
+
+  <main class="max-w-6xl mx-auto px-4 py-12">
+    <!-- Guides Grid -->
+    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6" id="guides-grid">
+      {guides.map((guide) => {
+        const slugClean = guide.slug.replace(/^en\//, '');
+        const textContent = `${guide.data.title} ${guide.data.description} ${guide.data.brand || ''} ${slugClean}`.toLowerCase();
+        return (
+          <a
+            href={`/guides/${slugClean}`}
+            class="guide-card block bg-white rounded-2xl p-6 shadow-sm border border-gray-100 hover:border-blue-300 hover:shadow-md transition flex flex-col justify-between group"
+            data-search-text={textContent}
+          >
+            <div>
+              <div class="flex items-center justify-between gap-2 mb-3">
+                <span class="inline-block text-[11px] font-bold uppercase tracking-wider text-blue-700 bg-blue-50 rounded-lg px-2.5 py-1">
+                  {classLabels[guide.data.printerClass]}{guide.data.brand ? ` · ${guide.data.brand}` : ''}
+                </span>
+                <span class="text-xs text-gray-400 group-hover:text-blue-600 transition">Read →</span>
+              </div>
+              <h2 class="text-base font-bold text-gray-900 mb-2 group-hover:text-blue-600 transition leading-snug">
+                {guide.data.title}
+              </h2>
+              <p class="text-gray-500 text-xs line-clamp-3 leading-relaxed">
+                {guide.data.description}
+              </p>
+            </div>
+            <div class="mt-4 pt-3 border-t border-gray-50 flex items-center justify-between text-[11px] text-gray-400">
+              <span>{guide.data.translationKey.includes('hub') ? 'Topic Hub' : 'Technical Guide'}</span>
+              <span>Printzen Docs</span>
+            </div>
+          </a>
+        );
+      })}
+    </div>
+
+    <!-- Empty State -->
+    <div id="no-filter-results" class="hidden text-center py-16">
+      <div class="text-4xl mb-2">🔍</div>
+      <p class="text-gray-600 font-semibold">No matching guide found for this query.</p>
+      <p class="text-xs text-gray-400 mt-1">Try another keyword or reset the category filter to "All".</p>
+    </div>
+
+    <!-- Device Specific Directory Showcase (pSEO Bridge) -->
+    <section class="mt-20 pt-12 border-t border-gray-100">
+      <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-8">
+        <div>
+          <span class="text-xs font-bold text-blue-600 uppercase tracking-wider">Hardware Library</span>
+          <h2 class="text-2xl font-bold text-gray-900 mt-1">Device-Specific Implementation Guides</h2>
+          <p class="text-gray-500 text-sm mt-1">Select your manufacturer and model to access dedicated integration walkthroughs.</p>
+        </div>
+        <a href="/printers" class="text-sm font-semibold text-blue-600 hover:underline">
+          View All 50 Printer Profiles →
+        </a>
+      </div>
+
+      <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        {HARDWARE_SHOWCASE.map((brandGroup) => (
+          <div class="bg-white rounded-2xl p-5 border border-gray-100 shadow-2xs">
+            <h3 class="font-bold text-gray-900 text-base mb-3 flex items-center gap-2">
+              <span class="w-2 h-2 rounded-full bg-blue-600"></span>
+              {brandGroup.brand}
+            </h3>
+            <ul class="space-y-1.5 text-xs">
+              {brandGroup.models.map((model) => {
+                const modelSlug = `${brandGroup.brand.toLowerCase()}-${model.toLowerCase()}`.replace(/\s+/g, '-');
+                return (
+                  <li>
+                    <a
+                      href={`/guides/${modelSlug}-web-bluetooth-thermal-printer-setup`}
+                      class="text-gray-600 hover:text-blue-600 hover:underline transition flex items-center justify-between py-1"
+                    >
+                      <span>{brandGroup.brand} {model}</span>
+                      <span class="text-gray-300">›</span>
+                    </a>
+                  </li>
+                );
+              })}
+            </ul>
+          </div>
+        ))}
+      </div>
+    </section>
   </main>
 
   <Footer lang="en" />
 </BaseLayout>
+
+<script is:inline>
+  const filterTabs = document.querySelectorAll('.filter-tab');
+  const searchInput = document.getElementById('inline-search-input');
+  const cards = document.querySelectorAll('.guide-card');
+  const noResults = document.getElementById('no-filter-results');
+
+  let activeFilter = 'all';
+  let searchQuery = '';
+
+  function applyFilters() {
+    let visibleCount = 0;
+
+    cards.forEach((card) => {
+      const text = card.getAttribute('data-search-text') || '';
+      const matchesSearch = !searchQuery || text.includes(searchQuery);
+
+      let matchesCategory = true;
+      if (activeFilter === 'esc-pos') matchesCategory = text.includes('esc-pos') || text.includes('receipt');
+      else if (activeFilter === 'zpl') matchesCategory = text.includes('zpl') || text.includes('zebra') || text.includes('label');
+      else if (activeFilter === 'bluetooth') matchesCategory = text.includes('bluetooth') || text.includes('ble');
+      else if (activeFilter === 'usb') matchesCategory = text.includes('usb') || text.includes('wired');
+      else if (activeFilter === 'silent') matchesCategory = text.includes('silent') || text.includes('kiosk');
+      else if (activeFilter === 'ecommerce') matchesCategory = text.includes('woocommerce') || text.includes('shipping') || text.includes('marketplace') || text.includes('shopify');
+      else if (activeFilter === 'troubleshooting') matchesCategory = text.includes('troubleshooting') || text.includes('jam') || text.includes('faded') || text.includes('calibration');
+
+      if (matchesSearch && matchesCategory) {
+        card.classList.remove('hidden');
+        visibleCount++;
+      } else {
+        card.classList.add('hidden');
+      }
+    });
+
+    if (visibleCount === 0) {
+      noResults?.classList.remove('hidden');
+    } else {
+      noResults?.classList.add('hidden');
+    }
+  }
+
+  filterTabs.forEach((tab) => {
+    tab.addEventListener('click', () => {
+      filterTabs.forEach((t) => {
+        t.classList.remove('active', 'bg-blue-600', 'text-white');
+        t.classList.add('bg-white', 'text-gray-600');
+      });
+      tab.classList.add('active', 'bg-blue-600', 'text-white');
+      tab.classList.remove('bg-white', 'text-gray-600');
+      activeFilter = tab.getAttribute('data-filter') || 'all';
+      applyFilters();
+    });
+  });
+
+  searchInput?.addEventListener('input', (e) => {
+    searchQuery = e.target.value.trim().toLowerCase();
+    applyFilters();
+  });
+</script>

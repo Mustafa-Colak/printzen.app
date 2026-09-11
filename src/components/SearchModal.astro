@@ -1,0 +1,207 @@
+---
+interface Props {
+  lang: 'tr' | 'en';
+}
+const { lang } = Astro.props;
+const placeholder = lang === 'tr' ? 'Rehber, yazıcı modeli veya konu ara... (ESC ile kapat)' : 'Search guides, printer models, protocols... (ESC to close)';
+const quickLinksTitle = lang === 'tr' ? 'Popüler Konular' : 'Popular Topics';
+---
+
+<!-- Search Modal Trigger Button -->
+<button
+  id="search-trigger-btn"
+  type="button"
+  class="flex items-center gap-2 bg-gray-100 hover:bg-gray-200 text-gray-500 hover:text-gray-800 text-xs font-medium px-3 py-1.5 rounded-lg border border-gray-200 transition"
+  aria-label={lang === 'tr' ? 'Rehber ve Yazıcı Ara' : 'Search Guides'}
+>
+  <svg xmlns="http://www.w3.org/2000/svg" class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+    <circle cx="11" cy="11" r="8"></circle>
+    <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+  </svg>
+  <span>{lang === 'tr' ? 'Ara...' : 'Search...'}</span>
+  <kbd class="hidden md:inline-block bg-white text-gray-400 font-mono text-[10px] px-1.5 py-0.5 rounded border border-gray-300 shadow-2xs">⌘K</kbd>
+</button>
+
+<!-- Backdrop & Modal -->
+<div
+  id="search-modal"
+  class="fixed inset-0 z-50 bg-black/50 backdrop-blur-xs flex items-start justify-center p-4 pt-16 md:pt-24 hidden"
+  role="dialog"
+  aria-modal="true"
+>
+  <div class="bg-white w-full max-w-2xl rounded-2xl shadow-2xl border border-gray-100 overflow-hidden flex flex-col max-h-[80vh] animate-in fade-in zoom-in-95 duration-150">
+    <!-- Search Bar Header -->
+    <div class="flex items-center px-4 border-b border-gray-100 gap-3 py-3">
+      <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 text-blue-600 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <circle cx="11" cy="11" r="8"></circle>
+        <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+      </svg>
+      <input
+        id="search-input"
+        type="text"
+        placeholder={placeholder}
+        class="w-full bg-transparent border-none outline-none text-gray-900 placeholder-gray-400 text-sm md:text-base py-1"
+        autocomplete="off"
+      />
+      <button id="search-close-btn" class="text-gray-400 hover:text-gray-600 p-1 rounded-lg hover:bg-gray-100 transition">
+        <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <line x1="18" y1="6" x2="6" y2="18"></line>
+          <line x1="6" y1="6" x2="18" y2="18"></line>
+        </svg>
+      </button>
+    </div>
+
+    <!-- Quick Tags / Results Container -->
+    <div id="search-results-container" class="overflow-y-auto p-4 flex-1 divide-y divide-gray-50">
+      <!-- Default Quick Suggestions -->
+      <div id="search-default-view">
+        <p class="text-xs font-semibold uppercase tracking-wider text-gray-400 mb-3">{quickLinksTitle}</p>
+        <div class="flex flex-wrap gap-2 mb-6">
+          <button type="button" class="quick-tag bg-blue-50 hover:bg-blue-100 text-blue-700 text-xs px-3 py-1.5 rounded-lg transition" data-query="Bluetooth">Bluetooth</button>
+          <button type="button" class="quick-tag bg-blue-50 hover:bg-blue-100 text-blue-700 text-xs px-3 py-1.5 rounded-lg transition" data-query="ESC/POS">ESC/POS</button>
+          <button type="button" class="quick-tag bg-blue-50 hover:bg-blue-100 text-blue-700 text-xs px-3 py-1.5 rounded-lg transition" data-query="Zebra ZPL">Zebra ZPL</button>
+          <button type="button" class="quick-tag bg-blue-50 hover:bg-blue-100 text-blue-700 text-xs px-3 py-1.5 rounded-lg transition" data-query="Epson">Epson</button>
+          <button type="button" class="quick-tag bg-blue-50 hover:bg-blue-100 text-blue-700 text-xs px-3 py-1.5 rounded-lg transition" data-query="Xprinter">Xprinter</button>
+          <button type="button" class="quick-tag bg-blue-50 hover:bg-blue-100 text-blue-700 text-xs px-3 py-1.5 rounded-lg transition" data-query="Sessiz">Sessiz Yazdırma</button>
+          <button type="button" class="quick-tag bg-blue-50 hover:bg-blue-100 text-blue-700 text-xs px-3 py-1.5 rounded-lg transition" data-query="WooCommerce">WooCommerce</button>
+        </div>
+
+        <!-- Android App Highlight in Search Modal -->
+        <div class="bg-linear-to-r from-blue-500 to-blue-700 text-white p-4 rounded-xl flex items-center justify-between gap-4 shadow-sm">
+          <div>
+            <span class="inline-block bg-white/20 text-white text-[10px] font-bold px-2 py-0.5 rounded-full uppercase mb-1">Android Print Service</span>
+            <p class="font-bold text-sm">{lang === 'tr' ? 'Android Cihazından Doğrudan Yazdır' : 'Direct Print from Any Android App'}</p>
+            <p class="text-xs text-blue-100">{lang === 'tr' ? 'Sürücüsüz Bluetooth, Wi-Fi & USB ESC/POS desteği.' : 'Driverless thermal printing across all mobile apps.'}</p>
+          </div>
+          <a
+            href="https://play.google.com/store/apps/details?id=com.mobileprint.service"
+            target="_blank"
+            rel="noopener"
+            class="bg-white text-blue-700 hover:bg-blue-50 text-xs font-bold px-4 py-2 rounded-lg shrink-0 transition shadow"
+          >
+            Play Store →
+          </a>
+        </div>
+      </div>
+
+      <!-- Live Search Results List -->
+      <div id="search-dynamic-results" class="hidden space-y-2"></div>
+      <div id="search-no-results" class="hidden text-center py-8 text-gray-400 text-sm">
+        {lang === 'tr' ? 'Eşleşen rehber veya model bulunamadı.' : 'No matching guide or hardware found.'}
+      </div>
+    </div>
+
+    <!-- Modal Footer -->
+    <div class="px-4 py-2.5 bg-gray-50 border-t border-gray-100 text-[11px] text-gray-400 flex items-center justify-between">
+      <span>{lang === 'tr' ? 'Seçmek için tıkla' : 'Click to navigate'}</span>
+      <span>Printzen Search Engine</span>
+    </div>
+  </div>
+</div>
+
+<script is:inline define:vars={{ lang }}>
+  let searchIndex = null;
+
+  async function loadSearchIndex() {
+    if (searchIndex) return searchIndex;
+    try {
+      const res = await fetch('/search-index.json');
+      const data = await res.json();
+      searchIndex = data[lang] || [];
+      return searchIndex;
+    } catch (e) {
+      console.error('Search index failed to load', e);
+      return [];
+    }
+  }
+
+  const modal = document.getElementById('search-modal');
+  const triggerBtn = document.getElementById('search-trigger-btn');
+  const closeBtn = document.getElementById('search-close-btn');
+  const input = document.getElementById('search-input');
+  const defaultView = document.getElementById('search-default-view');
+  const dynamicResults = document.getElementById('search-dynamic-results');
+  const noResults = document.getElementById('search-no-results');
+
+  function openSearch() {
+    modal?.classList.remove('hidden');
+    input?.focus();
+    loadSearchIndex();
+  }
+
+  function closeSearch() {
+    modal?.classList.add('hidden');
+    if (input) input.value = '';
+    showDefaultView();
+  }
+
+  function showDefaultView() {
+    defaultView?.classList.remove('hidden');
+    dynamicResults?.classList.add('hidden');
+    noResults?.classList.add('hidden');
+  }
+
+  triggerBtn?.addEventListener('click', openSearch);
+  closeBtn?.addEventListener('click', closeSearch);
+
+  modal?.addEventListener('click', (e) => {
+    if (e.target === modal) closeSearch();
+  });
+
+  window.addEventListener('keydown', (e) => {
+    if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === 'k') {
+      e.preventDefault();
+      if (modal?.classList.contains('hidden')) openSearch();
+      else closeSearch();
+    }
+    if (e.key === 'Escape' && !modal?.classList.contains('hidden')) {
+      closeSearch();
+    }
+  });
+
+  // Quick Tags click
+  document.querySelectorAll('.quick-tag').forEach((btn) => {
+    btn.addEventListener('click', () => {
+      const q = btn.getAttribute('data-query') || '';
+      if (input) {
+        input.value = q;
+        input.dispatchEvent(new Event('input'));
+      }
+    });
+  });
+
+  input?.addEventListener('input', async (e) => {
+    const q = e.target.value.trim().toLowerCase();
+    if (!q) {
+      showDefaultView();
+      return;
+    }
+
+    const items = await loadSearchIndex();
+    const matches = items.filter((item) => {
+      return item.title.toLowerCase().includes(q) || item.desc.toLowerCase().includes(q);
+    });
+
+    defaultView?.classList.add('hidden');
+
+    if (matches.length === 0) {
+      dynamicResults?.classList.add('hidden');
+      noResults?.classList.remove('hidden');
+      return;
+    }
+
+    noResults?.classList.add('hidden');
+    if (dynamicResults) {
+      dynamicResults.innerHTML = matches.slice(0, 8).map((m) => `
+        <a href="${m.url}" class="flex items-start gap-3 p-3 rounded-xl hover:bg-blue-50/70 group transition border border-transparent hover:border-blue-100">
+          <div class="text-xl p-2 bg-blue-50 text-blue-600 rounded-lg shrink-0 group-hover:bg-blue-600 group-hover:text-white transition">📄</div>
+          <div class="min-w-0">
+            <h4 class="text-sm font-bold text-gray-900 group-hover:text-blue-600 transition truncate">${m.title}</h4>
+            <p class="text-xs text-gray-500 line-clamp-1 mt-0.5">${m.desc}</p>
+          </div>
+        </a>
+      `).join('');
+      dynamicResults.classList.remove('hidden');
+    }
+  });
+</script>
