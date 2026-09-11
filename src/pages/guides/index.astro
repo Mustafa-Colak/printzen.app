@@ -25,7 +25,7 @@ const HARDWARE_SHOWCASE = [
   { brand: 'Rongta', models: ['RPP02N', 'RP326', 'RP410', 'RP80'] },
 ];
 ---
-<BaseLayout lang="en" title="Thermal Printer Guides & Knowledge Base — Printzen" description={`Step-by-step developer guides and documentation for ESC/POS, ZPL, Bluetooth, WebUSB, and network printers across ${guides.length} technical guides and 2,500 device configurations.`} alternatePath="/tr/rehberler/">
+<BaseLayout lang="en" title="Thermal Printer Guides & Knowledge Base — Printzen" description={`Step-by-step developer guides and documentation for ESC/POS, ZPL, Bluetooth, WebUSB, and network printers across ${guides.length} technical guides.`} alternatePath="/tr/rehberler/">
   <Nav wide lang="en" alternatePath="/tr/rehberler/" />
 
   <!-- Hero Header -->
@@ -136,16 +136,16 @@ const HARDWARE_SHOWCASE = [
       <p class="text-xs text-gray-400 mt-1">Try another keyword or reset the category filter to "All".</p>
     </div>
 
-    <!-- Device Specific Directory Showcase (pSEO Bridge) -->
+    <!-- Device Compatibility Showcase -->
     <section class="mt-20 pt-12 border-t border-gray-100">
       <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-8">
         <div>
-          <span class="text-xs font-bold text-blue-600 uppercase tracking-wider">Hardware Library</span>
-          <h2 class="text-2xl font-bold text-gray-900 mt-1">Device-Specific Implementation Guides</h2>
-          <p class="text-gray-500 text-sm mt-1">Select your manufacturer and model to access dedicated integration walkthroughs.</p>
+          <span class="text-xs font-bold text-blue-600 uppercase tracking-wider">Hardware Compatibility</span>
+          <h2 class="text-2xl font-bold text-gray-900 mt-1">Supported Thermal Printer Models</h2>
+          <p class="text-gray-500 text-sm mt-1">Most widely used commercial models and their supported protocols.</p>
         </div>
         <a href="/printers" class="text-sm font-semibold text-blue-600 hover:underline">
-          View All 50 Printer Profiles →
+          View Printer Compatibility Matrix →
         </a>
       </div>
 
@@ -157,20 +157,17 @@ const HARDWARE_SHOWCASE = [
               {brandGroup.brand}
             </h3>
             <ul class="space-y-1.5 text-xs">
-              {brandGroup.models.map((model) => {
-                const modelSlug = `${brandGroup.brand.toLowerCase()}-${model.toLowerCase()}`.replace(/\s+/g, '-');
-                return (
-                  <li>
-                    <a
-                      href={`/guides/${modelSlug}-web-bluetooth-thermal-printer-setup`}
-                      class="text-gray-600 hover:text-blue-600 hover:underline transition flex items-center justify-between py-1"
-                    >
-                      <span>{brandGroup.brand} {model}</span>
-                      <span class="text-gray-300">›</span>
-                    </a>
-                  </li>
-                );
-              })}
+              {brandGroup.models.map((model) => (
+                <li>
+                  <a
+                    href="/printers"
+                    class="text-gray-600 hover:text-blue-600 hover:underline transition flex items-center justify-between py-1"
+                  >
+                    <span>{brandGroup.brand} {model}</span>
+                    <span class="text-gray-300">›</span>
+                  </a>
+                </li>
+              ))}
             </ul>
           </div>
         ))}

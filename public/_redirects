@@ -9,3 +9,6 @@
 /refund.html   /refund   301
 /activate.html /activate 301
 /index.html    /         301
+
+/sitemap.xml   /sitemap-index.xml 301
+
