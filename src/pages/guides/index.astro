@@ -25,7 +25,7 @@ const HARDWARE_SHOWCASE = [
   { brand: 'Rongta', models: ['RPP02N', 'RP326', 'RP410', 'RP80'] },
 ];
 ---
-<BaseLayout lang="en" title="Thermal Printer Guides & Knowledge Base — Printzen" description="Step-by-step developer guides and documentation for ESC/POS, ZPL, Bluetooth, WebUSB, and network printers." alternatePath="/tr/rehberler/">
+<BaseLayout lang="en" title="Thermal Printer Guides & Knowledge Base — Printzen" description={`Step-by-step developer guides and documentation for ESC/POS, ZPL, Bluetooth, WebUSB, and network printers across ${guides.length} technical guides and 2,500 device configurations.`} alternatePath="/tr/rehberler/">
   <Nav wide lang="en" alternatePath="/tr/rehberler/" />
 
   <!-- Hero Header -->
@@ -38,9 +38,9 @@ const HARDWARE_SHOWCASE = [
           <div class="inline-flex items-center gap-2 bg-white/20 text-white text-xs font-semibold px-3 py-1 rounded-full uppercase tracking-wider">
             <span>📱</span> Mobile Print Service for Android
           </div>
-          <h2 class="text-2xl md:text-3xl font-bold tracking-tight">Print Directly to Any Thermal Printer from Android</h2>
+          <h2 class="text-2xl md:text-3xl font-bold tracking-tight">Print Directly to All Thermal Printers from Android</h2>
           <p class="text-blue-100 text-sm md:text-base max-w-2xl">
-            Stop searching for proprietary manufacturer drivers. Printzen Mobile Print Service integrates directly with the native Android Print Spooler across Bluetooth, Wi-Fi, and USB OTG.
+            Stop struggling with proprietary printer drivers. Print directly from Android system print dialog over Bluetooth, Wi-Fi, and USB with Printzen Mobile Print Service.
           </p>
         </div>
         <a
@@ -58,11 +58,11 @@ const HARDWARE_SHOWCASE = [
         <div>
           <h1 class="text-3xl md:text-4xl font-black text-gray-900 tracking-tight">Thermal Printer Guides & Hubs</h1>
           <p class="text-gray-500 mt-2 text-base md:text-lg">
-            Engineering documentation, protocol guides, and hardware-specific configurations for modern development.
+            Engineering documentation, protocol guides, and hardware-specific configurations across {guides.length} guides.
           </p>
         </div>
         <div class="text-xs font-semibold text-gray-400 bg-white border border-gray-200 px-4 py-2 rounded-xl shrink-0 self-start md:self-auto">
-          📚 94 Flagship Guides + 2,500 Device Handbooks
+          📚 {guides.length} Flagship Guides + 2,500 Device Handbooks
         </div>
       </div>
 

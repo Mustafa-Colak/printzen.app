@@ -79,7 +79,10 @@ function printzen_dispatch_auto_print($order_id) {
 
     // Dispatch to Printzen Cloud Print Hub
     $endpoint = 'https://api.printzen.app/v1/print/order';
-    $api_key  = 'PRZ_LIVE_SECRET_KEY_HERE';
+    $api_key  = defined('PRINTZEN_API_KEY') ? PRINTZEN_API_KEY : get_option('printzen_api_key');
+    if (!$api_key) {
+        return;
+    }
 
     wp_remote_post($endpoint, [
         'headers' => [
@@ -184,45 +187,6 @@ This is cleanly implemented in PHP by evaluating `$item->get_product()->get_cate
 
 ### Are carrier formats like FedEx, UPS, DHL, or regional couriers supported?
 **Yes, major carrier shipping APIs provide label data as 4x6 inch ZPL or raw thermal streams.** Printzen ingests carrier tracking identifiers and renders compliant Code 128 / PDF417 barcodes directly onto your Zebra, TSC, or Xprinter industrial label units.
-
-## Automated WooCommerce Print Pipeline Architecture
-
-When an order transitions to "Processing" or "Completed" in WooCommerce, dispatching a 4x6" shipping barcode to the warehouse printer and a packing receipt to the fulfilment desk automatically prevents manual bottlenecking.
-
-### Webhook Configuration Workflow
-1. Navigate to **WooCommerce > Settings > Advanced > Webhooks**.
-2. Create a new trigger:
-   - **Topic:** Order created (`order.created`) or Order updated (`order.updated`)
-   - **Status:** Active
-   - **Delivery URL:** `https://api.printzen.app/v1/webhooks/woocommerce`
-   - **Secret:** Generate a high-entropy HMAC secret
-
-```php
-// Optional custom webhook hook in WordPress:
-add_action('woocommerce_order_status_processing', 'printzen_dispatch_cloud_print', 10, 1);
-
-function printzen_dispatch_cloud_print($order_id) {
-    $order = wc_get_order($order_id);
-    $payload = [
-        'order_id' => $order_id,
-        'shipping_name' => $order->get_formatted_shipping_full_name(),
-        'total' => $order->get_total(),
-        'items' => array_map(fn($item) => [
-            'title' => $item->get_name(),
-            'qty' => $item->get_quantity(),
-            'sku' => $item->get_product()->get_sku()
-        ], $order->get_items())
-    ];
-
-    wp_remote_post('https://api.printzen.app/v1/jobs/auto', [
-        'headers' => [
-            'Authorization' => 'Bearer ' . PRINTZEN_API_KEY,
-            'Content-Type' => 'application/json'
-        ],
-        'body' => json_encode($payload)
-    ]);
-}
-```
 
 ## Device-Specific Guides for This Topic
 

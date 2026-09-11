@@ -197,50 +197,6 @@ Printing `"Kasarli Pide"` is clean, legible, and immediately understood by kitch
 ### How does Printzen handle regional character encoding across diverse hardware?
 **Printzen's cloud and client drivers automatically profile connected printer models and determine their firmware capabilities.** It dynamically applies the correct hardware code page switches and byte transformations; if a printer lacks regional ROM sets, Printzen seamlessly invokes intelligent transliteration so receipts never print corrupted characters.
 
-## Thermal Hardware Code Page Mapping & Byte Serialization
-
-Standard ASCII covers characters 0 through 127 reliably across all receipt printers. However, extended ASCII characters (128 to 255) depend strictly on the active hardware Code Page register. When international characters such as Turkish (`ş, ğ, ı, ö, ü, ç`), German umlauts, or Nordic accents print as random symbols, question marks, or broken lines, it indicates a mismatch between the host encoding and the printer's active code page.
-
-### Code Page Comparison Table
-
-| Code Page | ESC/POS Code | Turkish / Regional Coverage | Stability |
-|---|---|---|---|
-| **CP857 (DOS Turkish)** | `ESC t 19` (0x13) | Complete Turkish coverage | ⭐⭐⭐⭐⭐ Highest |
-| **Windows-1254** | `ESC t 30` / `ESC t 70` | Full Latin-5 (Windows ANSI) | ⭐⭐⭐⭐ Modern standard |
-| **ISO-8859-9** | Hardware dependent | Latin-5 standard | ⭐⭐⭐ Legacy support |
-| **UTF-8 (Native)** | Specialized firmware | Universal multi-byte | ⭐⭐ Selected devices |
-
-### Robust Binary Transcoder Example
-
-```javascript
-export function transcodeExtendedAscii(text, codePageCmd = [0x1B, 0x74, 0x13]) {
-  const charMap = {
-    'ğ': 0xA7, 'Ğ': 0xA6,
-    'ı': 0x8D, 'İ': 0x98,
-    'ş': 0x9F, 'Ş': 0x9E,
-    'ç': 0x87, 'Ç': 0x80,
-    'ü': 0x81, 'Ü': 0x9A,
-    'ö': 0x94, 'Ö': 0x99
-  };
-
-  const buffer = [...codePageCmd];
-  for (const ch of text) {
-    if (charMap[ch] !== undefined) {
-      buffer.push(charMap[ch]);
-    } else {
-      const code = ch.charCodeAt(0);
-      buffer.push(code < 128 ? code : 0x3F);
-    }
-  }
-  return new Uint8Array(buffer);
-}
-```
-
-## Fallback Protocols for Unsupported Firmware
-When physical hardware does not support custom code pages:
-1. **ASCII Transliteration:** Map accents to base equivalents (`ş -> s, ğ -> g, ö -> o`). Receipts remain clean and legible without garbage characters.
-2. **Canvas Rasterization:** Render receipts in an offscreen HTML5 Canvas and transmit as 1-bit monochrome bitmaps. This guarantees 100% typography precision regardless of printer firmware age.
-
 ## Device-Specific Guides for This Topic
 
 

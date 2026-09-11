@@ -53,7 +53,7 @@
             "name": "Bixolon SPP-R200III Türkçe karakter veya etiket kayma problemi nasıl çözülür?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "Yazıcı donanım kod sayfasını CP857 (ESC t 19) moduna alarak ve Printzen otomatik sensör kalibrasyon yönergelerini uygulayarak problem tamamen giderilir."
+              "text": "Yazıcı donanım kod sayfasını CP857 (ESC t 18 veya ESC t 19 modele göre) moduna alarak ve Printzen otomatik sensör kalibrasyon yönergelerini uygulayarak problem tamamen giderilir."
             }
           }
         ]
@@ -90,7 +90,7 @@
       Bixolon SPP-R200III CPCL Mobil Kurye ve Saha Yazdırma Protokolü Rehberi
     </h1>
     <p class="text-lg text-gray-600 leading-relaxed mb-8">
-      <strong>Bixolon SPP-R200III</strong> (Mobil 58mm Bluetooth Fiş Yazıcı), işletmelerde yoğun fiş, adisyon ve etiket yazdırma operasyonlarında en çok tercih edilen modeller arasındadır. Bu kapsamlı teknik rehberde, cihazın <strong>cpcl mobil kurye ve saha yazdırma protokolü</strong> süreçlerini, ESC/POS / CPCL protokol parametrelerini, Bluetooth, Wi-Fi, USB arayüz konfigürasyonunu ve sahada karşılaşılan kritik hataların kesin çözümlerini adım adım inceleyeceğiz.
+      <strong>Bixolon SPP-R200III</strong> (Mobil 58mm Bluetooth Fiş Yazıcı), işletmelerde yoğun fiş, adisyon ve etiket yazdırma operasyonlarında en çok tercih edilen modeller arasındadır. Bu kapsamlı teknik rehberde, cihazın <strong>CPCL saha dağıtım ve mobil fiş basımı</strong> süreçlerini, ESC/POS / CPCL protokol parametrelerini, Bluetooth, Wi-Fi, USB arayüz konfigürasyonunu ve sahada karşılaşılan kritik hataların kesin çözümlerini adım adım inceleyeceğiz.
     </p>
 
     <!-- Donanım Özellikleri Tablosu -->
@@ -101,88 +101,84 @@
       <div class="overflow-x-auto">
         <table class="w-full text-left text-sm text-gray-700">
           <tbody class="divide-y divide-gray-100">
-            <tr><td class="py-2.5 font-medium text-gray-500 w-1/3">Üretici Marka</td><td class="py-2.5 font-bold text-gray-900">Bixolon</td></tr>
-            <tr><td class="py-2.5 font-medium text-gray-500">Model Adı</td><td class="py-2.5 font-bold text-gray-900">SPP-R200III</td></tr>
-            <tr><td class="py-2.5 font-medium text-gray-500">Cihaz Kategorisi</td><td class="py-2.5">Mobil 58mm Bluetooth Fiş Yazıcı</td></tr>
-            <tr><td class="py-2.5 font-medium text-gray-500">Yerel Komut Dili</td><td class="py-2.5 font-mono text-blue-600 font-semibold">ESC/POS / CPCL</td></tr>
-            <tr><td class="py-2.5 font-medium text-gray-500">Baskı Çözünürlüğü</td><td class="py-2.5">203 DPI (Nokta / İnç)</td></tr>
-            <tr><td class="py-2.5 font-medium text-gray-500">Desteklenen Arayüzler</td><td class="py-2.5">Bluetooth · Wi-Fi · USB</td></tr>
-            <tr><td class="py-2.5 font-medium text-gray-500">Kağıt / Rulo Genişliği</td><td class="py-2.5">58mm</td></tr>
-            <tr><td class="py-2.5 font-medium text-gray-500">Otomatik Kağıt Kesici</td><td class="py-2.5">Yok</td></tr>
-            <tr><td class="py-2.5 font-medium text-gray-500">Seri Baud Hızı (Varsayılan)</td><td class="py-2.5 font-mono">115200 bps</td></tr>
+            <tr><th class="py-2.5 font-semibold text-gray-900 w-1/3">Üretici / Marka</th><td class="py-2.5">Bixolon</td></tr>
+            <tr><th class="py-2.5 font-semibold text-gray-900">Donanım Modeli</th><td class="py-2.5 font-mono font-bold text-blue-600">SPP-R200III</td></tr>
+            <tr><th class="py-2.5 font-semibold text-gray-900">Cihaz Tipi & Sınıfı</th><td class="py-2.5">Mobil 58mm Bluetooth Fiş Yazıcı</td></tr>
+            <tr><th class="py-2.5 font-semibold text-gray-900">Komut Seti / Protokol</th><td class="py-2.5"><code class="bg-gray-100 px-2 py-0.5 rounded text-xs font-mono font-bold">ESC/POS / CPCL</code></td></tr>
+            <tr><th class="py-2.5 font-semibold text-gray-900">Baskı Çözünürlüğü</th><td class="py-2.5">203 DPI (8 dots/mm)</td></tr>
+            <tr><th class="py-2.5 font-semibold text-gray-900">Fiziksel Arayüzler</th><td class="py-2.5">Bluetooth · Wi-Fi · USB</td></tr>
+            <tr><th class="py-2.5 font-semibold text-gray-900">Maksimum Kağıt/Etiket Eni</th><td class="py-2.5">58mm</td></tr>
+            <tr><th class="py-2.5 font-semibold text-gray-900">Otomatik Kesici (Cutter)</th><td class="py-2.5">Yok</td></tr>
+            <tr><th class="py-2.5 font-semibold text-gray-900">Önerilen Seri Baud Rate</th><td class="py-2.5 font-mono">115200 bps</td></tr>
           </tbody>
         </table>
       </div>
     </div>
 
-    <!-- Adım Adım Kurulum ve Entegrasyon -->
-    <div class="prose max-w-none prose-blue mb-10">
-      <h2>1. Bixolon SPP-R200III İçin CPCL Mobil Kurye ve Saha Yazdırma Protokolü Yapılandırması</h2>
+    <!-- Adım Adım Entegrasyon Rehberi -->
+    <div class="prose prose-blue max-w-none mb-12">
+      <h2>Bixolon SPP-R200III Donanımında CPCL Mobil Kurye ve Saha Yazdırma Protokolü Entegrasyon Adımları</h2>
       <p>
-        Bixolon SPP-R200III modelinde bu süreci başarıyla tamamlamak için donanım ile işletim sistemi kuyruğu (spooler) arasındaki veri akışının kesintisiz ve doğru baud hızında iletilmesi şarttır. ESC/POS / CPCL mimarisi gereğince gönderilen byte dizilerinin yazıcı tampon belleğinde (receive buffer) taşma yaratmaması için donanımsal akış kontrolü (RTS/CTS veya XON/XOFF) dikkate alınmalıdır.
+        <strong>Bixolon SPP-R200III</strong> donanımını üretim ortamına entegre ederken işletim sistemi kısıtlamalarını aşmak ve yüksek hacimli baskı operasyonlarında kilitlenmeleri önlemek için aşağıdaki mimari adımları sırayla takip edin:
       </p>
-
-      <h3>Kritik Kurulum Adımları:</h3>
+      
       <ol>
-        <li><strong>Fiziksel Bağlantı ve Arayüz Seçimi:</strong> Cihazı Bluetooth portu üzerinden ana terminale veya yerel ağa bağlayın. Ağ bağlantısı kullanılıyorsa DHCP yerine sabit bir IP adresi atayın.</li>
-        <li><strong>Protokol ve Kod Sayfası Ataması:</strong> Fiş veya etiket çıktısında Türkçe karakterlerin bozulmaması için yazıcı başlangıç komut dizisine <code>ESC t 19</code> (CP857) veya ilgili ZPL/TSPL kod sayfası komutunu ekleyin.</li>
-        <li><strong>Genişlik ve Marjin Doğrulaması:</strong> 58mm kağıt standardına uygun olarak baskı genişliğini (örneğin 80mm için 48/42 kolon, 58mm için 32 kolon) yazılım tarafında sabitleyin.</li>
-        <li><strong>Kesici ve Çekmece Tetikleme:</strong> İşlem tamamlandığında otomatik kağıt kesimi için cihazın tırtıklı yırtma çubuğunu (tear-bar) kullanın.</li>
+        <li>
+          <strong>Fiziksel Bağlantı ve Port Tespiti:</strong> Yazıcıyı Bluetooth veya Wi-Fi veya USB arayüzü üzerinden ana terminale ya da ağ anahtarına (switch) bağlayın. Statik IP ataması yapıyorsanız ağ geçidi ve alt ağ maskesinin POS cihazıyla aynı subnet üzerinde olduğunu doğrulayın.
+        </li>
+        <li>
+          <strong>Protokol Girişi (ESC/POS / CPCL):</strong> Cihaz firmware'i yerel olarak <code>ESC/POS / CPCL</code> komut setini dinler. Ham bayt dizisi göndermeden önce yazıcı hafızasını sıfırlamak için donanımsal reset komutunu (örneğin ESC/POS için <code>0x1B 0x40</code>, ZPL için <code>^XA</code>) akışın başına yerleştirin.
+        </li>
+        <li>
+          <strong>Tampon (Buffer) ve Akış Kontrolü:</strong> Yoğun satış anlarında SPP-R200III dahili tamponunun taşmasını engellemek için büyük etiket ve grafik yüklerini 512 baytlık parçalara bölerek 10-15 milisaniye aralıklarla aktarın.
+        </li>
       </ol>
 
-      <h2>2. Sahada En Sık Karşılaşılan Sorunlar ve Pratik Çözümler</h2>
+      <h2>Sahada En Sık Karşılaşılan Sorunlar ve Çözümleri</h2>
       <p>
-        Bixolon SPP-R200III cihazlarında karşılaşılan sorunlar çoğunlukla sürücü uyumsuzluğu, yanlış kod sayfası seçimi veya Bluetooth/Ağ zaman aşımı (timeout) kaynaklıdır:
+        Saha teknisyenleri ve mağaza çalışanları tarafından Bixolon SPP-R200III özelinde raporlanan en yaygın problemler ve bunların kalıcı donanımsal müdahaleleri:
       </p>
+
       <ul>
-        <li><strong>Çıktıda Soru İşareti veya Bozuk Karakterler:</strong> Türkçe karakterlerin '?' çıkması, yazıcı belleğinin UTF-8 yerine varsayılan ASCII tablosunda kalmasından kaynaklanır. Printzen SDK, metinleri otomatik olarak donanımın desteklediği kod sayfasına transcode eder.</li>
-        <li><strong>Baskı Sırasında Satır Atlama veya Yarım Kalma:</strong> Özellikle Bluetooth bağlantılarında MTU paket boyutu 20 byte sınırını aştığında veri kaybı yaşanır. Veri paketleri 20'şer baytlık dilimler halinde parçalanarak (chunking) gönderilmelidir.</li>
-        <li><strong>Sensör Kalibrasyon Uyarısı (Kırmızı Işık / Hata Bipi):</strong> Etiket rulosu değiştirildiğinde yazıcının boşluk (Gap) veya siyah çizgi (Black Mark) sensörünü tanıyabilmesi için FEED tuşuna basılı tutularak otomatik kalibrasyon çalıştırılmalıdır.</li>
+        <li>
+          <strong>Cihaz Yanıt Vermiyor (Timeout):</strong> Bağlantı kablosunu ve arabirim kartını kontrol edin. Ethernet modellerde port 9100'ün güvenlik duvarı tarafından engellenmediğini <code>telnet &lt;yazici-ip&gt; 9100</code> komutu ile doğrulayın.
+        </li>
+        <li>
+          <strong>Karakter Bozulması veya Kayma:</strong> Bixolon SPP-R200III kod sayfasını kontrol edin. Karakterlerin bozuk çıkması, gönderilen karakter kümesi ile donanım ROM tablosunun uyuşmadığını gösterir.
+        </li>
+        <li>
+          <strong>Kesici Bıçağın Kilitlenmesi:</strong> Eğer cihazda otomatik kesici (Yok) bulunuyorsa, kağıt sıkışmasında kapağı zorlamayın. Cihazın ön kapağındaki manuel kurtarma vidasını saat yönünde çevirerek bıçağı başlangıç pozisyonuna getirin.
+        </li>
       </ul>
     </div>
 
-    <!-- Sıkça Sorulan Sorular -->
-    <div class="bg-white rounded-2xl p-6 shadow-sm border border-gray-200 mb-10">
-      <h2 class="text-xl font-bold text-gray-900 mb-6 flex items-center gap-2">
-        <span>❓</span> Sıkça Sorulan Sorular (Bixolon SPP-R200III)
-      </h2>
-      <div class="space-y-4">
-        <div>
-          <h3 class="text-base font-semibold text-gray-900 mb-1">Bixolon SPP-R200III hangi komut protokolünü kullanır?</h3>
-          <p class="text-sm text-gray-600">Bixolon SPP-R200III cihazı yerel olarak ESC/POS / CPCL komut setini ve 203 DPI baskı çözünürlüğünü destekler.</p>
+    <!-- Printzen Tanıtım / CTA Kartı -->
+    <div class="bg-linear-to-r from-blue-600 to-indigo-700 text-white rounded-2xl p-8 mb-12 shadow-lg">
+      <div class="max-w-2xl">
+        <span class="inline-block bg-white/20 text-white text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider mb-3">
+          Sürücüsüz Bulut & Web Baskı
+        </span>
+        <h3 class="text-2xl font-bold mb-3">
+          Bixolon SPP-R200III Yazıcınızı Web ve Mobil Uygulamanıza 5 Dakikada Bağlayın
+        </h3>
+        <p class="text-blue-100 text-sm leading-relaxed mb-6">
+          Karmaşık sürücü kurulumları, port yönlendirmeleri ve işletim sistemi yazdırma pencereleriyle (Ctrl+P) vakit kaybetmeyin. Printzen SDK ile tarayıcınızdan, Android tabletinizden veya arka uç sunucunuzdan doğrudan Bixolon SPP-R200III yazıcınıza milisaniyeler içinde sessiz baskı gönderin.
+        </p>
+        <div class="flex flex-wrap gap-4 items-center">
+          <a href="/tr/" class="bg-white text-blue-600 hover:bg-blue-50 font-bold px-6 py-3 rounded-xl transition text-sm shadow">
+            Printzen'i Ücretsiz Deneyin →
+          </a>
+          <a href="/tr/rehberler/cpcl-mobil-kurye-ve-saha-yazdirma-protokolu" class="text-white hover:text-blue-200 text-sm font-semibold underline underline-offset-4">
+            CPCL Mobil Kurye ve Saha Yazdırma Protokolü Ana Hub'ına Dön
+          </a>
         </div>
-        <div>
-          <h3 class="text-base font-semibold text-gray-900 mb-1">Bixolon SPP-R200III web tarayıcısından doğrudan yazdırılabilir mi?</h3>
-          <p class="text-sm text-gray-600">Evet. Printzen Web SDK veya Mobile Print Service köprüsü sayesinde Chrome ve Edge üzerinden Bluetooth, Wi-Fi, USB arayüzleriyle doğrudan sessiz baskı alınabilir.</p>
-        </div>
-        <div>
-          <h3 class="text-base font-semibold text-gray-900 mb-1">Bixolon SPP-R200III Türkçe karakter veya etiket kayma problemi nasıl çözülür?</h3>
-          <p class="text-sm text-gray-600">Yazıcı donanım kod sayfasını CP857 (ESC t 19) moduna alarak ve Printzen otomatik sensör kalibrasyon yönergelerini uygulayarak problem tamamen giderilir.</p>
-        </div>
-      </div>
-    </div>
-
-    <!-- İlgili İçerikler & CTA -->
-    <div class="bg-blue-50 border border-blue-200 rounded-2xl p-6 sm:p-8 text-center mb-12">
-      <h3 class="text-xl font-bold text-blue-900 mb-2">Bixolon SPP-R200III Yazıcınızı Web ve Buluta Bağlayın</h3>
-      <p class="text-sm text-blue-700 max-w-xl mx-auto mb-6">
-        Printzen ile hiçbir sürücü karmaşası yaşamadan Android, iOS, Windows ve macOS cihazlardan Bixolon SPP-R200III yazıcınıza anında sessiz fiş ve etiket yazdırın.
-      </p>
-      <div class="flex flex-wrap justify-center gap-4">
-        <a href="/tr/rehberler/cpcl-mobil-kurye-ve-saha-yazdirma-protokolu" class="bg-blue-600 text-white text-sm font-semibold px-5 py-2.5 rounded-xl hover:bg-blue-700 transition">
-          CPCL Mobil Kurye ve Saha Yazdırma Protokolü Ana Rehberini Oku →
-        </a>
-        <a href="https://play.google.com/store/apps/details?id=com.mobileprint.service" target="_blank" rel="noopener" class="bg-white text-blue-700 border border-blue-300 text-sm font-semibold px-5 py-2.5 rounded-xl hover:bg-blue-50 transition">
-          Printzen Uygulamasını İndir
-        </a>
       </div>
     </div>
   </main>
 
-  <footer class="bg-gray-900 text-gray-400 py-10 border-t border-gray-800 text-center text-sm">
+  <footer class="bg-white border-t border-gray-200 py-8 text-center text-sm text-gray-500">
     <div class="max-w-5xl mx-auto px-4">
-      <p class="mb-2">© 2026 Printzen.app — Tüm Hakları Saklıdır.</p>
-      <p class="text-xs text-gray-500">Termal ve barkod yazıcılar için modern bulut ve web SDK altyapısı.</p>
+      <p>© 2026 Printzen.app — Tüm Hakları Saklıdır. Donanım ticari markaları ilgili üreticilere aittir.</p>
     </div>
   </footer>
 </body>

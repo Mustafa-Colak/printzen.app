@@ -208,54 +208,6 @@ Fişte `K¿¿arl¿ Pide` gibi çirkin semboller yerine `Kasarli Pide` yazması, 
 ### Fiş yazıcıda Türkçe karakter sorununu tamamen çözmek için Printzen ne sunar?
 **Printzen mobil ve bulut servisleri; bağlı yazıcının donanım modelini, ROM sürümünü ve kod sayfası yeteneğini otomatik olarak algılar.** Gönderdiğiniz UTF-8 metinleri yazıcının desteklediği en uygun kod sayfasına (CP857, Windows-1254) şeffaf şekilde dönüştürür; yazıcıda Türkçe ROM desteği yoksa akıllı transliterasyon uygulayarak fişlerin hiçbir zaman bozulmadan, kusursuz basılmasını sağlar.
 
-## Donanımsal Kod Sayfası Tablosu ve Byte Haritalama
-
-Termal yazıcılar ASCII standardının ilk 128 karakterini (0-127) evrensel olarak doğru basarken, 128-255 arasındaki genişletilmiş karakter kümesi seçili kod sayfasına (Code Page) göre tamamen farklı harflere karşılık gelir. Türkçe karakterlerin (`ğ, Ğ, ş, Ş, ı, İ, ö, Ö, ü, Ü, ç, Ç`) bozulmasının ana sebebi, yazıcının varsayılan olarak PC437 (USA) veya PC850 (Multilingual) tablosunda kalmasıdır.
-
-### Kod Sayfaları Karşılaştırması
-
-| Kod Sayfası | ESC t Parametresi | Türkçe Kapsamı | Kararlılık |
-|---|---|---|---|
-| **CP857 (DOS Turkish)** | `ESC t 19` (0x13) | Tam (Tüm Türkçe harfler mevcuttur) | ⭐⭐⭐⭐⭐ En kararlı |
-| **Windows-1254** | `ESC t 30` veya `ESC t 70` | Tam (Windows ANSI uyumlu) | ⭐⭐⭐⭐ Yaygın |
-| **ISO-8859-9** | Modele göre değişir | Tam (Latin-5) | ⭐⭐⭐ Eski sistemler |
-| **UTF-8 (Native)** | Özel firmware gerektirir | Evrensel Unicode | ⭐⭐ Sadece yeni nesil |
-
-### JavaScript ile Güvenli CP857 Byte Dönüştürücü
-
-```javascript
-function encodeTurkishCP857(text) {
-  const map = {
-    'ğ': 0xA7, 'Ğ': 0xA6,
-    'ı': 0x8D, 'İ': 0x98,
-    'ş': 0x9F, 'Ş': 0x9E,
-    'ç': 0x87, 'Ç': 0x80,
-    'ü': 0x81, 'Ü': 0x9A,
-    'ö': 0x94, 'Ö': 0x99
-  };
-
-  const bytes = [];
-  // Kod sayfasını CP857 yap: ESC t 19 (0x1B 0x74 0x13)
-  bytes.push(0x1B, 0x74, 0x13);
-
-  for (let i = 0; i < text.length; i++) {
-    const char = text[i];
-    if (map[char] !== undefined) {
-      bytes.push(map[char]);
-    } else {
-      const code = char.charCodeAt(0);
-      bytes.push(code < 128 ? code : 0x3F); // Tanınmayan harf yerine '?'
-    }
-  }
-  return new Uint8Array(bytes);
-}
-```
-
-## Firmware Desteklemiyorsa: İkili Fallback Stratejisi
-Yazıcı donanımı hiçbir Türkçe kod sayfasını desteklemiyorsa iki kesin çözüm vardır:
-1. **ASCII Sanitization (Karakter Temizleme):** `ş -> s, ğ -> g, ı -> i, ç -> c, ö -> o, ü -> u` harita fonksiyonu çalıştırılır. Fiş okunabilir kalır, soru işareti veya garip simgeler çıkmaz.
-2. **1-Bit Bitmap Baskı:** Metin tarayıcı canvas'ında çizilir ve yazıcıya doğrudan siyah-beyaz raster imaj (ESC * veya GS v 0) olarak gönderilir. Bu yöntemde yazıcının dil desteği ne olursa olsun %100 kusursuz Türkçe çıktı alınır.
-
 ## Popüler Model Özelinde Bu Konudaki Rehberler
 
 - [Bixolon Slp Tx400 Termal](/tr/rehber/bixolon-slp-tx400-termal-yazici-turkce-karakter-sorunu-cozumu)

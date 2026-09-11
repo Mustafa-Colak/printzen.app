@@ -80,7 +80,10 @@ function printzen_auto_print_order($order_id) {
 
     // Printzen Cloud API'sine gönder
     $api_url = 'https://api.printzen.app/v1/print/order';
-    $api_key = 'PRZ_LIVE_SECRET_KEY_BURAYA';
+    $api_key = defined('PRINTZEN_API_KEY') ? PRINTZEN_API_KEY : get_option('printzen_api_key');
+    if (!$api_key) {
+        return;
+    }
 
     wp_remote_post($api_url, [
         'headers' => [
@@ -185,54 +188,6 @@ Bu mantık, yukarıdaki PHP kodunda `$item->get_product()->get_category_ids()` k
 
 ### Farklı kargo firmalarının (Yurtiçi, Aras, MNG, Sürat) etiket formatları destekleniyor mu?
 **Evet, tüm büyük kargo firmalarının API'leri 100x150 mm boyutunda ZPL veya PDF etiket çıktısı üretir.** WooCommerce kargo entegrasyonu eklentilerinizden dönen kargo takip kodları doğrudan ZPL barkod şablonuna gömülerek Zebra, Xprinter veya TSC etiket yazıcılarından tek bir tıkla otomatik yazdırılabilir.
-
-## WooCommerce Webhook ve Otomatik Baskı Hattı
-
-WooCommerce altyapısıyla çalışan e-ticaret sitelerinde yeni bir sipariş oluşturulduğunda ("Processing" veya "Completed" statüsüne geçtiğinde), depodaki kargo barkod yazıcısından 100x150 mm kargo etiketinin, mağaza kasasından ise sevk fişinin otomatik çıkması operasyonel hız kazandırır.
-
-### WordPress Webhook Yapılandırması
-1. **WooCommerce > Ayarlar > Gelişmiş > Webhook'lar** menüsüne gidin.
-2. Yeni webhook ekleyin:
-   - **Konu:** Sipariş Oluşturuldu (`order.created`) veya Sipariş Güncellendi (`order.updated`)
-   - **Durum:** Etkin
-   - **Teslimat URL'si:** `https://api.printzen.app/v1/webhooks/woocommerce`
-   - **Gizli Anahtar (Secret):** Güvenli bir HMAC anahtarı tanımlayın
-
-```php
-// functions.php içine doğrudan özel tetikleyici ekleme:
-add_action('woocommerce_order_status_processing', 'printzen_trigger_auto_print', 10, 1);
-
-function printzen_trigger_auto_print($order_id) {
-    $order = wc_get_order($order_id);
-    $payload = [
-        'order_id' => $order_id,
-        'customer' => $order->get_formatted_shipping_full_name(),
-        'items' => [],
-        'total' => $order->get_total(),
-        'shipping_method' => $order->get_shipping_method()
-    ];
-
-    foreach ($order->get_items() as $item) {
-        $payload['items'][] = [
-            'name' => $item->get_name(),
-            'quantity' => $item->get_quantity(),
-            'sku' => $item->get_product()->get_sku()
-        ];
-    }
-
-    wp_remote_post('https://api.printzen.app/v1/jobs/auto', [
-        'headers' => [
-            'Authorization' => 'Bearer ' . PRINTZEN_API_KEY,
-            'Content-Type' => 'application/json'
-        ],
-        'body' => json_encode($payload)
-    ]);
-}
-```
-
-## Kargo ve Fiş Ayrıştırma Mimarisi
-- **Mutfak / Hazırlık Fişi:** 80 mm termal kağıda sipariş listesi ve toplama kalemleri dökülür.
-- **Kargo Barkodu:** 100x150 mm termal etikete taşıyıcı barkodu ve müşteri teslimat adresi ZPL veya TSPL olarak aktarılır.
 
 ## Popüler Model Özelinde Bu Konudaki Rehberler
 

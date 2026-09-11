@@ -113,7 +113,7 @@ const SET_CP857 = new Uint8Array([0x1B, 0x74, 0x12]); // Bazı modellerde 18 (0x
 // 2. Türkçe Karakterleri CP857 Hex Baytlarına Dönüştürme Tablosu
 const CP857_MAP = {
   'ç': 0x87, 'Ç': 0x80,
-  'ğ': 0xA7, 'Ğ': 0xA6,
+  'ğ': 0xA6, 'Ğ': 0xA7,
   'ı': 0x8D, 'I': 0x49,
   'i': 0x69, 'İ': 0x98,
   'ö': 0x94, 'Ö': 0x99,

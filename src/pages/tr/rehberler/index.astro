@@ -26,7 +26,7 @@ const HARDWARE_SHOWCASE = [
   { brand: 'Rongta', models: ['RPP02N', 'RP326', 'RP410', 'RP80'] },
 ];
 ---
-<BaseLayout lang="tr" title="Termal Yazıcı Rehberleri & Bilgi Bankası — Printzen" description="ESC/POS, ZPL, Bluetooth, USB ve ağ yazıcıları için 50 ana konu rehberi ve 5.000 cihaz modeli dokümantasyonu." alternatePath="/guides/">
+<BaseLayout lang="tr" title="Termal Yazıcı Rehberleri & Bilgi Bankası — Printzen" description={`ESC/POS, ZPL, Bluetooth, USB ve ağ yazıcıları için ${guides.length} teknik rehber ve 2.500 cihaz kılavuzu dokümantasyonu.`} alternatePath="/guides/">
   <Nav wide lang="tr" alternatePath="/guides/" />
 
   <!-- Hero Header -->
@@ -59,11 +59,11 @@ const HARDWARE_SHOWCASE = [
         <div>
           <h1 class="text-3xl md:text-4xl font-black text-gray-900 tracking-tight">Termal Yazıcı Kütüphanesi & Rehberler</h1>
           <p class="text-gray-500 mt-2 text-base md:text-lg">
-            Geliştiriciler, restoranlar ve depolar için 50 ana konu rehberi ve 5.000 model spesifik dokümantasyon.
+            Geliştiriciler, restoranlar ve depolar için {guides.length} teknik rehber ve 2.500 model spesifik dokümantasyon.
           </p>
         </div>
         <div class="text-xs font-semibold text-gray-400 bg-white border border-gray-200 px-4 py-2 rounded-xl shrink-0 self-start md:self-auto">
-          📚 Toplam 96 Uzman Rehber + 2.500 Model Kılavuzu
+          📚 Toplam {guides.length} Uzman Rehber + 2.500 Model Kılavuzu
         </div>
       </div>
 
