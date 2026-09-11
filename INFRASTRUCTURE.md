@@ -3,7 +3,7 @@
 ## Genel Bakış
 
 ```
-Kullanıcı → printzen.app (Cloudflare Pages)
+Kullanıcı → printzen.app (Cloudflare Workers — static assets)
 Satın alma → Google Play Billing (uygulama içi, doğrudan) → Google Play satın alma kaydı
 Destek → support@printzen.app (Cloudflare Email Routing → Gmail)
 ```
@@ -27,8 +27,8 @@ Destek → support@printzen.app (Cloudflare Email Routing → Gmail)
 
 | Type  | Name                  | Content                          | Açıklama             |
 |-------|-----------------------|----------------------------------|----------------------|
-| CNAME | printzen.app          | `<proje>.pages.dev` _(TODO: gerçek Cloudflare Pages proje subdomain'i ile doldur — Cloudflare CNAME flattening ile apex'te çalışır)_ | Cloudflare Pages |
-| CNAME | www                   | `<proje>.pages.dev` _(TODO: yukarıdakiyle aynı)_ | Cloudflare Pages www |
+| A/proxied | printzen.app      | 104.21.11.91, 172.67.165.180 (Cloudflare anycast, otomatik) | Worker Custom Domain — `printzen-app` |
+| A/proxied | www               | 104.21.11.91, 172.67.165.180 (Cloudflare anycast, otomatik) | Worker Custom Domain — `printzen-app` |
 | MX    | printzen.app          | route1/2/3.mx.cloudflare.net     | Email Routing        |
 | MX    | send                  | feedback-smtp.us-east-1.amazonses.com | Resend SPF (muhtemelen artık gereksiz) |
 | TXT   | printzen.app          | v=spf1 include:_spf.mx.clo...   | Cloudflare SPF       |
@@ -42,12 +42,20 @@ Destek → support@printzen.app (Cloudflare Email Routing → Gmail)
 
 ---
 
-## 2. Website — Cloudflare Pages
+## 2. Website — Cloudflare Workers (Static Assets)
 
-**Repo:** github.com/Mustafa-Colak/printzen-website
-**Branch:** master (auto-deploy)
+**Repo:** github.com/Mustafa-Colak/printzen.app
+**Branch:** master (Workers Builds ile otomatik build+deploy — bkz. aşağıda)
 **URL:** https://printzen.app
 **Framework:** Astro (statik, i18n routing — bkz. `README.md`)
+**Worker adı:** `printzen-app` (Cloudflare hesabı: Emssistem@gmail.com's Account)
+**Test/preview URL:** https://printzen-app.emssistem.workers.dev
+
+### Deploy mimarisi (2026-09-11'de Vercel'den taşındı)
+- `wrangler.jsonc`: `{"assets": {"directory": "./dist", "html_handling": "auto-trailing-slash"}}` — sunucu kodu yok, saf statik assets Worker'ı.
+- `public/_redirects`: eski `vercel.json`'daki redirect'lerin Cloudflare syntax karşılığı (`/download`, `/terms.html` vb.).
+- **Workers Builds (Git entegrasyonu):** Build command `npm run build` (QA gate + `astro build`), Deploy command `npx wrangler deploy`. Her `master` push'unda otomatik çalışır — QA hata verirse build durur, kötü içerik deploy edilmez.
+- Custom Domain: `printzen.app` ve `www.printzen.app`, Worker'a bağlı (Settings → Domains & Routes). DNS kaydı Cloudflare tarafından otomatik yönetiliyor (aynı hesapta olduğu için).
 
 ### Yapı
 - `/` — Ana sayfa (EN, varsayılan) · `/tr/` — Türkçe sürüm
