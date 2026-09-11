@@ -210,15 +210,29 @@ In high-velocity fulfillment centres printing thousands of labels per hour, payl
 ### How do I handle international and special characters in ZPL?
 **By default, ZPL's internal scalable font uses standard 7-bit ASCII and will corrupt accented characters.** You can enable complete UTF-8 character encoding by declaring `^CI28` at the beginning of the label format immediately following `^XA`, or by uploading custom TrueType/OpenType font files (`.TTF`) to the printer's E: flash memory via `~DU`.
 
-## Device-Specific Guides for This Topic
+## Supported Devices
 
-- [Bixolon Slp Tx400 Zebra](/guides/bixolon-slp-tx400-zebra-zpl-label-printing)
-- [Bixolon Spp R200iii Zebra](/guides/bixolon-spp-r200iii-zebra-zpl-label-printing)
-- [Bixolon Spp R310 Zebra](/guides/bixolon-spp-r310-zebra-zpl-label-printing)
-- [Bixolon Srp 330ii Zebra](/guides/bixolon-srp-330ii-zebra-zpl-label-printing)
-- [Bixolon Srp 350iii Zebra](/guides/bixolon-srp-350iii-zebra-zpl-label-printing)
-- [Bixolon Srp Q300 Zebra](/guides/bixolon-srp-q300-zebra-zpl-label-printing)
-- [Epson Tm L90 Zebra](/guides/epson-tm-l90-zebra-zpl-label-printing)
-- [Epson Tm M30ii Zebra](/guides/epson-tm-m30ii-zebra-zpl-label-printing)
-- [Epson Tm P20ii Zebra](/guides/epson-tm-p20ii-zebra-zpl-label-printing)
-- [Epson Tm P80ii Zebra](/guides/epson-tm-p80ii-zebra-zpl-label-printing)
+The steps in this guide apply to all of the following printer models that support the relevant protocol/interface:
+
+| Brand | Model | Protocol | Interfaces | Paper Width |
+|---|---|---|---|---|
+| Godex | DT4x | EZPL | USB, Ethernet, Seri | 108mm |
+| Godex | G500 | EZPL / GEPL / GZPL | USB, Ethernet, Seri | 108mm |
+| Godex | RT700 | EZPL | USB, Ethernet | 108mm |
+| Rongta | RP410 | TSPL / ESC/POS | USB | 108mm |
+| TSC | Alpha-3R | TSPL / CPCL / ESC/POS | Bluetooth, USB | 72mm (3 inç) |
+| TSC | DA210 | TSPL-EZD | USB | 108mm |
+| TSC | DA220 | TSPL-EZD | USB, Ethernet, Bluetooth, Wi-Fi | 108mm |
+| TSC | TE200 | TSPL-EZ | USB 2.0 | 108mm |
+| TSC | TTP-244 Pro | TSPL | USB, Seri | 108mm |
+| Xprinter | XP-365B | TSPL / ESC/POS | USB | 80mm |
+| Xprinter | XP-420B | TSPL / ESC/POS | USB, Bluetooth, Ethernet | 108mm (100x150) |
+| Xprinter | XP-470B | TSPL | USB | 108mm |
+| Zebra | GK420d | ZPL II / EPL2 | USB, Ethernet, Seri | 104mm |
+| Zebra | GK420t | ZPL II / EPL2 | USB, Ethernet | 104mm |
+| Zebra | ZD220 | ZPL II / EPL | USB | 104mm (4 inç) |
+| Zebra | ZD420 | ZPL II / EPL | USB, Ethernet, Bluetooth, Wi-Fi | 104mm |
+| Zebra | ZD421 | ZPL II / EPL | USB, Ethernet, Bluetooth BLE | 104mm |
+| Zebra | ZQ320 Plus | CPCL / ZPL | Bluetooth BLE, Wi-Fi | 80mm (3 inç) |
+| Zebra | ZQ520 | CPCL / ZPL | Bluetooth, Wi-Fi | 104mm (4 inç) |
+| Zebra | ZT411 | ZPL II | Ethernet, USB, Bluetooth 4.1 | 104mm |

@@ -193,13 +193,43 @@ Ethernet daha güvenilirdir. WiFi'da paket kaybı baskı kalitesini bozabilir. Y
 ### Port 9100'e firewall engelliyor, ne yapmalıyım?
 IT ekibinizden yazıcı VLAN'ı ile POS terminalleri arasında port 9100 açılmasını isteyin. Dışarıdan (internet) erişim hiçbir zaman açılmamalıdır.
 
-## Bu Konudaki Yazıcı Modeli Rehberleri
+## Desteklenen Cihazlar
 
-- [Bixolon Slp Tx400 Ag](/tr/rehber/bixolon-slp-tx400-ag-ve-ethernet-raw-port-9100-soket-mimarisi)
-- [Bixolon Spp R200iii Ag](/tr/rehber/bixolon-spp-r200iii-ag-ve-ethernet-raw-port-9100-soket-mimarisi)
-- [Bixolon Spp R310 Ag](/tr/rehber/bixolon-spp-r310-ag-ve-ethernet-raw-port-9100-soket-mimarisi)
-- [Bixolon Srp 330ii Ag](/tr/rehber/bixolon-srp-330ii-ag-ve-ethernet-raw-port-9100-soket-mimarisi)
-- [Bixolon Srp 350iii Ag](/tr/rehber/bixolon-srp-350iii-ag-ve-ethernet-raw-port-9100-soket-mimarisi)
-- [Bixolon Srp Q300 Ag](/tr/rehber/bixolon-srp-q300-ag-ve-ethernet-raw-port-9100-soket-mimarisi)
-- [Epson Tm L90 Ag](/tr/rehber/epson-tm-l90-ag-ve-ethernet-raw-port-9100-soket-mimarisi)
-- [Epson Tm M30ii Ag](/tr/rehber/epson-tm-m30ii-ag-ve-ethernet-raw-port-9100-soket-mimarisi)
+Bu rehberdeki adımlar, ilgili protokolü/arayüzü destekleyen aşağıdaki yazıcı modellerinin tamamı için geçerlidir:
+
+| Marka | Model | Protokol | Arayüzler | Kağıt Genişliği |
+|---|---|---|---|---|
+| Bixolon | SLP-TX400 | SLCS / BPL-Z | USB, Ethernet, Seri | 104mm |
+| Bixolon | SPP-R200III | ESC/POS / CPCL | Bluetooth, Wi-Fi, USB | 58mm |
+| Bixolon | SRP-330II | ESC/POS | USB, Ethernet | 80mm |
+| Bixolon | SRP-350III | ESC/POS | USB, Ethernet, Seri | 80mm |
+| Bixolon | SRP-Q300 | ESC/POS | Bluetooth, Wi-Fi, USB, Ethernet | 80mm |
+| Epson | TM-L90 | ESC/POS | USB, Ethernet | 80mm |
+| Epson | TM-m30II | ESC/POS | Bluetooth, Wi-Fi, USB, Ethernet | 80mm / 58mm |
+| Epson | TM-P20II | ESC/POS | Bluetooth 5.0, Wi-Fi | 58mm |
+| Epson | TM-P80II | ESC/POS | Bluetooth, Wi-Fi | 80mm |
+| Epson | TM-T20III | ESC/POS | USB, Ethernet, Seri | 80mm / 58mm |
+| Epson | TM-T88VI | ESC/POS | USB, Ethernet, Bluetooth, Wi-Fi | 80mm / 58mm |
+| Epson | TM-T88VII | ESC/POS | USB, Ethernet, Wi-Fi | 80mm |
+| Godex | DT4x | EZPL | USB, Ethernet, Seri | 108mm |
+| Godex | G500 | EZPL / GEPL / GZPL | USB, Ethernet, Seri | 108mm |
+| Godex | RT700 | EZPL | USB, Ethernet | 108mm |
+| Honeywell | PC42t | Direct Protocol / ZSim / ESim | USB, Ethernet, Seri | 104mm |
+| Rongta | RP326 | ESC/POS | USB, Ethernet, Seri | 80mm |
+| Rongta | RP80 | ESC/POS | USB, Ethernet | 80mm |
+| Seiko | RP-D10 | ESC/POS | USB, Ethernet, Bluetooth | 80mm |
+| Star Micronics | mC-Print3 | StarPRNT | CloudPRNT, Bluetooth, Ethernet, USB | 80mm |
+| Star Micronics | TSP143III | StarPRNT / ESC/POS | Ethernet, Wi-Fi, USB, Lightning | 80mm |
+| Star Micronics | TSP654II | Star Line / ESC/POS | Bluetooth, Ethernet, USB | 80mm |
+| TSC | DA220 | TSPL-EZD | USB, Ethernet, Bluetooth, Wi-Fi | 108mm |
+| Xprinter | XP-420B | TSPL / ESC/POS | USB, Bluetooth, Ethernet | 108mm (100x150) |
+| Xprinter | XP-N160II | ESC/POS | USB, Ethernet | 80mm |
+| Xprinter | XP-Q800 | ESC/POS | USB, Ethernet, Seri | 80mm |
+| Zebra | GK420d | ZPL II / EPL2 | USB, Ethernet, Seri | 104mm |
+| Zebra | GK420t | ZPL II / EPL2 | USB, Ethernet | 104mm |
+| Zebra | ZD420 | ZPL II / EPL | USB, Ethernet, Bluetooth, Wi-Fi | 104mm |
+| Zebra | ZD421 | ZPL II / EPL | USB, Ethernet, Bluetooth BLE | 104mm |
+| Zebra | ZQ320 Plus | CPCL / ZPL | Bluetooth BLE, Wi-Fi | 80mm (3 inç) |
+| Zebra | ZQ520 | CPCL / ZPL | Bluetooth, Wi-Fi | 104mm (4 inç) |
+| Zebra | ZT411 | ZPL II | Ethernet, USB, Bluetooth 4.1 | 104mm |
+

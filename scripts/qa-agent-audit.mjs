@@ -110,7 +110,7 @@ for (const dir of GUIDES_DIRS) {
       if (/^##\s+.*(Sıkça Sorulan Sorular|Frequently Asked Questions)/i.test(line)) {
         foundFaqHeader = true;
       } else if (foundFaqHeader && /^##\s+/.test(line)) {
-        if (!line.includes('Popüler Model') && !line.includes('Device-Specific') && !line.includes('Rehberler') && !line.includes('Guides')) {
+        if (!line.includes('Popüler Model') && !line.includes('Device-Specific') && !line.includes('Rehberler') && !line.includes('Guides') && !line.includes('Desteklenen Cihazlar') && !line.includes('Supported Devices')) {
           reportWarning(filePath, lineNum, `Potential stitched redundant section after FAQ: "${line.trim()}"`);
         }
       }

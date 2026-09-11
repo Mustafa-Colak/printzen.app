@@ -60,15 +60,30 @@ export function buildTsplLabel(data) {
 }
 ```
 
-## Popüler Yazıcı Modeli Özelinde Kılavuzlar
+## Desteklenen Cihazlar
 
-- [Bixolon Slp Tx400 Tspl](/tr/rehber/bixolon-slp-tx400-tspl-ve-tspl2-masaustu-barkod-programlama)
-- [Bixolon Spp R200iii Tspl](/tr/rehber/bixolon-spp-r200iii-tspl-ve-tspl2-masaustu-barkod-programlama)
-- [Bixolon Spp R310 Tspl](/tr/rehber/bixolon-spp-r310-tspl-ve-tspl2-masaustu-barkod-programlama)
-- [Bixolon Srp 330ii Tspl](/tr/rehber/bixolon-srp-330ii-tspl-ve-tspl2-masaustu-barkod-programlama)
-- [Bixolon Srp 350iii Tspl](/tr/rehber/bixolon-srp-350iii-tspl-ve-tspl2-masaustu-barkod-programlama)
-- [Bixolon Srp Q300 Tspl](/tr/rehber/bixolon-srp-q300-tspl-ve-tspl2-masaustu-barkod-programlama)
-- [Epson Tm L90 Tspl](/tr/rehber/epson-tm-l90-tspl-ve-tspl2-masaustu-barkod-programlama)
-- [Epson Tm M30ii Tspl](/tr/rehber/epson-tm-m30ii-tspl-ve-tspl2-masaustu-barkod-programlama)
-- [Epson Tm P20ii Tspl](/tr/rehber/epson-tm-p20ii-tspl-ve-tspl2-masaustu-barkod-programlama)
-- [Epson Tm P80ii Tspl](/tr/rehber/epson-tm-p80ii-tspl-ve-tspl2-masaustu-barkod-programlama)
+Bu rehberdeki adımlar, ilgili protokolü/arayüzü destekleyen aşağıdaki yazıcı modellerinin tamamı için geçerlidir:
+
+| Marka | Model | Protokol | Arayüzler | Kağıt Genişliği |
+|---|---|---|---|---|
+| Godex | DT4x | EZPL | USB, Ethernet, Seri | 108mm |
+| Godex | G500 | EZPL / GEPL / GZPL | USB, Ethernet, Seri | 108mm |
+| Godex | RT700 | EZPL | USB, Ethernet | 108mm |
+| Rongta | RP410 | TSPL / ESC/POS | USB | 108mm |
+| TSC | Alpha-3R | TSPL / CPCL / ESC/POS | Bluetooth, USB | 72mm (3 inç) |
+| TSC | DA210 | TSPL-EZD | USB | 108mm |
+| TSC | DA220 | TSPL-EZD | USB, Ethernet, Bluetooth, Wi-Fi | 108mm |
+| TSC | TE200 | TSPL-EZ | USB 2.0 | 108mm |
+| TSC | TTP-244 Pro | TSPL | USB, Seri | 108mm |
+| Xprinter | XP-365B | TSPL / ESC/POS | USB | 80mm |
+| Xprinter | XP-420B | TSPL / ESC/POS | USB, Bluetooth, Ethernet | 108mm (100x150) |
+| Xprinter | XP-470B | TSPL | USB | 108mm |
+| Zebra | GK420d | ZPL II / EPL2 | USB, Ethernet, Seri | 104mm |
+| Zebra | GK420t | ZPL II / EPL2 | USB, Ethernet | 104mm |
+| Zebra | ZD220 | ZPL II / EPL | USB | 104mm (4 inç) |
+| Zebra | ZD420 | ZPL II / EPL | USB, Ethernet, Bluetooth, Wi-Fi | 104mm |
+| Zebra | ZD421 | ZPL II / EPL | USB, Ethernet, Bluetooth BLE | 104mm |
+| Zebra | ZQ320 Plus | CPCL / ZPL | Bluetooth BLE, Wi-Fi | 80mm (3 inç) |
+| Zebra | ZQ520 | CPCL / ZPL | Bluetooth, Wi-Fi | 104mm (4 inç) |
+| Zebra | ZT411 | ZPL II | Ethernet, USB, Bluetooth 4.1 | 104mm |
+

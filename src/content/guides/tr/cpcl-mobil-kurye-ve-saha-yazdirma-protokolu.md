@@ -36,15 +36,15 @@ PRINT
 - **BARCODE type width ratio height x y data:** 1D barkod üretir.
 - **PRINT:** Baskıyı başlatır ve kağıdı yırtma çizgisine (tear-bar) ilerletir.
 
-## Popüler Yazıcı Modeli Özelinde Kılavuzlar
+## Desteklenen Cihazlar
 
-- [Bixolon Slp Tx400 Cpcl](/tr/rehber/bixolon-slp-tx400-cpcl-mobil-kurye-ve-saha-yazdirma-protokolu)
-- [Bixolon Spp R200iii Cpcl](/tr/rehber/bixolon-spp-r200iii-cpcl-mobil-kurye-ve-saha-yazdirma-protokolu)
-- [Bixolon Spp R310 Cpcl](/tr/rehber/bixolon-spp-r310-cpcl-mobil-kurye-ve-saha-yazdirma-protokolu)
-- [Bixolon Srp 330ii Cpcl](/tr/rehber/bixolon-srp-330ii-cpcl-mobil-kurye-ve-saha-yazdirma-protokolu)
-- [Bixolon Srp 350iii Cpcl](/tr/rehber/bixolon-srp-350iii-cpcl-mobil-kurye-ve-saha-yazdirma-protokolu)
-- [Bixolon Srp Q300 Cpcl](/tr/rehber/bixolon-srp-q300-cpcl-mobil-kurye-ve-saha-yazdirma-protokolu)
-- [Epson Tm L90 Cpcl](/tr/rehber/epson-tm-l90-cpcl-mobil-kurye-ve-saha-yazdirma-protokolu)
-- [Epson Tm M30ii Cpcl](/tr/rehber/epson-tm-m30ii-cpcl-mobil-kurye-ve-saha-yazdirma-protokolu)
-- [Epson Tm P20ii Cpcl](/tr/rehber/epson-tm-p20ii-cpcl-mobil-kurye-ve-saha-yazdirma-protokolu)
-- [Epson Tm P80ii Cpcl](/tr/rehber/epson-tm-p80ii-cpcl-mobil-kurye-ve-saha-yazdirma-protokolu)
+Bu rehberdeki adımlar, ilgili protokolü/arayüzü destekleyen aşağıdaki yazıcı modellerinin tamamı için geçerlidir:
+
+| Marka | Model | Protokol | Arayüzler | Kağıt Genişliği |
+|---|---|---|---|---|
+| Bixolon | SPP-R200III | ESC/POS / CPCL | Bluetooth, Wi-Fi, USB | 58mm |
+| Bixolon | SPP-R310 | ESC/POS / CPCL | Bluetooth BLE, USB | 80mm |
+| TSC | Alpha-3R | TSPL / CPCL / ESC/POS | Bluetooth, USB | 72mm (3 inç) |
+| Zebra | ZQ320 Plus | CPCL / ZPL | Bluetooth BLE, Wi-Fi | 80mm (3 inç) |
+| Zebra | ZQ520 | CPCL / ZPL | Bluetooth, Wi-Fi | 104mm (4 inç) |
+

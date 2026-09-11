@@ -19,180 +19,54 @@ Geleneksel tarayıcı yazdırma akışında şu sorunlar yaşanır:
 
 WebUSB ile bu engellerin tamamı ortadan kalkar.
 
-## WebUSB Güvenlik Modeli
+## Desteklenen Cihazlar
 
-WebUSB yalnızca HTTPS üzerinde çalışır. `localhost` geliştirme ortamında HTTP izin verilir. Kullanıcı her bağlantı isteğinde tarayıcı iznini onaylamalıdır (ilk bağlantı sonrası kalıcı olabilir).
+Bu rehberdeki adımlar, ilgili protokolü/arayüzü destekleyen aşağıdaki yazıcı modellerinin tamamı için geçerlidir:
 
-```javascript
-// Yazıcı seçim diyaloğunu aç
-const device = await navigator.usb.requestDevice({
-  filters: [
-    { vendorId: 0x04b8 }, // Epson
-    { vendorId: 0x0519 }, // Star Micronics
-    { vendorId: 0x1504 }, // Bixolon
-    { vendorId: 0x0dd4 }, // Custom (Generic)
-    { vendorId: 0x28e9 }, // Xprinter
-  ]
-});
-```
+| Marka | Model | Protokol | Arayüzler | Kağıt Genişliği |
+|---|---|---|---|---|
+| Bixolon | SLP-TX400 | SLCS / BPL-Z | USB, Ethernet, Seri | 104mm |
+| Bixolon | SPP-R200III | ESC/POS / CPCL | Bluetooth, Wi-Fi, USB | 58mm |
+| Bixolon | SPP-R310 | ESC/POS / CPCL | Bluetooth BLE, USB | 80mm |
+| Bixolon | SRP-330II | ESC/POS | USB, Ethernet | 80mm |
+| Bixolon | SRP-350III | ESC/POS | USB, Ethernet, Seri | 80mm |
+| Bixolon | SRP-Q300 | ESC/POS | Bluetooth, Wi-Fi, USB, Ethernet | 80mm |
+| Epson | TM-L90 | ESC/POS | USB, Ethernet | 80mm |
+| Epson | TM-m30II | ESC/POS | Bluetooth, Wi-Fi, USB, Ethernet | 80mm / 58mm |
+| Epson | TM-T20III | ESC/POS | USB, Ethernet, Seri | 80mm / 58mm |
+| Epson | TM-T88VI | ESC/POS | USB, Ethernet, Bluetooth, Wi-Fi | 80mm / 58mm |
+| Epson | TM-T88VII | ESC/POS | USB, Ethernet, Wi-Fi | 80mm |
+| Godex | DT4x | EZPL | USB, Ethernet, Seri | 108mm |
+| Godex | G500 | EZPL / GEPL / GZPL | USB, Ethernet, Seri | 108mm |
+| Godex | RT700 | EZPL | USB, Ethernet | 108mm |
+| Honeywell | PC42d | ZSim / ESim | USB | 104mm |
+| Honeywell | PC42t | Direct Protocol / ZSim / ESim | USB, Ethernet, Seri | 104mm |
+| Rongta | RP326 | ESC/POS | USB, Ethernet, Seri | 80mm |
+| Rongta | RP410 | TSPL / ESC/POS | USB | 108mm |
+| Rongta | RP80 | ESC/POS | USB, Ethernet | 80mm |
+| Rongta | RPP02N | ESC/POS | Bluetooth, USB | 58mm |
+| Seiko | MP-B30L | ESC/POS / SII SDK | Bluetooth, USB | 80mm |
+| Seiko | RP-D10 | ESC/POS | USB, Ethernet, Bluetooth | 80mm |
+| Star Micronics | mC-Print3 | StarPRNT | CloudPRNT, Bluetooth, Ethernet, USB | 80mm |
+| Star Micronics | SM-L200 | Star Line | Bluetooth 4.0 BLE, USB | 58mm |
+| Star Micronics | TSP143III | StarPRNT / ESC/POS | Ethernet, Wi-Fi, USB, Lightning | 80mm |
+| Star Micronics | TSP654II | Star Line / ESC/POS | Bluetooth, Ethernet, USB | 80mm |
+| TSC | Alpha-3R | TSPL / CPCL / ESC/POS | Bluetooth, USB | 72mm (3 inç) |
+| TSC | DA210 | TSPL-EZD | USB | 108mm |
+| TSC | DA220 | TSPL-EZD | USB, Ethernet, Bluetooth, Wi-Fi | 108mm |
+| TSC | TE200 | TSPL-EZ | USB 2.0 | 108mm |
+| TSC | TTP-244 Pro | TSPL | USB, Seri | 108mm |
+| Xprinter | XP-365B | TSPL / ESC/POS | USB | 80mm |
+| Xprinter | XP-420B | TSPL / ESC/POS | USB, Bluetooth, Ethernet | 108mm (100x150) |
+| Xprinter | XP-470B | TSPL | USB | 108mm |
+| Xprinter | XP-58IIH | ESC/POS | USB, Bluetooth | 58mm |
+| Xprinter | XP-N160II | ESC/POS | USB, Ethernet | 80mm |
+| Xprinter | XP-P300 | ESC/POS | Bluetooth, USB | 58mm |
+| Xprinter | XP-Q800 | ESC/POS | USB, Ethernet, Seri | 80mm |
+| Zebra | GK420d | ZPL II / EPL2 | USB, Ethernet, Seri | 104mm |
+| Zebra | GK420t | ZPL II / EPL2 | USB, Ethernet | 104mm |
+| Zebra | ZD220 | ZPL II / EPL | USB | 104mm (4 inç) |
+| Zebra | ZD420 | ZPL II / EPL | USB, Ethernet, Bluetooth, Wi-Fi | 104mm |
+| Zebra | ZD421 | ZPL II / EPL | USB, Ethernet, Bluetooth BLE | 104mm |
+| Zebra | ZT411 | ZPL II | Ethernet, USB, Bluetooth 4.1 | 104mm |
 
-## Adım Adım WebUSB Bağlantı
-
-```javascript
-class WebUSBPrinter {
-  constructor() {
-    this.device = null;
-    this.endpointOut = null;
-  }
-
-  async connect() {
-    this.device = await navigator.usb.requestDevice({
-      filters: [{ classCode: 7 }] // Printer class
-    });
-
-    await this.device.open();
-
-    // Aktif configuration seç
-    if (this.device.configuration === null) {
-      await this.device.selectConfiguration(1);
-    }
-
-    // Interface claim (interface 0 genellikle yazıcı)
-    await this.device.claimInterface(0);
-
-    // Bulk OUT endpoint bul
-    const iface = this.device.configuration.interfaces[0];
-    const alternate = iface.alternates[0];
-    this.endpointOut = alternate.endpoints.find(
-      e => e.direction === 'out' && e.type === 'bulk'
-    );
-  }
-
-  async send(data) {
-    const chunk = 512; // USB bulk transfer chunk boyutu
-    for (let i = 0; i < data.length; i += chunk) {
-      const slice = data.slice(i, i + chunk);
-      await this.device.transferOut(
-        this.endpointOut.endpointNumber,
-        new Uint8Array(slice)
-      );
-    }
-  }
-
-  async disconnect() {
-    await this.device.releaseInterface(0);
-    await this.device.close();
-  }
-}
-```
-
-## ESC/POS Fiş Basma Örneği
-
-```javascript
-const printer = new WebUSBPrinter();
-await printer.connect();
-
-const enc = new TextEncoder();
-const ESC = 0x1B, GS = 0x1D, LF = 0x0A;
-
-const commands = [
-  ESC, 0x40,           // sıfırla
-  ESC, 0x61, 0x01,     // ortala
-  ...enc.encode('PRINTZEN KAFE
-'),
-  ...enc.encode('----------------------------
-'),
-  ESC, 0x61, 0x00,     // sola hizala
-  ...enc.encode('Cappuccino x1    45.00 TL
-'),
-  ESC, 0x61, 0x02,     // sağa hizala
-  ESC, 0x45, 0x01,     // kalın
-  ...enc.encode('TOPLAM: 45.00 TL
-'),
-  ESC, 0x45, 0x00,     // kalın kapat
-  LF, LF, LF,          // boş satır (kağıt ilerlet)
-  GS, 0x56, 0x41, 0x03 // tam kesim
-];
-
-await printer.send(commands);
-await printer.disconnect();
-```
-
-## Desteklenen Tarayıcılar
-
-| Tarayıcı | WebUSB Desteği | Not |
-|----------|----------------|-----|
-| Chrome 61+ | ✅ Tam | Masaüstü + Android |
-| Edge 79+ | ✅ Tam | Chromium tabanlı |
-| Firefox | ❌ Yok | Standart reddedildi |
-| Safari | ❌ Yok | Apple politikası |
-| Chrome Android | ✅ Kısmi | OTG kablo gerekli |
-
-## Yaygın WebUSB Hataları
-
-### Access Denied Hatası
-```
-DOMException: Access denied
-```
-Yazıcının başka bir uygulama (örn. Windows spooler) tarafından tutulduğunu gösterir. Yazıcı servisi durdurulmalı veya yazıcı paylaşımı kapatılmalıdır.
-
-### Interface Claim Başarısız
-```javascript
-// Önce tüm interface'leri serbest bırak
-await device.releaseInterface(0);
-```
-
-### Veri Gönderilmiyor Ama Hata Yok
-Endpoint numarası yanlış seçilmiş olabilir. Tüm endpoint'leri listeleyin:
-```javascript
-device.configuration.interfaces.forEach(iface => {
-  iface.alternates[0].endpoints.forEach(ep => {
-    console.log(ep.direction, ep.type, ep.endpointNumber);
-  });
-});
-```
-
-## WebUSB vs WebHID vs Yazıcı Sürücüsü Karşılaştırması
-
-| Özellik | WebUSB | WebHID | Sürücü |
-|---------|--------|--------|--------|
-| Driver kurulumu | ❌ Gerek yok | ❌ Gerek yok | ✅ Gerekli |
-| HTTPS zorunlu | ✅ Evet | ✅ Evet | ❌ Hayır |
-| Firefox desteği | ❌ Yok | ❌ Yok | ✅ Var |
-| Sessiz baskı | ✅ Tam | ✅ Tam | ⚠️ Kısmi |
-| Kurulum kolaylığı | ✅ En kolay | ✅ Kolay | ❌ Zor |
-
-## Printzen WebUSB Entegrasyonu
-
-Printzen SDK, WebUSB bağlantısını otomatik yönetir:
-```javascript
-import { PrintzenPrinter } from '@printzen/sdk';
-const printer = new PrintzenPrinter({ interface: 'usb' });
-await printer.connect(); // otomatik requestDevice + claimInterface
-await printer.receipt({ lines: [...] });
-await printer.cut();
-```
-
-Sıfırdan WebUSB yazmak zorunda kalmadan entegrasyon yapabilirsiniz.
-
-## Sık Sorulan Sorular
-
-### WebUSB tüm termal yazıcılarda çalışır mı?
-Hayır. Yazıcının USB sürücüsünün işletim sistemi tarafından "kullanılıyor" sayılmaması gerekir. Özellikle Windows'ta yazıcı servisi aktifken sorun çıkabilir. macOS ve Linux'ta daha sorunsuz çalışır.
-
-### WebUSB ile ne kadar hızlı veri gönderebilirim?
-USB 2.0 Full Speed ile saniyede ~1 MB veri aktarılabilir. 80mm termal yazıcılar genellikle 200mm/sn baskı hızına sahip olup bu teorik maksimumun çok altındadır. WebUSB bant genişliği baskı hızında darboğaz oluşturmaz.
-
-### Bağlantı sonrası kullanıcı izni tekrar sorulur mu?
-Hayır. İlk izin onaylandıktan sonra aynı cihaza otomatik yeniden bağlanılabilir: `navigator.usb.getDevices()`
-
-## Bu Konudaki Yazıcı Modeli Rehberleri
-
-- [Bixolon Slp Tx400 Webusb](/tr/rehber/bixolon-slp-tx400-webusb-ve-webhid-ile-kablolu-donanim-iletisimi)
-- [Bixolon Spp R200iii Webusb](/tr/rehber/bixolon-spp-r200iii-webusb-ve-webhid-ile-kablolu-donanim-iletisimi)
-- [Bixolon Spp R310 Webusb](/tr/rehber/bixolon-spp-r310-webusb-ve-webhid-ile-kablolu-donanim-iletisimi)
-- [Bixolon Srp 330ii Webusb](/tr/rehber/bixolon-srp-330ii-webusb-ve-webhid-ile-kablolu-donanim-iletisimi)
-- [Bixolon Srp 350iii Webusb](/tr/rehber/bixolon-srp-350iii-webusb-ve-webhid-ile-kablolu-donanim-iletisimi)
-- [Bixolon Srp Q300 Webusb](/tr/rehber/bixolon-srp-q300-webusb-ve-webhid-ile-kablolu-donanim-iletisimi)
-- [Epson Tm L90 Webusb](/tr/rehber/epson-tm-l90-webusb-ve-webhid-ile-kablolu-donanim-iletisimi)
-- [Epson Tm M30ii Webusb](/tr/rehber/epson-tm-m30ii-webusb-ve-webhid-ile-kablolu-donanim-iletisimi)

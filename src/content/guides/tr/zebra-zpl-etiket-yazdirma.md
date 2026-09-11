@@ -197,15 +197,30 @@ Büyük depolarda dakikada yüzlerce etiket basılırken ZPL şablonlarının pe
 ### ZPL ile yazdırırken Türkçe karakterler neden bozuluyor?
 **ZPL'in varsayılan fontları (Font 0) standart ASCII tablosunu kullanır ve Türkçe `Ş, Ğ, İ, ı, ç, ö, ü` karakterlerini doğrudan tanımaz.** Çözüm için etiket başında `^CI28` (UTF-8 modunu açan komut) verilmeli veya `_C5_9F` gibi ZPL hex kaçış karakterleri (Hex Escape) tercih edilmelidir.
 
-## Popüler Model Özelinde Bu Konudaki Rehberler
+## Desteklenen Cihazlar
 
-- [Bixolon Slp Tx400 Zebra](/tr/rehber/bixolon-slp-tx400-zebra-zpl-etiket-yazdirma)
-- [Bixolon Spp R200iii Zebra](/tr/rehber/bixolon-spp-r200iii-zebra-zpl-etiket-yazdirma)
-- [Bixolon Spp R310 Zebra](/tr/rehber/bixolon-spp-r310-zebra-zpl-etiket-yazdirma)
-- [Bixolon Srp 330ii Zebra](/tr/rehber/bixolon-srp-330ii-zebra-zpl-etiket-yazdirma)
-- [Bixolon Srp 350iii Zebra](/tr/rehber/bixolon-srp-350iii-zebra-zpl-etiket-yazdirma)
-- [Bixolon Srp Q300 Zebra](/tr/rehber/bixolon-srp-q300-zebra-zpl-etiket-yazdirma)
-- [Epson Tm L90 Zebra](/tr/rehber/epson-tm-l90-zebra-zpl-etiket-yazdirma)
-- [Epson Tm M30ii Zebra](/tr/rehber/epson-tm-m30ii-zebra-zpl-etiket-yazdirma)
-- [Epson Tm P20ii Zebra](/tr/rehber/epson-tm-p20ii-zebra-zpl-etiket-yazdirma)
-- [Epson Tm P80ii Zebra](/tr/rehber/epson-tm-p80ii-zebra-zpl-etiket-yazdirma)
+Bu rehberdeki adımlar, ilgili protokolü/arayüzü destekleyen aşağıdaki yazıcı modellerinin tamamı için geçerlidir:
+
+| Marka | Model | Protokol | Arayüzler | Kağıt Genişliği |
+|---|---|---|---|---|
+| Godex | DT4x | EZPL | USB, Ethernet, Seri | 108mm |
+| Godex | G500 | EZPL / GEPL / GZPL | USB, Ethernet, Seri | 108mm |
+| Godex | RT700 | EZPL | USB, Ethernet | 108mm |
+| Rongta | RP410 | TSPL / ESC/POS | USB | 108mm |
+| TSC | Alpha-3R | TSPL / CPCL / ESC/POS | Bluetooth, USB | 72mm (3 inç) |
+| TSC | DA210 | TSPL-EZD | USB | 108mm |
+| TSC | DA220 | TSPL-EZD | USB, Ethernet, Bluetooth, Wi-Fi | 108mm |
+| TSC | TE200 | TSPL-EZ | USB 2.0 | 108mm |
+| TSC | TTP-244 Pro | TSPL | USB, Seri | 108mm |
+| Xprinter | XP-365B | TSPL / ESC/POS | USB | 80mm |
+| Xprinter | XP-420B | TSPL / ESC/POS | USB, Bluetooth, Ethernet | 108mm (100x150) |
+| Xprinter | XP-470B | TSPL | USB | 108mm |
+| Zebra | GK420d | ZPL II / EPL2 | USB, Ethernet, Seri | 104mm |
+| Zebra | GK420t | ZPL II / EPL2 | USB, Ethernet | 104mm |
+| Zebra | ZD220 | ZPL II / EPL | USB | 104mm (4 inç) |
+| Zebra | ZD420 | ZPL II / EPL | USB, Ethernet, Bluetooth, Wi-Fi | 104mm |
+| Zebra | ZD421 | ZPL II / EPL | USB, Ethernet, Bluetooth BLE | 104mm |
+| Zebra | ZQ320 Plus | CPCL / ZPL | Bluetooth BLE, Wi-Fi | 80mm (3 inç) |
+| Zebra | ZQ520 | CPCL / ZPL | Bluetooth, Wi-Fi | 104mm (4 inç) |
+| Zebra | ZT411 | ZPL II | Ethernet, USB, Bluetooth 4.1 | 104mm |
+

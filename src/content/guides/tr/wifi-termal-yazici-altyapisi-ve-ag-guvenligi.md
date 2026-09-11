@@ -10,15 +10,43 @@ topicCluster: "hub-12"
 
 Wi-Fi termal yazıcılar, kablo çekmenin imkansız olduğu restoran açık alanlarında ve gezici perakende stantlarında esneklik sağlar. Ancak kurumsal ağlarda doğru yapılandırılmadığında en büyük arıza kaynağı haline gelir.
 
-## Popüler Yazıcı Modeli Özelinde Kılavuzlar
+## Desteklenen Cihazlar
 
-- [Bixolon Slp Tx400 Wifi](/tr/rehber/bixolon-slp-tx400-wifi-termal-yazici-altyapisi-ve-ag-guvenligi)
-- [Bixolon Spp R200iii Wifi](/tr/rehber/bixolon-spp-r200iii-wifi-termal-yazici-altyapisi-ve-ag-guvenligi)
-- [Bixolon Spp R310 Wifi](/tr/rehber/bixolon-spp-r310-wifi-termal-yazici-altyapisi-ve-ag-guvenligi)
-- [Bixolon Srp 330ii Wifi](/tr/rehber/bixolon-srp-330ii-wifi-termal-yazici-altyapisi-ve-ag-guvenligi)
-- [Bixolon Srp 350iii Wifi](/tr/rehber/bixolon-srp-350iii-wifi-termal-yazici-altyapisi-ve-ag-guvenligi)
-- [Bixolon Srp Q300 Wifi](/tr/rehber/bixolon-srp-q300-wifi-termal-yazici-altyapisi-ve-ag-guvenligi)
-- [Epson Tm L90 Wifi](/tr/rehber/epson-tm-l90-wifi-termal-yazici-altyapisi-ve-ag-guvenligi)
-- [Epson Tm M30ii Wifi](/tr/rehber/epson-tm-m30ii-wifi-termal-yazici-altyapisi-ve-ag-guvenligi)
-- [Epson Tm P20ii Wifi](/tr/rehber/epson-tm-p20ii-wifi-termal-yazici-altyapisi-ve-ag-guvenligi)
-- [Epson Tm P80ii Wifi](/tr/rehber/epson-tm-p80ii-wifi-termal-yazici-altyapisi-ve-ag-guvenligi)
+Bu rehberdeki adımlar, ilgili protokolü/arayüzü destekleyen aşağıdaki yazıcı modellerinin tamamı için geçerlidir:
+
+| Marka | Model | Protokol | Arayüzler | Kağıt Genişliği |
+|---|---|---|---|---|
+| Bixolon | SLP-TX400 | SLCS / BPL-Z | USB, Ethernet, Seri | 104mm |
+| Bixolon | SPP-R200III | ESC/POS / CPCL | Bluetooth, Wi-Fi, USB | 58mm |
+| Bixolon | SRP-330II | ESC/POS | USB, Ethernet | 80mm |
+| Bixolon | SRP-350III | ESC/POS | USB, Ethernet, Seri | 80mm |
+| Bixolon | SRP-Q300 | ESC/POS | Bluetooth, Wi-Fi, USB, Ethernet | 80mm |
+| Epson | TM-L90 | ESC/POS | USB, Ethernet | 80mm |
+| Epson | TM-m30II | ESC/POS | Bluetooth, Wi-Fi, USB, Ethernet | 80mm / 58mm |
+| Epson | TM-P20II | ESC/POS | Bluetooth 5.0, Wi-Fi | 58mm |
+| Epson | TM-P80II | ESC/POS | Bluetooth, Wi-Fi | 80mm |
+| Epson | TM-T20III | ESC/POS | USB, Ethernet, Seri | 80mm / 58mm |
+| Epson | TM-T88VI | ESC/POS | USB, Ethernet, Bluetooth, Wi-Fi | 80mm / 58mm |
+| Epson | TM-T88VII | ESC/POS | USB, Ethernet, Wi-Fi | 80mm |
+| Godex | DT4x | EZPL | USB, Ethernet, Seri | 108mm |
+| Godex | G500 | EZPL / GEPL / GZPL | USB, Ethernet, Seri | 108mm |
+| Godex | RT700 | EZPL | USB, Ethernet | 108mm |
+| Honeywell | PC42t | Direct Protocol / ZSim / ESim | USB, Ethernet, Seri | 104mm |
+| Rongta | RP326 | ESC/POS | USB, Ethernet, Seri | 80mm |
+| Rongta | RP80 | ESC/POS | USB, Ethernet | 80mm |
+| Seiko | RP-D10 | ESC/POS | USB, Ethernet, Bluetooth | 80mm |
+| Star Micronics | mC-Print3 | StarPRNT | CloudPRNT, Bluetooth, Ethernet, USB | 80mm |
+| Star Micronics | TSP143III | StarPRNT / ESC/POS | Ethernet, Wi-Fi, USB, Lightning | 80mm |
+| Star Micronics | TSP654II | Star Line / ESC/POS | Bluetooth, Ethernet, USB | 80mm |
+| TSC | DA220 | TSPL-EZD | USB, Ethernet, Bluetooth, Wi-Fi | 108mm |
+| Xprinter | XP-420B | TSPL / ESC/POS | USB, Bluetooth, Ethernet | 108mm (100x150) |
+| Xprinter | XP-N160II | ESC/POS | USB, Ethernet | 80mm |
+| Xprinter | XP-Q800 | ESC/POS | USB, Ethernet, Seri | 80mm |
+| Zebra | GK420d | ZPL II / EPL2 | USB, Ethernet, Seri | 104mm |
+| Zebra | GK420t | ZPL II / EPL2 | USB, Ethernet | 104mm |
+| Zebra | ZD420 | ZPL II / EPL | USB, Ethernet, Bluetooth, Wi-Fi | 104mm |
+| Zebra | ZD421 | ZPL II / EPL | USB, Ethernet, Bluetooth BLE | 104mm |
+| Zebra | ZQ320 Plus | CPCL / ZPL | Bluetooth BLE, Wi-Fi | 80mm (3 inç) |
+| Zebra | ZQ520 | CPCL / ZPL | Bluetooth, Wi-Fi | 104mm (4 inç) |
+| Zebra | ZT411 | ZPL II | Ethernet, USB, Bluetooth 4.1 | 104mm |
+

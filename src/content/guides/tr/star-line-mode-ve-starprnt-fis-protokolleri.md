@@ -15,15 +15,15 @@ Star Micronics, özellikle perakende, kiosk ve restoran sektöründe Epson'ın e
 - **Çekmece Açma:** ESC/POS `ESC p` kullanırken, Star `BEL` (0x07) karakteriyle çekmece solenoidini tetikler.
 - **Hizalama:** Star `ESC a n` yapısını kullanır.
 
-## Popüler Yazıcı Modeli Özelinde Kılavuzlar
+## Desteklenen Cihazlar
 
-- [Bixolon Slp Tx400 Star](/tr/rehber/bixolon-slp-tx400-star-line-mode-ve-starprnt-fis-protokolleri)
-- [Bixolon Spp R200iii Star](/tr/rehber/bixolon-spp-r200iii-star-line-mode-ve-starprnt-fis-protokolleri)
-- [Bixolon Spp R310 Star](/tr/rehber/bixolon-spp-r310-star-line-mode-ve-starprnt-fis-protokolleri)
-- [Bixolon Srp 330ii Star](/tr/rehber/bixolon-srp-330ii-star-line-mode-ve-starprnt-fis-protokolleri)
-- [Bixolon Srp 350iii Star](/tr/rehber/bixolon-srp-350iii-star-line-mode-ve-starprnt-fis-protokolleri)
-- [Bixolon Srp Q300 Star](/tr/rehber/bixolon-srp-q300-star-line-mode-ve-starprnt-fis-protokolleri)
-- [Epson Tm L90 Star](/tr/rehber/epson-tm-l90-star-line-mode-ve-starprnt-fis-protokolleri)
-- [Epson Tm M30ii Star](/tr/rehber/epson-tm-m30ii-star-line-mode-ve-starprnt-fis-protokolleri)
-- [Epson Tm P20ii Star](/tr/rehber/epson-tm-p20ii-star-line-mode-ve-starprnt-fis-protokolleri)
-- [Epson Tm P80ii Star](/tr/rehber/epson-tm-p80ii-star-line-mode-ve-starprnt-fis-protokolleri)
+Bu rehberdeki adımlar, ilgili protokolü/arayüzü destekleyen aşağıdaki yazıcı modellerinin tamamı için geçerlidir:
+
+| Marka | Model | Protokol | Arayüzler | Kağıt Genişliği |
+|---|---|---|---|---|
+| Star Micronics | mC-Print3 | StarPRNT | CloudPRNT, Bluetooth, Ethernet, USB | 80mm |
+| Star Micronics | SM-L200 | Star Line | Bluetooth 4.0 BLE, USB | 58mm |
+| Star Micronics | SM-T300i | Star Line / ESC/POS | Bluetooth (MFi), Seri | 80mm |
+| Star Micronics | TSP143III | StarPRNT / ESC/POS | Ethernet, Wi-Fi, USB, Lightning | 80mm |
+| Star Micronics | TSP654II | Star Line / ESC/POS | Bluetooth, Ethernet, USB | 80mm |
+

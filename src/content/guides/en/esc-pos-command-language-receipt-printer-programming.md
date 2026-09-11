@@ -176,13 +176,38 @@ export class EscPosBuilder {
 **Thermal printer knives are positioned 15 to 20 mm above the printing head.** If a cut command is sent immediately without preceding Line Feed (`0x0A`) characters, the final line remains under the blade. Always append at least 3 to 4 empty lines before triggering a partial cut command.
 
 
-## Printer-Specific Guides for This Topic
+## Supported Devices
 
-- [Bixolon Slp Tx400 Esc](/guides/bixolon-slp-tx400-esc-pos-command-language-receipt-printer-programming)
-- [Bixolon Spp R200iii Esc](/guides/bixolon-spp-r200iii-esc-pos-command-language-receipt-printer-programming)
-- [Bixolon Spp R310 Esc](/guides/bixolon-spp-r310-esc-pos-command-language-receipt-printer-programming)
-- [Bixolon Srp 330ii Esc](/guides/bixolon-srp-330ii-esc-pos-command-language-receipt-printer-programming)
-- [Bixolon Srp 350iii Esc](/guides/bixolon-srp-350iii-esc-pos-command-language-receipt-printer-programming)
-- [Bixolon Srp Q300 Esc](/guides/bixolon-srp-q300-esc-pos-command-language-receipt-printer-programming)
-- [Epson Tm L90 Esc](/guides/epson-tm-l90-esc-pos-command-language-receipt-printer-programming)
-- [Epson Tm M30ii Esc](/guides/epson-tm-m30ii-esc-pos-command-language-receipt-printer-programming)
+The steps in this guide apply to all of the following printer models that support the relevant protocol/interface:
+
+| Brand | Model | Protocol | Interfaces | Paper Width |
+|---|---|---|---|---|
+| Bixolon | SPP-R200III | ESC/POS / CPCL | Bluetooth, Wi-Fi, USB | 58mm |
+| Bixolon | SPP-R310 | ESC/POS / CPCL | Bluetooth BLE, USB | 80mm |
+| Bixolon | SRP-330II | ESC/POS | USB, Ethernet | 80mm |
+| Bixolon | SRP-350III | ESC/POS | USB, Ethernet, Seri | 80mm |
+| Bixolon | SRP-Q300 | ESC/POS | Bluetooth, Wi-Fi, USB, Ethernet | 80mm |
+| Epson | TM-L90 | ESC/POS | USB, Ethernet | 80mm |
+| Epson | TM-m30II | ESC/POS | Bluetooth, Wi-Fi, USB, Ethernet | 80mm / 58mm |
+| Epson | TM-P20II | ESC/POS | Bluetooth 5.0, Wi-Fi | 58mm |
+| Epson | TM-P80II | ESC/POS | Bluetooth, Wi-Fi | 80mm |
+| Epson | TM-T20III | ESC/POS | USB, Ethernet, Seri | 80mm / 58mm |
+| Epson | TM-T88VI | ESC/POS | USB, Ethernet, Bluetooth, Wi-Fi | 80mm / 58mm |
+| Epson | TM-T88VII | ESC/POS | USB, Ethernet, Wi-Fi | 80mm |
+| Rongta | RP326 | ESC/POS | USB, Ethernet, Seri | 80mm |
+| Rongta | RP410 | TSPL / ESC/POS | USB | 108mm |
+| Rongta | RP80 | ESC/POS | USB, Ethernet | 80mm |
+| Rongta | RPP02N | ESC/POS | Bluetooth, USB | 58mm |
+| Seiko | MP-B30L | ESC/POS / SII SDK | Bluetooth, USB | 80mm |
+| Seiko | RP-D10 | ESC/POS | USB, Ethernet, Bluetooth | 80mm |
+| Star Micronics | SM-T300i | Star Line / ESC/POS | Bluetooth (MFi), Seri | 80mm |
+| Star Micronics | TSP143III | StarPRNT / ESC/POS | Ethernet, Wi-Fi, USB, Lightning | 80mm |
+| Star Micronics | TSP654II | Star Line / ESC/POS | Bluetooth, Ethernet, USB | 80mm |
+| Sunmi | V2 Pro | ESC/POS (Sunmi InnerPrinter) | Dahili Donanım, Bluetooth | 58mm |
+| TSC | Alpha-3R | TSPL / CPCL / ESC/POS | Bluetooth, USB | 72mm (3 inç) |
+| Xprinter | XP-365B | TSPL / ESC/POS | USB | 80mm |
+| Xprinter | XP-420B | TSPL / ESC/POS | USB, Bluetooth, Ethernet | 108mm (100x150) |
+| Xprinter | XP-58IIH | ESC/POS | USB, Bluetooth | 58mm |
+| Xprinter | XP-N160II | ESC/POS | USB, Ethernet | 80mm |
+| Xprinter | XP-P300 | ESC/POS | Bluetooth, USB | 58mm |
+| Xprinter | XP-Q800 | ESC/POS | USB, Ethernet, Seri | 80mm |

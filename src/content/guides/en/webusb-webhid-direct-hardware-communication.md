@@ -19,124 +19,54 @@ Traditional browser printing forces:
 
 WebUSB removes all of these barriers.
 
-## Security Model
+## Supported Devices
 
-WebUSB works only over HTTPS (localhost is exempt for development). Users must approve a permission dialog on the first connection. Subsequent connections to the same device can be automatic.
+The steps in this guide apply to all of the following printer models that support the relevant protocol/interface:
 
-```javascript
-const device = await navigator.usb.requestDevice({
-  filters: [
-    { vendorId: 0x04b8 }, // Epson
-    { vendorId: 0x0519 }, // Star Micronics
-    { vendorId: 0x1504 }, // Bixolon
-    { vendorId: 0x28e9 }, // Xprinter
-  ]
-});
-```
+| Brand | Model | Protocol | Interfaces | Paper Width |
+|---|---|---|---|---|
+| Bixolon | SLP-TX400 | SLCS / BPL-Z | USB, Ethernet, Seri | 104mm |
+| Bixolon | SPP-R200III | ESC/POS / CPCL | Bluetooth, Wi-Fi, USB | 58mm |
+| Bixolon | SPP-R310 | ESC/POS / CPCL | Bluetooth BLE, USB | 80mm |
+| Bixolon | SRP-330II | ESC/POS | USB, Ethernet | 80mm |
+| Bixolon | SRP-350III | ESC/POS | USB, Ethernet, Seri | 80mm |
+| Bixolon | SRP-Q300 | ESC/POS | Bluetooth, Wi-Fi, USB, Ethernet | 80mm |
+| Epson | TM-L90 | ESC/POS | USB, Ethernet | 80mm |
+| Epson | TM-m30II | ESC/POS | Bluetooth, Wi-Fi, USB, Ethernet | 80mm / 58mm |
+| Epson | TM-T20III | ESC/POS | USB, Ethernet, Seri | 80mm / 58mm |
+| Epson | TM-T88VI | ESC/POS | USB, Ethernet, Bluetooth, Wi-Fi | 80mm / 58mm |
+| Epson | TM-T88VII | ESC/POS | USB, Ethernet, Wi-Fi | 80mm |
+| Godex | DT4x | EZPL | USB, Ethernet, Seri | 108mm |
+| Godex | G500 | EZPL / GEPL / GZPL | USB, Ethernet, Seri | 108mm |
+| Godex | RT700 | EZPL | USB, Ethernet | 108mm |
+| Honeywell | PC42d | ZSim / ESim | USB | 104mm |
+| Honeywell | PC42t | Direct Protocol / ZSim / ESim | USB, Ethernet, Seri | 104mm |
+| Rongta | RP326 | ESC/POS | USB, Ethernet, Seri | 80mm |
+| Rongta | RP410 | TSPL / ESC/POS | USB | 108mm |
+| Rongta | RP80 | ESC/POS | USB, Ethernet | 80mm |
+| Rongta | RPP02N | ESC/POS | Bluetooth, USB | 58mm |
+| Seiko | MP-B30L | ESC/POS / SII SDK | Bluetooth, USB | 80mm |
+| Seiko | RP-D10 | ESC/POS | USB, Ethernet, Bluetooth | 80mm |
+| Star Micronics | mC-Print3 | StarPRNT | CloudPRNT, Bluetooth, Ethernet, USB | 80mm |
+| Star Micronics | SM-L200 | Star Line | Bluetooth 4.0 BLE, USB | 58mm |
+| Star Micronics | TSP143III | StarPRNT / ESC/POS | Ethernet, Wi-Fi, USB, Lightning | 80mm |
+| Star Micronics | TSP654II | Star Line / ESC/POS | Bluetooth, Ethernet, USB | 80mm |
+| TSC | Alpha-3R | TSPL / CPCL / ESC/POS | Bluetooth, USB | 72mm (3 inç) |
+| TSC | DA210 | TSPL-EZD | USB | 108mm |
+| TSC | DA220 | TSPL-EZD | USB, Ethernet, Bluetooth, Wi-Fi | 108mm |
+| TSC | TE200 | TSPL-EZ | USB 2.0 | 108mm |
+| TSC | TTP-244 Pro | TSPL | USB, Seri | 108mm |
+| Xprinter | XP-365B | TSPL / ESC/POS | USB | 80mm |
+| Xprinter | XP-420B | TSPL / ESC/POS | USB, Bluetooth, Ethernet | 108mm (100x150) |
+| Xprinter | XP-470B | TSPL | USB | 108mm |
+| Xprinter | XP-58IIH | ESC/POS | USB, Bluetooth | 58mm |
+| Xprinter | XP-N160II | ESC/POS | USB, Ethernet | 80mm |
+| Xprinter | XP-P300 | ESC/POS | Bluetooth, USB | 58mm |
+| Xprinter | XP-Q800 | ESC/POS | USB, Ethernet, Seri | 80mm |
+| Zebra | GK420d | ZPL II / EPL2 | USB, Ethernet, Seri | 104mm |
+| Zebra | GK420t | ZPL II / EPL2 | USB, Ethernet | 104mm |
+| Zebra | ZD220 | ZPL II / EPL | USB | 104mm (4 inç) |
+| Zebra | ZD420 | ZPL II / EPL | USB, Ethernet, Bluetooth, Wi-Fi | 104mm |
+| Zebra | ZD421 | ZPL II / EPL | USB, Ethernet, Bluetooth BLE | 104mm |
+| Zebra | ZT411 | ZPL II | Ethernet, USB, Bluetooth 4.1 | 104mm |
 
-## Step-by-Step WebUSB Connection
-
-```javascript
-class WebUSBPrinter {
-  async connect() {
-    this.device = await navigator.usb.requestDevice({
-      filters: [{ classCode: 7 }] // Printer USB class
-    });
-    await this.device.open();
-    if (this.device.configuration === null) {
-      await this.device.selectConfiguration(1);
-    }
-    await this.device.claimInterface(0);
-    const iface = this.device.configuration.interfaces[0];
-    this.endpointOut = iface.alternates[0].endpoints.find(
-      e => e.direction === 'out' && e.type === 'bulk'
-    );
-  }
-
-  async send(data) {
-    const CHUNK = 512;
-    for (let i = 0; i < data.length; i += CHUNK) {
-      await this.device.transferOut(
-        this.endpointOut.endpointNumber,
-        new Uint8Array(data.slice(i, i + CHUNK))
-      );
-    }
-  }
-
-  async disconnect() {
-    await this.device.releaseInterface(0);
-    await this.device.close();
-  }
-}
-```
-
-## Print a Receipt
-
-```javascript
-const printer = new WebUSBPrinter();
-await printer.connect();
-
-const ESC = 0x1B, GS = 0x1D, LF = 0x0A;
-const enc = new TextEncoder();
-
-await printer.send([
-  ESC, 0x40,              // initialize
-  ESC, 0x61, 0x01,        // center
-  ...enc.encode('PRINTZEN CAFE
-'),
-  ...enc.encode('----------------------------
-'),
-  ESC, 0x61, 0x00,        // left
-  ...enc.encode('Cappuccino x1     $4.50
-'),
-  LF, LF, LF,
-  GS, 0x56, 0x41, 0x03    // full cut
-]);
-await printer.disconnect();
-```
-
-## Browser Support
-
-| Browser | WebUSB | Note |
-|---------|--------|------|
-| Chrome 61+ | ✅ Full | Desktop + Android |
-| Edge 79+ | ✅ Full | Chromium-based |
-| Firefox | ❌ None | Standard rejected |
-| Safari | ❌ None | Apple policy |
-
-## Common Errors
-
-**Access Denied** — Another process (Windows print spooler) holds the device. Stop the print service or disable printer sharing.
-
-**Interface Claim Failed** — Release the interface first: `await device.releaseInterface(0)`
-
-**Data Sent But Nothing Prints** — Wrong endpoint number selected. Log all endpoints to verify:
-```javascript
-device.configuration.interfaces.forEach(i => {
-  i.alternates[0].endpoints.forEach(e =>
-    console.log(e.direction, e.type, e.endpointNumber)
-  );
-});
-```
-
-## FAQ
-
-**Does WebUSB work with all thermal printers?**
-Not all. The printer must not be claimed by the OS spooler. Works best on macOS and Linux; on Windows, stop the Print Spooler service first.
-
-**How fast can I transfer data?**
-USB 2.0 Full Speed supports ~1 MB/s. Thermal printers print at 200 mm/s max — WebUSB bandwidth is never the bottleneck.
-
-**Will the permission dialog appear every time?**
-Only the first time. Subsequent connections use `navigator.usb.getDevices()` for automatic reconnect.
-
-## Printer-Specific Guides for This Topic
-
-- [Bixolon Slp Tx400 Webusb](/guides/bixolon-slp-tx400-webusb-webhid-direct-hardware-communication)
-- [Bixolon Spp R200iii Webusb](/guides/bixolon-spp-r200iii-webusb-webhid-direct-hardware-communication)
-- [Bixolon Spp R310 Webusb](/guides/bixolon-spp-r310-webusb-webhid-direct-hardware-communication)
-- [Bixolon Srp 330ii Webusb](/guides/bixolon-srp-330ii-webusb-webhid-direct-hardware-communication)
-- [Bixolon Srp 350iii Webusb](/guides/bixolon-srp-350iii-webusb-webhid-direct-hardware-communication)
-- [Bixolon Srp Q300 Webusb](/guides/bixolon-srp-q300-webusb-webhid-direct-hardware-communication)
-- [Epson Tm L90 Webusb](/guides/epson-tm-l90-webusb-webhid-direct-hardware-communication)
-- [Epson Tm M30ii Webusb](/guides/epson-tm-m30ii-webusb-webhid-direct-hardware-communication)

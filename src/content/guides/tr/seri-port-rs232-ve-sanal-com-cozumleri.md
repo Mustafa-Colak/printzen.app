@@ -10,15 +10,21 @@ topicCluster: "hub-14"
 
 RS-232 seri port iletişimi yarım asırlık bir teknoloji olmasına rağmen, endüstriyel ortamlarda ve market terazi entegrasyonlarında elektromanyetik parazitlere karşı en dayanıklı arabirimdir.
 
-## Popüler Yazıcı Modeli Özelinde Kılavuzlar
+## Desteklenen Cihazlar
 
-- [Bixolon Slp Tx400 Seri](/tr/rehber/bixolon-slp-tx400-seri-port-rs232-ve-sanal-com-cozumleri)
-- [Bixolon Spp R200iii Seri](/tr/rehber/bixolon-spp-r200iii-seri-port-rs232-ve-sanal-com-cozumleri)
-- [Bixolon Spp R310 Seri](/tr/rehber/bixolon-spp-r310-seri-port-rs232-ve-sanal-com-cozumleri)
-- [Bixolon Srp 330ii Seri](/tr/rehber/bixolon-srp-330ii-seri-port-rs232-ve-sanal-com-cozumleri)
-- [Bixolon Srp 350iii Seri](/tr/rehber/bixolon-srp-350iii-seri-port-rs232-ve-sanal-com-cozumleri)
-- [Bixolon Srp Q300 Seri](/tr/rehber/bixolon-srp-q300-seri-port-rs232-ve-sanal-com-cozumleri)
-- [Epson Tm L90 Seri](/tr/rehber/epson-tm-l90-seri-port-rs232-ve-sanal-com-cozumleri)
-- [Epson Tm M30ii Seri](/tr/rehber/epson-tm-m30ii-seri-port-rs232-ve-sanal-com-cozumleri)
-- [Epson Tm P20ii Seri](/tr/rehber/epson-tm-p20ii-seri-port-rs232-ve-sanal-com-cozumleri)
-- [Epson Tm P80ii Seri](/tr/rehber/epson-tm-p80ii-seri-port-rs232-ve-sanal-com-cozumleri)
+Bu rehberdeki adımlar, ilgili protokolü/arayüzü destekleyen aşağıdaki yazıcı modellerinin tamamı için geçerlidir:
+
+| Marka | Model | Protokol | Arayüzler | Kağıt Genişliği |
+|---|---|---|---|---|
+| Bixolon | SLP-TX400 | SLCS / BPL-Z | USB, Ethernet, Seri | 104mm |
+| Bixolon | SRP-350III | ESC/POS | USB, Ethernet, Seri | 80mm |
+| Epson | TM-T20III | ESC/POS | USB, Ethernet, Seri | 80mm / 58mm |
+| Godex | DT4x | EZPL | USB, Ethernet, Seri | 108mm |
+| Godex | G500 | EZPL / GEPL / GZPL | USB, Ethernet, Seri | 108mm |
+| Honeywell | PC42t | Direct Protocol / ZSim / ESim | USB, Ethernet, Seri | 104mm |
+| Rongta | RP326 | ESC/POS | USB, Ethernet, Seri | 80mm |
+| Star Micronics | SM-T300i | Star Line / ESC/POS | Bluetooth (MFi), Seri | 80mm |
+| TSC | TTP-244 Pro | TSPL | USB, Seri | 108mm |
+| Xprinter | XP-Q800 | ESC/POS | USB, Ethernet, Seri | 80mm |
+| Zebra | GK420d | ZPL II / EPL2 | USB, Ethernet, Seri | 104mm |
+

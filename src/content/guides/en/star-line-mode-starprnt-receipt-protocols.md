@@ -10,15 +10,14 @@ topicCluster: "hub-6"
 
 Star Micronics dominates the hospitality, mPOS, and kiosk landscape. Their hardware relies either on classic Star Line Mode or the contemporary unified StarPRNT emulation protocol.
 
-## Printer-Specific Implementation Guides
+## Supported Devices
 
-- [Bixolon Slp Tx400 Star](/guides/bixolon-slp-tx400-star-line-mode-starprnt-receipt-protocols)
-- [Bixolon Spp R200iii Star](/guides/bixolon-spp-r200iii-star-line-mode-starprnt-receipt-protocols)
-- [Bixolon Spp R310 Star](/guides/bixolon-spp-r310-star-line-mode-starprnt-receipt-protocols)
-- [Bixolon Srp 330ii Star](/guides/bixolon-srp-330ii-star-line-mode-starprnt-receipt-protocols)
-- [Bixolon Srp 350iii Star](/guides/bixolon-srp-350iii-star-line-mode-starprnt-receipt-protocols)
-- [Bixolon Srp Q300 Star](/guides/bixolon-srp-q300-star-line-mode-starprnt-receipt-protocols)
-- [Epson Tm L90 Star](/guides/epson-tm-l90-star-line-mode-starprnt-receipt-protocols)
-- [Epson Tm M30ii Star](/guides/epson-tm-m30ii-star-line-mode-starprnt-receipt-protocols)
-- [Epson Tm P20ii Star](/guides/epson-tm-p20ii-star-line-mode-starprnt-receipt-protocols)
-- [Epson Tm P80ii Star](/guides/epson-tm-p80ii-star-line-mode-starprnt-receipt-protocols)
+The steps in this guide apply to all of the following printer models that support the relevant protocol/interface:
+
+| Brand | Model | Protocol | Interfaces | Paper Width |
+|---|---|---|---|---|
+| Star Micronics | mC-Print3 | StarPRNT | CloudPRNT, Bluetooth, Ethernet, USB | 80mm |
+| Star Micronics | SM-L200 | Star Line | Bluetooth 4.0 BLE, USB | 58mm |
+| Star Micronics | SM-T300i | Star Line / ESC/POS | Bluetooth (MFi), Seri | 80mm |
+| Star Micronics | TSP143III | StarPRNT / ESC/POS | Ethernet, Wi-Fi, USB, Lightning | 80mm |
+| Star Micronics | TSP654II | Star Line / ESC/POS | Bluetooth, Ethernet, USB | 80mm |

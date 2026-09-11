@@ -212,15 +212,35 @@ Aşağıdaki JavaScript kodu; cihaz eşleştirme, bağlantı kurma, ESC/POS fiş
 ### iOS (iPhone ve iPad) cihazlarda tarayıcıdan Bluetooth fiş yazdırmak mümkün müdür?
 **Apple Safari Web Bluetooth API'sini desteklememektedir.** Ancak App Store'dan indirebileceğiniz **Bluefy** veya **WebBLE** gibi özel geliştirici tarayıcıları Web Bluetooth standardını iOS üzerinde tam olarak destekler. Kurumsal projelerde saha ekiplerine bu tarayıcılar üzerinden Web POS kullandırılabilir veya Printzen Cloud Print servisi tercih edilebilir.
 
-## Popüler Model Özelinde Bu Konudaki Rehberler
+## Desteklenen Cihazlar
 
-- [Bixolon Slp Tx400 Web](/tr/rehber/bixolon-slp-tx400-web-bluetooth-termal-yazici-baglantisi)
-- [Bixolon Spp R200iii Web](/tr/rehber/bixolon-spp-r200iii-web-bluetooth-termal-yazici-baglantisi)
-- [Bixolon Spp R310 Web](/tr/rehber/bixolon-spp-r310-web-bluetooth-termal-yazici-baglantisi)
-- [Bixolon Srp 330ii Web](/tr/rehber/bixolon-srp-330ii-web-bluetooth-termal-yazici-baglantisi)
-- [Bixolon Srp 350iii Web](/tr/rehber/bixolon-srp-350iii-web-bluetooth-termal-yazici-baglantisi)
-- [Bixolon Srp Q300 Web](/tr/rehber/bixolon-srp-q300-web-bluetooth-termal-yazici-baglantisi)
-- [Epson Tm L90 Web](/tr/rehber/epson-tm-l90-web-bluetooth-termal-yazici-baglantisi)
-- [Epson Tm M30ii Web](/tr/rehber/epson-tm-m30ii-web-bluetooth-termal-yazici-baglantisi)
-- [Epson Tm P20ii Web](/tr/rehber/epson-tm-p20ii-web-bluetooth-termal-yazici-baglantisi)
-- [Epson Tm P80ii Web](/tr/rehber/epson-tm-p80ii-web-bluetooth-termal-yazici-baglantisi)
+Bu rehberdeki adımlar, ilgili protokolü/arayüzü destekleyen aşağıdaki yazıcı modellerinin tamamı için geçerlidir:
+
+| Marka | Model | Protokol | Arayüzler | Kağıt Genişliği |
+|---|---|---|---|---|
+| Bixolon | SPP-R200III | ESC/POS / CPCL | Bluetooth, Wi-Fi, USB | 58mm |
+| Bixolon | SPP-R310 | ESC/POS / CPCL | Bluetooth BLE, USB | 80mm |
+| Bixolon | SRP-Q300 | ESC/POS | Bluetooth, Wi-Fi, USB, Ethernet | 80mm |
+| Epson | TM-m30II | ESC/POS | Bluetooth, Wi-Fi, USB, Ethernet | 80mm / 58mm |
+| Epson | TM-P20II | ESC/POS | Bluetooth 5.0, Wi-Fi | 58mm |
+| Epson | TM-P80II | ESC/POS | Bluetooth, Wi-Fi | 80mm |
+| Epson | TM-T88VI | ESC/POS | USB, Ethernet, Bluetooth, Wi-Fi | 80mm / 58mm |
+| Rongta | RPP02N | ESC/POS | Bluetooth, USB | 58mm |
+| Seiko | MP-B30L | ESC/POS / SII SDK | Bluetooth, USB | 80mm |
+| Seiko | RP-D10 | ESC/POS | USB, Ethernet, Bluetooth | 80mm |
+| Star Micronics | mC-Print3 | StarPRNT | CloudPRNT, Bluetooth, Ethernet, USB | 80mm |
+| Star Micronics | SM-L200 | Star Line | Bluetooth 4.0 BLE, USB | 58mm |
+| Star Micronics | SM-T300i | Star Line / ESC/POS | Bluetooth (MFi), Seri | 80mm |
+| Star Micronics | TSP654II | Star Line / ESC/POS | Bluetooth, Ethernet, USB | 80mm |
+| Sunmi | V2 Pro | ESC/POS (Sunmi InnerPrinter) | Dahili Donanım, Bluetooth | 58mm |
+| TSC | Alpha-3R | TSPL / CPCL / ESC/POS | Bluetooth, USB | 72mm (3 inç) |
+| TSC | DA220 | TSPL-EZD | USB, Ethernet, Bluetooth, Wi-Fi | 108mm |
+| Xprinter | XP-420B | TSPL / ESC/POS | USB, Bluetooth, Ethernet | 108mm (100x150) |
+| Xprinter | XP-58IIH | ESC/POS | USB, Bluetooth | 58mm |
+| Xprinter | XP-P300 | ESC/POS | Bluetooth, USB | 58mm |
+| Zebra | ZD420 | ZPL II / EPL | USB, Ethernet, Bluetooth, Wi-Fi | 104mm |
+| Zebra | ZD421 | ZPL II / EPL | USB, Ethernet, Bluetooth BLE | 104mm |
+| Zebra | ZQ320 Plus | CPCL / ZPL | Bluetooth BLE, Wi-Fi | 80mm (3 inç) |
+| Zebra | ZQ520 | CPCL / ZPL | Bluetooth, Wi-Fi | 104mm (4 inç) |
+| Zebra | ZT411 | ZPL II | Ethernet, USB, Bluetooth 4.1 | 104mm |
+
