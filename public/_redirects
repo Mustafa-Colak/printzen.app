@@ -1,0 +1,11 @@
+# Cloudflare Pages redirect kuralları (Netlify/Cloudflare Pages _redirects syntax)
+# Not: Vercel'in "cleanUrls" ve "/tr/rehber/:slug -> :slug.html" rewrite'ları
+# Cloudflare Pages'te gerekmiyor — Cloudflare Pages, "/foo" isteğinde "foo.html"
+# dosyası varsa onu otomatik serve eder (clean URL davranışı varsayılan).
+
+/download  https://github.com/Mustafa-Colak/mobile-print-service-android/releases/latest/download/MobilePrintService-v2.3.4.apk  302
+/terms.html    /terms    301
+/privacy.html  /privacy  301
+/refund.html   /refund   301
+/activate.html /activate 301
+/index.html    /         301

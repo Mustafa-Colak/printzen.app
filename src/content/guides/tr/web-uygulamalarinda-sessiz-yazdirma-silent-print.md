@@ -144,42 +144,6 @@ Bu modelde kasiyerin veya kullanıcının tarayıcısında hiçbir sayfa açık 
 ### Para çekmecesini açma ve kağıt kesme komutları Kiosk Printing ile çalışır mı?
 **Kiosk Printing HTML çıktısını yazıcı sürücüsü üzerinden bastığı için ham ESC/POS komutlarını doğrudan yorumlayamaz.** Ancak Windows Yazıcı Özellikleri > Aygıt Ayarları (Device Settings) sekmesinden sürücü düzeyinde *"Baskı Başında Çekmeceyi Aç"* ve *"Baskı Sonunda Kağıdı Kes"* seçenekleri aktif edilerek bu işlemler sürücüye devredilebilir.
 
-## Web POS ve Perakendede Sessiz Baskı (Silent Print) Standartları
-
-Web tabanlı bir perakende veya restoran yazılımında her satış sonrasında standart tarayıcı yazdırma penceresinin (`Ctrl+P` / `window.print()`) açılması, kasiyerin fazladan onay vermesini gerektirir, saniyeler kaybettirir ve yoğun saatlerde kasa kuyruklarına yol açar. Gerçek anlamda kurumsal bir Web POS sisteminde baskının **kullanıcıya hiçbir diyalog göstermeden doğrudan yazıcıdan fırlaması (silent printing)** zorunludur.
-
-### Yöntem 1: Chrome / Edge Kiosk Printing Parametresi
-
-Masaüstü terminallerde en pratik yöntem, Chromium tarayıcısını özel bayraklarla çalıştırmaktır:
-
-```bash
-# Windows Chrome Kiosk Printing Kısayol Hedefi:
-"C:\Program Files\Google\Chrome\Application\chrome.exe" --kiosk --kiosk-printing --disable-print-preview https://pos.magaza.com
-
-# macOS Terminal Başlatma Komutu:
-/Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome --kiosk-printing --app=https://pos.magaza.com
-```
-
-- `--kiosk-printing`: Yazdırma diyaloğunu tamamen atlar ve varsayılan işletim sistemi yazıcısına anında baskı gönderir.
-- `--kiosk`: Tarayıcıyı tam ekran yapar, adres çubuğunu ve kapatma butonlarını gizler.
-
-### Yöntem 2: Yerel WebSocket Köprüsü (Localhost Bridge)
-
-Kiosk modu tüm bilgisayarı kilitlediği için standart ofis veya karma kullanımlarda uygun olmayabilir. İkinci ve en güçlü yöntem, arka planda çalışan hafif bir yerel WebSocket servisidir (Printzen Desktop Agent):
-
-```javascript
-const socket = new WebSocket('ws://127.0.0.1:8765');
-socket.onopen = () => {
-  socket.send(JSON.stringify({
-    action: 'print_raw',
-    printerName: 'Epson_TM_T20III',
-    data: btoa(String.fromCharCode(...escPosByteArray))
-  }));
-};
-```
-
-Bu mimaride web sayfası HTTPS üzerinde çalışırken dahi WSS veya güvenli yerel tünel üzerinden masaüstü servisine bayt akıtır. Kasiyer hiçbir diyalog görmez, fiş 300 milisaniye içinde kesilir.
-
 ## Popüler Model Özelinde Bu Konudaki Rehberler
 
 - [Bixolon Slp Tx400 Web](/tr/rehber/bixolon-slp-tx400-web-uygulamalarinda-sessiz-yazdirma-silent-print)

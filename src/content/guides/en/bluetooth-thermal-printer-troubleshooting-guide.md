@@ -103,24 +103,6 @@ On Windows PCs, paired Bluetooth Classic printers communicate through emulated v
 ### How does Printzen mitigate mobile Bluetooth disconnects?
 **The Printzen mobile background service maintains an automated reconnection and offline spooling engine.** When a field operator steps out of Bluetooth range or the printer enters sleep mode, print jobs are preserved in an encrypted local queue and flushed instantly upon link restoration.
 
-## Bluetooth Thermal Printer Diagnostic Matrix
-
-Bluetooth communication failures in field and mobile printers are almost universally attributable to pairing cache corruption, MTU mismatches, or sleep timeout triggers rather than hardware defects.
-
-### Primary Failure Modes & Remediation
-
-1. **Paired but Not Printing (Silent Hang):**
-   - **Root Cause:** The host OS bound the printer as an unhandled generic HID device or audio profile instead of RFCOMM/SPP.
-   - **Resolution:** Unpair the device. Clear Bluetooth OS cache. Re-pair using default passcode `0000` or `1234`, then initialize communication strictly through explicit GATT endpoints.
-
-2. **Truncated Receipts & Buffer Overflows:**
-   - **Root Cause:** Exceeding the printer's onboard FIFO buffer (typically 4 KB to 32 KB).
-   - **Resolution:** Implement client-side rate throttling. Transmit binary payloads in 512-byte slices throttled by 15ms pauses.
-
-3. **Peripheral Sleep Disconnects:**
-   - **Root Cause:** Energy-saving firmware entering deep sleep after 180 seconds of bus inactivity.
-   - **Resolution:** Configure Printzen SDK's background heartbeat to transmit zero-byte keepalive pings every 45 seconds.
-
 ## Device-Specific Guides for This Topic
 
 

@@ -212,36 +212,6 @@ The following standalone HTML/JS implementation pairs with an ESC/POS printer, f
 ### How can I print via Web Bluetooth on Apple iOS devices (iPhones and iPads)?
 **Safari on iOS does not support the Web Bluetooth API due to WebKit security policies.** To print directly from web apps on iPhones or iPads, users can run custom WebBLE-enabled browsers such as **Bluefy**, or leverage **Printzen Cloud Print** to relay print jobs over WebSockets.
 
-## Web Bluetooth API for Browser-Based POS Systems
-
-The Web Bluetooth API allows web applications running in modern Chromium browsers (Chrome, Edge, Opera) to communicate directly with mobile thermal receipt and label printers via BLE (Bluetooth Low Energy) without installing local drivers or desktop helper agents.
-
-### GATT Services & Characteristic Discovery
-Thermal printers expose data endpoints via specific GATT service UUIDs:
-- Common Thermal Service: `000018f0-0000-1000-8000-00805f9b34fb`
-- Write Characteristic: `00002af1-0000-1000-8000-00805f9b34fb`
-- Vendor Transparent UART (ISSC/Custom): `e7810a71-73ae-499d-8c15-faa9aef0c3f2`
-
-### Managing the 20-Byte BLE MTU Constraint
-The default BLE Maximum Transmission Unit (MTU) restricts payload size to 23 bytes (yielding **20 bytes** of usable payload after protocol overhead). Writing unchunked buffers exceeding 20 bytes results in dropped packets or fatal GATT transmission exceptions:
-
-```javascript
-export async function transmitBleChunks(characteristic, payload, chunkSize = 20, throttleMs = 12) {
-  for (let offset = 0; offset < payload.length; offset += chunkSize) {
-    const segment = payload.slice(offset, offset + chunkSize);
-    await characteristic.writeValueWithoutResponse(segment);
-    if (throttleMs > 0) {
-      await new Promise(r => setTimeout(r, throttleMs));
-    }
-  }
-}
-```
-
-## Overcoming iOS Safari Constraints
-Apple does not support Web Bluetooth natively in mobile Safari. To print from iPhones and iPads:
-1. **Dedicated BLE Shells:** Use browsers like Bluefy or WebBLE from the App Store which inject the full Web Bluetooth spec into WKWebView.
-2. **Printzen Cloud Queue Architecture:** The iOS web client transmits print jobs via HTTPS to Printzen's cloud backend, which dispatches tasks instantly to LAN-connected printers.
-
 ## Device-Specific Guides for This Topic
 
 - [Bixolon Slp Tx400 Web](/guides/bixolon-slp-tx400-web-bluetooth-thermal-printer-setup)

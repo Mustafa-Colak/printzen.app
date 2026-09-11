@@ -12,6 +12,7 @@
  * 6. Markdown code block balancing (unclosed ``` blocks)
  * 7. Stitched redundant sections after FAQ
  * 8. pSEO doorway page title & grammar audit
+ * 9. Broken internal link detection (/tr/rehberler, /tr/rehber, /guides)
  */
 
 import fs from 'fs';
@@ -118,6 +119,28 @@ for (const dir of GUIDES_DIRS) {
     // Code block balance
     if (codeBlockCount % 2 !== 0) {
       reportError(filePath, lines.length, `Unbalanced markdown code blocks (${codeBlockCount} backtick fences found)`);
+    }
+
+    // Internal link integrity check: verify linked page actually exists
+    const linkRegex = /\]\((\/(?:tr\/rehberler|tr\/rehber|guides)\/([a-z0-9-]+))\/?\)/g;
+    let linkMatch;
+    while ((linkMatch = linkRegex.exec(content)) !== null) {
+      const [, fullPath, slug] = linkMatch;
+      const linkLineNum = content.slice(0, linkMatch.index).split('\n').length;
+      let exists = false;
+
+      if (fullPath.startsWith('/tr/rehberler/')) {
+        exists = fs.existsSync(path.join('src/content/guides/tr', `${slug}.md`));
+      } else if (fullPath.startsWith('/tr/rehber/')) {
+        exists = fs.existsSync(path.join('public/tr/rehber', `${slug}.html`));
+      } else if (fullPath.startsWith('/guides/')) {
+        exists = fs.existsSync(path.join('src/content/guides/en', `${slug}.md`)) ||
+                 fs.existsSync(path.join('public/guides', `${slug}.html`));
+      }
+
+      if (!exists) {
+        reportError(filePath, linkLineNum, `Broken internal link: "${fullPath}" — target page not found`);
+      }
     }
   }
 }

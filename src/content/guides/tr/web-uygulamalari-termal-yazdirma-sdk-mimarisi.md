@@ -280,48 +280,6 @@ export function usePrintQueue(transport: IPrinterTransport) {
 ### Printzen Web SDK'sı tüm bu özellikleri hazır olarak sunuyor mu?
 **Evet, Printzen JavaScript / TypeScript SDK'sı (`@printzen/sdk`); tüm modern framework'ler (React, Vue, Angular, Svelte) için hazır hook'lar, ESC/POS & ZPL builder'ları, Floyd-Steinberg resim ditherleme ve çoklu taşıyıcı desteğini tek bir NPM paketinde sunar.**
 
-## Modern Web Yazdırma SDK Mimarisi (NPM / TypeScript)
-
-Web tabanlı kurumsal uygulamalarda termal yazıcı entegrasyonu yapılırken en büyük zorluk; Bluetooth, USB, Ağ (Ethernet) ve Bulut bağlantı protokollerinin her birinin farklı API'lere sahip olmasıdır. İyi kurgulanmış bir Termal Yazdırma SDK'sı, tüm bu donanım kanallarını tek bir soyutlama katmanı (Hardware Abstraction Layer - HAL) arkasında toplamalıdır.
-
-### Çok Katmanlı SDK Mimarisi
-
-```
-[React / Vue / Next.js Web Uygulaması]
-                  │
-        [Printzen High-Level SDK]
-     (Fis Tasarımı, Dithering, Fontlar)
-                  │
-     [Hardware Abstraction Layer (HAL)]
-  ┌───────────────┼───────────────┬───────────────┐
-  ▼               ▼               ▼               ▼
-[Web Bluetooth] [WebUSB]    [WebSocket TCP] [Cloud Queue]
-  (BLE GATT)      (USB Bulk)  (Port 9100)     (HTTPS API)
-```
-
-### TypeScript ile Birleşik Yazıcı Arayüzü
-
-```typescript
-export interface IThermalPrinter {
-  connect(): Promise<void>;
-  disconnect(): Promise<void>;
-  write(bytes: Uint8Array): Promise<void>;
-  getStatus(): Promise<PrinterStatus>;
-}
-
-export class ThermalPrinterFactory {
-  static create(type: 'bluetooth' | 'usb' | 'network' | 'cloud', config: any): IThermalPrinter {
-    switch (type) {
-      case 'bluetooth': return new WebBluetoothTransport(config);
-      case 'usb': return new WebUsbTransport(config);
-      case 'network': return new NetworkSocketTransport(config);
-      case 'cloud': return new CloudQueueTransport(config);
-      default: throw new Error(`Bilinmeyen donanım kanalı: ${type}`);
-    }
-  }
-}
-```
-
 ## Popüler Model Özelinde Bu Konudaki Rehberler
 
 - [Bixolon Slp Tx400 Web](/tr/rehber/bixolon-slp-tx400-web-uygulamalari-termal-yazdirma-sdk-mimarisi)

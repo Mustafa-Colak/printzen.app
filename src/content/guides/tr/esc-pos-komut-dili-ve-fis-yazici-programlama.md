@@ -26,6 +26,11 @@ ESC/POS, satır odaklı (*stream-based*) bir ikili (binary) iletişim protokolü
 
 > 💡 **Temel Kural:** Termal yazıcılar çoğu komutu bir satır sonu (`0x0A` - LF) alana kadar dahili tampon belleğinde (*print buffer*) bekletir. Satırın fiziksel kağıda çıkması için metinlerin sonuna mutlaka `LF` eklenmelidir.
 
+### 1.1. Satır Modu vs Sayfa Modu (Line Mode vs Page Mode)
+ESC/POS yazıcılar iki temel çalışma moduna sahiptir:
+- **Satır Modu (Standart / Line Mode):** Varsayılan moddur. Her `LF` (satır besleme) komutunda kağıt fiziksel olarak ilerler ve metin satır satır basılır.
+- **Sayfa Modu (Page Mode):** `ESC L` (`0x1B 0x4C`) komutuyla etkinleştirilir. Fişin tamamı yazıcının dahili belleğinde bir sayfa olarak oluşturulur, farklı yönlerde (0°, 90°, 180°, 270°) döndürme yapılabilir ve `ESC FF` komutu verildiğinde tek seferde topluca basılır.
+
 ---
 
 ## 2. En Çok Kullanılan Temel Kontrol Komutları
@@ -209,123 +214,6 @@ export class EscPosBuilder {
 
 ### Fiş yazıcıda Türkçe karakterler neden '?' veya garip şekiller olarak çıkıyor?
 **Yazıcının dahili kod sayfası varsayılan olarak CP437 (İngilizce/ASCII) kaldığı için UTF-8 Türkçe baytları eşleşmez.** Çözüm için fişin en başında `0x1B 0x74 0x12` komutu ile yazıcı donanımı CP857 (DOS Turkish) veya Windows-1254 moduna alınmalı; gönderilen JavaScript metni de ilgili hex karakter karşılıklarına dönüştürülerek bayt dizisi halinde yazıcıya iletilmelidir.
-
-## ESC/POS Komut Referans Tablosu
-
-| Komut | Hex | Açıklama |
-|-------|-----|----------|
-| ESC @ | 1B 40 | Yazıcıyı başlangıç durumuna sıfırla |
-| ESC E n | 1B 45 01/00 | Kalın yazı aç/kapat |
-| ESC ! n | 1B 21 nn | Bileşik karakter stili |
-| GS V m | 1D 56 41/42 | Kağıt kesme (full/partial cut) |
-| ESC p m t1 t2 | 1B 70 | Para çekmecesi aç |
-| GS k m | 1D 6B | Barkod basmaya geçiş |
-| ESC t n | 1B 74 | Karakter kod sayfası seç |
-
-## ESC/POS ile Gerçek Kod Örneği
-
-```javascript
-// Printzen SDK ile ESC/POS komutları
-import { PrintzenPrinter } from '@printzen/sdk';
-
-const printer = new PrintzenPrinter({ interface: 'bluetooth' });
-await printer.connect();
-
-// Fiş başlığı
-await printer.write([
-  0x1B, 0x40,        // sıfırla
-  0x1B, 0x61, 0x01,  // ortala
-  0x1B, 0x21, 0x10,  // büyük font
-]);
-await printer.text('KAFE OLIMPOS
-');
-await printer.text('================================
-');
-
-// Ürün satırı
-await printer.write([0x1B, 0x61, 0x00]); // sola hizala
-await printer.text('Americano x2          30.00 TL
-');
-
-// Toplam
-await printer.write([0x1B, 0x45, 0x01]); // kalın
-await printer.text('TOPLAM:               30.00 TL
-');
-await printer.write([0x1B, 0x45, 0x00]); // kalın kapat
-
-// Kağıt kes + para çekmecesi aç
-await printer.write([
-  0x1D, 0x56, 0x41, 0x03,  // full cut
-  0x1B, 0x70, 0x00, 0x19, 0xFA // para çekmecesi
-]);
-await printer.disconnect();
-```
-
-## ESC/POS Bağlantı Türleri
-
-### USB (WebUSB)
-Modern tarayıcılarda WebUSB API ile yazıcıya doğrudan bağlanabilirsiniz:
-```javascript
-const device = await navigator.usb.requestDevice({
-  filters: [{ vendorId: 0x04b8 }] // Epson vendor ID
-});
-await device.open();
-await device.selectConfiguration(1);
-await device.claimInterface(0);
-```
-
-### Ethernet (Raw TCP Port 9100)
-Ağ üzerinden bağlantı için port 9100 kullanılır:
-```javascript
-const ws = new WebSocket('ws://yazici-ip:9100');
-ws.binaryType = 'arraybuffer';
-ws.send(new Uint8Array([0x1B, 0x40, ...]));
-```
-
-### Bluetooth (Web Bluetooth API)
-```javascript
-const device = await navigator.bluetooth.requestDevice({
-  filters: [{ namePrefix: 'TM-T' }],
-  optionalServices: ['000018f0-0000-1000-8000-00805f9b34fb']
-});
-```
-
-## ESC/POS Moda Göre Yazıcı Davranışları
-
-### Sayfa Modu vs Satır Modu
-- **Satır Modu (Line Mode):** Varsayılan. Her satır yazıldıkça kağıt ilerler.
-- **Sayfa Modu (Page Mode):** ESC L ile aktif edilir. Fiş tamamen oluşturulur, tek seferde basılır.
-
-### Yazı Büyüklükleri
-ESC ! komutuyla 8 farklı karakter büyüklüğü seçilebilir:
-- Normal: 0x00
-- Çift geniş: 0x20
-- Çift yüksek: 0x10
-- 2x (her iki yon): 0x30
-
-## Yaygın ESC/POS Hataları ve Çözümleri
-
-### 1. Türkçe Karakterler Bozuk Çıkıyor
-Kod sayfasını manuel ayarlayın: `ESC t 19` (0x1B 0x74 0x13) CP857 Türkçe.
-
-### 2. Barkod Okunmuyor
-GS k komutundan önce minimum 3 boşluk satırı (0x0A 0x0A 0x0A) bırakın.
-
-### 3. Yazıcı ESC @ Sonrası Tepki Vermiyor
-Bazı yazıcılarda reset sonrası 100ms bekleme (setTimeout) gerekir.
-
-### 4. Para Çekmecesi Açılmıyor
-RJ-11 yerine RJ-12 kablo kullandığınızdan emin olun. Pin 2 (24V) – Pin 5 (GND) olmalı.
-
-## Desteklenen Yazıcılar ve Uyumluluk
-
-ESC/POS tüm büyük markalar tarafından desteklenir:
-- **Epson:** TM-T20III, TM-T88VI, TM-T88VII, TM-m30II
-- **Xprinter:** XP-420B, XP-365B, XP-470B
-- **Star Micronics:** TSP143III, TSP654II (StarPRNT üzerinden)
-- **Bixolon:** SRP-330II, SRP-350III, SRP-Q300
-- **Generic:** Çin yapımı 80mm termal yazıcıların %90'ı
-
 
 ## Bu Konudaki Yazıcı Modeli Rehberleri
 

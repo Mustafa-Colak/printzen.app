@@ -144,42 +144,6 @@ Even if all browser tabs are closed, new online orders print and cut automatical
 ### Does silent printing support automatic paper cutting and cash drawer ejection?
 **When using Kiosk Printing, paper cutting and cash drawer firing depend entirely on printer driver settings.** You can configure these actions in Windows Printer Properties under "Device Settings". With a WebSocket Agent or direct ESC/POS stream, cutting (`GS V 66 0`) and cash drawer kicks (`ESC p 0 25 250`) are executed deterministically through hardware command bytes.
 
-## Silent & Automated Printing Architecture for Web POS
-
-In commercial retail and hospitality setups, presenting the default browser print modal (`window.print()`) on every transaction introduces fatal friction. Cashiers must manually click "Print", navigate margin selections, and dismiss popups. A professional web-based POS requires **zero-click, headless silent printing**.
-
-### Approach 1: Chromium Kiosk Printing Flags
-
-For dedicated checkout hardware, launch Chrome or Edge with headless execution arguments:
-
-```bash
-# Windows shortcut target:
-"C:\Program Files\Google\Chrome\Application\chrome.exe" --kiosk --kiosk-printing --disable-print-preview https://pos.store.com
-
-# macOS command line execution:
-/Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome --kiosk-printing --app=https://pos.store.com
-```
-
-- `--kiosk-printing`: Bypasses the print preview dialogue and routes jobs directly to the OS default printer.
-- `--kiosk`: Enforces full-screen lockdown, hiding OS chrome and address bars.
-
-### Approach 2: Localhost WebSocket Print Agent
-
-When kiosk mode is too restrictive for general-purpose workstations, deploy a background tray agent (such as Printzen Desktop Bridge) exposing a local socket endpoint:
-
-```javascript
-const bridge = new WebSocket('ws://127.0.0.1:8765');
-bridge.onopen = () => {
-  bridge.send(JSON.stringify({
-    action: 'print_raw',
-    printer: 'Epson_TM_T20III',
-    payload: btoa(String.fromCharCode(...binaryPayload))
-  }));
-};
-```
-
-This delivers sub-500ms zero-dialogue receipt and label cutting while maintaining full browser application fluidity.
-
 ## Device-Specific Guides for This Topic
 
 

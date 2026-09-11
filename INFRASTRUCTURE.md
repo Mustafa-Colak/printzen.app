@@ -3,7 +3,7 @@
 ## Genel Bakış
 
 ```
-Kullanıcı → printzen.app (Cloudflare → Vercel)
+Kullanıcı → printzen.app (Cloudflare Pages)
 Satın alma → Google Play Billing (uygulama içi, doğrudan) → Google Play satın alma kaydı
 Destek → support@printzen.app (Cloudflare Email Routing → Gmail)
 ```
@@ -27,8 +27,8 @@ Destek → support@printzen.app (Cloudflare Email Routing → Gmail)
 
 | Type  | Name                  | Content                          | Açıklama             |
 |-------|-----------------------|----------------------------------|----------------------|
-| A     | printzen.app          | 76.76.21.21                      | Vercel               |
-| CNAME | www                   | cname.vercel-dns.com             | Vercel www           |
+| CNAME | printzen.app          | `<proje>.pages.dev` _(TODO: gerçek Cloudflare Pages proje subdomain'i ile doldur — Cloudflare CNAME flattening ile apex'te çalışır)_ | Cloudflare Pages |
+| CNAME | www                   | `<proje>.pages.dev` _(TODO: yukarıdakiyle aynı)_ | Cloudflare Pages www |
 | MX    | printzen.app          | route1/2/3.mx.cloudflare.net     | Email Routing        |
 | MX    | send                  | feedback-smtp.us-east-1.amazonses.com | Resend SPF (muhtemelen artık gereksiz) |
 | TXT   | printzen.app          | v=spf1 include:_spf.mx.clo...   | Cloudflare SPF       |
@@ -42,7 +42,7 @@ Destek → support@printzen.app (Cloudflare Email Routing → Gmail)
 
 ---
 
-## 2. Website — Vercel
+## 2. Website — Cloudflare Pages
 
 **Repo:** github.com/Mustafa-Colak/printzen-website
 **Branch:** master (auto-deploy)

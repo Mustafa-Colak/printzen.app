@@ -16,8 +16,8 @@ Odak: **etiket yazdırma**. İkincil: **fiş (receipt/ESC-POS) yazdırma** — m
 ## Teknoloji
 
 - Astro (statik/SEO odaklı, içerik koleksiyonları ile blog/rehber yönetimi)
-- Barındırma: Vercel (mevcut, ücretsiz katmanda başla — gerçek trafik verisi gelince
-  VPS/Pro kararı tekrar değerlendirilecek)
+- Barındırma: Cloudflare Pages (mevcut, ücretsiz katmanda başla — gerçek trafik verisi gelince
+  Pro kararı tekrar değerlendirilecek)
 - Cloudflare DNS zaten önde (CDN/cache faydası)
 
 ## Ürün Tarafı (mevcut, sadeleştirilecek)

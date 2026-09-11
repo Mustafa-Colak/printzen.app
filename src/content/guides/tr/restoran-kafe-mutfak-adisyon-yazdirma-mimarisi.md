@@ -156,31 +156,6 @@ Not: Masa 14 siparisi acele istemektedir.
 ### Mutfak adisyon fişine sesli ikaz (Buzzer) nasıl bağlanır?
 **Mutfak yazıcılarının arkasında bulunan RJ11 (Kasa/Çekmece) portuna harici bir 24V akustik buzzer veya flaşörlü lamba takılabilir.** Sipariş basıldığı anda ESC/POS çekmece açma darbesi (`0x1B 0x70`) gönderilerek buzzer tetiklenir ve aşçılar fişi alana kadar sesli veya ışıklı uyarı verilir.
 
-## Restoran Mutfak Adisyon Mimarisi ve İstasyon Dağıtımı
-
-Yoğun bir restoranda sipariş anında servis garsonunun girdiği siparişlerin doğru mutfak istasyonlarına milisaniyeler içinde hatasız dağıtılması gerekir. Soğuk mezelerin mutfağa, kokteyllerin bara, sıcak ana yemeklerin ise ızgara bölümüne anında gitmesi operasyonel başarıyı belirler.
-
-### Mutfak Yazıcılarında Donanımsal Gereksinimler
-- **Ethernet (Kablolu Ağ):** Mutfak ortamındaki fırınlar, mikrodalgalar ve paslanmaz çelik tezgahlar Bluetooth ve Wi-Fi sinyallerini zayıflatır. Mutfak adisyon yazıcıları mutlaka Ethernet (Port 9100) üzerinden bağlanmalıdır.
-- **Sesli Buzzer & Işıklı Alarm:** Gürültülü mutfak ortamında aşçıların yeni siparişi fark etmesi için yazıcının arkasındaki RJ-11 portuna bağlı harici sesli buzzer tetiklenmelidir:
-  - ESC/POS Buzzer Komutu: `ESC p 0 50 250` (0x1B 0x70 0x00 0x32 0xFA)
-- **Suya ve Yağa Dayanıklı Kağıt:** Mutfak buharında kararmayan kaliteli lamine termal rulolar kullanılmalıdır.
-
-```javascript
-// İstasyon Bazlı Ayrıştırma Kuralı Örneği:
-function routeOrderTickets(order) {
-  const barItems = order.items.filter(i => i.category === 'drink' || i.category === 'bar');
-  const kitchenItems = order.items.filter(i => i.category !== 'drink' && i.category !== 'bar');
-
-  if (barItems.length > 0) {
-    printToStation('192.168.1.150', formatBarTicket(order, barItems)); // Bar Yazıcısı
-  }
-  if (kitchenItems.length > 0) {
-    printToStation('192.168.1.160', formatKitchenTicket(order, kitchenItems)); // Ana Mutfak
-  }
-}
-```
-
 ## Popüler Model Özelinde Bu Konudaki Rehberler
 
 - [Bixolon Slp Tx400 Restoran](/tr/rehber/bixolon-slp-tx400-restoran-kafe-mutfak-adisyon-yazdirma-mimarisi)

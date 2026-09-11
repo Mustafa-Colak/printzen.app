@@ -150,30 +150,6 @@ Kargo etiketi seçerken yapılacak en kritik donanım tercihi kağıt tipidir:
 ### Kargo poşetleri üzerindeki etiket yağmurda veya sürtünmede silinir mi?
 **Standart eko termal etiketler hafif sürtünme ve kısa süreli neme karşı dayanıklıdır.** Ancak uzun mesafeli sevkiyatlarda veya sıvı temas riski olan ürünlerde, yüzeyi polietilen korumalı **"Lamine Termal" (Top Termal)** etiketler tercih edilmelidir. Lamine termal etiketler su, yağ ve aşırı sürtünmeye maruz kalsa bile barkod okunabilirliğini korur.
 
-## Pazaryeri Kargo Etiketlerinde Dönüştürme ve Kırpma Mimarisi
-
-Trendyol, Hepsiburada, Amazon Türkiye, N11 ve Çiçeksepeti satıcı panelleri çoğu zaman kargo etiketlerini standart A4 formatında veya kenarlarında geniş boşluklar bulunan PDF belgeleri olarak üretir. Bu PDF'leri 100x150 mm termal etiket yazıcılarına (Zebra ZD220, Xprinter XP-420B, TSC DA210 vb.) doğrudan göndermek etiketlerin küçülmesine, barkod çizgilerinin birbirine girmesine ve kargo şubelerinde optik okuyucuların barkodu okuyamamasına neden olur.
-
-### Otomatik Kırpma (PDF Cropping) ve Yeniden Ölçeklendirme
-1. **Dahili Vektör Analizi:** PDF belgesindeki barkod koordinatları tespit edilir.
-2. **Boşlukların Temizlenmesi:** A4 kenar boşlukları atılarak sadece etiket alanı 100x150 mm oranına kilitlenir.
-3. **Döndürme (Rotation):** Yatay gelen etiketler saat yönünde 90 derece döndürülerek yazıcının kağıt akış yönüne hizalanır.
-4. **1-Bit Dönüşümü:** Renkli veya gri tonlamalı PDF alanları Floyd-Steinberg dithering algoritmasıyla 203 DPI saf siyah/beyaz raster veriye çevrilir.
-
-```javascript
-// Printzen Etiket Kırpma Motoru Örneği:
-import { cropAndScalePDF } from '@printzen/label-processor';
-
-const thermalZpl = await cropAndScalePDF({
-  inputPdfBuffer: rawA4Pdf,
-  targetDpi: 203,
-  labelWidthMm: 100,
-  labelHeightMm: 150,
-  autoRotate: true,
-  outputFormat: 'zpl' // Zebra için ZPL, Xprinter için TSPL
-});
-```
-
 ## Popüler Model Özelinde Bu Konudaki Rehberler
 
 - [Bixolon Slp Tx400 Pazaryeri](/tr/rehber/bixolon-slp-tx400-pazaryeri-kargo-etiketi-yazdirma-trendyol-hepsiburada-amazon)

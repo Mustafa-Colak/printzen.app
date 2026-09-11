@@ -2,7 +2,22 @@
 
 _Tarih: 2026-09-11 · Kaynak: https://printzen.app/tr/rehberler (91 ana rehber + 2.500 TR cihaz-özel doorway sayfa) örneklem incelemesi_
 
-Bu dosya, sitedeki içerik/kod sorunlarının tespit edilen kök nedenlerini ve hangi dosyada ne yapılması gerektiğini listeler. Hiçbir değişiklik uygulanmadı — bu sadece bir yapılacaklar listesidir.
+Bu dosya, sitedeki içerik/kod sorunlarının tespit edilen kök nedenlerini ve hangi dosyada ne yapılması gerektiğini listeler.
+
+## Durum güncellemesi (2026-09-11)
+
+Aşağıdaki **1-8 numaralı maddelerin tamamı düzeltildi** — doğrudan kaynak kod (`src/`, `scripts/`, `dist/`, `public/`) ve QA testleri üzerinden teyit edildi:
+
+- Madde 1: `h1Title` koşullu hale getirilmiş, `public/`+`dist/`'te "Rehberi Rehberi" 0 eşleşme.
+- Madde 2: Her konuya özel `nounTr` alanı eklenmiş, şablon cümlesi artık doğal Türkçe üretiyor.
+- Madde 3: `ESC t 18` tek değere birleştirilmiş, script'teki FAQ "modele göre değişir" diyerek dürüstleştirilmiş.
+- Madde 4: Örneklenen 3 makalede (WooCommerce, Türkçe karakter, Bluetooth ana rehber) dikişlenmiş bölüm temizlenmişti.
+- Madde 5: Kısa WooCommerce makalesi "Action Scheduler ile asenkron tetikleme" başlığıyla tamamen farklı bir alt konuya kaydırılmış, ana rehbere link veriyor.
+- Madde 6: Kaynakta zaten düzeltilmişti; `dist/`/`public/` yeniden build edilmiş, artık temiz.
+- Madde 7: Meta açıklama artık `${guides.length}` ile dinamik, gerçek sayıyı yazıyor.
+- Madde 8: QA script'inin tespit ettiği 8 TR + 8 EN (28 uyarı) dosyanın tamamı incelendi; dikişlenmiş bölümler ve teknik çelişkiler temizlendi, değerli kısımlar (`Sayfa/Satır modu`, `ZPL flash şablon saklama`) SSS önüne taşındı.
+
+Ayrıca `.github/workflows/content-qa.yml` (CI gate) ve `scripts/qa-agent-audit.mjs` devrede. `npm run qa` şu an **0 ERROR, 0 WARNING** ile **"ALL QUALITY GATES PASSED"** veriyor. `npm run build` ile 196 sayfa sıfır hatayla derleniyor.
 
 ---
 
@@ -113,13 +128,32 @@ Ana `/tr/rehberler` sayfasının meta açıklaması "50 ana konu rehberi" diyor,
 
 ---
 
-## Öncelik sırası (önerilen)
+## 8. [ÇÖZÜLDÜ] QA gate'in tespit ettiği kalan "dikişlenmiş bölüm" dosyaları (28 Uyarı Temizlendi)
 
-1. **Madde 1** — script bug'ını düzelt (tek satır, düşük risk, yüksek görünürlük etkisi — 50 sayfa)
-2. **Madde 1.3** — düzeltilmiş script ile 50 dosyayı yeniden üret
-3. **Madde 3** — Türkçe karakter rehberindeki çelişkiyi teyit edip düzelt (yanlış teknik bilgi yayınlanıyor olabilir)
-4. **Madde 4** — "dikişlenmiş ek bölüm" kaynağını bulup diğer makalelerde de tara
-5. **Madde 2** — şablon cümlesini konu başına elle iyileştir (zaman alır, 50 konu)
-6. **Madde 5** — kanibalizasyon kümelerini tek tek gözden geçirip birleştirme/redirect kararı ver
-7. **Madde 6** — kod örneklerini güvenlik açısından düzelt
-8. **Madde 7** — meta açıklama sayısını güncelle
+`scripts/qa-agent-audit.mjs` tarafından işaretlenen 8 TR ve 8 EN makalesindeki 28 uyarı tek tek incelendi ve tamamı temizlendi:
+
+**TR (8 dosya, 15 uyarı):**
+- `bluetooth-termal-yazici-baglanti-sorunlari-rehberi.md`: SSS sonrası eksik ve tekrarlı teşhis matrisi temizlendi.
+- `esc-pos-komut-dili-ve-fis-yazici-programlama.md`: SSS sonrası 6 ek bölümdeki `ESC t 19` CP857 çelişkisi ve geçersiz `ws://...:9100` soket kodu temizlendi; değerli `Sayfa Modu vs Satır Modu` bilgisi Bölüm 1.1 olarak SSS önüne taşındı.
+- `pazaryeri-kargo-etiketi-yazdirma-trendyol-hepsiburada-amazon.md`: SSS sonrası tekrar eden kırpma mimarisi ve mock SDK çağrısı temizlendi.
+- `restoran-kafe-mutfak-adisyon-yazdirma-mimarisi.md`: SSS sonrası tekrar eden istasyon dağıtım fonksiyonu ve buzzer tekrarları temizlendi.
+- `web-bluetooth-termal-yazici-baglantisi.md`: SSS sonrası tekrar eden 20-bayt parçalama ve iOS Safari kısıtları temizlendi.
+- `web-uygulamalari-termal-yazdirma-sdk-mimarisi.md`: SSS sonrası tekrar eden SDK interface şeması temizlendi.
+- `web-uygulamalarinda-sessiz-yazdirma-silent-print.md`: SSS sonrası tekrar eden kiosk mod bayrakları ve yerel bridge temizlendi.
+- `zebra-zpl-etiket-yazdirma.md`: SSS sonrası tekrar eden koordinat blokları temizlendi; değerli `^DF / ^XF` flash şablon saklama ve hız optimizasyonu konusu Bölüm 6 olarak SSS önüne taşındı.
+
+**EN (8 dosya, 13 uyarı):**
+- TR dosyalarındaki aynı yapı ve temizlikler 8 İngilizce eşdeğer dosyada da eksiksiz uygulandı.
+
+**Sonuç:**
+`npm run qa` çalıştırıldığında **0 Hata, 0 Uyarı** ile tüm kalite kapıları başarıyla geçmektedir. `npm run build` ile 196 sayfa sorunsuz derlenmektedir.
+
+---
+
+## Öncelik sırası (tamamlandı)
+
+1. ~~Madde 1, 2, 3, 5, 6, 7~~ — ✅ çözüldü (commit `f65fbce`)
+2. ~~Madde 4~~ — ✅ örneklenen 3 dosyada çözüldü
+3. ~~Madde 8~~ — ✅ 8 TR + 8 EN dosyadaki 28 dikişlenmiş bölüm uyarısı temizlendi, değerli kısımlar SSS önüne taşındı
+4. ~~QA Gate & Build~~ — ✅ `npm run qa` 0 hata/0 uyarı, `npm run build` 196 sayfa yeşil
+

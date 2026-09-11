@@ -92,7 +92,43 @@ Windows bilgisayarlarda bir Bluetooth termal yazıcı eşleştirildiğinde Windo
 
 ---
 
-## 6. Sıkça Sorulan Sorular (SSS)
+## 6. Desteklenen Bluetooth Termal Yazıcı Modelleri
+
+Bu rehberdeki eşleştirme, izin ve uyku modu çözümleri, Bluetooth destekleyen aşağıdaki yazıcı modellerinin tamamı için geçerlidir. Protokol veya arayüz farkı olan modellerde ilgili bölüme (örn. CPCL kullanan mobil kurye yazıcıları için Bölüm 1) özellikle dikkat edin:
+
+| Marka | Model | Protokol | Arayüzler | Kağıt Genişliği |
+|---|---|---|---|---|
+| Bixolon | SPP-R200III | ESC/POS / CPCL | Bluetooth, Wi-Fi, USB | 58mm |
+| Bixolon | SPP-R310 | ESC/POS / CPCL | Bluetooth BLE, USB | 80mm |
+| Bixolon | SRP-Q300 | ESC/POS | Bluetooth, Wi-Fi, USB, Ethernet | 80mm |
+| Epson | TM-m30II | ESC/POS | Bluetooth, Wi-Fi, USB, Ethernet | 80mm / 58mm |
+| Epson | TM-P20II | ESC/POS | Bluetooth 5.0, Wi-Fi | 58mm |
+| Epson | TM-P80II | ESC/POS | Bluetooth, Wi-Fi | 80mm |
+| Epson | TM-T88VI | ESC/POS | USB, Ethernet, Bluetooth, Wi-Fi | 80mm / 58mm |
+| Rongta | RPP02N | ESC/POS | Bluetooth, USB | 58mm |
+| Seiko | MP-B30L | ESC/POS / SII SDK | Bluetooth, USB | 80mm |
+| Seiko | RP-D10 | ESC/POS | USB, Ethernet, Bluetooth | 80mm |
+| Star Micronics | mC-Print3 | StarPRNT | CloudPRNT, Bluetooth, Ethernet, USB | 80mm |
+| Star Micronics | SM-L200 | Star Line | Bluetooth 4.0 BLE, USB | 58mm |
+| Star Micronics | SM-T300i | Star Line / ESC/POS | Bluetooth (MFi), Seri | 80mm |
+| Star Micronics | TSP654II | Star Line / ESC/POS | Bluetooth, Ethernet, USB | 80mm |
+| Sunmi | V2 Pro | ESC/POS (Sunmi InnerPrinter) | Dahili Donanım, Bluetooth | 58mm |
+| TSC | Alpha-3R | TSPL / CPCL / ESC/POS | Bluetooth, USB | 72mm (3 inç) |
+| TSC | DA220 | TSPL-EZD | USB, Ethernet, Bluetooth, Wi-Fi | 108mm |
+| Xprinter | XP-420B | TSPL / ESC/POS | USB, Bluetooth, Ethernet | 108mm (100x150) |
+| Xprinter | XP-58IIH | ESC/POS | USB, Bluetooth | 58mm |
+| Xprinter | XP-P300 | ESC/POS | Bluetooth, USB | 58mm |
+| Zebra | ZD420 | ZPL II / EPL | USB, Ethernet, Bluetooth, Wi-Fi | 104mm |
+| Zebra | ZD421 | ZPL II / EPL | USB, Ethernet, Bluetooth BLE | 104mm |
+| Zebra | ZQ320 Plus | CPCL / ZPL | Bluetooth BLE, Wi-Fi | 80mm (3 inç) |
+| Zebra | ZQ520 | CPCL / ZPL | Bluetooth, Wi-Fi | 104mm (4 inç) |
+| Zebra | ZT411 | ZPL II | Ethernet, USB, Bluetooth 4.1 | 104mm |
+
+> Listede olmayan bir modeliniz mi var? Yukarıdaki protokol sütunu (ESC/POS, CPCL, ZPL, StarPRNT) sizinkiyle eşleşiyorsa, bu rehberdeki adımlar aynı şekilde geçerlidir — Bluetooth eşleştirme ve izin mimarisi protokolden bağımsızdır.
+
+---
+
+## 7. Sıkça Sorulan Sorular (SSS)
 
 ### Yazıcı Bluetooth listesinde görünüyor ama bağlanırken "Hata: Bağlantı reddedildi" diyor?
 **Bu durum %99 olasılıkla yazıcının halihazırda başka bir telefona veya tablete bağlı olmasından kaynaklanır.** Bluetooth termal yazıcılar noktadan-noktaya (P2P) çalışır ve aynı anda sadece tek bir aktif veri kanalı açabilir. Çevredeki diğer personelin telefonlarında Bluetooth'u kapatıp yazıcıyı kapatıp açarak tekrar deneyin.
@@ -106,33 +142,3 @@ Windows bilgisayarlarda bir Bluetooth termal yazıcı eşleştirildiğinde Windo
 ### Printzen mobil uygulaması Bluetooth bağlantı kopmalarını nasıl önlüyor?
 **Printzen Mobil Yazdırma Servisi akıllı bir "Otomatik Yeniden Bağlanma ve Kuyruklama" (Auto-Reconnect & Retry Queue) mekanizmasına sahiptir.** Yazıcı uykuya geçtiğinde veya operatör kapsama alanı dışına çıktığında yazdırma işleri kaybolmaz; yazıcı tekrar kapsama alanına girdiği anda arka planda otomatik olarak bağlanır ve bekleyen tüm fişleri basar.
 
-## Bluetooth Termal Yazıcı Bağlantı Hataları Teşhis Matrisi
-
-Bluetooth termal yazıcılarda yaşanan bağlantı kopmaları ve çıktı alamama problemleri çoğunlukla donanım arızasından değil, protokol uyuşmazlıkları ve işletim sistemi Bluetooth önbellek kilitlenmelerinden kaynaklanır.
-
-### En Sık Karşılaşılan 4 Sorun ve Çözümleri
-
-1. **"Cihaz Eşleşti Ancak Yazmıyor" (Paired but not Printing):**
-   - **Sebep:** Android cihaz yazıcıyı klasik kulaklık/ses profili veya HID klavye olarak kaydetmiş olabilir.
-   - **Çözüm:** Bluetooth ayarlarından cihazın eşleşmesini kaldırın (Unpair). Yazıcıyı kapatıp açın. Eşleştirme yaparken PIN kodunu (0000 veya 1234) girdikten sonra doğrudan Web Bluetooth veya Printzen POS uygulamasından arama yapın.
-
-2. **Satır Atlama ve Fişin Yarım Kalması (Buffer Overflow):**
-   - **Sebep:** Yazıcının dahili RAM tamponu (genellikle 4 KB - 16 KB) dolduğunda gelen baytları atması.
-   - **Çözüm:** Büyük görselleri ve uzun metinleri 512 baytlık paketlere bölün ve her paket arasına 15-20 ms gecikme koyun.
-
-3. **Mobil Yazıcının Uyku Moduna Geçmesi ve Uyanmaması:**
-   - **Sebep:** Batarya koruma devresi 3 dakika veri gelmediğinde Bluetooth modülünü kapatır.
-   - **Çözüm:** Yazıcının DIP switch ayarlarından veya Printzen SDK'nın `keepAlivePing()` fonksiyonu ile 60 saniyede bir boş byte (0x00) göndererek bağlantıyı sıcak tutun.
-
-## Popüler Model Özelinde Bu Konudaki Rehberler
-
-- [Bixolon Slp Tx400 Bluetooth](/tr/rehber/bixolon-slp-tx400-bluetooth-termal-yazici-baglanti-sorunlari-rehberi)
-- [Bixolon Slp Tx400 Web](/tr/rehber/bixolon-slp-tx400-web-bluetooth-termal-yazici-baglantisi)
-- [Bixolon Spp R200iii Bluetooth](/tr/rehber/bixolon-spp-r200iii-bluetooth-termal-yazici-baglanti-sorunlari-rehberi)
-- [Bixolon Spp R200iii Web](/tr/rehber/bixolon-spp-r200iii-web-bluetooth-termal-yazici-baglantisi)
-- [Bixolon Spp R310 Bluetooth](/tr/rehber/bixolon-spp-r310-bluetooth-termal-yazici-baglanti-sorunlari-rehberi)
-- [Bixolon Spp R310 Web](/tr/rehber/bixolon-spp-r310-web-bluetooth-termal-yazici-baglantisi)
-- [Bixolon Srp 330ii Bluetooth](/tr/rehber/bixolon-srp-330ii-bluetooth-termal-yazici-baglanti-sorunlari-rehberi)
-- [Bixolon Srp 330ii Web](/tr/rehber/bixolon-srp-330ii-web-bluetooth-termal-yazici-baglantisi)
-- [Bixolon Srp 350iii Bluetooth](/tr/rehber/bixolon-srp-350iii-bluetooth-termal-yazici-baglanti-sorunlari-rehberi)
-- [Bixolon Srp 350iii Web](/tr/rehber/bixolon-srp-350iii-web-bluetooth-termal-yazici-baglantisi)

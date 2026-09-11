@@ -26,6 +26,11 @@ ESC/POS is a stream-based binary protocol. The data sent to the printer consists
 
 > 💡 **Core Principle:** Thermal printers store commands in their volatile line buffer until an explicit Line Feed (`0x0A` - LF) is received. Always append LF to commit rows to paper.
 
+### 1.1. Line Mode vs Page Mode
+ESC/POS printers operate in two distinct modes:
+- **Line Mode (Standard):** The default operational mode. Paper advances and prints row-by-row upon receiving line feed (`LF`) instructions.
+- **Page Mode:** Activated via `ESC L` (`0x1B 0x4C`). The complete receipt is constructed in the printer's internal page memory, supporting arbitrary 90°/180°/270° orientation, and is committed as a unified block via `ESC FF`.
+
 ---
 
 ## 2. Essential ESC/POS Command Reference
@@ -169,86 +174,6 @@ export class EscPosBuilder {
 
 ### Why is the printer cutting off the last line of the receipt?
 **Thermal printer knives are positioned 15 to 20 mm above the printing head.** If a cut command is sent immediately without preceding Line Feed (`0x0A`) characters, the final line remains under the blade. Always append at least 3 to 4 empty lines before triggering a partial cut command.
-
-## ESC/POS Command Reference Table
-
-| Command | Hex | Description |
-|---------|-----|-------------|
-| ESC @ | 1B 40 | Initialize printer (reset) |
-| ESC E n | 1B 45 01/00 | Bold text on/off |
-| ESC ! n | 1B 21 nn | Compound character style |
-| GS V m | 1D 56 41/42 | Paper cut (full/partial) |
-| ESC p m t1 t2 | 1B 70 | Open cash drawer |
-| GS k m | 1D 6B | Print barcode |
-| ESC t n | 1B 74 | Select character code page |
-
-## Real ESC/POS Code Example
-
-```javascript
-import { PrintzenPrinter } from '@printzen/sdk';
-
-const printer = new PrintzenPrinter({ interface: 'bluetooth' });
-await printer.connect();
-
-// Receipt header
-await printer.write([
-  0x1B, 0x40,        // initialize
-  0x1B, 0x61, 0x01,  // center align
-  0x1B, 0x21, 0x10,  // double height
-]);
-await printer.text('CAFE OLYMPUS
-');
-await printer.text('================================
-');
-
-// Product line
-await printer.write([0x1B, 0x61, 0x00]); // left align
-await printer.text('Americano x2           $4.50
-');
-
-// Total (bold)
-await printer.write([0x1B, 0x45, 0x01]);
-await printer.text('TOTAL:                 $4.50
-');
-await printer.write([0x1B, 0x45, 0x00]);
-
-// Cut + cash drawer
-await printer.write([
-  0x1D, 0x56, 0x41, 0x03,     // full cut
-  0x1B, 0x70, 0x00, 0x19, 0xFA // cash drawer
-]);
-await printer.disconnect();
-```
-
-## ESC/POS Connection Types
-
-### USB (WebUSB API)
-```javascript
-const device = await navigator.usb.requestDevice({
-  filters: [{ vendorId: 0x04b8 }] // Epson
-});
-await device.open();
-await device.selectConfiguration(1);
-await device.claimInterface(0);
-```
-
-### Ethernet (Raw TCP Port 9100)
-```javascript
-const ws = new WebSocket('ws://printer-ip:9100');
-ws.binaryType = 'arraybuffer';
-ws.send(new Uint8Array([0x1B, 0x40, ...]));
-```
-
-## Common ESC/POS Errors
-
-### Garbled Characters
-Set code page manually: ESC t 0 (standard Latin) or ESC t 19 (CP857 Turkish).
-
-### Barcode Not Scanning
-Add 3 line feeds before GS k: `[0x0A, 0x0A, 0x0A]`
-
-### Printer Unresponsive After ESC @
-Add 100ms delay after reset before sending data.
 
 
 ## Printer-Specific Guides for This Topic

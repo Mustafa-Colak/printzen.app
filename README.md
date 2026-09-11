@@ -15,7 +15,7 @@ transfer yazdırma konularında içerik portalı.
 
 - **[Astro](https://astro.build)** (statik site üretici, sıfır varsayılan JS)
 - **Tailwind CSS** — CDN üzerinden (`?plugins=typography`), build adımı yok
-- **Barındırma:** Vercel (statik çıktı, ücretsiz katman)
+- **Barındırma:** Cloudflare Pages (statik çıktı, ücretsiz katman)
 - **Domain/DNS:** Cloudflare (bkz. `INFRASTRUCTURE.md`)
 
 ## Dil Yapısı (i18n)
@@ -119,8 +119,8 @@ npm run preview   # build çıktısını lokal sunar
 
 ## Deploy Akışı
 
-`master` branch = production (`printzen.app`), Vercel otomatik deploy eder.
-Yeni özellikler için ayrı branch aç → Vercel preview URL'inde kontrol et →
+`master` branch = production (`printzen.app`), Cloudflare Pages otomatik deploy eder.
+Yeni özellikler için ayrı branch aç → Cloudflare Pages preview URL'inde kontrol et →
 `master`'a merge et. Büyük altyapı değişiklikleri (ör. Astro migration,
 i18n routing) tek seferlik, kapsamlı doğrulama sonrası merge edilir; küçük
 içerik eklemeleri (yeni rehber/yazıcı) doğrudan küçük branch'lerle
