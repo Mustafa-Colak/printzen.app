@@ -9,8 +9,8 @@ interface Props {
   alternatePath?: string;
 }
 const { lang, wide = false, alternatePath: alternatePathProp } = Astro.props;
-const guidesPath = lang === 'tr' ? '/tr/rehberler' : '/guides';
-const printersPath = lang === 'tr' ? '/tr/yazicilar' : '/printers';
+const guidesPath = lang === 'tr' ? '/tr/rehberler/' : '/guides/';
+const printersPath = lang === 'tr' ? '/tr/yazicilar/' : '/printers/';
 const alternatePath = alternatePathProp ?? getAlternatePath(Astro.url.pathname, lang);
 ---
 <nav class="bg-white/95 backdrop-blur-md border-b border-gray-100 sticky top-0 z-30 transition-all">

@@ -43,7 +43,7 @@ for (const dir of GUIDES_DIRS) {
     const lines = content.split('\n');
 
     // Frontmatter extraction
-    const fmMatch = content.match(/^---\n([\s\S]*?)\n---/);
+    const fmMatch = content.match(/^---\r?\n([\s\S]*?)\r?\n---/);
     if (!fmMatch) {
       reportError(filePath, 1, 'Missing YAML frontmatter block (---)');
       continue;

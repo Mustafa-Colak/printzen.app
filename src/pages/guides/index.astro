@@ -102,7 +102,7 @@ const HARDWARE_SHOWCASE = [
         const textContent = `${guide.data.title} ${guide.data.description} ${guide.data.brand || ''} ${slugClean}`.toLowerCase();
         return (
           <a
-            href={`/guides/${slugClean}`}
+            href={`/guides/${slugClean}/`}
             class="guide-card block bg-white rounded-2xl p-6 shadow-sm border border-gray-100 hover:border-blue-300 hover:shadow-md transition flex flex-col justify-between group"
             data-search-text={textContent}
           >
@@ -144,7 +144,7 @@ const HARDWARE_SHOWCASE = [
           <h2 class="text-2xl font-bold text-gray-900 mt-1">Supported Thermal Printer Models</h2>
           <p class="text-gray-500 text-sm mt-1">Most widely used commercial models and their supported protocols.</p>
         </div>
-        <a href="/printers" class="text-sm font-semibold text-blue-600 hover:underline">
+        <a href="/printers/" class="text-sm font-semibold text-blue-600 hover:underline">
           View Printer Compatibility Matrix →
         </a>
       </div>
@@ -160,7 +160,7 @@ const HARDWARE_SHOWCASE = [
               {brandGroup.models.map((model) => (
                 <li>
                   <a
-                    href="/printers"
+                    href="/printers/"
                     class="text-gray-600 hover:text-blue-600 hover:underline transition flex items-center justify-between py-1"
                   >
                     <span>{brandGroup.brand} {model}</span>

@@ -9,7 +9,7 @@ translationKey: woocommerce-trigger-automatic-receipt-new-order
 
 WooCommerce mağazanızda sipariş hacmi arttıkça, yeni sipariş anında doğrudan HTTP istekleriyle fiziksel yazıcıyı veya bulut yazdırma API'sini tetiklemek ciddi performans darboğazlarına yol açar. Ödeme anında müşteriyi bekletmemek ve ödeme ağ geçidi (iyzico, Stripe, PayTR) webhook'larında zaman aşımı (timeout) yaşamamak için fiş yazdırma işlemleri mutlaka **asenkron ve non-blocking** bir kuyruk üzerinden yürütülmelidir.
 
-Bu rehberde, WooCommerce'in yerel arka plan iş motoru olan **Action Scheduler** kullanarak sıfır gecikmeli fiş tetikleme mimarisini inceleyeceğiz. Kargo barkodu tasarımı ve çoklu yazıcı yönlendirmeleri için ana [WooCommerce Otomatik Termal Fiş ve Kargo Etiketi Yazdırma](/tr/rehberler/woocommerce-otomatik-termal-fis-kargo-etiketi-yazdirma) amiral rehberimize başvurabilirsiniz.
+Bu rehberde, WooCommerce'in yerel arka plan iş motoru olan **Action Scheduler** kullanarak sıfır gecikmeli fiş tetikleme mimarisini inceleyeceğiz. Kargo barkodu tasarımı ve çoklu yazıcı yönlendirmeleri için ana [WooCommerce Otomatik Termal Fiş ve Kargo Etiketi Yazdırma](/tr/rehberler/woocommerce-otomatik-termal-fis-kargo-etiketi-yazdirma/) amiral rehberimize başvurabilirsiniz.
 
 ---
 

@@ -9,7 +9,7 @@ translationKey: woocommerce-trigger-automatic-receipt-new-order
 
 As store volume scales, dispatching direct synchronous HTTP requests to thermal printers during the checkout transition introduces severe performance bottlenecks. To ensure zero cart abandonment and prevent payment gateway webhook timeouts (Stripe, PayPal, Adyen), order printing must always be handled via an **asynchronous, non-blocking queue**.
 
-In this guide, we examine how to configure WooCommerce's built-in background engine—**Action Scheduler**—for instant fulfillment printing. For packaging slip design and carrier routing, consult our flagship [WooCommerce Automatic Thermal Receipt & Shipping Label Printing Guide](/guides/woocommerce-automatic-thermal-receipt-shipping-label-printing).
+In this guide, we examine how to configure WooCommerce's built-in background engine—**Action Scheduler**—for instant fulfillment printing. For packaging slip design and carrier routing, consult our flagship [WooCommerce Automatic Thermal Receipt & Shipping Label Printing Guide](/guides/woocommerce-automatic-thermal-receipt-shipping-label-printing/).
 
 ---
 
