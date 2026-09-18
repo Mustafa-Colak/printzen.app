@@ -20,12 +20,13 @@ const connectionLabels: Record<string, string> = {
   ethernet: 'Ethernet',
 };
 ---
-<BaseLayout lang="tr" title="Yazıcı Uyumluluk Veritabanı — Printzen" description="Mobil, masaüstü ve endüstriyel termal yazıcılar için marka, bağlantı tipi ve komut diline göre uyumluluk listesi." alternatePath="/printers/">
+<BaseLayout lang="tr" title="Desteklenen Yazıcılar — Printzen Android Uygulaması" description="Printzen Mobile Print Service Android uygulaması ile test edilmiş ve desteklenen yazıcılar; sınıf, bağlantı tipi ve komut diline göre." alternatePath="/printers/">
   <Nav wide lang="tr" alternatePath="/printers/" />
 
   <main class="max-w-5xl mx-auto px-4 py-16">
-    <h1 class="text-3xl font-bold mb-2">Yazıcı Uyumluluk Veritabanı</h1>
-    <p class="text-gray-500 mb-10">Termal ve termal transfer yazıcılar — sınıf, bağlantı tipi ve komut diline göre.</p>
+    <span class="text-xs font-bold text-blue-600 uppercase tracking-wider">Android Uygulaması — Mobile Print Service</span>
+    <h1 class="text-3xl font-bold mb-2 mt-1">Desteklenen Yazıcılar</h1>
+    <p class="text-gray-500 mb-10">Printzen Android uygulamasıyla test edilmiş termal ve termal transfer yazıcı modelleri — sınıf, bağlantı tipi ve komut diline göre.</p>
 
     <div class="overflow-x-auto">
       <table class="w-full text-sm border-collapse">
@@ -36,7 +37,7 @@ const connectionLabels: Record<string, string> = {
             <th class="py-3 pr-4">Bağlantı</th>
             <th class="py-3 pr-4">Komut Dili</th>
             <th class="py-3 pr-4">Baskı Türü</th>
-            <th class="py-3">Mobile Print Service</th>
+            <th class="py-3">Uygulama Desteği</th>
           </tr>
         </thead>
         <tbody>

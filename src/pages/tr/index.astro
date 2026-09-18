@@ -4,46 +4,65 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 import Nav from '../../components/Nav.astro';
 import Footer from '../../components/Footer.astro';
 
-const recentGuides = (await getCollection('guides', (entry) => entry.slug.startsWith('tr/')))
+const allGuides = await getCollection('guides', (entry) => entry.slug.startsWith('tr/'));
+const recentGuides = [...allGuides]
   .sort((a, b) => b.data.publishDate.valueOf() - a.data.publishDate.valueOf())
   .slice(0, 3);
+const printers = await getCollection('printers');
+
+const PILLARS = [
+  {
+    icon: '💻',
+    title: 'Geliştirici Kılavuzları',
+    description: 'Web ve mobil uygulamaları doğrudan termal yazıcılara bağlamak için Web Bluetooth, WebUSB, ham TCP soket ve REST API yöntemleri — çalışan kod örnekleriyle.',
+    href: '/tr/rehberler',
+  },
+  {
+    icon: '🔧',
+    title: 'Donanım & Protokol Karar Desteği',
+    description: 'ESC/POS, ZPL, TSPL ve CPCL komut dili referansları, kod sayfası tabloları; mobil, masaüstü veya endüstriyel donanım seçimi için sınıf bazlı rehberlik.',
+    href: '/tr/rehberler',
+  },
+  {
+    icon: '🛠️',
+    title: 'Sorun Giderme & Operasyon',
+    description: 'Bluetooth eşleşme hataları, silik baskı, etiket kalibrasyonu, kargo etiketi boyutlandırma ve sessiz/kiosk yazdırma sorunlarına çözümler.',
+    href: '/tr/rehberler',
+  },
+];
 ---
 <BaseLayout
   lang="tr"
-  title="Printzen — Android Yazdırma Servisi"
-  description="Her Android uygulamasından her termal yazıcıya yazdırın. Bluetooth, Wi-Fi, USB desteği."
+  title="Printzen — Termal Yazdırmanın Otoritesi"
+  description="Termal fiş ve etiket yazdırmanın tanımlayıcı referansı: ESC/POS, ZPL, TSPL ve daha fazlası için protokol belgeleri, donanım karar rehberleri ve entegrasyon yazıları — ayrıca kendi desteklenen yazıcı listesine sahip bir Android yazdırma uygulaması."
+  alternatePath="/"
 >
-  <Nav wide lang="tr">
-    <a href="https://play.google.com/store/apps/details?id=com.mobileprint.service" target="_blank" rel="noopener" class="bg-blue-600 text-white px-4 py-2 rounded-lg text-sm font-medium hover:bg-blue-700 transition">
-      Play Store'dan Al
-    </a>
-  </Nav>
+  <Nav wide lang="tr" alternatePath="/" />
 
   <!-- Hero -->
   <section class="max-w-5xl mx-auto px-4 py-20">
     <div class="grid md:grid-cols-5 gap-12 items-center">
       <div class="md:col-span-3">
         <div class="inline-block bg-blue-50 text-blue-700 text-sm font-medium px-4 py-1 rounded-full mb-6">
-          Android Yazdırma Servisi
+          Termal Yazdırmanın Otoritesi
         </div>
         <h1 class="text-4xl md:text-5xl font-bold text-gray-900 mb-6 leading-tight">
-          Her Android uygulamasından<br>her termal yazıcıya yazdır
+          Termal fiş ve etiket yazdırmanın<br>tanımlayıcı referansı
         </h1>
         <p class="text-xl text-gray-500 mb-10">
-          Mobile Print Service, Android cihazınızı sistem yazdırma dialogu üzerinden fiş ve etiket yazıcılara Bluetooth, Wi-Fi veya USB ile bağlar.
+          ESC/POS, ZPL, TSPL ve CPCL için protokol referansları, donanım karar rehberleri ve entegrasyon yazıları — geliştiriciler, e-ticaret satıcıları, restoran işletmecileri ve termal yazıcılara bağlanan SaaS sağlayıcıları için.
         </p>
         <div class="flex flex-col sm:flex-row gap-4">
-          <a href="https://play.google.com/store/apps/details?id=com.mobileprint.service" target="_blank" rel="noopener"
+          <a href="/tr/rehberler"
              class="bg-blue-600 text-white px-8 py-4 rounded-xl text-lg font-semibold hover:bg-blue-700 transition inline-flex items-center gap-2 shadow-lg">
-            <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" viewBox="0 0 24 24" fill="currentColor"><path d="M3 20.5v-17c0-.83 1.01-1.3 1.66-.78l15 8.5a1 1 0 010 1.56l-15 8.5C4.01 21.8 3 21.33 3 20.5z"/></svg>
-            Google Play'den İndir
+            Rehberlere Göz At →
           </a>
-          <a href="#pricing" class="bg-white text-blue-600 border border-blue-200 px-8 py-4 rounded-xl text-lg font-semibold hover:bg-blue-50 transition inline-block shadow">
-            Fiyatları Gör →
+          <a href="/tr/yazicilar" class="bg-white text-blue-600 border border-blue-200 px-8 py-4 rounded-xl text-lg font-semibold hover:bg-blue-50 transition inline-block shadow">
+            Desteklenen Yazıcıları Kontrol Et →
           </a>
         </div>
         <p class="text-sm text-gray-400 mt-4">
-          30 günlük ücretsiz deneme · Kredi kartı gerekmez
+          {allGuides.length}+ teknik rehber · Android uygulamasıyla test edilmiş {printers.length} yazıcı modeli
         </p>
       </div>
 
@@ -63,94 +82,64 @@ const recentGuides = (await getCollection('guides', (entry) => entry.slug.starts
           ))}
         </div>
         <a href="/tr/yazicilar" class="block mt-4 pt-4 border-t border-gray-100 text-sm text-blue-600 hover:underline">
-          Yazıcı uyumluluk veritabanına göz atın →
+          Android uygulamasının desteklediği yazıcılara göz atın →
         </a>
       </div>
     </div>
   </section>
 
-  <!-- Features -->
+  <!-- Üç Ayak -->
   <section class="max-w-5xl mx-auto px-4 py-12">
+    <div class="mb-10">
+      <span class="text-xs font-bold text-blue-600 uppercase tracking-wider">Burada ne var</span>
+      <h2 class="text-2xl md:text-3xl font-bold text-gray-900 mt-1">Üç sac ayağı, tek platform</h2>
+    </div>
     <div class="grid md:grid-cols-3 gap-6">
-      <div class="bg-white rounded-2xl p-6 shadow-sm border border-gray-100">
-        <div class="text-3xl mb-3">🖨️</div>
-        <h3 class="font-bold text-lg mb-2">Sistem Print Dialogu</h3>
-        <p class="text-gray-500 text-sm leading-relaxed">Chrome, Google Docs ve kendi uygulamanız dahil yazdırmayı destekleyen her Android uygulamasıyla çalışır.</p>
-      </div>
-      <div class="bg-white rounded-2xl p-6 shadow-sm border border-gray-100">
-        <div class="text-3xl mb-3">📶</div>
-        <h3 class="font-bold text-lg mb-2">Çoklu Bağlantı</h3>
-        <p class="text-gray-500 text-sm leading-relaxed">Bluetooth, Wi-Fi ve USB OTG. Zebra, Honeywell, TSC, Seiko, Bixolon, Sewoo, Rongta ve tüm genel ESC/POS termal yazıcıları destekler.</p>
-      </div>
-      <div class="bg-white rounded-2xl p-6 shadow-sm border border-gray-100">
-        <div class="text-3xl mb-3">⚡</div>
-        <h3 class="font-bold text-lg mb-2">HTTP API</h3>
-        <p class="text-gray-500 text-sm leading-relaxed">Yerel ağınızdaki herhangi bir uygulamadan PDF, görsel veya ham ESC/POS verisi gönderin.</p>
-      </div>
+      {PILLARS.map((pillar) => (
+        <a href={pillar.href} class="bg-white rounded-2xl p-6 shadow-sm border border-gray-100 hover:border-blue-300 hover:shadow-md transition block group">
+          <div class="text-3xl mb-3">{pillar.icon}</div>
+          <h3 class="font-bold text-lg mb-2 group-hover:text-blue-600 transition">{pillar.title}</h3>
+          <p class="text-gray-500 text-sm leading-relaxed">{pillar.description}</p>
+        </a>
+      ))}
     </div>
   </section>
 
-  <!-- Pricing -->
-  <section id="pricing" class="max-w-4xl mx-auto px-4 py-20">
-    <h2 class="text-3xl font-bold text-center mb-4">Basit, tek seferlik ödeme</h2>
-    <p class="text-center text-gray-500 mb-12">Google Play'den bir kez öde, sonsuza kadar kullan. Abonelik yok.</p>
-
-    <div class="grid md:grid-cols-2 gap-8 items-stretch">
-
-      <!-- BT Plan -->
-      <div class="bg-white rounded-2xl p-8 shadow-sm border border-gray-200 flex flex-col">
-        <div class="flex items-center gap-3 mb-2">
-          <div class="bg-blue-50 rounded-xl p-2">
-            <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 text-blue-600" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 5l8 6-8 6V5zM16 5v14"/></svg>
+  <!-- Android Uygulaması (teklif edilen ürünlerden biri, tüm kimlik değil) -->
+  <section id="android-app" class="max-w-5xl mx-auto px-4 py-20 scroll-mt-20">
+    <div class="bg-white rounded-2xl border border-gray-100 shadow-sm p-8 md:p-12">
+      <div class="grid md:grid-cols-5 gap-10 items-center">
+        <div class="md:col-span-3">
+          <div class="inline-flex items-center gap-2 bg-blue-50 text-blue-700 text-xs font-semibold px-3 py-1 rounded-full uppercase tracking-wider mb-4">
+            <span>📱</span> Printzen'den ayrıca
           </div>
-          <h3 class="font-bold text-xl">BT Planı</h3>
+          <h2 class="text-2xl md:text-3xl font-bold text-gray-900 mb-4">Android için Mobile Print Service</h2>
+          <p class="text-gray-500 mb-6 leading-relaxed">
+            Herhangi bir Android uygulamasından sistem yazdırma dialogu üzerinden herhangi bir termal yazıcıya yazdırın — Bluetooth, Wi-Fi veya USB. Zebra, Honeywell, TSC, Seiko, Bixolon, Sewoo, Rongta ve tüm genel ESC/POS termal yazıcıları destekler.
+          </p>
+          <a href="https://play.google.com/store/apps/details?id=com.mobileprint.service" target="_blank" rel="noopener"
+             class="bg-blue-600 text-white px-6 py-3 rounded-xl text-sm font-semibold hover:bg-blue-700 transition inline-flex items-center gap-2 shadow">
+            <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" viewBox="0 0 24 24" fill="currentColor"><path d="M3 20.5v-17c0-.83 1.01-1.3 1.66-.78l15 8.5a1 1 0 010 1.56l-15 8.5C4.01 21.8 3 21.33 3 20.5z"/></svg>
+            Google Play'den İndir
+          </a>
         </div>
-        <div class="text-5xl font-bold mb-1 mt-4">$9.90</div>
-        <p class="text-gray-400 text-xs mb-6">tek seferlik · Google Play</p>
-        <ul class="text-sm text-gray-600 space-y-3 mb-8 flex-1">
-          <li class="flex items-center gap-2"><span class="text-green-500">✓</span> Bluetooth yazdırma</li>
-          <li class="flex items-center gap-2"><span class="text-green-500">✓</span> USB OTG yazdırma</li>
-          <li class="flex items-center gap-2"><span class="text-green-500">✓</span> Tüm yazıcı markaları</li>
-          <li class="flex items-center gap-2"><span class="text-green-500">✓</span> Ücretsiz güncellemeler</li>
-          <li class="flex items-center gap-2"><span class="text-red-400">✗</span> <span class="line-through">Wi-Fi yazdırma</span></li>
-          <li class="flex items-center gap-2"><span class="text-red-400">✗</span> <span class="line-through">HTTP API</span></li>
-        </ul>
-        <a href="https://play.google.com/store/apps/details?id=com.mobileprint.service" target="_blank" rel="noopener" class="block text-center bg-gray-900 text-white py-3 rounded-xl font-medium hover:bg-gray-700 transition">
-          Play Store'dan Al
-        </a>
-      </div>
-
-      <!-- Full Plan (Popular) -->
-      <div class="bg-blue-600 rounded-2xl p-8 shadow-xl text-white relative flex flex-col">
-        <div class="absolute -top-4 left-1/2 -translate-x-1/2 bg-orange-400 text-white text-xs px-4 py-1.5 rounded-full font-bold whitespace-nowrap">
-          ÖNERİLEN
-        </div>
-        <div class="flex items-center gap-3 mb-2">
-          <div class="bg-white/20 rounded-xl p-2">
-            <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.111 16.404a5.5 5.5 0 017.778 0M12 20h.01m-7.08-7.071c3.904-3.905 10.236-3.905 14.141 0M1.394 9.393c5.857-5.857 15.355-5.857 21.213 0"/></svg>
+        <div class="md:col-span-2 grid grid-cols-2 gap-4">
+          <div class="border border-gray-200 rounded-xl p-4">
+            <p class="text-xs font-semibold text-gray-400 uppercase mb-1">BT Planı</p>
+            <p class="text-2xl font-bold text-gray-900 mb-1">$9.90</p>
+            <p class="text-xs text-gray-400">tek seferlik · Bluetooth + USB</p>
           </div>
-          <h3 class="font-bold text-xl">Tam Plan</h3>
+          <div class="border border-blue-200 bg-blue-50 rounded-xl p-4">
+            <p class="text-xs font-semibold text-blue-600 uppercase mb-1">Tam Plan</p>
+            <p class="text-2xl font-bold text-gray-900 mb-1">$14.90</p>
+            <p class="text-xs text-gray-500">tek seferlik · + Wi-Fi & HTTP API</p>
+          </div>
         </div>
-        <div class="text-5xl font-bold mb-1 mt-4">$14.90</div>
-        <p class="text-blue-200 text-xs mb-6">tek seferlik · Google Play</p>
-        <ul class="text-sm text-blue-100 space-y-3 mb-8 flex-1">
-          <li class="flex items-center gap-2"><span class="text-blue-200">✓</span> Bluetooth yazdırma</li>
-          <li class="flex items-center gap-2"><span class="text-blue-200">✓</span> USB OTG yazdırma</li>
-          <li class="flex items-center gap-2"><span class="text-blue-200">✓</span> Tüm yazıcı markaları</li>
-          <li class="flex items-center gap-2"><span class="text-blue-200">✓</span> Ücretsiz güncellemeler</li>
-          <li class="flex items-center gap-2"><span class="text-blue-200">✓</span> Wi-Fi yazdırma</li>
-          <li class="flex items-center gap-2"><span class="text-blue-200">✓</span> HTTP API erişimi</li>
-        </ul>
-        <a href="https://play.google.com/store/apps/details?id=com.mobileprint.service" target="_blank" rel="noopener" class="block text-center bg-white text-blue-600 py-3 rounded-xl font-medium hover:bg-blue-50 transition">
-          Play Store'dan Al
-        </a>
       </div>
-
+      <p class="text-xs text-gray-400 mt-6 pt-6 border-t border-gray-100">
+        Her iki plan da 30 günlük ücretsiz deneme ve ücretsiz güncellemeler içerir, abonelik yok.
+      </p>
     </div>
-
-    <p class="text-center text-gray-400 text-sm mt-8">
-      Her iki plan da 30 günlük ücretsiz deneme içerir. Deneme bitmeden istediğiniz zaman iptal edin.
-    </p>
   </section>
 
   <Footer lang="tr" />
