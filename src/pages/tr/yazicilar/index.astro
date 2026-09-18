@@ -24,14 +24,14 @@ const connectionLabels: Record<string, string> = {
   <Nav wide lang="tr" alternatePath="/printers/" />
 
   <main class="max-w-5xl mx-auto px-4 py-16">
-    <span class="text-xs font-bold text-blue-600 uppercase tracking-wider">Android Uygulaması — Mobile Print Service</span>
-    <h1 class="text-3xl font-bold mb-2 mt-1">Desteklenen Yazıcılar</h1>
-    <p class="text-gray-500 mb-10">Printzen Android uygulamasıyla test edilmiş termal ve termal transfer yazıcı modelleri — sınıf, bağlantı tipi ve komut diline göre.</p>
+    <span class="font-mono text-xs font-medium text-accent uppercase tracking-wider">Android Uygulaması — Mobile Print Service</span>
+    <h1 class="font-display text-3xl font-bold text-ink mb-2 mt-1">Desteklenen Yazıcılar</h1>
+    <p class="text-ink/60 mb-10">Printzen Android uygulamasıyla test edilmiş termal ve termal transfer yazıcı modelleri — sınıf, bağlantı tipi ve komut diline göre.</p>
 
     <div class="overflow-x-auto">
       <table class="w-full text-sm border-collapse">
         <thead>
-          <tr class="border-b border-gray-200 text-left text-gray-500">
+          <tr class="border-b border-gray-300 text-left font-mono text-xs uppercase tracking-wider text-ink/50">
             <th class="py-3 pr-4">Marka / Model</th>
             <th class="py-3 pr-4">Sınıf</th>
             <th class="py-3 pr-4">Bağlantı</th>
@@ -42,17 +42,17 @@ const connectionLabels: Record<string, string> = {
         </thead>
         <tbody>
           {printers.map((printer) => (
-            <tr class="border-b border-gray-100">
-              <td class="py-3 pr-4 font-medium text-gray-900">{printer.data.brand} {printer.data.model}</td>
-              <td class="py-3 pr-4 text-gray-600">{classLabels[printer.data.class]}</td>
-              <td class="py-3 pr-4 text-gray-600">{printer.data.connections.map((c) => connectionLabels[c]).join(', ')}</td>
-              <td class="py-3 pr-4 text-gray-600">{printer.data.commandLanguage}</td>
-              <td class="py-3 pr-4 text-gray-600">{printer.data.printType === 'thermal-transfer' ? 'Termal transfer' : 'Doğrudan termal'}</td>
+            <tr class="border-b border-gray-200">
+              <td class="py-3 pr-4 font-medium text-ink">{printer.data.brand} {printer.data.model}</td>
+              <td class="py-3 pr-4 text-ink/60">{classLabels[printer.data.class]}</td>
+              <td class="py-3 pr-4 text-ink/60">{printer.data.connections.map((c) => connectionLabels[c]).join(', ')}</td>
+              <td class="py-3 pr-4 text-ink/60 font-mono text-xs">{printer.data.commandLanguage}</td>
+              <td class="py-3 pr-4 text-ink/60">{printer.data.printType === 'thermal-transfer' ? 'Termal transfer' : 'Doğrudan termal'}</td>
               <td class="py-3">
                 {printer.data.tested ? (
-                  <span class="text-green-600 font-medium">✓ Destekleniyor</span>
+                  <span class="font-mono text-xs text-emerald-700 font-medium">✓ Destekleniyor</span>
                 ) : (
-                  <span class="text-gray-400">—</span>
+                  <span class="text-ink/30">—</span>
                 )}
               </td>
             </tr>

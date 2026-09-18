@@ -43,12 +43,12 @@ const articleSchema = {
   <Nav lang="en" alternatePath={alternatePath} />
 
   <main class="max-w-3xl mx-auto px-4 py-16">
-    <a href="/guides/" class="text-sm text-blue-600 hover:underline">← All guides</a>
-    <span class="inline-block text-xs font-medium text-blue-600 bg-blue-50 rounded-full px-3 py-1 mt-4 mb-3">
+    <a href="/guides/" class="text-sm text-accent hover:underline">← All guides</a>
+    <span class="block font-mono text-xs font-medium text-accent uppercase tracking-wider mt-4 mb-3">
       {classLabels[guide.data.printerClass]}{guide.data.brand ? ` · ${guide.data.brand}` : ''}
     </span>
-    <h1 class="text-3xl font-bold mb-6">{guide.data.title}</h1>
-    <article class="prose max-w-none prose-headings:font-bold prose-a:text-blue-600">
+    <h1 class="font-display text-3xl font-bold text-ink mb-6">{guide.data.title}</h1>
+    <article class="prose max-w-none prose-headings:font-display prose-a:text-accent prose-code:font-mono">
       <Content />
     </article>
   </main>

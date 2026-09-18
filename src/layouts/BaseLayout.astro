@@ -52,9 +52,40 @@ const organizationSchema = {
 
   <script type="application/ld+json" set:html={JSON.stringify(organizationSchema)} />
 
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap">
+
   <script is:inline src="https://cdn.tailwindcss.com?plugins=typography"></script>
+  <script is:inline>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            ink: '#14171C',
+            paper: '#FAFAF7',
+            accent: { DEFAULT: '#B0431F', dark: '#8A331A' },
+            terminal: {
+              DEFAULT: '#1C1917',
+              head: '#252119',
+              border: '#33302A',
+              amber: '#E8945A',
+              text: '#F4EDE0',
+              dim: '#8A867C',
+              mid: '#5C594F',
+            },
+          },
+          fontFamily: {
+            sans: ['"IBM Plex Sans"', 'sans-serif'],
+            display: ['"Space Grotesk"', 'sans-serif'],
+            mono: ['"IBM Plex Mono"', 'monospace'],
+          },
+        },
+      },
+    };
+  </script>
 </head>
-<body class="bg-gray-50 font-sans">
+<body class="bg-paper text-ink font-sans">
   <slot />
 </body>
 </html>

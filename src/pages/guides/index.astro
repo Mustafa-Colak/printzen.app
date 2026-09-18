@@ -29,19 +29,19 @@ const HARDWARE_SHOWCASE = [
   <Nav wide lang="en" alternatePath="/tr/rehberler/" />
 
   <!-- Hero Header -->
-  <header class="bg-linear-to-b from-blue-50/50 to-white py-12 border-b border-gray-100">
+  <header class="bg-paper py-12 border-b border-gray-200">
     <div class="max-w-6xl mx-auto px-4">
 
       <div class="flex flex-col md:flex-row md:items-end justify-between gap-4">
         <div>
-          <span class="text-xs font-bold text-blue-600 uppercase tracking-wider">The Thermal Printing Authority</span>
-          <h1 class="text-3xl md:text-4xl font-black text-gray-900 tracking-tight mt-1">Thermal Printer Guide Library</h1>
-          <p class="text-gray-500 mt-2 text-base md:text-lg">
+          <span class="font-mono text-xs font-medium text-accent uppercase tracking-wider">The Thermal Printing Authority</span>
+          <h1 class="font-display text-3xl md:text-4xl font-bold text-ink tracking-tight mt-1">Thermal Printer Guide Library</h1>
+          <p class="text-ink/60 mt-2 text-base md:text-lg">
             Engineering documentation, protocol guides, and hardware-specific configurations across {guides.length} guides.
           </p>
         </div>
-        <div class="text-xs font-semibold text-gray-400 bg-white border border-gray-200 px-4 py-2 rounded-xl shrink-0 self-start md:self-auto">
-          📚 {guides.length} Flagship Guides + 2,500 Device Handbooks
+        <div class="font-mono text-xs text-ink/50 bg-white border border-gray-200 px-4 py-2 rounded-md shrink-0 self-start md:self-auto">
+          {guides.length} flagship guides + 2,500 device handbooks
         </div>
       </div>
 
@@ -50,23 +50,22 @@ const HARDWARE_SHOWCASE = [
         href="https://play.google.com/store/apps/details?id=com.mobileprint.service"
         target="_blank"
         rel="noopener"
-        class="mt-6 inline-flex items-center gap-2 bg-white border border-gray-200 hover:border-blue-300 text-sm text-gray-600 hover:text-blue-600 px-4 py-2 rounded-xl transition"
+        class="mt-6 inline-flex items-center gap-2 bg-white border border-gray-200 hover:border-accent/40 text-sm text-ink/60 hover:text-accent px-4 py-2 rounded-md transition"
       >
-        <span>📱</span>
         <span>Also available: the Printzen Android app for direct thermal printing</span>
         <span aria-hidden="true">→</span>
       </a>
 
       <!-- Quick Category Tabs (Filter Bar) -->
-      <div class="mt-8 flex flex-wrap gap-2 pt-4 border-t border-gray-100" id="filter-tabs">
-        <button class="filter-tab active bg-blue-600 text-white text-xs font-semibold px-4 py-2 rounded-xl transition" data-filter="all">All ({guides.length})</button>
-        <button class="filter-tab bg-white hover:bg-gray-100 text-gray-600 border border-gray-200 text-xs font-semibold px-4 py-2 rounded-xl transition" data-filter="esc-pos">ESC/POS & Receipts</button>
-        <button class="filter-tab bg-white hover:bg-gray-100 text-gray-600 border border-gray-200 text-xs font-semibold px-4 py-2 rounded-xl transition" data-filter="zpl">Zebra & ZPL</button>
-        <button class="filter-tab bg-white hover:bg-gray-100 text-gray-600 border border-gray-200 text-xs font-semibold px-4 py-2 rounded-xl transition" data-filter="bluetooth">Bluetooth & BLE</button>
-        <button class="filter-tab bg-white hover:bg-gray-100 text-gray-600 border border-gray-200 text-xs font-semibold px-4 py-2 rounded-xl transition" data-filter="usb">WebUSB & Wired</button>
-        <button class="filter-tab bg-white hover:bg-gray-100 text-gray-600 border border-gray-200 text-xs font-semibold px-4 py-2 rounded-xl transition" data-filter="silent">Silent Print</button>
-        <button class="filter-tab bg-white hover:bg-gray-100 text-gray-600 border border-gray-200 text-xs font-semibold px-4 py-2 rounded-xl transition" data-filter="ecommerce">E-Commerce & Shipping</button>
-        <button class="filter-tab bg-white hover:bg-gray-100 text-gray-600 border border-gray-200 text-xs font-semibold px-4 py-2 rounded-xl transition" data-filter="troubleshooting">Troubleshooting</button>
+      <div class="mt-8 flex flex-wrap gap-2 pt-4 border-t border-gray-200" id="filter-tabs">
+        <button class="filter-tab active bg-ink text-paper text-xs font-semibold px-4 py-2 rounded-md transition" data-filter="all">All ({guides.length})</button>
+        <button class="filter-tab bg-white hover:bg-gray-100 text-ink/70 border border-gray-300 text-xs font-semibold px-4 py-2 rounded-md transition" data-filter="esc-pos">ESC/POS & Receipts</button>
+        <button class="filter-tab bg-white hover:bg-gray-100 text-ink/70 border border-gray-300 text-xs font-semibold px-4 py-2 rounded-md transition" data-filter="zpl">Zebra & ZPL</button>
+        <button class="filter-tab bg-white hover:bg-gray-100 text-ink/70 border border-gray-300 text-xs font-semibold px-4 py-2 rounded-md transition" data-filter="bluetooth">Bluetooth & BLE</button>
+        <button class="filter-tab bg-white hover:bg-gray-100 text-ink/70 border border-gray-300 text-xs font-semibold px-4 py-2 rounded-md transition" data-filter="usb">WebUSB & Wired</button>
+        <button class="filter-tab bg-white hover:bg-gray-100 text-ink/70 border border-gray-300 text-xs font-semibold px-4 py-2 rounded-md transition" data-filter="silent">Silent Print</button>
+        <button class="filter-tab bg-white hover:bg-gray-100 text-ink/70 border border-gray-300 text-xs font-semibold px-4 py-2 rounded-md transition" data-filter="ecommerce">E-Commerce & Shipping</button>
+        <button class="filter-tab bg-white hover:bg-gray-100 text-ink/70 border border-gray-300 text-xs font-semibold px-4 py-2 rounded-md transition" data-filter="troubleshooting">Troubleshooting</button>
       </div>
 
       <!-- Inline Live Search Input -->
@@ -75,9 +74,9 @@ const HARDWARE_SHOWCASE = [
           type="text"
           id="inline-search-input"
           placeholder="Filter guides by topic, command language, or hardware model..."
-          class="w-full bg-white border border-gray-200 rounded-xl px-4 py-3 pl-11 text-sm text-gray-900 placeholder-gray-400 outline-none focus:border-blue-600 focus:ring-2 focus:ring-blue-100 transition shadow-2xs"
+          class="w-full bg-white border border-gray-300 rounded-md px-4 py-3 pl-11 text-sm text-ink placeholder-ink/40 outline-none focus:border-accent focus:ring-2 focus:ring-accent/10 transition"
         />
-        <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 text-gray-400 absolute left-3.5 top-3.5 pointer-events-none" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 text-ink/40 absolute left-3.5 top-3.5 pointer-events-none" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
           <circle cx="11" cy="11" r="8"></circle>
           <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
         </svg>
@@ -94,24 +93,24 @@ const HARDWARE_SHOWCASE = [
         return (
           <a
             href={`/guides/${slugClean}/`}
-            class="guide-card block bg-white rounded-2xl p-6 shadow-sm border border-gray-100 hover:border-blue-300 hover:shadow-md transition flex flex-col justify-between group"
+            class="guide-card block bg-white rounded-md p-6 border border-gray-200 hover:border-accent/50 transition flex flex-col justify-between group"
             data-search-text={textContent}
           >
             <div>
               <div class="flex items-center justify-between gap-2 mb-3">
-                <span class="inline-block text-[11px] font-bold uppercase tracking-wider text-blue-700 bg-blue-50 rounded-lg px-2.5 py-1">
+                <span class="font-mono text-[11px] font-medium uppercase tracking-wider text-accent">
                   {classLabels[guide.data.printerClass]}{guide.data.brand ? ` · ${guide.data.brand}` : ''}
                 </span>
-                <span class="text-xs text-gray-400 group-hover:text-blue-600 transition">Read →</span>
+                <span class="text-xs text-ink/40 group-hover:text-accent transition">Read →</span>
               </div>
-              <h2 class="text-base font-bold text-gray-900 mb-2 group-hover:text-blue-600 transition leading-snug">
+              <h2 class="text-base font-bold text-ink mb-2 group-hover:text-accent transition leading-snug">
                 {guide.data.title}
               </h2>
-              <p class="text-gray-500 text-xs line-clamp-3 leading-relaxed">
+              <p class="text-ink/60 text-xs line-clamp-3 leading-relaxed">
                 {guide.data.description}
               </p>
             </div>
-            <div class="mt-4 pt-3 border-t border-gray-50 flex items-center justify-between text-[11px] text-gray-400">
+            <div class="mt-4 pt-3 border-t border-gray-100 flex items-center justify-between text-[11px] font-mono text-ink/40">
               <span>{guide.data.translationKey.includes('hub') ? 'Topic Hub' : 'Technical Guide'}</span>
               <span>Printzen Docs</span>
             </div>
@@ -122,29 +121,28 @@ const HARDWARE_SHOWCASE = [
 
     <!-- Empty State -->
     <div id="no-filter-results" class="hidden text-center py-16">
-      <div class="text-4xl mb-2">🔍</div>
-      <p class="text-gray-600 font-semibold">No matching guide found for this query.</p>
-      <p class="text-xs text-gray-400 mt-1">Try another keyword or reset the category filter to "All".</p>
+      <p class="text-ink/70 font-semibold">No matching guide found for this query.</p>
+      <p class="text-xs text-ink/40 mt-1">Try another keyword or reset the category filter to "All".</p>
     </div>
 
     <!-- Device Compatibility Showcase -->
-    <section class="mt-20 pt-12 border-t border-gray-100">
+    <section class="mt-20 pt-12 border-t border-gray-200">
       <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-8">
         <div>
-          <span class="text-xs font-bold text-blue-600 uppercase tracking-wider">Hardware Compatibility</span>
-          <h2 class="text-2xl font-bold text-gray-900 mt-1">Supported Thermal Printer Models</h2>
-          <p class="text-gray-500 text-sm mt-1">Most widely used commercial models and their supported protocols.</p>
+          <span class="font-mono text-xs font-medium text-accent uppercase tracking-wider">Hardware Compatibility</span>
+          <h2 class="font-display text-2xl font-bold text-ink mt-1">Supported Thermal Printer Models</h2>
+          <p class="text-ink/60 text-sm mt-1">Most widely used commercial models and their supported protocols.</p>
         </div>
-        <a href="/printers/" class="text-sm font-semibold text-blue-600 hover:underline">
+        <a href="/printers/" class="text-sm font-semibold text-accent hover:underline">
           See Printers Tested with the Android App →
         </a>
       </div>
 
       <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
         {HARDWARE_SHOWCASE.map((brandGroup) => (
-          <div class="bg-white rounded-2xl p-5 border border-gray-100 shadow-2xs">
-            <h3 class="font-bold text-gray-900 text-base mb-3 flex items-center gap-2">
-              <span class="w-2 h-2 rounded-full bg-blue-600"></span>
+          <div class="bg-white rounded-md p-5 border border-gray-200">
+            <h3 class="font-display font-semibold text-ink text-base mb-3 flex items-center gap-2">
+              <span class="w-1.5 h-1.5 rounded-full bg-accent"></span>
               {brandGroup.brand}
             </h3>
             <ul class="space-y-1.5 text-xs">
@@ -152,10 +150,10 @@ const HARDWARE_SHOWCASE = [
                 <li>
                   <a
                     href="/printers/"
-                    class="text-gray-600 hover:text-blue-600 hover:underline transition flex items-center justify-between py-1"
+                    class="text-ink/60 hover:text-accent hover:underline transition flex items-center justify-between py-1"
                   >
                     <span>{brandGroup.brand} {model}</span>
-                    <span class="text-gray-300">›</span>
+                    <span class="text-ink/20">›</span>
                   </a>
                 </li>
               ))}
@@ -212,11 +210,11 @@ const HARDWARE_SHOWCASE = [
   filterTabs.forEach((tab) => {
     tab.addEventListener('click', () => {
       filterTabs.forEach((t) => {
-        t.classList.remove('active', 'bg-blue-600', 'text-white');
-        t.classList.add('bg-white', 'text-gray-600');
+        t.classList.remove('active', 'bg-ink', 'text-paper');
+        t.classList.add('bg-white', 'text-ink/70');
       });
-      tab.classList.add('active', 'bg-blue-600', 'text-white');
-      tab.classList.remove('bg-white', 'text-gray-600');
+      tab.classList.add('active', 'bg-ink', 'text-paper');
+      tab.classList.remove('bg-white', 'text-ink/70');
       activeFilter = tab.getAttribute('data-filter') || 'all';
       applyFilters();
     });
