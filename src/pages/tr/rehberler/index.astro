@@ -27,37 +27,16 @@ const HARDWARE_SHOWCASE = [
 ];
 ---
 <BaseLayout lang="tr" title="Termal Yazıcı Rehberleri & Bilgi Bankası — Printzen" description={`ESC/POS, ZPL, Bluetooth, USB ve ağ yazıcıları için ${guides.length} kapsamlı teknik geliştirici ve entegrasyon rehberi.`} alternatePath="/guides/">
-  <Nav wide lang="tr" alternatePath="/guides/">
+  <Nav wide lang="tr" alternatePath="/guides/" />
 
   <!-- Hero Header -->
   <header class="bg-linear-to-b from-blue-50/50 to-white py-12 border-b border-gray-100">
     <div class="max-w-6xl mx-auto px-4">
-      
-      <!-- Android App Promo Banner -->
-      <div class="mb-8 bg-blue-600 text-white rounded-2xl p-6 md:p-8 flex flex-col md:flex-row items-center justify-between gap-6 shadow-lg shadow-blue-500/10">
-        <div class="space-y-2 text-center md:text-left">
-          <div class="inline-flex items-center gap-2 bg-white/20 text-white text-xs font-semibold px-3 py-1 rounded-full uppercase tracking-wider">
-            <span>📱</span> Android Print Service
-          </div>
-          <h2 class="text-2xl md:text-3xl font-bold tracking-tight">Android Cihazından Tüm Bu Yazıcılara Anında Yazdırın</h2>
-          <p class="text-blue-100 text-sm md:text-base max-w-2xl">
-            Sürücü aramakla vakit kaybetmeyin. Printzen Mobile Print Service uygulaması ile Android sistem yazdırma diyaloğu üzerinden Bluetooth, Wi-Fi ve USB yazıcılara doğrudan bağlanın.
-          </p>
-        </div>
-        <a
-          href="https://play.google.com/store/apps/details?id=com.mobileprint.service"
-          target="_blank"
-          rel="noopener"
-          class="shrink-0 bg-white text-blue-700 hover:bg-blue-50 text-sm md:text-base font-bold px-6 py-3.5 rounded-xl shadow-md transition flex items-center gap-2"
-        >
-          <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" viewBox="0 0 24 24" fill="currentColor"><path d="M3 20.5v-17c0-.83 1.01-1.3 1.66-.78l15 8.5a1 1 0 010 1.56l-15 8.5C4.01 21.8 3 21.33 3 20.5z"/></svg>
-          Play Store'dan İndir
-        </a>
-      </div>
 
       <div class="flex flex-col md:flex-row md:items-end justify-between gap-4">
         <div>
-          <h1 class="text-3xl md:text-4xl font-black text-gray-900 tracking-tight">Termal Yazıcı Kütüphanesi & Rehberler</h1>
+          <span class="text-xs font-bold text-blue-600 uppercase tracking-wider">Termal Yazdırmanın Otoritesi</span>
+          <h1 class="text-3xl md:text-4xl font-black text-gray-900 tracking-tight mt-1">Termal Yazıcı Rehber Kütüphanesi</h1>
           <p class="text-gray-500 mt-2 text-base md:text-lg">
             Geliştiriciler, restoranlar ve depolar için {guides.length} teknik rehber ve 2.500 model spesifik dokümantasyon.
           </p>
@@ -66,6 +45,18 @@ const HARDWARE_SHOWCASE = [
           📚 Toplam {guides.length} Uzman Rehber + 2.500 Model Kılavuzu
         </div>
       </div>
+
+      <!-- Kompakt Android uygulaması notu — ikincil bir ürün, sayfanın öncüsü değil -->
+      <a
+        href="https://play.google.com/store/apps/details?id=com.mobileprint.service"
+        target="_blank"
+        rel="noopener"
+        class="mt-6 inline-flex items-center gap-2 bg-white border border-gray-200 hover:border-blue-300 text-sm text-gray-600 hover:text-blue-600 px-4 py-2 rounded-xl transition"
+      >
+        <span>📱</span>
+        <span>Ayrıca mevcut: doğrudan termal yazdırma için Printzen Android uygulaması</span>
+        <span aria-hidden="true">→</span>
+      </a>
 
       <!-- Quick Category Tabs (Filter Bar) -->
       <div class="mt-8 flex flex-wrap gap-2 pt-4 border-t border-gray-100" id="filter-tabs">
@@ -146,7 +137,7 @@ const HARDWARE_SHOWCASE = [
           <p class="text-gray-500 text-sm mt-1">Sektörde en çok tercih edilen popüler modeller ve protokol uyumlulukları.</p>
         </div>
         <a href="/tr/yazicilar/" class="text-sm font-semibold text-blue-600 hover:underline">
-          Yazıcı Uyumluluk Listesini İncele →
+          Android Uygulamasıyla Test Edilen Yazıcıları Gör →
         </a>
       </div>
 

@@ -20,12 +20,13 @@ const connectionLabels: Record<string, string> = {
   ethernet: 'Ethernet',
 };
 ---
-<BaseLayout lang="en" title="Printer Compatibility Database — Printzen" description="Compatibility list for mobile, desktop, and industrial thermal printers by brand, connection type, and command language." alternatePath="/tr/yazicilar/">
+<BaseLayout lang="en" title="Supported Printers — Printzen Android App" description="Printers tested and supported by the Printzen Mobile Print Service Android app, by class, connection type, and command language." alternatePath="/tr/yazicilar/">
   <Nav wide lang="en" alternatePath="/tr/yazicilar/" />
 
   <main class="max-w-5xl mx-auto px-4 py-16">
-    <h1 class="text-3xl font-bold mb-2">Printer Compatibility Database</h1>
-    <p class="text-gray-500 mb-10">Thermal and thermal transfer printers — by class, connection type, and command language.</p>
+    <span class="text-xs font-bold text-blue-600 uppercase tracking-wider">Android App — Mobile Print Service</span>
+    <h1 class="text-3xl font-bold mb-2 mt-1">Supported Printers</h1>
+    <p class="text-gray-500 mb-10">Printers tested with the Printzen Android app — thermal and thermal transfer models, by class, connection type, and command language.</p>
 
     <div class="overflow-x-auto">
       <table class="w-full text-sm border-collapse">
@@ -36,7 +37,7 @@ const connectionLabels: Record<string, string> = {
             <th class="py-3 pr-4">Connection</th>
             <th class="py-3 pr-4">Command Language</th>
             <th class="py-3 pr-4">Print Type</th>
-            <th class="py-3">Mobile Print Service</th>
+            <th class="py-3">App Support</th>
           </tr>
         </thead>
         <tbody>
