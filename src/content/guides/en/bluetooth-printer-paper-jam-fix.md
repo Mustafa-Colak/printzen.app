@@ -1,10 +1,10 @@
 ---
 title: "Fix Bluetooth Thermal Printer Paper Jams & Stuck Rollers: Complete Guide"
 description: "Resolve paper jams and stuck rollers in Bluetooth thermal printers with step-by-step troubleshooting, cleaning tips, and firmware updates for printzen.app devices."
-publishDate: "2026-09-18"
-updatedDate: "2026-09-18"
-translationKey: "bluetooth-printer-paper-jam-fix"
-draft: false
+printerClass: mobile
+brand: Generic
+publishDate: 2026-09-18
+translationKey: bluetooth-printer-paper-jam-fix
 ---
 
 # Fix Bluetooth Thermal Printer Paper Jams & Stuck Rollers: Complete Guide
