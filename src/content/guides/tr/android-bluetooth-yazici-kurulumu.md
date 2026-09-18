@@ -36,3 +36,7 @@ Artık Chrome'da bir sayfayı, Google Dosyalar'da bir belgeyi veya herhangi bir 
 ### Android cihazınızda Bluetooth yazıcıyı nasıl kurarım?
 
 Android cihazınızda Bluetooth termal yazıcıyı kurmak için öncelikle cihazı Bluetooth üzerinden eşleştirin (Ayarlar → Bağlı Cihazlar). Yazdırma servisi uygulamasını yükleyip yazıcınızı eklediğinizde, sistem otomatik olarak protokolü algılayacaktır. Yazıcı görünmüyorsa, Bluetooth eşleştirmesinin tamamlandığını ve yazdırma servisinin etkin olduğundan emin olun.
+
+### Android Bluetooth eşleştirmede PIN kodu veya şifre isterse ne yapmalıyım?
+
+Eşleştirme esnasında şifre (PIN) sorulduğunda en yaygın fabrika varsayılan kodlarını deneyin: `0000`, `1234`, `1111` veya `8888`. Çoğu termal yazıcıda cihaz kapalıyken besleme (FEED) tuşuna basılı tutup açarak bir self-test (öz denetim) fişi yazdırabilirsiniz; fabrika varsayılan PIN kodu genellikle bu fişin en altında açıkça belirtilir.

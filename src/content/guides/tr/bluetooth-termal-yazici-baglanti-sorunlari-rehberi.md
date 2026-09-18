@@ -1,4 +1,5 @@
 ---
+updatedDate: 2026-09-18
 title: "Bluetooth Termal Yazıcı Bağlantı ve İletişim Sorunları Rehberi: Android, iOS ve Windows Sorun Giderme"
 description: "Bluetooth termal yazıcı eşleşiyor ama yazdırmıyor mu? PIN kodu hataları (0000/1234), Android 12+ izinleri, iOS MFi kısıtları ve uyku modu kopmalarının kesin çözümü."
 printerClass: mobile
@@ -142,3 +143,6 @@ Bu rehberdeki eşleştirme, izin ve uyku modu çözümleri, Bluetooth destekleye
 ### Printzen mobil uygulaması Bluetooth bağlantı kopmalarını nasıl önlüyor?
 **Printzen Mobil Yazdırma Servisi akıllı bir "Otomatik Yeniden Bağlanma ve Kuyruklama" (Auto-Reconnect & Retry Queue) mekanizmasına sahiptir.** Yazıcı uykuya geçtiğinde veya operatör kapsama alanı dışına çıktığında yazdırma işleri kaybolmaz; yazıcı tekrar kapsama alanına girdiği anda arka planda otomatik olarak bağlanır ve bekleyen tüm fişleri basar.
 
+### Bluetooth termal yazıcıyı cihazıma nasıl bağlarım?
+
+Bluetooth termal yazıcıyı bağlamak için öncelikle yazıcının açık ve eşleşme modunda (genelde yanıp sönen mavi/yeşil LED) olduğundan emin olun. Android veya iOS cihazınızın Bluetooth ayarlarını açıp kullanılabilir cihazları tarayın. Yazıcınızı seçip istendiğinde varsayılan PIN kodunu (0000 veya 1234) girin. iOS kullanıyorsanız yazıcının Apple MFi lisansına sahip olduğunu veya uygulamanızın BLE (Bluetooth Low Energy) üzerinden doğrudan bağlandığını doğrulayın. Eşleşme tamamlandıktan sonra POS uygulamanızı açıp cihaz listesinden yazıcıyı seçin.

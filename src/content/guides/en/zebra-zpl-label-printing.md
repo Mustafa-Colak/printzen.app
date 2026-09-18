@@ -211,8 +211,6 @@ In high-velocity fulfillment centres printing thousands of labels per hour, payl
 ### How do I handle international and special characters in ZPL?
 **By default, ZPL's internal scalable font uses standard 7-bit ASCII and will corrupt accented characters.** You can enable complete UTF-8 character encoding by declaring `^CI28` at the beginning of the label format immediately following `^XA`, or by uploading custom TrueType/OpenType font files (`.TTF`) to the printer's E: flash memory via `~DU`.
 
-## Frequently Asked Questions (FAQ)
-
 ### What is ZPL and how does it differ from EPL?
 
 ZPL II (Zebra Programming Language) is a high-level command set used to program Zebra thermal printers, enabling precise control over label formatting, barcodes, and text. It operates by sending ASCII-based commands directly to the printer's processor, optimizing speed and reducing network load. EPL (Eltron Programming Language), an older Zebra language, uses a different syntax and is less efficient for complex labels. ZPL II supports advanced features like 2D barcodes, variable data printing, and TCP/IP communication, making it the preferred choice for modern industrial applications.

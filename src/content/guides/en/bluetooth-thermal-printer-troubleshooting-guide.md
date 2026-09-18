@@ -104,10 +104,8 @@ On Windows PCs, paired Bluetooth Classic printers communicate through emulated v
 ### How does Printzen mitigate mobile Bluetooth disconnects?
 **The Printzen mobile background service maintains an automated reconnection and offline spooling engine.** When a field operator steps out of Bluetooth range or the printer enters sleep mode, print jobs are preserved in an encrypted local queue and flushed instantly upon link restoration.
 
-## Device-Specific Guides for This Topic
-
-## Frequently Asked Questions (FAQ)
-
 ### How do I connect a Bluetooth thermal printer to my device?
 
 To connect a Bluetooth thermal printer, first ensure it's powered on and in pairing mode (usually indicated by blinking LEDs). On Android/iOS, go to Bluetooth settings and search for available devices. Select your printer’s name, then enter the default PIN (0000 or 1234) when prompted. For iOS devices, verify the printer has Apple MFi certification; non-certified BLE printers may work but Classic Bluetooth models will fail. After pairing, open your POS app and select the printer from its device list. If using BLE, some apps require direct connection via the app rather than OS-level pairing.
+
+## Device-Specific Guides for This Topic
