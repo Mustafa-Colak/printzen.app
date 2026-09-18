@@ -63,7 +63,7 @@ c:\edev\printzen.app\
   - `activate.astro` lisans sayfasına `noindex, nofollow` eklendi.
   - `woo-multi-sync.astro` sayfasına canonical etiketi eklendi.
   - Canlı Cloudflare Worker üzerinde doğrulandı (HTTP 200, slash'lı linkler, noindex).
-- [ ] **GSC Doğrulaması:** Kullanıcının Search Console panelinden 'Düzeltmeyi Doğrula' butonuna basması.
+- [x] **GSC Doğrulaması:** Kullanıcı Search Console panelinden 'Düzeltmeyi Doğrula' butonuna bastı (Google tarama ve doğrulama döngüsü başlatıldı).
 - [ ] **WooCommerce Çoklu Mağaza Senkronizasyon Sayfası (woo-multi-sync):** TR versiyonu ve i18n altyapısı.
 
 ---
