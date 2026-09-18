@@ -12,6 +12,10 @@
 
 /sitemap.xml   /sitemap-index.xml 301
 
+# Eski/dış kırık linkler ve 404 kurtarma yönlendirmeleri
+/blog/bluetooth-thermal-printer  /guides/bluetooth-thermal-printer-troubleshooting-guide/  301
+/blog/bluetooth-thermal-printer/ /guides/bluetooth-thermal-printer-troubleshooting-guide/  301
+
 # Kanibalizasyon konsolidasyonu: içeriği tamamen ana rehbere taşınan uydu makaleler
 /tr/rehberler/termal-yazicilarda-cp857-kod-sayfasi-tablosu/             /tr/rehberler/termal-yazici-turkce-karakter-sorunu-cozumu/ 301
 /tr/rehberler/termal-yazicilarda-cp857-kod-sayfasi-tablosu              /tr/rehberler/termal-yazici-turkce-karakter-sorunu-cozumu/ 301
