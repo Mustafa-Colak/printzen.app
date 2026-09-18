@@ -1,4 +1,5 @@
 ---
+updatedDate: 2026-09-18
 title: "Bluetooth Thermal Printer Troubleshooting: Android, iOS, and Windows Connection Guide"
 description: "Printer paired but won't print? Fix PIN pairing errors (0000/1234), Android 12+ nearby device permissions, iOS MFi restrictions, and sleep mode disconnects."
 printerClass: mobile
@@ -105,4 +106,8 @@ On Windows PCs, paired Bluetooth Classic printers communicate through emulated v
 
 ## Device-Specific Guides for This Topic
 
+## Frequently Asked Questions (FAQ)
 
+### How do I connect a Bluetooth thermal printer to my device?
+
+To connect a Bluetooth thermal printer, first ensure it's powered on and in pairing mode (usually indicated by blinking LEDs). On Android/iOS, go to Bluetooth settings and search for available devices. Select your printer’s name, then enter the default PIN (0000 or 1234) when prompted. For iOS devices, verify the printer has Apple MFi certification; non-certified BLE printers may work but Classic Bluetooth models will fail. After pairing, open your POS app and select the printer from its device list. If using BLE, some apps require direct connection via the app rather than OS-level pairing.

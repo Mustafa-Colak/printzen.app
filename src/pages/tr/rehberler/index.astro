@@ -94,7 +94,7 @@ const HARDWARE_SHOWCASE = [
         const textContent = `${guide.data.title} ${guide.data.description} ${guide.data.brand || ''} ${slugClean}`.toLowerCase();
         return (
           <a
-            href={`/tr/rehberler/${slugClean}`}
+            href={`/tr/rehberler/${slugClean}/`}
             class="guide-card block bg-white rounded-2xl p-6 shadow-sm border border-gray-100 hover:border-blue-300 hover:shadow-md transition flex flex-col justify-between group"
             data-search-text={textContent}
           >
@@ -136,7 +136,7 @@ const HARDWARE_SHOWCASE = [
           <h2 class="text-2xl font-bold text-gray-900 mt-1">Desteklenen Termal Yazıcı Modelleri</h2>
           <p class="text-gray-500 text-sm mt-1">Sektörde en çok tercih edilen popüler modeller ve protokol uyumlulukları.</p>
         </div>
-        <a href="/tr/yazicilar" class="text-sm font-semibold text-blue-600 hover:underline">
+        <a href="/tr/yazicilar/" class="text-sm font-semibold text-blue-600 hover:underline">
           Android Uygulamasıyla Test Edilen Yazıcıları Gör →
         </a>
       </div>
@@ -154,7 +154,7 @@ const HARDWARE_SHOWCASE = [
                 return (
                   <li>
                     <a
-                      href="/tr/yazicilar"
+                      href="/tr/yazicilar/"
                       class="text-gray-600 hover:text-blue-600 hover:underline transition flex items-center justify-between py-1"
                     >
                       <span>{brandGroup.brand} {model}</span>

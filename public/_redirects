@@ -4,19 +4,25 @@
 # dosyası varsa onu otomatik serve eder (clean URL davranışı varsayılan).
 
 /download  https://github.com/Mustafa-Colak/mobile-print-service-android/releases/latest/download/MobilePrintService-v2.3.4.apk  302
-/terms.html    /terms    301
-/privacy.html  /privacy  301
-/refund.html   /refund   301
-/activate.html /activate 301
-/index.html    /         301
+/terms.html    /terms/    301
+/privacy.html  /privacy/  301
+/refund.html   /refund/   301
+/activate.html /activate/ 301
+/index.html    /          301
 
 /sitemap.xml   /sitemap-index.xml 301
 
 # Kanibalizasyon konsolidasyonu: içeriği tamamen ana rehbere taşınan uydu makaleler
-/tr/rehberler/termal-yazicilarda-cp857-kod-sayfasi-tablosu             /tr/rehberler/termal-yazici-turkce-karakter-sorunu-cozumu 301
-/tr/rehberler/windows-1254-esc-pos-turkce-karakter-esleme              /tr/rehberler/termal-yazici-turkce-karakter-sorunu-cozumu 301
-/tr/rehberler/termal-yazici-utf8-desteklemiyorsa-karakter-temizleme    /tr/rehberler/termal-yazici-turkce-karakter-sorunu-cozumu 301
-/tr/rehberler/fiste-cikan-soru-isareti-ve-garip-sembolleri-duzeltme    /tr/rehberler/termal-yazici-turkce-karakter-sorunu-cozumu 301
-/tr/rehberler/a4-kargo-pdf-100x150mm-termal-etiket-donusturme          /tr/rehberler/pazaryeri-kargo-etiketi-yazdirma-trendyol-hepsiburada-amazon 301
-/tr/rehberler/react-vue-termal-yazici-entegrasyon-kancalari-hooks      /tr/rehberler/react-nextjs-vue-icin-usethermalprinter-kancasi 301
+/tr/rehberler/termal-yazicilarda-cp857-kod-sayfasi-tablosu/             /tr/rehberler/termal-yazici-turkce-karakter-sorunu-cozumu/ 301
+/tr/rehberler/termal-yazicilarda-cp857-kod-sayfasi-tablosu              /tr/rehberler/termal-yazici-turkce-karakter-sorunu-cozumu/ 301
+/tr/rehberler/windows-1254-esc-pos-turkce-karakter-esleme/              /tr/rehberler/termal-yazici-turkce-karakter-sorunu-cozumu/ 301
+/tr/rehberler/windows-1254-esc-pos-turkce-karakter-esleme               /tr/rehberler/termal-yazici-turkce-karakter-sorunu-cozumu/ 301
+/tr/rehberler/termal-yazici-utf8-desteklemiyorsa-karakter-temizleme/    /tr/rehberler/termal-yazici-turkce-karakter-sorunu-cozumu/ 301
+/tr/rehberler/termal-yazici-utf8-desteklemiyorsa-karakter-temizleme     /tr/rehberler/termal-yazici-turkce-karakter-sorunu-cozumu/ 301
+/tr/rehberler/fiste-cikan-soru-isareti-ve-garip-sembolleri-duzeltme/    /tr/rehberler/termal-yazici-turkce-karakter-sorunu-cozumu/ 301
+/tr/rehberler/fiste-cikan-soru-isareti-ve-garip-sembolleri-duzeltme     /tr/rehberler/termal-yazici-turkce-karakter-sorunu-cozumu/ 301
+/tr/rehberler/a4-kargo-pdf-100x150mm-termal-etiket-donusturme/          /tr/rehberler/pazaryeri-kargo-etiketi-yazdirma-trendyol-hepsiburada-amazon/ 301
+/tr/rehberler/a4-kargo-pdf-100x150mm-termal-etiket-donusturme           /tr/rehberler/pazaryeri-kargo-etiketi-yazdirma-trendyol-hepsiburada-amazon/ 301
+/tr/rehberler/react-vue-termal-yazici-entegrasyon-kancalari-hooks/      /tr/rehberler/react-nextjs-vue-icin-usethermalprinter-kancasi/ 301
+/tr/rehberler/react-vue-termal-yazici-entegrasyon-kancalari-hooks       /tr/rehberler/react-nextjs-vue-icin-usethermalprinter-kancasi/ 301
 
