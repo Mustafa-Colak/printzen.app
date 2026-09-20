@@ -21,7 +21,7 @@ const { Content } = await guide.render();
 
 const trGuide = (await getCollection('guides', (entry) => entry.slug.startsWith('tr/')))
   .find((entry) => entry.data.translationKey === guide.data.translationKey);
-const alternatePath = trGuide ? `/tr/rehberler/${trGuide.slug.replace(/^tr\//, '')}/` : '/tr/rehberler/';
+const alternatePath = trGuide ? `/tr/rehberler/${trGuide.slug.replace(/^tr\//, '')}/` : null;
 
 const classLabels: Record<string, string> = {
   mobile: 'Mobile',

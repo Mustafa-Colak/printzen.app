@@ -21,7 +21,7 @@ const { Content } = await guide.render();
 
 const enGuide = (await getCollection('guides', (entry) => entry.slug.startsWith('en/')))
   .find((entry) => entry.data.translationKey === guide.data.translationKey);
-const alternatePath = enGuide ? `/guides/${enGuide.slug.replace(/^en\//, '')}/` : '/guides/';
+const alternatePath = enGuide ? `/guides/${enGuide.slug.replace(/^en\//, '')}/` : null;
 
 const classLabels: Record<string, string> = {
   mobile: 'Mobil',

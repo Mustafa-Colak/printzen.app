@@ -10,7 +10,7 @@
 /activate.html /activate/ 301
 /index.html    /          301
 
-/sitemap.xml   /sitemap-index.xml 301
+/sitemap.xml   /sitemap-index.xml 200
 
 # Eski/dış kırık linkler ve 404 kurtarma yönlendirmeleri
 /blog/bluetooth-thermal-printer  /guides/bluetooth-thermal-printer-troubleshooting-guide/  301

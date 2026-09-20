@@ -5,15 +5,24 @@ interface Props {
   title: string;
   description?: string;
   lang: Locale;
-  /** Override the auto-computed alternate-locale URL — needed when the two locales use different slugs (e.g. translated guide URLs). */
-  alternatePath?: string;
+  /** Override the auto-computed alternate-locale URL. Pass null if no alternate translation exists. */
+  alternatePath?: string | null;
   noindex?: boolean;
 }
 const { title, description, lang, alternatePath: alternatePathProp, noindex = false } = Astro.props;
 const pathnameWithSlash = Astro.url.pathname.endsWith('/') ? Astro.url.pathname : `${Astro.url.pathname}/`;
 const canonicalURL = new URL(pathnameWithSlash, Astro.site);
-const alternatePath = alternatePathProp ?? getAlternatePath(Astro.url.pathname, lang);
-const alternateURL = new URL(alternatePath, Astro.site);
+
+let alternateURL: URL | null = null;
+if (alternatePathProp === null) {
+  alternateURL = null;
+} else if (alternatePathProp !== undefined) {
+  alternateURL = new URL(alternatePathProp, Astro.site);
+} else {
+  const autoPath = getAlternatePath(Astro.url.pathname, lang);
+  alternateURL = autoPath ? new URL(autoPath, Astro.site) : null;
+}
+
 const enURL = lang === 'en' ? canonicalURL : alternateURL;
 const trURL = lang === 'tr' ? canonicalURL : alternateURL;
 
@@ -34,9 +43,13 @@ const organizationSchema = {
   {noindex && <meta name="robots" content="noindex, nofollow">}
   {description && <meta name="description" content={description}>}
   <link rel="canonical" href={canonicalURL}>
-  <link rel="alternate" hreflang="en" href={enURL}>
-  <link rel="alternate" hreflang="tr" href={trURL}>
-  <link rel="alternate" hreflang="x-default" href={enURL}>
+  {enURL && trURL && (
+    <>
+      <link rel="alternate" hreflang="en" href={enURL}>
+      <link rel="alternate" hreflang="tr" href={trURL}>
+      <link rel="alternate" hreflang="x-default" href={enURL}>
+    </>
+  )}
   <link rel="icon" type="image/svg+xml" href="/favicon.svg">
   <link rel="alternate icon" href="/favicon.ico">
 
