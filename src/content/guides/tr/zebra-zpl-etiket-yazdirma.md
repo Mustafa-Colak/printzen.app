@@ -1,5 +1,5 @@
 ---
-updatedDate: 2026-09-18
+updatedDate: 2026-09-24
 title: "Zebra ZPL Programlama ve Etiket Tasarım Rehberi (ZPL II Kılavuzu)"
 description: "ZPL komut diliyle barkod, QR kod, logo ve metin tasarımı. 203 vs 300 DPI koordinat hesaplama, 100x150 mm kargo şablonu ve ham soket yazdırma mimarisi."
 printerClass: industrial
@@ -201,6 +201,12 @@ Büyük depolarda dakikada yüzlerce etiket basılırken ZPL şablonlarının pe
 ### ZPL nedir ve EPL'den farkı nasıldır?
 
 ZPL II (Zebra Programming Language), Zebra termal barkod yazıcılarını programlamak için geliştirilmiş yüksek seviyeli bir komut dilidir. ASCII tabanlı doğrudan yazıcı işlemcisine komut göndererek etiket mizanpajı, barkodlar ve metinler üzerinde piksel hassasiyetinde kontrol sağlar. EPL (Eltron Programming Language) ise eski nesil Zebra ve Eltron yazıcıların kullandığı daha basit ancak karmaşık etiketler için yetersiz bir dildir. ZPL II; 2D karekodlar (QR, DataMatrix), değişken veri baskısı ve doğrudan TCP/IP soket iletişimini desteklediği için modern endüstriyel lojistikte standart olarak kabul edilir.
+
+### ZPL dosyası nedir ve ZPL komutları nasıl çalıştırılır?
+
+Bir ZPL dosyası, Zebra termal yazıcılar için biçimlendirilmiş ASCII tabanlı yazıcı komutlarını içeren bir düz metin belgesidir. Etiketlerin, barkodların veya metnin basılmasını talimatlayan ^XA (biçim başlangıcı) ve ^XZ (biçim sonu) gibi diziler içerir. Yazıcının dahili işlemcisi, bu komutları satır satır analiz ederek etiket malzemesi üzerinde hassas nokta desenlerine dönüştürür.
+
+'Komutla ZPL' çalıştırıldığında, yazıcı her talimatı sırayla işler: önce etiket boyutlarını ayarlayan (^PW, ^LL), sonra ^FO (alan başlangıcı) ile öğeleri konumlandırır ve son olarak verileri basmak için (^FD) gönderir. Bu komut odaklı yaklaşım, raster grafiklere dayanmadan belirli çıktıları sağlar.
 
 ## Desteklenen Cihazlar
 

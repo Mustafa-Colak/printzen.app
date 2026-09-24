@@ -1,5 +1,5 @@
 ---
-updatedDate: 2026-09-18
+updatedDate: 2026-09-24
 title: "Zebra ZPL II Programming and Label Design Guide"
 description: "Design barcodes, QR codes, logos, and typography with ZPL II. Master 203 vs 300 DPI dot mathematics, 4x6 shipping label templates, and raw socket printing."
 printerClass: industrial
@@ -214,6 +214,12 @@ In high-velocity fulfillment centres printing thousands of labels per hour, payl
 ### What is ZPL and how does it differ from EPL?
 
 ZPL II (Zebra Programming Language) is a high-level command set used to program Zebra thermal printers, enabling precise control over label formatting, barcodes, and text. It operates by sending ASCII-based commands directly to the printer's processor, optimizing speed and reducing network load. EPL (Eltron Programming Language), an older Zebra language, uses a different syntax and is less efficient for complex labels. ZPL II supports advanced features like 2D barcodes, variable data printing, and TCP/IP communication, making it the preferred choice for modern industrial applications.
+
+### What is a ZPL file and how does ZPL execute commands?
+
+A ZPL file is a plain text document containing ASCII-based printer commands formatted for Zebra thermal printers. It contains sequences like ^XA (format start) and ^XZ (format end) that instruct the printer to render labels, barcodes, or text. The printer's onboard processor parses these commands line-by-line, converting them into precise dot patterns on the label stock.
+
+When executing 'ZPL by command', the printer processes each instruction in order: first setting label dimensions (^PW, ^LL), then positioning elements with ^FO (field origin), and finally sending data to print (^FD). This command-driven approach allows for deterministic output without relying on raster graphics.
 
 ## Supported Devices
 
