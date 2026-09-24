@@ -44,3 +44,7 @@ Eşleştirme esnasında şifre (PIN) sorulduğunda en yaygın fabrika varsayıla
 ### Bir termal yazıcıyı Android cihazıma nasıl bağlayabilirim?
 
 Termal yazıcınızı Android cihazınıza bağlamak için: (1) Bluetooth üzerinden eşleştirme yapın ve varsayılan PIN'ler gibi `0000` veya `1234` kullanın. (2) Ayarlar → Yazdırma'dan bir yazdırma hizmeti uygulaması yükleyin ve etkinleştirin. (3) Yazdırma hizmeti uygulamasını açın, eşleşmiş yazıcınızı seçin ve protokol tespitini onaylayın. (4) Herhangi bir uygulamada sistem yazdırma diyalogunu kullanarak içeriği doğrudan yazıcıya gönderin. Kurulum sırasında Bluetooth'un etkin olduğundan ve yazıcının erişim范围内 olduğundan emin olun.
+
+### Bir Bluetooth yazıcıyı Android cihazınıza nasıl bağlayabilirim?
+
+Bir Bluetooth yazıcıyı Android cihazınıza bağlamak için: (1) Varsayılan PIN kodları gibi '0000' veya '1234' kullanarak Bluetooth üzerinden eşleştirin. (2) Bir yazdırma hizmeti uygulaması (örneğin, Mobile Print Service) yükleyin ve etkinleştirin. (3) Yazdırma hizmeti uygulaması üzerinden eşleşmiş yazıcıyı ekleyin. Çoğu modern yazıcı standart Bluetooth protokollerini kullanır, ancak yazdırma hizmetinizin cihazınızın komut dili (ESC/POS, ZPL vb.)'ni desteklediğinden emin olun. Termal olmayan yazıcılar için üretici belgelerini inceleyerek özel kurulum gereksinimlerini kontrol edin.
