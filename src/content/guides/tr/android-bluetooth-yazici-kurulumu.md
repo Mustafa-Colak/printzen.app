@@ -15,7 +15,7 @@ Yazıcıyı açın ve Android'in Bluetooth ayarlarından (Ayarlar → Bağlı ci
 
 ## 2. Yazdırma servisini kurun
 
-Bir Print Service uygulaması (örneğin Mobile Print Service), Android'e "bu cihazlara yazdırabilirim" bilgisini veren köprüdür. Uygulamayı kurduktan sonra Ayarlar → Yazdırma bölümünden servisin etkin olduğunu doğrulayın.
+Yazdırma servisi uygulaması, Android'e "bu cihazlara yazdırabilirim" bilgisini veren köprüdür. **[Mobile Print Service](https://play.google.com/store/apps/details?id=com.mobileprint.service)** uygulamamızı tam da bu iş için geliştirdik: Bluetooth, Wi-Fi veya USB bağlantılı her termal yazıcıyı Android'in sistem yazdırma penceresine ekler; böylece Chrome, Google Dokümanlar ve mağaza uygulamalarınızdan doğrudan fiş ve etiket basabilirsiniz. Zebra, Honeywell, TSC, Seiko, Bixolon, Sewoo, Rongta ve ESC/POS destekleyen tüm yazıcılarla çalışır. Uygulamayı kurduktan sonra Ayarlar → Yazdırma bölümünden servisin etkin olduğunu doğrulayın.
 
 ## 3. Yazıcıyı ekleyin
 
@@ -31,6 +31,10 @@ Artık Chrome'da bir sayfayı, Google Dosyalar'da bir belgeyi veya herhangi bir 
 - **Baskı alınıyor ama bozuk çıkıyor** — yazıcının komut dilinin (ESC/POS, SII SDK vb.) yazdırma servisi tarafından desteklendiğinden emin olun; desteklenmeyen bir komut dili karakter/barkod bozulmalarına yol açabilir.
 - **Bağlantı sık kopuyor** — Bluetooth menzili ve pil tasarrufu modlarının bağlantıyı kesmediğinden emin olun.
 
+> **Android için Mobile Print Service**
+> Herhangi bir Android uygulamasından termal yazıcınıza Bluetooth, Wi-Fi veya USB ile yazdırın. Tek seferlik ödeme, abonelik yok.
+> [Google Play'den indirin →](https://play.google.com/store/apps/details?id=com.mobileprint.service)
+
 ## Sıkça Sorulan Sorular (SSS)
 
 ### Android cihazınızda Bluetooth yazıcıyı nasıl kurarım?
@@ -43,4 +47,4 @@ Eşleştirme esnasında şifre (PIN) sorulduğunda en yaygın fabrika varsayıla
 
 ### Bir termal yazıcıyı Android cihazıma nasıl bağlayabilirim?
 
-Termal yazıcınızı Android cihazınıza bağlamak için: (1) Bluetooth üzerinden eşleştirme yapın ve varsayılan PIN'ler gibi `0000` veya `1234` kullanın. (2) Ayarlar → Yazdırma'dan bir yazdırma hizmeti uygulaması yükleyin ve etkinleştirin. (3) Yazdırma hizmeti uygulamasını açın, eşleşmiş yazıcınızı seçin ve protokol tespitini onaylayın. (4) Herhangi bir uygulamada sistem yazdırma diyalogunu kullanarak içeriği doğrudan yazıcıya gönderin. Kurulum sırasında Bluetooth'un etkin olduğundan ve yazıcının erişim范围内 olduğundan emin olun.
+Termal yazıcınızı Android cihazınıza bağlamak için: (1) Bluetooth üzerinden eşleştirme yapın; `0000` veya `1234` gibi varsayılan PIN'leri deneyin. (2) Ayarlar → Yazdırma'dan bir yazdırma hizmeti uygulaması yükleyin ve etkinleştirin. (3) Yazdırma hizmeti uygulamasını açın, eşleşmiş yazıcınızı seçin ve protokol tespitini onaylayın. (4) Herhangi bir uygulamada sistem yazdırma diyalogunu kullanarak içeriği doğrudan yazıcıya gönderin. Kurulum sırasında Bluetooth'un etkin olduğundan ve yazıcının kapsama alanında olduğundan emin olun.

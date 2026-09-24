@@ -15,7 +15,7 @@ Turn on the printer and pair it from Android's Bluetooth settings (Settings → 
 
 ## 2. Install a print service
 
-A print service app (such as Mobile Print Service) is the bridge that tells Android "I can print to these devices." After installing it, confirm it's enabled under Settings → Printing.
+A print service app is the bridge that tells Android "I can print to these devices." We built **[Mobile Print Service](https://play.google.com/store/apps/details?id=com.mobileprint.service)** for exactly this: it adds any Bluetooth, Wi-Fi or USB thermal printer to Android's system print dialog, so Chrome, Google Docs and your store apps can print receipts and labels directly. It works with Zebra, Honeywell, TSC, Seiko, Bixolon, Sewoo, Rongta and any generic ESC/POS printer. After installing it, confirm it's enabled under Settings → Printing.
 
 ## 3. Add the printer
 
@@ -30,6 +30,10 @@ Open the system print dialog from Chrome, Google Docs, or any app's share/print 
 - **Printer doesn't show up** — make sure Bluetooth pairing completed and the print service is enabled in Settings.
 - **Prints but output is garbled** — confirm the printer's command language (ESC/POS, SII SDK, etc.) is supported by the print service; an unsupported command language can corrupt text or barcodes.
 - **Connection keeps dropping** — check Bluetooth range and make sure battery-saving modes aren't killing the connection.
+
+> **Mobile Print Service for Android**
+> Print from any Android app to your thermal printer over Bluetooth, Wi-Fi or USB. One-time purchase, no subscription.
+> [Get it on Google Play →](https://play.google.com/store/apps/details?id=com.mobileprint.service)
 
 ## Frequently Asked Questions (FAQ)
 
