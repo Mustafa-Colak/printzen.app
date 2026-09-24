@@ -1,5 +1,5 @@
 ---
-updatedDate: 2026-09-18
+updatedDate: 2026-09-24
 title: "Android'de Bluetooth Termal Yazıcı Kurulumu"
 description: "Android telefon veya tabletinizi Bluetooth termal yazıcıya bağlayıp sistem yazdırma menüsünden fiş veya etiket basmayı öğrenin."
 printerClass: mobile
@@ -40,3 +40,7 @@ Android cihazınızda Bluetooth termal yazıcıyı kurmak için öncelikle cihaz
 ### Android Bluetooth eşleştirmede PIN kodu veya şifre isterse ne yapmalıyım?
 
 Eşleştirme esnasında şifre (PIN) sorulduğunda en yaygın fabrika varsayılan kodlarını deneyin: `0000`, `1234`, `1111` veya `8888`. Çoğu termal yazıcıda cihaz kapalıyken besleme (FEED) tuşuna basılı tutup açarak bir self-test (öz denetim) fişi yazdırabilirsiniz; fabrika varsayılan PIN kodu genellikle bu fişin en altında açıkça belirtilir.
+
+### Bir termal yazıcıyı Android cihazıma nasıl bağlayabilirim?
+
+Termal yazıcınızı Android cihazınıza bağlamak için: (1) Bluetooth üzerinden eşleştirme yapın ve varsayılan PIN'ler gibi `0000` veya `1234` kullanın. (2) Ayarlar → Yazdırma'dan bir yazdırma hizmeti uygulaması yükleyin ve etkinleştirin. (3) Yazdırma hizmeti uygulamasını açın, eşleşmiş yazıcınızı seçin ve protokol tespitini onaylayın. (4) Herhangi bir uygulamada sistem yazdırma diyalogunu kullanarak içeriği doğrudan yazıcıya gönderin. Kurulum sırasında Bluetooth'un etkin olduğundan ve yazıcının erişim范围内 olduğundan emin olun.
