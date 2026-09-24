@@ -59,31 +59,3 @@ export function buildTsplLabel(data) {
   return new TextEncoder().encode(cmd);
 }
 ```
-
-## Desteklenen Cihazlar
-
-Bu rehberdeki adımlar, ilgili protokolü/arayüzü destekleyen aşağıdaki yazıcı modellerinin tamamı için geçerlidir:
-
-| Marka | Model | Protokol | Arayüzler | Kağıt Genişliği |
-|---|---|---|---|---|
-| Godex | DT4x | EZPL | USB, Ethernet, Seri | 108mm |
-| Godex | G500 | EZPL / GEPL / GZPL | USB, Ethernet, Seri | 108mm |
-| Godex | RT700 | EZPL | USB, Ethernet | 108mm |
-| Rongta | RP410 | TSPL / ESC/POS | USB | 108mm |
-| TSC | Alpha-3R | TSPL / CPCL / ESC/POS | Bluetooth, USB | 72mm (3 inç) |
-| TSC | DA210 | TSPL-EZD | USB | 108mm |
-| TSC | DA220 | TSPL-EZD | USB, Ethernet, Bluetooth, Wi-Fi | 108mm |
-| TSC | TE200 | TSPL-EZ | USB 2.0 | 108mm |
-| TSC | TTP-244 Pro | TSPL | USB, Seri | 108mm |
-| Xprinter | XP-365B | TSPL / ESC/POS | USB | 80mm |
-| Xprinter | XP-420B | TSPL / ESC/POS | USB, Bluetooth, Ethernet | 108mm (100x150) |
-| Xprinter | XP-470B | TSPL | USB | 108mm |
-| Zebra | GK420d | ZPL II / EPL2 | USB, Ethernet, Seri | 104mm |
-| Zebra | GK420t | ZPL II / EPL2 | USB, Ethernet | 104mm |
-| Zebra | ZD220 | ZPL II / EPL | USB | 104mm (4 inç) |
-| Zebra | ZD420 | ZPL II / EPL | USB, Ethernet, Bluetooth, Wi-Fi | 104mm |
-| Zebra | ZD421 | ZPL II / EPL | USB, Ethernet, Bluetooth BLE | 104mm |
-| Zebra | ZQ320 Plus | CPCL / ZPL | Bluetooth BLE, Wi-Fi | 80mm (3 inç) |
-| Zebra | ZQ520 | CPCL / ZPL | Bluetooth, Wi-Fi | 104mm (4 inç) |
-| Zebra | ZT411 | ZPL II | Ethernet, USB, Bluetooth 4.1 | 104mm |
-

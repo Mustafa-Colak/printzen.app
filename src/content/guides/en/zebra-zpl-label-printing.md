@@ -220,30 +220,3 @@ ZPL II (Zebra Programming Language) is a high-level command set used to program 
 A ZPL file is a plain text document containing ASCII-based printer commands formatted for Zebra thermal printers. It contains sequences like ^XA (format start) and ^XZ (format end) that instruct the printer to render labels, barcodes, or text. The printer's onboard processor parses these commands line-by-line, converting them into precise dot patterns on the label stock.
 
 When executing 'ZPL by command', the printer processes each instruction in order: first setting label dimensions (^PW, ^LL), then positioning elements with ^FO (field origin), and finally sending data to print (^FD). This command-driven approach allows for deterministic output without relying on raster graphics.
-
-## Supported Devices
-
-The steps in this guide apply to all of the following printer models that support the relevant protocol/interface:
-
-| Brand | Model | Protocol | Interfaces | Paper Width |
-|---|---|---|---|---|
-| Godex | DT4x | EZPL | USB, Ethernet, Seri | 108mm |
-| Godex | G500 | EZPL / GEPL / GZPL | USB, Ethernet, Seri | 108mm |
-| Godex | RT700 | EZPL | USB, Ethernet | 108mm |
-| Rongta | RP410 | TSPL / ESC/POS | USB | 108mm |
-| TSC | Alpha-3R | TSPL / CPCL / ESC/POS | Bluetooth, USB | 72mm (3 inç) |
-| TSC | DA210 | TSPL-EZD | USB | 108mm |
-| TSC | DA220 | TSPL-EZD | USB, Ethernet, Bluetooth, Wi-Fi | 108mm |
-| TSC | TE200 | TSPL-EZ | USB 2.0 | 108mm |
-| TSC | TTP-244 Pro | TSPL | USB, Seri | 108mm |
-| Xprinter | XP-365B | TSPL / ESC/POS | USB | 80mm |
-| Xprinter | XP-420B | TSPL / ESC/POS | USB, Bluetooth, Ethernet | 108mm (100x150) |
-| Xprinter | XP-470B | TSPL | USB | 108mm |
-| Zebra | GK420d | ZPL II / EPL2 | USB, Ethernet, Seri | 104mm |
-| Zebra | GK420t | ZPL II / EPL2 | USB, Ethernet | 104mm |
-| Zebra | ZD220 | ZPL II / EPL | USB | 104mm (4 inç) |
-| Zebra | ZD420 | ZPL II / EPL | USB, Ethernet, Bluetooth, Wi-Fi | 104mm |
-| Zebra | ZD421 | ZPL II / EPL | USB, Ethernet, Bluetooth BLE | 104mm |
-| Zebra | ZQ320 Plus | CPCL / ZPL | Bluetooth BLE, Wi-Fi | 80mm (3 inç) |
-| Zebra | ZQ520 | CPCL / ZPL | Bluetooth, Wi-Fi | 104mm (4 inç) |
-| Zebra | ZT411 | ZPL II | Ethernet, USB, Bluetooth 4.1 | 104mm |
