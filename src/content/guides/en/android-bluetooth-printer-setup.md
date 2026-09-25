@@ -1,5 +1,5 @@
 ---
-updatedDate: 2026-09-24
+updatedDate: 2026-09-25
 title: "Bluetooth Thermal Printer Setup on Android"
 description: "Connect your Android phone or tablet to a Bluetooth thermal printer and print receipts or labels from the system print dialog."
 printerClass: mobile
@@ -44,3 +44,7 @@ If prompted for a passcode during pairing, try the most common default PINs: `00
 ### How do I connect a thermal printer to my Android device?
 
 To connect your thermal printer to your Android device: (1) Pair via Bluetooth using default PINs like `0000` or `1234`. (2) Install and enable a print service app from Settings → Printing. (3) Open the print service app, select your paired printer, and confirm protocol detection. (4) Use the system print dialog in any app to send content directly to the printer. Ensure Bluetooth is enabled and the printer is within range during setup.
+
+### How do I connect my Bluetooth thermal printer to Android?
+
+To connect your Bluetooth thermal printer to an Android device, first ensure the printer is powered on and in pairing mode. Open Android's Settings → Connected devices → Pair new device. Select your printer from the list of available devices. When prompted for a PIN, use one of the common defaults: `0000`, `1234`, or `8888`. If pairing fails, check that the printer is within Bluetooth range (typically 10 meters) and not connected to another device. After successful pairing, install a print service like Mobile Print Service to enable printing from apps.
