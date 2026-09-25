@@ -1,5 +1,5 @@
 ---
-updatedDate: 2026-09-24
+updatedDate: 2026-09-25
 title: "Zebra ZPL II Programming and Label Design Guide"
 description: "Design barcodes, QR codes, logos, and typography with ZPL II. Master 203 vs 300 DPI dot mathematics, 4x6 shipping label templates, and raw socket printing."
 printerClass: industrial
@@ -220,3 +220,7 @@ ZPL II (Zebra Programming Language) is a high-level command set used to program 
 A ZPL file is a plain text document containing ASCII-based printer commands formatted for Zebra thermal printers. It contains sequences like ^XA (format start) and ^XZ (format end) that instruct the printer to render labels, barcodes, or text. The printer's onboard processor parses these commands line-by-line, converting them into precise dot patterns on the label stock.
 
 When executing 'ZPL by command', the printer processes each instruction in order: first setting label dimensions (^PW, ^LL), then positioning elements with ^FO (field origin), and finally sending data to print (^FD). This command-driven approach allows for deterministic output without relying on raster graphics.
+
+### What are common ZPL font examples and their parameters?
+
+ZPL fonts use commands like ^A followed by a two-character code. For example: ^A0N,36,36 sets a normal text font with 36-dot height/width. Common variations include ^A0B (bold), ^A1R (reverse video), and ^A2I (italic). Font parameters always follow as comma-separated values: [font code],[height],[width]. Always verify printer compatibility since some models support proprietary fonts.
