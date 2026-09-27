@@ -1,5 +1,5 @@
 ---
-updatedDate: 2026-09-25
+updatedDate: 2026-09-27
 title: "Zebra ZPL II Programming and Label Design Guide"
 description: "Design barcodes, QR codes, logos, and typography with ZPL II. Master 203 vs 300 DPI dot mathematics, 4x6 shipping label templates, and raw socket printing."
 printerClass: industrial
@@ -224,3 +224,9 @@ When executing 'ZPL by command', the printer processes each instruction in order
 ### What are common ZPL font examples and their parameters?
 
 ZPL fonts use commands like ^A followed by a two-character code. For example: ^A0N,36,36 sets a normal text font with 36-dot height/width. Common variations include ^A0B (bold), ^A1R (reverse video), and ^A2I (italic). Font parameters always follow as comma-separated values: [font code],[height],[width]. Always verify printer compatibility since some models support proprietary fonts.
+
+### What is Zebra Printer Programming and How Do I Get Started?
+
+Zebra printer programming primarily uses ZPL II (Zebra Programming Language) for creating labels, barcodes, and other print formats. It involves sending ASCII-based commands to the printer via TCP/IP, USB, or serial connections. Key concepts include understanding DPI dot mathematics, coordinate positioning (^FO), font specifications (^A), and field data insertion (^FD). For beginners, start with basic label templates like 4x6" shipping labels and use Zebra's Print Setup Utility for configuration.
+
+To get started, download Zebra's official ZPL II reference guide, configure your printer using the ^PW (print width) and ^LL (label length) commands, and test with simple text/barcode examples. Advanced users should explore TCP socket transmission and error handling for production environments.

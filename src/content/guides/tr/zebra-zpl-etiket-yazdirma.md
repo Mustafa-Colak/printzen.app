@@ -1,5 +1,5 @@
 ---
-updatedDate: 2026-09-25
+updatedDate: 2026-09-27
 title: "Zebra ZPL Programlama ve Etiket Tasarım Rehberi (ZPL II Kılavuzu)"
 description: "ZPL komut diliyle barkod, QR kod, logo ve metin tasarımı. 203 vs 300 DPI koordinat hesaplama, 100x150 mm kargo şablonu ve ham soket yazdırma mimarisi."
 printerClass: industrial
@@ -211,3 +211,9 @@ Bir ZPL dosyası, Zebra termal yazıcılar için biçimlendirilmiş ASCII tabanl
 ### Ortak ZPL Yazı Tipi Örnekleri ve Parametreleri Nedir?
 
 ZPL yazı tipleri, ^A gibi komutları ve ardından gelen iki karakterli bir kodu kullanır. Örneğin: ^A0N,36,36 komutu, 36 nokta yükseklik/genişliğe sahip normal metin yazı tipini ayarlar. Ortak varyasyonlar arasında ^A0B (kalın), ^A1R (ters video) ve ^A2I (italik) yer alır. Yazı tipi parametreleri her zaman virgülle ayrılmış değerler olarak gelir: [yazı tipi kodu],[yükseklik],[genişlik]. Her zaman yazıcı uyumunu kontrol edin çünkü bazı modeller özel yazı tiplerini destekler.
+
+### Zebra Yazıcı Programlaması Nedir ve Nasıl Başlayabilirim?
+
+Zebra yazıcı programlaması, etiketler, barkodlar ve diğer basım formatlarını oluşturmak için başlıca ZPL II (Zebra Programlama Dili) kullanır. Bu, TCP/IP, USB veya seri bağlantılar aracılığıyla yazıcıya ASCII tabanlı komutların gönderilmesini içerir. Ana kavramlar, DPI nokta matematiğini, koordinat pozisyonlamasını (^FO), yazı tipi belirtimlerini (^A) ve alan verisi eklemesini (^FD) anlama içermektedir. Başlangıç için 4x6" sevkiyat etiketleri gibi temel etiket şablonlarıyla başlayın ve Zebra'nın Print Setup Utility'yi yapılandırma için kullanın.
+
+Başlamak için Zebra'nın resmi ZPL II referans rehberini indirin, yazıcınızı ^PW (basım genişliği) ve ^LL (etiket uzunluğu) komutlarıyla yapılandırın ve basit metin/barkod örnekleriyle test edin. Gelişmiş kullanıcılar, üretim ortamlarında TCP soket iletimi ve hata işleme için çalışmalıdır.
