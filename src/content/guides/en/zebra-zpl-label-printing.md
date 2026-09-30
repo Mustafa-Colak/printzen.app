@@ -1,5 +1,5 @@
 ---
-updatedDate: 2026-09-27
+updatedDate: 2026-09-30
 title: "Zebra ZPL II Programming and Label Design Guide"
 description: "Design barcodes, QR codes, logos, and typography with ZPL II. Master 203 vs 300 DPI dot mathematics, 4x6 shipping label templates, and raw socket printing."
 printerClass: industrial
@@ -230,3 +230,7 @@ ZPL fonts use commands like ^A followed by a two-character code. For example: ^A
 Zebra printer programming primarily uses ZPL II (Zebra Programming Language) for creating labels, barcodes, and other print formats. It involves sending ASCII-based commands to the printer via TCP/IP, USB, or serial connections. Key concepts include understanding DPI dot mathematics, coordinate positioning (^FO), font specifications (^A), and field data insertion (^FD). For beginners, start with basic label templates like 4x6" shipping labels and use Zebra's Print Setup Utility for configuration.
 
 To get started, download Zebra's official ZPL II reference guide, configure your printer using the ^PW (print width) and ^LL (label length) commands, and test with simple text/barcode examples. Advanced users should explore TCP socket transmission and error handling for production environments.
+
+### How to Print a ZPL File and Access the ZPL Code Manual
+
+To print a ZPL file, generate ASCII-formatted commands using a text editor or programming language (e.g., Python). Save the file with a `.zpl` extension and send it via raw TCP/IP socket, USB, or serial connection to the printer. Ensure the printer is configured for ZPL II mode. For a code manual, refer to Zebra’s official documentation for full command sets like `^FO` (field origin), `^A` (font), and `^B` (barcode). The article’s example demonstrates basic syntax: `^XA...^XZ`, which can be expanded into complete templates for shipping labels or product codes.

@@ -1,5 +1,5 @@
 ---
-updatedDate: 2026-09-27
+updatedDate: 2026-09-30
 title: "Zebra ZPL Programlama ve Etiket Tasarım Rehberi (ZPL II Kılavuzu)"
 description: "ZPL komut diliyle barkod, QR kod, logo ve metin tasarımı. 203 vs 300 DPI koordinat hesaplama, 100x150 mm kargo şablonu ve ham soket yazdırma mimarisi."
 printerClass: industrial
@@ -217,3 +217,7 @@ ZPL yazı tipleri, ^A gibi komutları ve ardından gelen iki karakterli bir kodu
 Zebra yazıcı programlaması, etiketler, barkodlar ve diğer basım formatlarını oluşturmak için başlıca ZPL II (Zebra Programlama Dili) kullanır. Bu, TCP/IP, USB veya seri bağlantılar aracılığıyla yazıcıya ASCII tabanlı komutların gönderilmesini içerir. Ana kavramlar, DPI nokta matematiğini, koordinat pozisyonlamasını (^FO), yazı tipi belirtimlerini (^A) ve alan verisi eklemesini (^FD) anlama içermektedir. Başlangıç için 4x6" sevkiyat etiketleri gibi temel etiket şablonlarıyla başlayın ve Zebra'nın Print Setup Utility'yi yapılandırma için kullanın.
 
 Başlamak için Zebra'nın resmi ZPL II referans rehberini indirin, yazıcınızı ^PW (basım genişliği) ve ^LL (etiket uzunluğu) komutlarıyla yapılandırın ve basit metin/barkod örnekleriyle test edin. Gelişmiş kullanıcılar, üretim ortamlarında TCP soket iletimi ve hata işleme için çalışmalıdır.
+
+### ZPL Dosyasını Yazdırma ve ZPL Kod El Kitabına Erişme
+
+Bir ZPL dosyası yazdırmak için bir metin düzenleyici veya programlama dili (örneğin Python) kullanarak ASCII formatında komutlar oluşturun. Dosyayı .zpl uzantısıyla kaydedin ve ardından ham TCP/IP soketi, USB veya seri bağlantı yoluyla yazıcıya gönderin. Yazıcının ZPL II modunda yapılandırıldığından emin olun. Kod el kitabına ulaşmak için Zebra'nın resmi belgelerine bakın; tam komut kümeleri gibi ^FO (alan köşesi), ^A (yazı tipi) ve ^B (tarama kodu) gibi komutlar için detaylı bilgi bulabilirsiniz. Makalenin örneği temel sözdizimi olan ^XA...^XZ'yi göstermektedir; bu, sevkiyat etiketleri veya ürün kodları için tam şablonlara genişletilebilir.
