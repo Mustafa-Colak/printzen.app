@@ -1,5 +1,5 @@
 ---
-updatedDate: 2026-09-28
+updatedDate: 2026-09-30
 title: "Android'de Bluetooth Termal Yazıcı Kurulumu"
 description: "Android telefon veya tabletinizi Bluetooth termal yazıcıya bağlayıp sistem yazdırma menüsünden fiş veya etiket basmayı öğrenin."
 printerClass: mobile
@@ -56,3 +56,7 @@ Bluetooth termal yazıcınızı bir Android cihazına bağlamak için, önce yaz
 ### Bir termal yazıcıyı mobil cihazınıza nasıl bağlayabilirim?
 
 Bir termal yazıcıyı mobil cihazınıza bağlamak için önce yazıcınızda ve Android cihazınızda Bluetooth'un etkin olduğundan emin olun. Ayarlar → Bağlı cihazlar → Yeni cihazı eşleştirme seçeneğine gidin ve listeden yazıcınızı seçin. Çoğu yazıcı 0000 veya 1234 gibi varsayılan PIN'leri kullanır. Eşleşme başarısız olursa, her iki cihazı da yeniden başlatın ve tekrar deneyin. Eşleme tamamlandıktan sonra bir yazdırma hizmeti uygulaması (örneğin Mobile Print Service) yükleyin ve Ayarlar → Yazdırma'da etkinleştirin, böylece Android'in yazdırma görevleri için yazıcıyı tanıyabilmesi sağlanır.
+
+### Android'den bir Bluetooth yazıcıya nasıl yazdırabilirim?
+
+Android'den bir Bluetooth yazıcıya yazdırmak için önce Ayarlar → Bağlı cihazlar üzerinden cihazı eşleştirin. Mobile Print Service gibi uyumlu bir yazdırma hizmeti yükleyin, bu hizmet Android uygulamalarını termal yazıcılara bağlar. Yazdırma hizmeti uygulamasını açın ve eşleştirilmiş yazıcınızı ekleyin, doğru protokolün (örneğin ESC/POS) tespit edildiğinden emin olun. Daha sonra Chrome, Google Docs veya diğer uygulamalardaki sistem yazdırma diyalogunu kullanarak Bluetooth yazıcınızı bir çıktı seçeneği olarak seçin. Sorunlarla karşılaşırsanız, Bluetooth bağlantısını kontrol edin, Ayarlar → Yazdırma'da gerekli izinleri kontrol edin ve yazıcının komut dili yazdırma hizmeti tarafından desteklenip desteklenmediğini doğrulayın.
