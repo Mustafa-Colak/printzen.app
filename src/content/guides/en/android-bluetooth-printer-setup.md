@@ -1,5 +1,5 @@
 ---
-updatedDate: 2026-10-01
+updatedDate: 2026-10-02
 title: "Bluetooth Thermal Printer Setup on Android"
 description: "Connect your Android phone or tablet to a Bluetooth thermal printer and print receipts or labels from the system print dialog."
 printerClass: mobile
@@ -60,3 +60,7 @@ To print to a Bluetooth printer from Android, first pair the device via Settings
 ### How to connect to Samsung Bluetooth thermal printers
 
 For Samsung Bluetooth thermal printers, follow standard Android pairing steps (Settings → Connected devices → Pair new device). Samsung printers typically use default PINs like '0000' or '1234'. If pairing fails, ensure the printer is in pairing mode (often triggered by holding the feed button during power-on) and check for firmware updates via the Mobile Print Service app. Some Samsung models may require selecting 'ESC/POS' as the protocol manually in the print service settings.
+
+### How to Resolve Printer Bluetooth Connection Issues?
+
+When the device does not appear in the 'Connected Devices' menu during Bluetooth pairing, ensure the printer has switched to Bluetooth mode (usually via a long press of the power button) and that Android's Bluetooth settings are enabled. If a PIN is requested during pairing, the default codes are 0000 or 1234. If connection issues persist, it is recommended to restart both the device and the printer and repeat the pairing process in the 'Printing Service' application.

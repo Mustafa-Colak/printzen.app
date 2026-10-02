@@ -1,5 +1,5 @@
 ---
-updatedDate: 2026-10-01
+updatedDate: 2026-10-02
 title: "Android'de Bluetooth Termal Yazıcı Kurulumu"
 description: "Android telefon veya tabletinizi Bluetooth termal yazıcıya bağlayıp sistem yazdırma menüsünden fiş veya etiket basmayı öğrenin."
 printerClass: mobile
@@ -64,3 +64,7 @@ Android'den bir Bluetooth yazıcıya yazdırmak için önce Ayarlar → Bağlı 
 ### Samsung Bluetooth termal yazıcılarına nasıl bağlanılır
 
 Samsung Bluetooth termal yazıcılar için standart Android eşleştirme adımlarını izleyin (Ayarlar → Bağlı cihazlar → Yeni cihazı eşleştir). Samsung yazıcıları genellikle '0000' veya '1234' gibi varsayılan PIN'ler kullanır. Eğer eşleştirme başarısız olursa, yazıcının eşleştirme modunda olduğundan emin olun (genellikle güç açılırken besleme düğmesini tutarak tetiklenir) ve Mobile Print Service uygulaması üzerinden firmware güncellemeleri kontrol edin. Bazı Samsung modellerinde, yazdırma hizmeti ayarlarında protokol olarak manuel olarak 'ESC/POS' seçimi gerekebilir.
+
+### Yazıcı bluetooth bağlantısı sorunu nasıl çözülür?
+
+Bluetooth eşleme sırasında cihazın 'Bağlı Cihazlar' menüsünde görünmediği durumlarda, yazıcının Bluetooth moduna geçildiğinden (genellikle power butonu uzun basımıyla) ve Android'in Bluetooth ayarlarının açık olduğundan emin olun. Eşleştirme sırasında PIN istendiğinde varsayılan kodlar 0000 veya 1234'tür. Bağlantı sorunları devam ederse, hem cihaz hem yazıcının yeniden başlatılması ve 'Yazdırma Servisi' uygulamasındaki eşleme işleminin tekrarlanması önerilir.
