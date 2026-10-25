@@ -1,4 +1,5 @@
 ---
+updatedDate: 2026-10-25
 title: "Restoran POS Sistemlerinde Mutfak ve Bar Yazıcılarını Ayrıştırma Kuralları"
 description: "Restoran ve kafelerde adisyon yönlendirme mimarisi. Sıcak yemekleri mutfağa, kokteyl ve kahveleri bara yönlendiren kategori bazlı filtreleme algoritmaları."
 printerClass: desktop
@@ -63,3 +64,9 @@ export function splitOrderForStations(tableNo: string, items: OrderItem[]) {
 
 ### Müşteri siparişe sonradan ek bir içecek isterse bar yazıcısı önceki siparişleri tekrar basar mı?
 **Hayır, profesyonel POS sistemleri "Delta / Yeni Kalemler" kontrolü uygular.** Masaya yapılan eklemelerde sadece yeni eklenen içecekler basılır; fişin en üstüne `*** İLAVE SİPARİŞ ***` ibaresi eklenir.
+
+### Mutfak sipariş biletleri nedir ve nasıl oluşturulur?
+
+Bir mutfak sipariş biletinde (KOT), belirli bir hazırlama istasyonuna (örneğin HOT_KITCHEN) basılan, yalnızca bir masanın siparişinden gelen yiyecek öğelerini içeren bir belgedir. Bu, POS sisteminin bölüştürme algoritması tarafından oluşturulur ve öğelerin haritalanmış 'istasyon' özelliği temel alınarak filtrelenmesiyle, uygun yazıcıya yönlendirilmesiyle gerçekleşir. Örneğin, bir hizmetci bir sipariş girdiğinde (örneğin file ve patates kızartması), sistem bu öğeleri Epson Impact Dot-Matrix yazıcısı (TM-U220) üzerinden HOT_KITCHEN istasyonuna yönlendirir ki çizgi mutfağı çalışanları hazırlayabilsin.
+
+Bilet, kritik veriler içerir: masa numarası, ürün adları/miktarları, hazırlama notları ve kurs başlıkları (örneğin 'KURS 1: AÇILIŞLAR'). Bu, çizgi mutfağı çalışanlarının içecek siparişlerini veya bar öğelerini işlemek zorunda kalmadan görevleri etkili bir şekilde önceliklendirmesine olanak tanır. Sistem, delta izleme kullanarak yemek sırasında eklenen öğeleri tespit ederek yinelenen biletlerin basılmasını önler.
