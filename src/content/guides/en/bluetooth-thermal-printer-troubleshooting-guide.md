@@ -8,7 +8,7 @@ publishDate: 2026-09-10
 translationKey: bluetooth-thermal-printer-troubleshooting-guide
 ---
 
-Portable battery-powered thermal receipt printers are mission-critical equipment for delivery drivers, field sales reps, parking enforcement, and mobile popup shops. Yet in field hardware support, Bluetooth peripherals generate more trouble tickets than any other category:
+Portable battery-powered thermal receipt printers are mission-critical equipment for delivery drivers, field sales reps, parking enforcement, and mobile popup shops. Yet in field hardware support, [Bluetooth](/guides/android-bluetooth-printer-setup/) peripherals generate more trouble tickets than any other category:
 
 - *"The printer shows as paired in settings, but the POS app says 'Device Unavailable'."*
 - *"PIN pairing fails with 'Cannot communicate with device' using 0000 or 1234."*

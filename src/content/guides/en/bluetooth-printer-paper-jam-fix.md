@@ -9,7 +9,7 @@ translationKey: bluetooth-printer-paper-jam-fix
 
 # Fix Bluetooth Thermal Printer Paper Jams & Stuck Rollers: Complete Guide
 
-Bluetooth thermal printers are essential for mobile and IoT applications, but paper jams and roller issues can disrupt workflows. These problems often stem from debris accumulation, misaligned paper feeds, or mechanical wear. This guide provides a structured approach to diagnose and resolve common hardware failures in printzen.app-compatible devices.
+[Bluetooth](/guides/android-bluetooth-printer-setup/) thermal printers are essential for mobile and IoT applications, but paper jams and roller issues can disrupt workflows. These problems often stem from debris accumulation, misaligned paper feeds, or mechanical wear. This guide provides a structured approach to diagnose and resolve common hardware failures in printzen.app-compatible devices.
 
 ---
 

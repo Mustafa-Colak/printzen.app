@@ -1,7 +1,7 @@
 ---
-updatedDate: 2026-10-23
+updatedDate: 2026-10-26
 title: "Bluetooth Thermal Printer Setup on Android"
-description: "Connect your Android phone or tablet to a Bluetooth thermal printer and print receipts or labels from the system print dialog."
+description: "Connect your Android phone or tablet to a Bluetooth thermal printer and print receipts or labels from the system print dialog (bluetooth printer connection)."
 printerClass: mobile
 publishDate: 2026-07-06
 translationKey: android-bluetooth-printer-setup

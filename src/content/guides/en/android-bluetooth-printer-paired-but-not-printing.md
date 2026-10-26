@@ -7,9 +7,9 @@ publishDate: 2026-09-10
 translationKey: android-bluetooth-printer-paired-but-not-printing
 ---
 
-A ubiquitous field support crisis: An Android tablet or smartphone shows the mobile thermal receipt printer as **"Paired"** in the OS Bluetooth menu; however, tapping "Print" in the POS app results in total silence or a generic `IOException: Connection Refused`.
+A ubiquitous field support crisis: An Android tablet or smartphone shows the mobile thermal receipt printer (or onsite [event badge & Practical Automation ticket printer](/guides/event-conference-badge-ticket-printing/)) as **"Paired"** in the OS Bluetooth menu; however, tapping "Print" in the POS app results in total silence or a generic `IOException: Connection Refused`.
 
-This rarely points to broken hardware. In 99% of incidents, the failure stems from **stale RFCOMM sockets, single-master peripheral lockouts, or missing Android 12+ runtime permissions**.
+This rarely points to broken hardware. In 99% of incidents, the failure stems from **stale RFCOMM sockets, single-master peripheral lockouts, or missing [Android](/guides/android-bluetooth-printer-setup/) 12+ runtime permissions**.
 
 ---
 
