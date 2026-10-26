@@ -16,7 +16,7 @@ When designing text-based sales receipts for thermal printers, the most frequent
 
 This distortion occurs when software assumes arbitrary page boundaries without accounting for the printer's physical dot width and active font metrics: **Characters Per Line (CPL)**.
 
-In this guide, we break down dot calculations for 58mm and 80mm rolls, internal font geometries, and deterministic two-column table alignment algorithms.
+In this guide, we break down dot calculations for 58mm and 80mm rolls, internal font geometries, and deterministic two-column table alignment algorithms when you [print to a thermal printer](/guides/direct-usb-printing-via-webusb-api-thermal-printers/) over USB, Bluetooth, or LAN.
 
 ---
 

@@ -37,4 +37,4 @@ In this guide, we break down FBA carton box labels, Merchant Fulfilled Network (
 **Yes, direct thermal labels are fully accepted for standard domestic truckload and small parcel deliveries.** However, for maritime container freight or long-term pallet storage, use **Top-Coated Thermal** or Thermal Transfer (resin ribbon) labels to resist extreme transit heat and abrasion.
 
 ### How do I print Amazon FBA labels directly from Seller Central without third-party apps?
-**When generating box labels in the final shipment creation workflow, select "Thermal printing - 4 x 6 in" as the paper type.** You can stream the resulting `.zpl` file directly over raw TCP sockets (port 9100) or print the formatted 4x6 PDF via your thermal printer driver.
+**When generating box labels in the final shipment creation workflow, select "Thermal printing - 4 x 6 in" as the paper type.** You can stream the resulting `.zpl` file directly over raw TCP sockets (port 9100), [print to a thermal printer via the WebUSB API](/guides/direct-usb-printing-via-webusb-api-thermal-printers/), or print the formatted 4x6 PDF via your thermal printer driver.

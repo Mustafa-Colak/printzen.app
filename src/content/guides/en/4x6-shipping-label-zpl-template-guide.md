@@ -64,6 +64,7 @@ At 203 DPI, a 4x6 inch label maps to an active grid of **812 × 1218 dots**.
 - `^PW812` & `^LL1218`: Explicitly sets print width and label length in dots, preventing buffer overflows and trailing blank label ejections.
 - `^GB712,3,3`: Generates horizontal divider lines 712 dots wide with a 3-dot stroke weight.
 - `^BCN,130,Y,N,N`: Code 128 tracking barcode rendered at 130 dots tall with bottom-aligned human-readable text.
+- **Direct USB & Network Dispatch:** You can stream this ZPL payload over TCP Port 9100 or [print to a thermal printer directly via the WebUSB API](/guides/direct-usb-printing-via-webusb-api-thermal-printers/) from Chromium browsers.
 
 ---
 

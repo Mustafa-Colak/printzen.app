@@ -1,5 +1,5 @@
 ---
-title: "Direct USB Printing via WebUSB API: Driverless Thermal Output in the Browser"
+title: "Direct USB Printing via WebUSB API: Print to Thermal Printers in the Browser"
 description: "Stream raw ESC/POS and ZPL commands directly from Google Chrome to USB thermal printers without OS print drivers using the W3C WebUSB API."
 printerClass: desktop
 brand: Epson
@@ -7,7 +7,7 @@ publishDate: 2026-09-10
 translationKey: direct-usb-printing-via-webusb-api-thermal-printers
 ---
 
-Printing to USB hardware traditionally mandates installing platform-specific print drivers and interacting with the host operating system's print spooler.
+When you need to **print to a thermal printer** over USB from a web application, traditional architectures require installing platform-specific OS print drivers and interacting with the host operating system's print spooler.
 
 The W3C **WebUSB API** circumvents this entire legacy stack. Modern Chromium browsers (Google Chrome, Microsoft Edge, Opera) can open direct hardware communication channels to USB receipt and barcode printers, streaming raw ESC/POS and ZPL bytes across physical cables at multi-megabyte speeds with zero driver installation.
 

@@ -11,7 +11,7 @@ Imagine a busy supermarket cashier having to click "Print" on a browser dialog a
 
 By default, browser JavaScript (`window.print()`) **always opens the operating system or browser print preview dialog**. The browser sandbox prohibits web pages from triggering physical print motors without explicit user confirmation.
 
-How do modern cloud POS systems, warehouse packing lines, and automated kitchen screens achieve **instant, single-click, or fully automated silent printing without dialogs**?
+How do modern cloud POS systems, warehouse packing lines, [event badge & Practical Automation ticket printer kiosks](/guides/event-conference-badge-ticket-printing/), and automated kitchen screens achieve **instant, single-click, or fully automated silent printing without dialogs**?
 
 In this technical guide, we break down Google Chrome Kiosk Printing flags, localhost WebSocket Tray Agent architecture, raw CUPS/spooler printing, and cloud webhook dispatch.
 

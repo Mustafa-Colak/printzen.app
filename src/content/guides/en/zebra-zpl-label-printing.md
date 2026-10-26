@@ -1,6 +1,6 @@
 ---
 updatedDate: 2026-10-01
-title: "Zebra ZPL II Programming and Label Design Guide"
+title: "Zebra Printer ZPL II Programming and Label Design Guide"
 description: "Design barcodes, QR codes, logos, and typography with ZPL II. Master 203 vs 300 DPI dot mathematics, 4x6 shipping label templates, and raw socket printing."
 printerClass: industrial
 brand: Zebra
@@ -194,7 +194,46 @@ In high-velocity fulfillment centres printing thousands of labels per hour, payl
 
 ---
 
-## 7. Frequently Asked Questions (FAQ)
+## 7. ZPL Compatible Printers and Firmware Emulation
+
+While ZPL II was engineered by Zebra Technologies for its desktop (`GK420d`, `ZD420`, `ZD421`, `ZD621`) and industrial (`ZT230`, `ZT410`, `ZT411`, `ZT610`) thermal printers, most modern commercial barcode printers acts as **ZPL compatible printers** via onboard multi-language firmware emulation:
+
+| Manufacturer | ZPL Emulation Engine | Popular Compatible Models | Switching Command / Utility |
+|---|---|---|---|
+| **Zebra** | Native ZPL II / Link-OS | ZD421, ZD621, ZT231, ZT411 | `! U1 setvar "device.languages" "zpl"` |
+| **TSC** | TSPL-EZD (Auto-detects ZPL II & EPL2) | TE200, TE210, TTP-244 Pro, MB240T | Auto-sensing on raw TCP Port 9100 / USB |
+| **Honeywell** | ZSim2 (ZPL II Simulator) | PC42t, PM43, PM45, PD45 | Web UI or `sysvar(43)=2` via Fingerprint |
+| **Bixolon** | SLCS + ZPL II Auto-Switch | XD3-40d, XD5-40t, XT5-40 | Unified Label Artist / DIP Switch |
+| **Godex / Citizen** | GEPL / GZPL Auto-Emulation | G500, EZ1100 Plus, CL-S621 | `^default` or Auto-emulation firmware |
+
+---
+
+## 8. Zebra EPL or ZPL: Protocol Comparison
+
+When configuring older Zebra desktop printers (such as the classic `LP2844` or `GK420d`), developers often ask whether to target **Zebra EPL or ZPL**:
+
+- **ZPL II (Zebra Programming Language):** Uses caret (`^`) and tilde (`~`) command prefixes (`^XA ... ^XZ`), supports scalable vector fonts (`^A0`), complex 2D barcodes (QR, DataMatrix, PDF417), UTF-8 (`^CI28`), and Link-OS network telemetry. **Use ZPL II for all new integrations.**
+- **EPL2 (Eltron Programming Language):** Legacy line-oriented ASCII syntax (`N`, `A50,50,0,3,1,1,N,"Text"`, `P1`) inherited from Eltron hardware acquired by Zebra in 1998. Retain EPL2 only when maintaining legacy serial/parallel port software locked to `LP2824`/`LP2844` units.
+
+---
+
+## 9. How to Print a ZPL File (`.zpl` / `.prn`) Directly
+
+To **print a ZPL file** without a Windows raster driver converting your code into blurred graphics, stream the raw ASCII file directly to the printer's hardware interface:
+
+1. **Network TCP Port 9100 (Linux / macOS / Windows PowerShell):**
+   ```bash
+   nc -w 2 192.168.1.200 9100 < shipping-label.zpl
+   ```
+2. **Windows Shared Generic/Text Printer:**
+   ```cmd
+   COPY /B shipping-label.zpl \\localhost\Zebra_ZD421_Raw
+   ```
+3. **Browser Direct USB:** Stream the `.zpl` byte array from Chrome or Edge using [Direct USB Printing via WebUSB API](/guides/direct-usb-printing-via-webusb-api-thermal-printers/).
+
+---
+
+## 10. Frequently Asked Questions (FAQ)
 
 ### Does ZPL only work on proprietary Zebra printers?
 **No, major label printer manufacturers including TSC, Xprinter, Godex, and Honeywell natively support ZPL II emulation.** By setting the printer's command emulation language to "ZPL" or "ZPL II" in its firmware settings or DIP switch configuration, code written for Zebra can be executed without modification.
