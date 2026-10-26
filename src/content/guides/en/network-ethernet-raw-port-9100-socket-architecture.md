@@ -1,4 +1,5 @@
 ---
+updatedDate: 2026-10-26
 title: "Network Thermal Printers: Ethernet and Raw TCP Port 9100 Architecture"
 description: "Set up Raw TCP Port 9100 for Ethernet thermal printers, build a WebSocket-to-TCP bridge, configure static IPs, and architect a multi-station printer pool."
 printerClass: "desktop"
@@ -99,3 +100,7 @@ No hard limit. Practically, 50+ printers on a 1 Gbps switch work fine.
 
 **WiFi vs Ethernet — which is better?**
 Ethernet is always more reliable. WiFi packet loss causes print quality issues. Use Ethernet for high-volume environments.
+
+### What is a Network Thermal Printer?
+
+A network thermal printer is an Ethernet-connected device that prints labels, receipts, or tickets using heat-sensitive paper. These printers are commonly used in restaurants, retail, and warehouses due to their reliability and speed. They communicate over TCP/IP networks, often using Raw TCP Port 9100 for direct data transmission without intermediate processing. Network thermal printers typically require static IP configuration and can be integrated into multi-station printer pools for scalable operations.

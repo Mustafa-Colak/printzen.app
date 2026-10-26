@@ -1,4 +1,5 @@
 ---
+updatedDate: 2026-10-26
 title: "Ağ Yazıcıları: Ethernet ve Raw Port 9100 Soket Mimarisi"
 description: "Ethernet bağlantılı termal yazıcılarda Raw TCP Port 9100 protokolü, WebSocket köprüsü, statik IP yapılandırması ve çok istasyonlu ağ yazıcı mimarisi."
 printerClass: "desktop"
@@ -192,3 +193,7 @@ Ethernet daha güvenilirdir. WiFi'da paket kaybı baskı kalitesini bozabilir. Y
 
 ### Port 9100'e firewall engelliyor, ne yapmalıyım?
 IT ekibinizden yazıcı VLAN'ı ile POS terminalleri arasında port 9100 açılmasını isteyin. Dışarıdan (internet) erişim hiçbir zaman açılmamalıdır.
+
+### Ağ Termal Yazıcısı Nedir?
+
+Bir ağ termal yazıcısı, etiketler, faturalar veya biletleri ısı hassas kağıt kullanarak basan bir Ethernet'e bağlı cihazdır. Bu yazıcılar, güvenilirlikleri ve hızları nedeniyle restoranlarda, perakende mağazalarda ve depolarda yaygın olarak kullanılır. TCP/IP ağlarında iletişim kurarlar ve genellikle ara işleme olmadan doğrudan veri iletimi için Ham TCP Port 9100 kullanırlar. Ağ termal yazıcılar genellikle statik IP yapılandırması gerektirir ve ölçeklenebilir işlemler için çok istasyonlu yazıcı havuzlarına entegre edilebilirler.
