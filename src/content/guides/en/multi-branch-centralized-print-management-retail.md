@@ -1,6 +1,6 @@
 ---
 title: "Centralized Multi-Branch Print Fleet Management for Retail"
-description: "Scale thermal printer fleets across hundreds of franchise locations. Real-time telemetry, centralized template dispatch, and remote firmware monitoring."
+description: "Scale thermal printer fleets across hundreds of franchise locations. Real-time telemetry, centralized template dispatch, and remote firmware monitoring (manage thermal printers)."
 printerClass: "desktop"
 brand: "Generic"
 publishDate: 2026-09-11

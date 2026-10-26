@@ -58,6 +58,8 @@ export function printDirectViaCups(queueName, binaryData) {
 
 ---
 
+> **Related Guide:** See our detailed guide on [Centralized Multi](/guides/multi-branch-centralized-print-management-retail/) for complete specifications and implementation details.
+
 ## 3. Frequently Asked Questions (FAQ)
 
 ### Why does CUPS advance two feet of blank paper after printing a receipt?

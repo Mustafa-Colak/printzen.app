@@ -93,7 +93,7 @@ On Windows PCs, paired Bluetooth Classic printers communicate through emulated v
 ## 6. Frequently Asked Questions (FAQ)
 
 ### The printer shows in Bluetooth settings, but my app says "Connection Refused"?
-**This occurs almost exclusively because another phone or tablet in your facility is already connected to the printer.** Bluetooth printers do not support multi-point connections. Disconnect the other device, power-cycle the printer, and retry pairing from your primary device.
+**This occurs almost exclusively because another phone or tablet in your facility is already connected to the printer.** Bluetooth printers do not support [multi](/guides/multi-branch-centralized-print-management-retail/)-point connections. Disconnect the other device, power-cycle the printer, and retry pairing from your primary device.
 
 ### Why won't my iPhone discover my portable printer in iOS Bluetooth Settings?
 **iOS restricts Bluetooth Classic Serial Port Profile (SPP) connections to Apple MFi-licensed accessories.** Non-MFi budget printers will never appear in the system Settings menu. To communicate with iOS, your printer must support Bluetooth Low Energy (BLE) and be accessed directly within a compatible POS application via CoreBluetooth.

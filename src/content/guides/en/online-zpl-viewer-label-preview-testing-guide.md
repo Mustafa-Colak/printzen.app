@@ -96,6 +96,8 @@ Once your ZPL template is verified with zero label waste, you can deploy it acro
 
 ---
 
+> **Related Guide:** See our detailed guide on [Centralized Multi](/guides/multi-branch-centralized-print-management-retail/) for complete specifications and implementation details.
+
 ## 5. Frequently Asked Questions (FAQ)
 
 ### Why does my ZPL barcode overflow off the right side of the online viewer?
