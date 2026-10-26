@@ -8,7 +8,7 @@ translationKey: "shopify-bulut-eticaret-fis-entegrasyonu"
 topicCluster: "hub-14"
 ---
 
-Shopify mağazanıza gelen siparişlerin otomatik olarak kasadaki termal yazıcıya düşmesi için Shopify webhook sistemi ile Printzen entegrasyonunu kurmanız yeterlidir. Bu rehber, sıfırdan çalışan bir sistemi 30 dakikada kurmanızı sağlar.
+Shopify mağazanıza gelen siparişlerin otomatik olarak kasadaki [termal](/tr/rehberler/android-bluetooth-yazici-kurulumu/) yazıcıya düşmesi için Shopify webhook sistemi ile Printzen entegrasyonunu kurmanız yeterlidir. Bu rehber, sıfırdan çalışan bir sistemi 30 dakikada kurmanızı sağlar.
 
 ## Genel Mimari
 

@@ -9,7 +9,7 @@ translationKey: web-bluetooth-thermal-printer-setup
 
 Modern web tabanlı POS (Satış Noktası), kafe sipariş ve saha satış sistemlerinde en büyük operasyonel zorluk, tarayıcıdan fiş yazdırmaktır. Geleneksel yöntemlerde işletmeler; işletim sistemi sürücüleri kurmak, Windows Print Spooler yapılandırmak veya yerel arka plan servisleri (Electron, Tray Agent) çalıştırmak zorunda kalır.
 
-**Web Bluetooth API**, bu karmaşık ara katmanları tamamen ortadan kaldırır. Google Chrome, Microsoft Edge ve Opera gibi Chromium tabanlı modern tarayıcılarda çalışan saf bir JavaScript koduyla; tablet veya bilgisayarınızdan doğrudan taşınabilir bir Bluetooth termal yazıcıya bağlanabilir ve milisaniyeler içinde ESC/POS fiş basabilirsiniz.
+**Web [Bluetooth](/tr/rehberler/android-bluetooth-yazici-kurulumu/) API**, bu karmaşık ara katmanları tamamen ortadan kaldırır. Google Chrome, Microsoft Edge ve Opera gibi Chromium tabanlı modern tarayıcılarda çalışan saf bir JavaScript koduyla; tablet veya bilgisayarınızdan doğrudan taşınabilir bir Bluetooth termal yazıcıya bağlanabilir ve milisaniyeler içinde ESC/POS fiş basabilirsiniz.
 
 Bu kapsamlı mühendislik rehberinde; Web Bluetooth mimarisini, GATT servis ve karakteristik eşleşmesini, Bluetooth 20-byte MTU paketleme sınırını ve üretime hazır tam bir JavaScript sürücüsüz yazdırma kütüphanesini ele alıyoruz.
 

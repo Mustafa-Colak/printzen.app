@@ -1,7 +1,7 @@
 ---
-updatedDate: 2026-10-23
+updatedDate: 2026-10-26
 title: "Android'de Bluetooth Termal Yazıcı Kurulumu"
-description: "Android telefon veya tabletinizi Bluetooth termal yazıcıya bağlayıp sistem yazdırma menüsünden fiş veya etiket basmayı öğrenin."
+description: "Android telefon veya tabletinizi Bluetooth termal yazıcıya bağlayıp sistem yazdırma menüsünden fiş veya etiket basmayı öğrenin (zjiang termal yazıcı kurulumu)."
 printerClass: mobile
 publishDate: 2026-07-06
 translationKey: android-bluetooth-printer-setup

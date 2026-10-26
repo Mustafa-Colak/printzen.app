@@ -7,7 +7,7 @@ publishDate: 2026-09-10
 translationKey: thermal-printer-bluetooth-pin-code-pairing-issues
 ---
 
-Yeni bir taşınabilir termal fiş yazıcıyı telefon veya bilgisayarla eşleştirmeye çalışırken ekranda beliren en sinir bozucu uyarı **"PIN kodu yanlış veya cihaz eşleştirilemedi"** hatasıdır. Kutunun içinden çıkan kullanım kılavuzunda yazan şifreyi girseniz bile bazı cihazlar eşleşmeyi reddeder.
+Yeni bir taşınabilir [termal](/tr/rehberler/android-bluetooth-yazici-kurulumu/) fiş yazıcıyı telefon veya bilgisayarla eşleştirmeye çalışırken ekranda beliren en sinir bozucu uyarı **"PIN kodu yanlış veya cihaz eşleştirilemedi"** hatasıdır. Kutunun içinden çıkan kullanım kılavuzunda yazan şifreyi girseniz bile bazı cihazlar eşleşmeyi reddeder.
 
 Bu rehberde; marka bazında varsayılan PIN kodlarını, yazıcının gerçek şifresini Self-Test ile öğrenmeyi ve kilitlenen Bluetooth modüllerini sıfırlamayı ele alıyoruz.
 
