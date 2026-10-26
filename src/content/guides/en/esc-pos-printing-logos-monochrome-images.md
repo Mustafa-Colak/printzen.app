@@ -7,7 +7,7 @@ publishDate: 2026-09-10
 translationKey: esc-pos-printing-logos-monochrome-images
 ---
 
-Printing sharp, prominent brand logos at the head of customer receipts elevates brand credibility and instills customer trust. However, frontend web developers attempting to pipe colorful JPEG or PNG images to thermal printers often encounter smeared, solid-black, or distorted output.
+Printing sharp, prominent brand logos at the head of customer receipts elevates brand credibility and instills customer trust. However, frontend web developers attempting to pipe colorful JPEG or PNG images to [thermal](/guides/network-ethernet-raw-port-9100-socket-architecture/) printers often encounter smeared, solid-black, or distorted output.
 
 Thermal printers lack shades of gray, transparency layers, and RGB color filters. They operate strictly in a binary state: **heated dots (1 / black) and unheated dots (0 / white)**.
 

@@ -7,7 +7,7 @@ publishDate: 2026-09-10
 translationKey: consolidating-online-delivery-orders-single-pos-printer
 ---
 
-In modern ghost kitchens and takeaway restaurants, a common sight behind the counter is a row of four or five separate delivery tablets, each tethered to its own cheap Bluetooth thermal printer: one for DoorDash, one for UberEats, one for Grubhub, and another for direct website orders.
+In modern ghost kitchens and takeaway restaurants, a common sight behind the counter is a row of four or five separate delivery tablets, each tethered to its own cheap Bluetooth [thermal](/guides/network-ethernet-raw-port-9100-socket-architecture/) printer: one for DoorDash, one for UberEats, one for Grubhub, and another for direct website orders.
 
 This hardware sprawl causes power strip fires, paper roll management headaches, and missed tickets when one tablet runs out of paper without anyone noticing.
 
