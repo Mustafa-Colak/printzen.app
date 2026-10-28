@@ -33,7 +33,7 @@ const imgMatch = guide.body.match(/src=["'](\/images\/[^"']+)["']/) || guide.bod
 const firstImageUrl = imgMatch ? `https://printzen.app${imgMatch[1]}` : undefined;
 
 const faqEntities: Array<{ '@type': string; name: string; acceptedAnswer: { '@type': string; text: string } }> = [];
-const faqSectionMatch = guide.body.match(/^##\s+.*(?:Frequently\s+Asked\s+Questions)[^\n]*\n([\s\S]*?)(?=\n##\s+|$)/im);
+const faqSectionMatch = guide.body.match(/##\s+[^\n]*(?:Frequently\s+Asked\s+Questions)[^\n]*\n([\s\S]*?)(?=\n##\s+|\n---\s*\n|$)/i);
 if (faqSectionMatch) {
   const qBlocks = faqSectionMatch[1].split(/\n###\s+/).filter((b) => b.trim());
   for (const block of qBlocks) {
