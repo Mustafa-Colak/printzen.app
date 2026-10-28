@@ -15,13 +15,15 @@ ZPL'de grafik çizimi için kullanılan temel komut **`^GF` (Graphic Field)** ko
 
 ## 1. `^GF` Komutunun Sözdizimi ve Parametreleri
 
-$$\text{^GFA, } b, \text{ } t, \text{ } w, \text{ } [data]$$
+`^GFA, b, t, w, [data]`
 
-- `A`: Veri sıkıştırma türü (`A`: Standart Hex ASCII, en yaygın ve uyumlu mod).
-- `$b$`: Veri bayt sayısı (Görselin toplam bayt büyüklüğü).
-- `$t$`: Toplam bayt sayısı (Piksel padding dahil).
-- `$w$`: Satır başına bayt sayısı ($\text{Piksel Genişliği} / 8$).
-- `$[data]$`: Piksel baytlarının ardışık onaltılık (hexadecimal) dizisi.
+- `A`: Veri sıkıştırma türü (`A`: Standart Hex ASCII, en yaygın ve uyumlu mod; yüksek hacimli sıkıştırma için `:Z64:` kullanılır).
+- `b`: Veri bayt sayısı (Görselin toplam bayt büyüklüğü).
+- `t`: Toplam bayt sayısı (Piksel dolgu payı dahil).
+- `w`: Satır başına bayt sayısı (`Piksel Genişliği ÷ 8`).
+- `[data]`: Piksel baytlarının ardışık onaltılık (hexadecimal) dizisi.
+
+Gri tonlamalı kurumsal logoların ve fotoğrafların `^GF` öncesinde **Floyd-Steinberg** veya **8×8 Bayer Karo Noktalama (*Ordered Tile Dithering*)** ve **NVIDIA CUDA Rust (`cutile-rs` / `cuda-oxide`)** ile nasıl 1-bit matrise dönüştürüldüğünü [Termal Fiş Şablonlama, 1-Bit Dithering Motoru ve CUDA Rust GPU Hızlandırma Rehberi](/tr/rehberler/termal-fis-sablonlama-ve-1-bit-dithering-motoru/) yazımızda inceleyebilirsiniz.
 
 ---
 

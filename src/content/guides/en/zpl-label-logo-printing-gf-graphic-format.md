@@ -15,13 +15,15 @@ In ZPL II, this raster graphics pipeline is implemented using the **`^GF` (Graph
 
 ## 1. Structure of the `^GF` Command
 
-$$\text{^GFA, } b, \text{ } t, \text{ } w, \text{ } [data]$$
+`^GFA, b, t, w, [data]`
 
-- `A`: Compression mode (`A`: Uncompressed ASCII Hexadecimal, universal standard).
-- `$b$`: Total byte count of the transmitted graphic stream.
-- `$t$`: Total byte count allocated in the bitmap buffer.
-- `$w$`: Bytes per row ($\text{Image width in pixels} / 8$).
-- `$[data]$`: Continuous ASCII hexadecimal character string representing pixel states.
+- `A`: Compression mode (`A`: Uncompressed ASCII Hexadecimal, universal standard; use `:Z64:` for LZ77/CRC16 compressed binary).
+- `b`: Total byte count of the transmitted graphic stream.
+- `t`: Total byte count allocated in the bitmap buffer.
+- `w`: Bytes per row (`Image width in pixels ÷ 8`).
+- `[data]`: Continuous ASCII hexadecimal character string representing pixel states.
+
+For converting continuous-tone grayscale logos into 1-bit bitmaps prior to `^GF` encoding using **Floyd-Steinberg error diffusion**, **Ordered 8×8 Bayer tile dithering**, and **NVIDIA CUDA Rust (`cutile-rs` & `cuda-oxide`)** GPU kernels, see our [Thermal Receipt Template Design, 1-Bit Dithering Engine & NVIDIA CUDA Rust GPU Acceleration Guide](/guides/thermal-receipt-template-design-1-bit-dithering/).
 
 ---
 

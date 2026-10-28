@@ -29,13 +29,50 @@ const classLabels: Record<string, string> = {
   industrial: 'Endüstriyel',
 };
 
+const imgMatch = guide.body.match(/src=["'](\/images\/[^"']+)["']/) || guide.body.match(/!\[[^\]]*\]\((\/images\/[^)]+)\)/);
+const firstImageUrl = imgMatch ? `https://printzen.app${imgMatch[1]}` : undefined;
+
+const faqEntities: Array<{ '@type': string; name: string; acceptedAnswer: { '@type': string; text: string } }> = [];
+const faqSectionMatch = guide.body.match(/^##\s+.*(?:Sıkça\s+Sorulan\s+Sorular|Sık\s+Sorulan\s+Sorular)[^\n]*\n([\s\S]*?)(?=\n##\s+|$)/im);
+if (faqSectionMatch) {
+  const qBlocks = faqSectionMatch[1].split(/\n###\s+/).filter((b) => b.trim());
+  for (const block of qBlocks) {
+    const cleanedBlock = block.replace(/^###\s+/, '');
+    const nlIdx = cleanedBlock.indexOf('\n');
+    if (nlIdx !== -1) {
+      const q = cleanedBlock.slice(0, nlIdx).trim();
+      const a = cleanedBlock.slice(nlIdx + 1).replace(/[*_`#>\[\]]/g, '').replace(/\s+/g, ' ').trim();
+      if (q && a) {
+        faqEntities.push({
+          '@type': 'Question',
+          name: q,
+          acceptedAnswer: { '@type': 'Answer', text: a },
+        });
+      }
+    }
+  }
+}
+
 const articleSchema = {
   '@context': 'https://schema.org',
-  '@type': 'Article',
-  headline: guide.data.title,
-  description: guide.data.description,
-  datePublished: guide.data.publishDate.toISOString(),
-  author: { '@type': 'Organization', name: 'Printzen' },
+  '@graph': [
+    {
+      '@type': 'Article',
+      headline: guide.data.title,
+      description: guide.data.description,
+      ...(firstImageUrl ? { image: firstImageUrl } : {}),
+      datePublished: guide.data.publishDate.toISOString(),
+      author: { '@type': 'Organization', name: 'Printzen' },
+    },
+    ...(faqEntities.length > 0
+      ? [
+          {
+            '@type': 'FAQPage',
+            mainEntity: faqEntities,
+          },
+        ]
+      : []),
+  ],
 };
 ---
 <BaseLayout lang="tr" title={`${guide.data.title} — Printzen`} description={guide.data.description} alternatePath={alternatePath}>
