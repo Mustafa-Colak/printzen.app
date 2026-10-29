@@ -1,7 +1,7 @@
 ---
 updatedDate: 2026-10-29
-title: "Tedarikçi Portalı ve ERP Sistemlerinden Merkezi ZPL/TSPL Etiket Şablonu Yönetişimi ve Bulut Baskı Mimarisi"
-description: "Çok katmanlı tedarikçi ve fason üretim ağlarında etiket uyum açığını kapatmak için merkezi ZPL II ve TSPL şablon yönetişimi, SAP/ERP JSON veri enjeksiyonu, GS1-128 ve DataMatrix FNC1 kodlaması ile tarayıcıdan sessiz bulut baskı rehberi."
+title: "Tedarikçi Portalı ve ERP Sistemlerinden Merkezi ZPL/TSPL Etiket Şablon Yönetimi ve Bulut Baskı Mimarisi"
+description: "Çok katmanlı tedarikçi ve fason üretim ağlarında etiket uyum açığını kapatmak için merkezi ZPL II ve TSPL şablon yönetimi, SAP/ERP JSON veri enjeksiyonu, GS1-128 ve DataMatrix FNC1 kodlaması ile tarayıcıdan sessiz bulut baskı rehberi."
 printerClass: industrial
 brand: Zebra
 publishDate: 2026-10-29
@@ -10,10 +10,10 @@ translationKey: supplier-portal-centralized-zpl-template-governance
 
 Küresel üretim ve perakende tedarik zincirlerinde karşılaşılan en pahalı operasyonel kırılma noktası, ana üretici ile dış tedarikçiler (*Tier-1 / Tier-2 hammadde sağlayıcıları ve fason üreticiler*) arasındaki **"etiket ve ürün bilgisi uyum açığı" (*compliance gap*)** sorunudur. Merkez fabrikada **SAP S/4HANA** veya kurumsal ERP sistemi üzerinde ürün ana verisi (GTIN, parti/lot numarası, son tüketim tarihi, alerjen uyarısı veya **AB Dijital Ürün Pasaportu — DPP** verisi) güncellendiğinde; dış tedarikçinin kendi bilgisayarındaki eski bir Excel tablosundan veya yerel etiket dosyasından baskı almaya devam etmesi, mal kabul kapısında tüm sevkiyatın reddedilmesine, ağır iade cezalarına ve **7223 sayılı Ürün Güvenliği ve Teknik Düzenlemeler Kanunu** ile **AB ESPR (EU) 2024/1781** kapsamında piyasa gözetimi yaptırımlarına yol açar [1, 2, 5].
 
-Etiket uyum açığını kapatmak yalnızca bir donanım yatırımı değil; **kayıt sistemleri (*systems of record*), kurumsal veri yönetişimi (*governance*) ve uç noktada tutarlı etiket icrasının (*execution*)** tek bir mimaride birleştirilmesidir [1]. Bu kapsamlı mühendislik rehberinde; dış tedarikçilere yerel şablon dosyası göndermek yerine **Merkezi ZPL II / TSPL Şablon Kasası (*Template Vault*)** kurmayı, ERP'den gelen doğrulanmış JSON veri yükünü `HMAC-SHA256` imzasıyla şablona enjekte etmeyi ve tedarikçinin web tarayıcısından (`WebUSB`, `Web Bluetooth` veya `TCP 9100`) sıfır sürücü kurulumuyla doğrudan termal yazıcıya basmayı inceliyoruz.
+Etiket uyum açığını kapatmak yalnızca bir donanım yatırımı değil; **kayıt sistemleri (*systems of record*), kurumsal veri yönetimi (*governance*) ve uç noktada tutarlı etiket icrasının (*execution*)** tek bir mimaride birleştirilmesidir [1]. Bu kapsamlı mühendislik rehberinde; dış tedarikçilere yerel şablon dosyası göndermek yerine **Merkezi ZPL II / TSPL Şablon Kasası (*Template Vault*)** kurmayı, ERP'den gelen doğrulanmış JSON veri yükünü `HMAC-SHA256` imzasıyla şablona enjekte etmeyi ve tedarikçinin web tarayıcısından (`WebUSB`, `Web Bluetooth` veya `TCP 9100`) sıfır sürücü kurulumuyla doğrudan termal yazıcıya basmayı inceliyoruz.
 
 <figure>
-  <img src="/images/guides/tedarikci-zpl-yonetisimi-tr-01.webp" width="1376" height="768" alt="Tedarikçi portalı üzerinden merkezi ZPL II etiket şablonu yönetişimi, SAP ERP JSON veri akışı ve masaüstü termal yazıcıya doğrudan sessiz baskı mimarisi" loading="eager" decoding="async" />
+  <img src="/images/guides/tedarikci-zpl-yonetisimi-tr-01.webp" width="1376" height="768" alt="Tedarikçi portalı üzerinden merkezi ZPL II etiket şablon yönetimi, SAP ERP JSON veri akışı ve masaüstü termal yazıcıya doğrudan sessiz baskı mimarisi" loading="eager" decoding="async" />
   <figcaption>Şekil 1: Kayıt sisteminden (ERP) gelen doğrulanmış ürün verisinin merkezi ZPL II şablon kasasıyla birleştirilerek tedarikçi istasyonundaki termal yazıcıya sıfır yerel müdahaleyle iletilmesi [1, 3].</figcaption>
 </figure>
 
@@ -23,7 +23,7 @@ Etiket uyum açığını kapatmak yalnızca bir donanım yatırımı değil; **k
 
 Çok katmanlı tedarikçi ağlarında her fason atölyenin veya hammadde tedarikçisinin kendi etiket tasarımını yapmasına izin vermek, hem **FDA 21 CFR Part 11 / AB GMP Ek 11 (Annex 11)** elektronik kayıt bütünlüğü kurallarını ihlal eder hem de termal baskı kalitesini düşürür [3, 4]:
 
-| Operasyonel Kriter | Dağıtık Yerel Dosya & PDF Baskı Yaklaşımı | Merkezi ZPL II / TSPL Şablon Yönetişimi (Bulut Portalı) |
+| Operasyonel Kriter | Dağıtık Yerel Dosya & PDF Baskı Yaklaşımı | Merkezi ZPL II / TSPL Şablon Yönetimi (Bulut Portalı) |
 | :--- | :--- | :--- |
 | **Veri Doğruluk Kaynağı** | Tedarikçi personelinin klavyeden elle girdiği Excel/CSV hücresi (Yüksek yazım hatası riski) | **ERP Kayıt Sistemi (SAP S/4HANA vb.):** Sipariş emrine (`PO`) bağlı salt-okunur JSON veri yükü [1] |
 | **Şablon Sürüm Kontrolü** | Tedarikçi bilgisayarında unutulmuş eski şablon dosyaları (`etiket_v2_son.lbl`) | **SHA-256 Özet (Hash) Kilidi:** Merkezde onaylanan şablon anında tüm tedarikçi ağında devreye girer |
@@ -32,8 +32,8 @@ Etiket uyum açığını kapatmak yalnızca bir donanım yatırımı değil; **k
 | **Denetim İzi (*Audit Trail*)** | Hangi tedarikçinin, hangi saatte, kaç adet etiket bastığı merkezden izlenemez | **21 CFR Part 11 Uyumu:** Kullanıcı, zaman damgası, parti kodu ve yazıcı seri numarası merkezi kütüğe işlenir [4] |
 
 <figure>
-  <img src="/images/guides/tedarikci-zpl-yonetisimi-tr-02.webp" width="1376" height="768" alt="Dağıtık yerel Excel ve PDF etiket kaosu ile merkezi ZPL II şablon yönetişimi ve ISO/IEC 15415 A derecesi termal baskı karşılaştırması" loading="lazy" decoding="async" />
-  <figcaption>Şekil 2: Sol panelde yerel Excel/PDF dönüşümünden kaynaklanan bozuk barkod ve mal kabul reddi; sağ panelde merkezi ZPL II şablon yönetişimiyle üretilen tam nokta keskinliğinde GS1 etiketi [1, 3].</figcaption>
+  <img src="/images/guides/tedarikci-zpl-yonetisimi-tr-02.webp" width="1376" height="768" alt="Dağıtık yerel Excel ve PDF etiket kaosu ile merkezi ZPL II şablon yönetimi ve ISO/IEC 15415 A derecesi termal baskı karşılaştırması" loading="lazy" decoding="async" />
+  <figcaption>Şekil 2: Sol panelde yerel Excel/PDF dönüşümünden kaynaklanan bozuk barkod ve mal kabul reddi; sağ panelde merkezi ZPL II şablon yönetimiyle üretilen tam nokta keskinliğinde GS1 etiketi [1, 3].</figcaption>
 </figure>
 
 Termal yazıcılarda PDF veya görsel tabanlı baskıların neden kenar bulanıklığına yol açtığını matematiksel olarak incelemek için [Termal Fiş Şablonlama ve 1-Bit Dithering Motoru](/tr/rehberler/termal-fis-sablonlama-ve-1-bit-dithering-motoru/) kılavuzumuza göz atabilirsiniz.
@@ -58,7 +58,7 @@ Aşağıdaki parametrik ZPL II şablonu, tedarikçinin biçimlendirmeye müdahal
 ^LL1772
 ^LH0,0
 
-^FX --- Üst Başlık: Merkezi Yönetişim Şablon Kimliği ve Onay Sürümü ---
+^FX --- Üst Başlık: Merkezi Denetim Şablon Kimliği ve Onay Sürümü ---
 ^FO40,40^GB1101,1692,4^FS
 ^FO70,65^A0N,38,38^FDONAYLI TEDARIKCI SEVKIYAT VE IZLENEBILIRLIK ETIKETI^FS
 ^FO70,115^A0N,26,26^FDSABLON ID: {{TEMPLATE_VERSION_ID}} | SHA256: {{TEMPLATE_HASH_SHORT}}^FS
@@ -106,7 +106,7 @@ Aşağıdaki parametrik ZPL II şablonu, tedarikçinin biçimlendirmeye müdahal
 
 ## 3. ERP Kayıt Sisteminden Tedarikçi Yazıcısına İmzalı Bulut Baskı ve Durum Telemetrisi
 
-Tedarikçi ağında tam yönetişim sağlamak için iki güvenlik adımı zorunludur: **(1) Tedarikçinin şablon metnini veya değişkenleri tarayıcı konsolundan değiştirememesi (`HMAC-SHA256` doğrulama)** ve **(2) Etiketin fiziksel olarak hatasız basıldığının (`~HS` / `~HQES` durum sorgusuyla) merkez ERP'ye geri bildirilmesi**.
+Tedarikçi ağında tam merkezi yönetim sağlamak için iki güvenlik adımı zorunludur: **(1) Tedarikçinin şablon metnini veya değişkenleri tarayıcı konsolundan değiştirememesi (`HMAC-SHA256` doğrulama)** ve **(2) Etiketin fiziksel olarak hatasız basıldığının (`~HS` / `~HQES` durum sorgusuyla) merkez ERP'ye geri bildirilmesi**.
 
 Aşağıdaki mimari örnek; merkez sunucuda ERP verisiyle derlenen ve kriptografik olarak imzalanan ZPL II paketinin, tedarikçi istasyonundaki [Tarayıcıdan Sessiz Bulut Baskı](/tr/rehberler/tarayicidan-sessiz-bulut-baski-ve-dogrudan-yazdirma-rehberi/) köprüsü veya [Ağ ve Ethernet Raw Port 9100 Soket Mimarisi](/tr/rehberler/ag-ve-ethernet-raw-port-9100-soket-mimarisi/) üzerinden yazıcıya iletilmesini ve denetim izi kaydını gösterir:
 
@@ -115,7 +115,7 @@ import crypto from 'node:crypto';
 import net from 'node:net';
 
 /**
- * 1. Merkez ERP / Yönetişim Sunucusu: Kilitli Şablona Veri Enjeksiyonu ve HMAC-SHA256 İmzası
+ * 1. Merkez ERP / Merkezi Denetim Sunucusu: Kilitli Şablona Veri Enjeksiyonu ve HMAC-SHA256 İmzası
  */
 export function buildGovernedSupplierPrintJob(lockedZplTemplate, erpRecord, secretKey) {
   // Değişken alanlardan ZPL kontrol karakterlerini (^ ve ~) temizleyerek enjeksiyonu önle
@@ -184,11 +184,11 @@ export function executeVerifiedThermalPrint(printerIp, zplPayload, timeoutMs = 4
 
 ## 4. Uçtan Uca Tedarik Zinciri Donanım ve ERP Ekosistemi
 
-Yazılım katmanında merkezi ZPL II ve TSPL şablon yönetişimini kurduktan sonra, fiziksel saha icrasının kesintisiz çalışması için üç tamamlayıcı katman birlikte planlanmalıdır:
+Yazılım katmanında merkezi ZPL II ve TSPL şablon yönetimini kurduktan sonra, fiziksel saha icrasının kesintisiz çalışması için üç tamamlayıcı katman birlikte planlanmalıdır:
 
-1. **Tedarikçi Masaüstü/Endüstriyel Yazıcı ve ISO/IEC 15415 Doğrulayıcı Donanımı:** Tedarikçi sevkiyat noktalarında kullanılacak 300/600 DPI termal transfer yazıcılar, reçine (*resin*) ribon seçimi, **ISO/IEC 15426** kalibrasyonlu barkod doğrulayıcılar (*verifier*) ve mal kabul kapısı UHF RFID/2B okuyucu donanımları için **[Rebo Teknoloji — Tedarikçi Ağında Ürün Bilgisi Yönetişimi, ERP Entegreli Termal Yazıcılar ve ISO/IEC 15415 Barkod Doğrulama Rehberi](https://rebo.com.tr/tedarikci-aginda-urun-bilgisi-yonetisimi-erp-termal-yazici-ve-barkod-dogrulama-rehberi/)** incelememize başvurabilirsiniz.
-2. **Konveyör Hattı Tam Otomatik *Print & Apply* (Yazdır-Yapıştır) Sistemleri:** Saatte yüzlerce koli ve paletin çıktığı yüksek hızlı fabrikalarda, SAP/ERP sisteminden gelen ZPL akışını operatörsüz olarak doğrudan konveyördeki kolilere uygulayan ve kameralı doğrulama ile hatalı koliyi ayıran robotik sistemler için **[ReboLabel — Tedarik Zinciri ve Çok Tesisli Üretimde ERP (SAP) Entegreli Otomatik Etiketleme (Print & Apply) Yönetişimi](https://rebolabel.com/blog/erp-sap-entegreli-otomatik-etiketleme-print-apply-ve-urun-veri-yonetisimi/)** kılavuzunu inceleyebilirsiniz.
-3. **KOBİ Ürün Ana Verisi (Stok Kartı), VUK e-İrsaliye ve Mevzuat Uyumu:** Tedarikçi ağında stok kartı standardizasyonu, **7223 sayılı Ürün Güvenliği Kanunu**, **5996 sayılı Veteriner Hizmetleri ve Gıda Kanunu (Madde 21, 22, 24)** ve **VUK 509 Sıra No'lu Tebliğ** e-İrsaliye karekod eşleşmesi için **[UstaHesap — KOBİ ve Üreticilerde Ürün Ana Verisi (Stok Kartı) Yönetişimi, Lot İzlenebilirliği ve Mevzuat Uyumu](https://ustahesap.com/rehber/urun-ana-verisi-stok-karti-yonetisimi-tedarikci-etiket-ve-mevzuat-uyumu)** rehberine göz atabilirsiniz.
+1. **Tedarikçi Masaüstü/Endüstriyel Yazıcı ve ISO/IEC 15415 Doğrulayıcı Donanımı:** Tedarikçi sevkiyat noktalarında kullanılacak 300/600 DPI termal transfer yazıcılar, reçine (*resin*) ribon seçimi, **ISO/IEC 15426** kalibrasyonlu barkod doğrulayıcılar (*verifier*) ve mal kabul kapısı UHF RFID/2B okuyucu donanımları için **[Rebo Teknoloji — Tedarikçi Ağında Ürün Bilgisi Yönetimi, ERP Entegreli Termal Yazıcılar ve ISO/IEC 15415 Barkod Doğrulama Rehberi](https://rebo.com.tr/tedarikci-aginda-urun-bilgisi-yonetisimi-erp-termal-yazici-ve-barkod-dogrulama-rehberi/)** incelememize başvurabilirsiniz.
+2. **Konveyör Hattı Tam Otomatik *Print & Apply* (Yazdır-Yapıştır) Sistemleri:** Saatte yüzlerce koli ve paletin çıktığı yüksek hızlı fabrikalarda, SAP/ERP sisteminden gelen ZPL akışını operatörsüz olarak doğrudan konveyördeki kolilere uygulayan ve kameralı doğrulama ile hatalı koliyi ayıran robotik sistemler için **[ReboLabel — Tedarik Zinciri ve Çok Tesisli Üretimde ERP (SAP) Entegreli Otomatik Etiketleme (Print & Apply) Yönetimi](https://rebolabel.com/blog/erp-sap-entegreli-otomatik-etiketleme-print-apply-ve-urun-veri-yonetisimi/)** kılavuzunu inceleyebilirsiniz.
+3. **KOBİ Ürün Ana Verisi (Stok Kartı), VUK e-İrsaliye ve Mevzuat Uyumu:** Tedarikçi ağında stok kartı standardizasyonu, **7223 sayılı Ürün Güvenliği Kanunu**, **5996 sayılı Veteriner Hizmetleri ve Gıda Kanunu (Madde 21, 22, 24)** ve **VUK 509 Sıra No'lu Tebliğ** e-İrsaliye karekod eşleşmesi için **[UstaHesap — KOBİ ve Üreticilerde Ürün Ana Verisi (Stok Kartı) Yönetimi, Lot İzlenebilirliği ve Mevzuat Uyumu](https://ustahesap.com/rehber/urun-ana-verisi-stok-karti-yonetisimi-tedarikci-etiket-ve-mevzuat-uyumu)** rehberine göz atabilirsiniz.
 
 ---
 
@@ -204,13 +204,13 @@ GS1 standardında `(10)` Parti/Lot Numarası ve `(21)` Seri Numarası gibi alanl
 Tek yönlü yazdırma kuyruklarında veri gönderildikten sonra etiketin gerçekten basılıp basılmadığı bilinemez. Çift yönlü TCP `9100` veya `WebUSB` köprüsü üzerinden her iş emrinden önce veya sonra `~HS` (*Host Status*) ve `~HQES` (*Host Query Error Status*) komutları gönderilerek baskı kafası açık, ribon koptu veya etiket bitti uyarıları anlık olarak yakalanır ve ERP denetim izine kaydedilir.
 
 ### AB Dijital Ürün Pasaportu (DPP) tedarikçi etiket şablonlarını nasıl etkiler?
-Temmuz 2024'te yürürlüğe giren **AB Sürdürülebilir Ürünler için Ekotasarım Tüzüğü (ESPR — Regulation (EU) 2024/1781, Madde 9–13)** uyarınca, AB pazarına sunulan ürünlerin tedarik zinciri boyunca **ISO/IEC 15459** uyumlu tekil ürün/parti tanımlayıcısına ve veri taşıyıcısına (QR kod, GS1 DataMatrix veya UHF RFID) sahip olması zorunludur [2]. Merkezi şablon yönetişimi, alt tedarikçilerin DPP bağlantılı karekodları standartlara uygun basmasını garanti altına alır.
+Temmuz 2024'te yürürlüğe giren **AB Sürdürülebilir Ürünler için Ekotasarım Tüzüğü (ESPR — Regulation (EU) 2024/1781, Madde 9–13)** uyarınca, AB pazarına sunulan ürünlerin tedarik zinciri boyunca **ISO/IEC 15459** uyumlu tekil ürün/parti tanımlayıcısına ve veri taşıyıcısına (QR kod, GS1 DataMatrix veya UHF RFID) sahip olması zorunludur [2]. Merkezi şablon yönetimi, alt tedarikçilerin DPP bağlantılı karekodları standartlara uygun basmasını garanti altına alır.
 
 ---
 
 ## 6. Doğrulanmış Kaynaklar ve Standartlar
 
-1. **Loftware, SAP & Accenture** (Kasım 2026). *Closing the Compliance Gap: How to Govern Product Information Across Your Supplier Network — Tedarik Zinciri Görünürlüğü, Kayıt Sistemleri, Yönetişim ve Etiket İcrası*.
+1. **Loftware, SAP & Accenture** (Kasım 2026). *Closing the Compliance Gap: How to Govern Product Information Across Your Supplier Network — Tedarik Zinciri Görünürlüğü, Kayıt Sistemleri, Merkezi Yönetim ve Etiket İcrası*.
 2. **Avrupa Parlamentosu ve Konseyi — Regulation (EU) 2024/1781 (ESPR)** (Temmuz 2024). *Framework for the Setting of Ecodesign Requirements for Sustainable Products — Chapter III: Digital Product Passport (Articles 9–13)* & **ISO/IEC 15459** (*Unique Identification*).
 3. **GS1 General Specifications & ISO/IEC 15415 / 15416** (2024–2026). *GS1 Application Identifiers (00, 01, 10, 17, 21), FNC1 Symbol Character Encoding in GS1-128 and GS1 DataMatrix (ECC 200)* & *Zebra ZPL II Programming Guide*.
 4. **FDA 21 CFR Part 11, EU GMP Annex 11 & FDA FSMA Section 204** (2026). *Electronic Records, Electronic Signatures, Computerised Systems Audit Trails, and Food Traceability Critical Tracking Events (CTEs)*.
