@@ -36,7 +36,7 @@ Allowing contract manufacturers or external suppliers to maintain their own labe
   <figcaption>Figure 2: Left: dithered barcode edges and dock rejection risks from unmanaged local PDF printing; Right: integer-dot GS1 barcode precision via governed ZPL II streaming [1, 3].</figcaption>
 </figure>
 
-To understand why graphical PDF rasterization degrades barcode module edges on 1-bit thermal printheads, see our deep dive on [Thermal Receipt Templating and 1-Bit Dithering Engines](/guides/thermal-receipt-template-design-1-bit-dithering/).
+To understand why graphical PDF rasterization degrades barcode module edges on 1-bit thermal printheads, see our deep dive on [Thermal Receipt Templating and 1-Bit Dithering Engines](/guides/thermal-receipt-template-design-1-bit-dithering/), and for step-by-step migration patterns from legacy **SAP ECC (`SAPscript`, `SmartForms`, `Adobe Forms`, `WWI`, and `GLM`)** spoolers to **SAP S/4HANA Cloud**, read our [Migrating from SAP ECC (WWI, GLM, Adobe Forms) to SAP S/4HANA Cloud Native ZPL/TSPL Thermal Printing Architecture](/guides/sap-ecc-wwi-glm-adobe-forms-to-s4hana-cloud-zpl-printing-migration/) guide.
 
 ---
 
@@ -100,7 +100,7 @@ Below is a production **`300 DPI` (`12 dpmm`)** locked ZPL II master template st
   <figcaption>Figure 3: Executing GS1 DataMatrix and GS1-128 FNC1 control sequences on a 300 DPI thermal printhead via a cryptographically verified edge print bridge [3].</figcaption>
 </figure>
 
-Before rolling out updated templates to supplier portals, validate module dimensions and quiet zones without wasting physical media using our [Online ZPL Viewer and Virtual Testing Guide](/guides/online-zpl-viewer-label-preview-testing-guide/) and review barcode syntax in our [ZPL Barcode and QR Code Placement Guide](/guides/zpl-label-barcode-and-qr-code-placement/).
+Before rolling out updated templates to supplier portals, validate module dimensions and quiet zones without wasting physical media using our [Online ZPL Viewer and Virtual Testing Guide](/guides/online-zpl-viewer-label-preview-testing-guide/), review barcode syntax in our [ZPL Barcode and QR Code Placement Guide](/guides/zpl-label-barcode-and-qr-code-placement/), and explore connected packaging URI encoding in our [GS1 Digital Link and Dynamic 2D Barcode Programming Guide](/guides/gs1-digital-link-dynamic-qr-datamatrix-zpl-tspl-escpos-programming/).
 
 ---
 

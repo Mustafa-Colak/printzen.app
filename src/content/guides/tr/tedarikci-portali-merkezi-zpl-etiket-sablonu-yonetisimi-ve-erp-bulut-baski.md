@@ -36,7 +36,7 @@ Etiket uyum açığını kapatmak yalnızca bir donanım yatırımı değil; **k
   <figcaption>Şekil 2: Sol panelde yerel Excel/PDF dönüşümünden kaynaklanan bozuk barkod ve mal kabul reddi; sağ panelde merkezi ZPL II şablon yönetimiyle üretilen tam nokta keskinliğinde GS1 etiketi [1, 3].</figcaption>
 </figure>
 
-Termal yazıcılarda PDF veya görsel tabanlı baskıların neden kenar bulanıklığına yol açtığını matematiksel olarak incelemek için [Termal Fiş Şablonlama ve 1-Bit Dithering Motoru](/tr/rehberler/termal-fis-sablonlama-ve-1-bit-dithering-motoru/) kılavuzumuza göz atabilirsiniz.
+Termal yazıcılarda PDF veya görsel tabanlı baskıların neden kenar bulanıklığına yol açtığını matematiksel olarak incelemek için [Termal Fiş Şablonlama ve 1-Bit Dithering Motoru](/tr/rehberler/termal-fis-sablonlama-ve-1-bit-dithering-motoru/) kılavuzumuza, eski **SAP ECC (`SAPscript`, `SmartForms`, `Adobe Forms`, `WWI` ve `GLM`)** yazdırma kuyruklarından **SAP S/4HANA Bulut** yerel ZPL/TSPL mimarisine geçiş adımları için ise [SAP ECC (WWI, GLM, Adobe Forms) Yapısından SAP S/4HANA Bulut ZPL/TSPL Termal Baskı Mimarisine Geçiş Rehberi](/tr/rehberler/sap-ecc-wwi-glm-adobe-forms-s4hana-bulut-zpl-termal-baski-gecis-mimarisi/) yazımıza göz atabilirsiniz.
 
 ---
 
@@ -100,7 +100,7 @@ Aşağıdaki parametrik ZPL II şablonu, tedarikçinin biçimlendirmeye müdahal
   <figcaption>Şekil 3: GS1 DataMatrix ve GS1-128 FNC1 kontrol dizilerinin yerel uç köprü üzerinden 300 DPI termal baskı kafasına iletilmesi [3].</figcaption>
 </figure>
 
-Şablonları fiziksel etiket harcamadan tarayıcıda doğrulamak için [Çevrimiçi ZPL Etiket Önizleme ve Test Rehberi](/tr/rehberler/cevrimici-zpl-etiket-onizleme-ve-test-rehberi/) aracımızı, ZPL barkod koordinat kuralları için [ZPL Etikete Barkod ve Karekod Yerleştirme](/tr/rehberler/zpl-etikete-barkod-ve-karekod-yerlestirme/) rehberimizi inceleyebilirsiniz.
+Şablonları fiziksel etiket harcamadan tarayıcıda doğrulamak için [Çevrimiçi ZPL Etiket Önizleme ve Test Rehberi](/tr/rehberler/cevrimici-zpl-etiket-onizleme-ve-test-rehberi/) aracımızı, ZPL barkod koordinat kuralları için [ZPL Etikete Barkod ve Karekod Yerleştirme](/tr/rehberler/zpl-etikete-barkod-ve-karekod-yerlestirme/) rehberimizi ve yeniden baskı gerektirmeyen bağlantılı ambalaj URI kodlaması için [ZPL II, TSPL2 ve ESC/POS ile GS1 Digital Link ve Dinamik 2B Karekod Programlama](/tr/rehberler/gs1-digital-link-dinamik-qr-datamatrix-zpl-tspl-escpos-programlama/) kılavuzumuzu inceleyebilirsiniz.
 
 ---
 
