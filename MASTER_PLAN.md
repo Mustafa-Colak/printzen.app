@@ -88,3 +88,7 @@ c:\edev\printzen.app\
   - `src/content/guides/tr/gelistirici-araclari-urun-hizi-api-sdk-ekipleri.md` ve `src/content/guides/en/developer-tools-product-velocity-api-sdk-teams.md` (`translationKey: gelistirici-araclari-urun-hizi-api-sdk-ekipleri`) yayınlandı.
   - 1 kapak + 4 gövde olmak üzere 5 adet 1376x768 WebP görsel ComfyUI FLUX.1-Dev motoruyla üretildi.
   - `node scripts/qa-agent-audit.mjs` ve `check-terminology.mjs` (0 hata) doğrulandı; 199 sayfa derlendi ve `origin/master` dalına push edilerek canlıda HTTP 200 ve IndexNow (200 OK) ile mühürlendi.
+- **31 Ekim 2026 - 00:09 (`PRN-002` Spesifikasyon Odaklı Ürün Geliştirme & Ryan Nystrom Notion Vaka Analizi — Çift Dilli Rehber Yayında):**
+  - `src/content/guides/tr/spesifikasyon-odakli-gelistirme-ve-sifir-hatali-api-mimarisi.md` ve `src/content/guides/en/spec-driven-development-zero-defect-api-architecture.md` (`translationKey: spesifikasyon-odakli-gelistirme-ve-sifir-hatali-api-mimarisi`) yayınlandı.
+  - 1 kapak + 4 gövde olmak üzere 5 adet 1376x768 WebP görsel ComfyUI FLUX.1-Dev motoruyla üretildi.
+  - `node scripts/qa-agent-audit.mjs` ve `check-terminology.mjs` (0 hata) doğrulandı; 207 sayfa derlendi, Cloudflare Workers üzerine deploy edildi ve canlıda HTTP 200 ve IndexNow (207 URL, 200 OK) ile mühürlendi.
