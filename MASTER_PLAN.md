@@ -64,6 +64,7 @@ c:\edev\printzen.app\
   - `woo-multi-sync.astro` sayfasına canonical etiketi eklendi.
   - Canlı Cloudflare Worker üzerinde doğrulandı (HTTP 200, slash'lı linkler, noindex).
 - [x] **GSC Doğrulaması:** Kullanıcı Search Console panelinden 'Düzeltmeyi Doğrula' butonuna bastı (Google tarama ve doğrulama döngüsü başlatıldı).
+- [x] **31 Ekim 2026 — Dayanıklı Dağıtık Sistem Mimarisi & Sam Newman (PRN-003):** Çift dilli (TR & EN) kılavuz 5 FLUX WebP görseliyle yayına alındı.
 - [ ] **WooCommerce Çoklu Mağaza Senkronizasyon Sayfası (woo-multi-sync):** TR versiyonu ve i18n altyapısı.
 
 ---
@@ -92,3 +93,8 @@ c:\edev\printzen.app\
   - `src/content/guides/tr/spesifikasyon-odakli-gelistirme-ve-sifir-hatali-api-mimarisi.md` ve `src/content/guides/en/spec-driven-development-zero-defect-api-architecture.md` (`translationKey: spesifikasyon-odakli-gelistirme-ve-sifir-hatali-api-mimarisi`) yayınlandı.
   - 1 kapak + 4 gövde olmak üzere 5 adet 1376x768 WebP görsel ComfyUI FLUX.1-Dev motoruyla üretildi.
   - `node scripts/qa-agent-audit.mjs` ve `check-terminology.mjs` (0 hata) doğrulandı; 207 sayfa derlendi, Cloudflare Workers üzerine deploy edildi ve canlıda HTTP 200 ve IndexNow (207 URL, 200 OK) ile mühürlendi.
+- **31 Ekim 2026 - 01:20 (PRN-003 Dayanıklı Yapay Zekâ Destekli Dağıtık Sistem Mimarisi & Sam Newman Vaka Analizi — Çift Dilli Rehber Yayında):**
+  - src/content/guides/tr/dayanikli-yapay-zeka-dagitik-sistem-mimarisi-afet-kurtarma.md ve src/content/guides/en/building-resilient-ai-powered-distributed-systems.md (	ranslationKey: dayanikli-yapay-zeka-dagitik-sistem-mimarisi-afet-kurtarma) yayınlandı.
+  - 1 kapak + 4 gövde olmak üzere 5 adet 1376x768 WebP görsel ComfyUI FLUX.1-Dev motoruyla üretildi.
+  - 
+ode scripts/qa-agent-audit.mjs ve check-terminology.mjs (0 hata) doğrulandı; 209 sayfa derlendi, GitHub master dalına push edildi, canlıda HTTP 200 ve IndexNow (200 OK) ile mühürlendi.
