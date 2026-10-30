@@ -7,25 +7,22 @@ publishDate: 2026-10-30
 translationKey: "spesifikasyon-odakli-gelistirme-ve-sifir-hatali-api-mimarisi"
 ---
 
-<div class="my-8 rounded-2xl overflow-hidden border border-slate-800 shadow-2xl bg-slate-900/60 not-prose">
+<figure>
   <img 
     src="/images/guides/spesifikasyon-odakli-gelistirme/cover.webp" 
     alt="Spesifikasyon Odaklı Ürün Geliştirme ve Sıfır Hatalı API Mimarisi" 
-    class="w-full h-auto block"
+    class="w-full h-auto rounded-xl shadow-md block"
     loading="eager"
     decoding="async"
     width="1376"
     height="768"
   />
-  <div class="px-4 py-3 bg-slate-950/80 border-t border-slate-800/80 text-xs text-slate-400 flex items-center justify-between">
-    <span>Şema 1.0: Modern Spesifikasyon Odaklı Yazılım ve Sıfır Hatalı Donanım Arayüzü</span>
-    <span class="text-accent font-mono text-[11px]">Printzen Mühendislik Masası</span>
-  </div>
-</div>
+  <figcaption>Şema 1.0: Modern Spesifikasyon Odaklı Yazılım ve Sıfır Hatalı Donanım Arayüzü (Printzen Mühendislik Masası)</figcaption>
+</figure>
 
-<div class="p-4 mb-6 rounded-xl border border-sky-800/50 bg-sky-950/30 text-sky-200 text-sm flex items-center justify-between">
-  <span><strong>Hızlı Özet:</strong> Donanım ve bulut API geliştirmede kaynak kodunu değil, versiyonlanmış teknik sözleşmeleri (OpenAPI / AsyncAPI) tek otorite kabul ederek hata oranını sıfırlayan mühendislik disiplini.</span>
-  <a href="/guides/" class="ml-4 px-3 py-1 bg-sky-600 hover:bg-sky-500 text-white rounded text-xs font-semibold whitespace-nowrap">Tüm Rehberler →</a>
+<div class="not-prose p-4 mb-8 rounded-xl border border-sky-200 bg-sky-50 text-sky-950 text-sm flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 shadow-xs">
+  <span class="leading-relaxed"><strong class="font-bold text-sky-900">Hızlı Özet:</strong> Donanım ve bulut API geliştirmede kaynak kodunu değil, versiyonlanmış teknik sözleşmeleri (OpenAPI / AsyncAPI) tek otorite kabul ederek hata oranını sıfırlayan mühendislik disiplini.</span>
+  <a href="/tr/rehberler/" class="shrink-0 px-3.5 py-1.5 bg-sky-700 hover:bg-sky-800 text-white rounded-md text-xs font-semibold whitespace-nowrap transition shadow-xs">Tüm Rehberler →</a>
 </div>
 
 Yazılım mühendisliğinde uzun yıllar boyunca kabul gören klasik kural basitti: *"Çalışan kod tek doğruluk kaynağıdır (Source of Truth)."* Dokümantasyonlar, API tabloları ve mimari şemalar çoğu zaman kodun arkasından gelir, ilk birkaç sprint içinde güncelliğini yitirir ve kod tabanında yaşanan beklenmedik kırılmalar geliştiricilerin canını yakardı.
@@ -42,21 +39,18 @@ Geleneksel yazılım takımlarında bir özellik geliştirileceği zaman ürün 
 
 Ryan Nystrom'un Notion'da kurduğu otonom geliştirme düzeninde ise tam tersi bir hiyerarşi uygulanmaktadır: **Kod, spesifikasyonun türevidir; asla kendisi değildir.**
 
-<div class="my-8 rounded-2xl overflow-hidden border border-slate-800 shadow-2xl bg-slate-900/60 not-prose">
+<figure>
   <img 
     src="/images/guides/spesifikasyon-odakli-gelistirme/spesifikasyon-kod-dogrulama-dongusu-01.webp" 
     alt="Spesifikasyon Odaklı Doğrulama ve Otonom Geliştirme Döngüsü" 
-    class="w-full h-auto block"
+    class="w-full h-auto rounded-xl shadow-md block"
     loading="lazy"
     decoding="async"
     width="1376"
     height="768"
   />
-  <div class="px-4 py-3 bg-slate-950/80 border-t border-slate-800/80 text-xs text-slate-400 flex items-center justify-between">
-    <span>Şema 1.1: Tek Doğruluk Kaynağı Olarak Spesifikasyon Dosyası ve Otonom Doğrulama</span>
-    <span class="text-accent font-mono text-[11px]">printzen.app/rehber</span>
-  </div>
-</div>
+  <figcaption>Şema 1.1: Tek Doğruluk Kaynağı Olarak Spesifikasyon Dosyası ve Otonom Doğrulama (printzen.app/rehber)</figcaption>
+</figure>
 
 Bu metodolojinin Notion'daki işleyiş mekanizması şu dört adımdan oluşur:
 
@@ -73,21 +67,18 @@ Birçok mühendislik organizasyonu yapay zekâ destekli kodlama araçlarına yat
 
 İnsan geliştiriciler testlerin çalışmasını beklerken kahve alabilir, e-postalarını kontrol edebilir veya başka bir göreve geçebilir. Ancak otonom kodlama ajanları (AI coding agents) için bekleme süresi tam bir kilitlenme anlamına gelir.
 
-<div class="my-8 rounded-2xl overflow-hidden border border-slate-800 shadow-2xl bg-slate-900/60 not-prose">
+<figure>
   <img 
     src="/images/guides/spesifikasyon-odakli-gelistirme/hizli-ci-ve-otonom-ajan-mimarisi-02.webp" 
     alt="3 Dakika Altı Hızlı Sürekli Entegrasyon ve Paralel Test Mimarisi" 
-    class="w-full h-auto block"
+    class="w-full h-auto rounded-xl shadow-md block"
     loading="lazy"
     decoding="async"
     width="1376"
     height="768"
   />
-  <div class="px-4 py-3 bg-slate-950/80 border-t border-slate-800/80 text-xs text-slate-400 flex items-center justify-between">
-    <span>Şema 1.2: Hızlı Geri Bildirim Döngüsü ile 20 Kat Artan Otonom Doğrulama</span>
-    <span class="text-accent font-mono text-[11px]">Printzen Core CI Engine</span>
-  </div>
-</div>
+  <figcaption>Şema 1.2: Hızlı Geri Bildirim Döngüsü ile 20 Kat Artan Otonom Doğrulama (Printzen Core CI Engine)</figcaption>
+</figure>
 
 Bu ilişkinin matematiksel mantığı şöyledir:
 
@@ -123,21 +114,18 @@ export interface PrintJobContract {
 }
 ```
 
-<div class="my-8 rounded-2xl overflow-hidden border border-slate-800 shadow-2xl bg-slate-900/60 not-prose">
+<figure>
   <img 
     src="/images/guides/spesifikasyon-odakli-gelistirme/donanim-protokol-sozlesmesi-ve-mocking-03.webp" 
     alt="Donanım Protokol Sözleşmesi ve Sanal Simülatör Test İstasyonu" 
-    class="w-full h-auto block"
+    class="w-full h-auto rounded-xl shadow-md block"
     loading="lazy"
     decoding="async"
     width="1376"
     height="768"
   />
-  <div class="px-4 py-3 bg-slate-950/80 border-t border-slate-800/80 text-xs text-slate-400 flex items-center justify-between">
-    <span>Şema 1.3: ESC/POS ve ZPL Bayt Seviyesinde Doğrulama ve Sanal Sürücü Simülatörü</span>
-    <span class="text-accent font-mono text-[11px]">Printzen Hardware Bridge</span>
-  </div>
-</div>
+  <figcaption>Şema 1.3: ESC/POS ve ZPL Bayt Seviyesinde Doğrulama ve Sanal Sürücü Simülatörü (Printzen Hardware Bridge)</figcaption>
+</figure>
 
 Bu sözleşme öncelikli mimari sayesinde üç kritik avantaj elde edilir:
 
@@ -153,21 +141,18 @@ Donanım entegrasyonu yapan geliştiricilerin karşılaştığı en büyük enge
 
 Spesifikasyon Odaklı Ürün Geliştirme metodolojisi bu sorunu **sanal donanım simülatörleri (Hardware Mocking)** ile çözer:
 
-<div class="my-8 rounded-2xl overflow-hidden border border-slate-800 shadow-2xl bg-slate-900/60 not-prose">
+<figure>
   <img 
     src="/images/guides/spesifikasyon-odakli-gelistirme/printzen-api-sdk-spesifikasyon-entegrasyonu-04.webp" 
     alt="Printzen SDK ile Web Bluetooth ve WebUSB Donanım Entegrasyonu" 
-    class="w-full h-auto block"
+    class="w-full h-auto rounded-xl shadow-md block"
     loading="lazy"
     decoding="async"
     width="1376"
     height="768"
   />
-  <div class="px-4 py-3 bg-slate-950/80 border-t border-slate-800/80 text-xs text-slate-400 flex items-center justify-between">
-    <span>Şema 1.4: Web Standartlarıyla Sürücüsüz Termal Yazdırma ve API Akışı</span>
-    <span class="text-accent font-mono text-[11px]">Printzen Core SDK</span>
-  </div>
-</div>
+  <figcaption>Şema 1.4: Web Standartlarıyla Sürücüsüz Termal Yazdırma ve API Akışı (Printzen Core SDK)</figcaption>
+</figure>
 
 Sanal simülatör altyapısının test aşamaları şu adımlardan geçer:
 
@@ -190,13 +175,14 @@ Aşağıdaki tablo, geleneksel kod öncelikli yazılım yaklaşımları ile Noti
 | **Donanım Testleri** | Yalnızca fiziksel cihaz masaya bağlandığında | Sanal soket ve bayt simülatörleriyle tam otomatik |
 | **Dokümantasyon Güncelliği** | Genellikle eski ve koddan kopuk | Kodun kendisinden önce güncellenen canlı sözleşme |
 
-<div class="my-8 p-6 rounded-2xl border border-emerald-800/60 bg-emerald-950/20 text-emerald-200">
-  <h4 class="text-base font-semibold text-white mb-2">Mühendislik Karar Özeti</h4>
-  <p class="text-sm leading-relaxed mb-4">
+<div class="not-prose my-8 p-6 rounded-2xl border border-emerald-200 bg-emerald-50/80 text-emerald-950 shadow-xs">
+  <h4 class="text-base font-bold text-emerald-950 mb-2">Mühendislik Karar Özeti</h4>
+  <p class="text-sm leading-relaxed text-emerald-900 mb-4">
     Geliştirici araçlarında ve donanım entegrasyonlarında sürüm hızını artırmanın yolu daha çok kod yazmak değil; koddan önceki spesifikasyon aşamasını disipline etmektir. Notion'ın uyguladığı gibi sözleşmeleri reponun kalbine koyduğunuzda, hem otonom ajanlar hata yapmadan çalışır hem de sahaya dağıtılan API'ler sıfır hata toleransıyla hizmet verir.
   </p>
-  <a href="https://printzen.app" class="inline-flex items-center px-4 py-2 rounded-lg bg-emerald-600 hover:bg-emerald-500 text-white text-xs font-bold transition-all">
-    Printzen Bulut Yazdırma API Dokümantasyonunu İnceleyin →
+  <a href="https://printzen.app" class="inline-flex items-center gap-2 px-4 py-2.5 rounded-lg bg-emerald-700 hover:bg-emerald-800 text-white text-xs font-bold transition-all shadow-xs">
+    <span>Printzen Bulut Yazdırma API Dokümantasyonunu İnceleyin</span>
+    <span aria-hidden="true">→</span>
   </a>
 </div>
 

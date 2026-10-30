@@ -7,25 +7,22 @@ publishDate: 2026-10-30
 translationKey: "spesifikasyon-odakli-gelistirme-ve-sifir-hatali-api-mimarisi"
 ---
 
-<div class="my-8 rounded-2xl overflow-hidden border border-slate-800 shadow-2xl bg-slate-900/60 not-prose">
+<figure>
   <img 
     src="/images/guides/spesifikasyon-odakli-gelistirme/cover.webp" 
     alt="Spec-Driven Development and Zero-Defect API Architecture" 
-    class="w-full h-auto block"
+    class="w-full h-auto rounded-xl shadow-md block"
     loading="eager"
     decoding="async"
     width="1376"
     height="768"
   />
-  <div class="px-4 py-3 bg-slate-950/80 border-t border-slate-800/80 text-xs text-slate-400 flex items-center justify-between">
-    <span>Diagram 1.0: Modern Spec-Driven Software Architecture and Zero-Defect Hardware Bridges</span>
-    <span class="text-accent font-mono text-[11px]">Printzen Engineering Desk</span>
-  </div>
-</div>
+  <figcaption>Diagram 1.0: Modern Spec-Driven Software Architecture and Zero-Defect Hardware Bridges (Printzen Engineering Desk)</figcaption>
+</figure>
 
-<div class="p-4 mb-6 rounded-xl border border-sky-800/50 bg-sky-950/30 text-sky-200 text-sm flex items-center justify-between">
-  <span><strong>Quick Summary:</strong> An engineering paradigm shifting the single source of truth from raw code to versioned technical contracts (OpenAPI / AsyncAPI), driving autonomous AI coding agents toward zero-defect delivery.</span>
-  <a href="/guides/" class="ml-4 px-3 py-1 bg-sky-600 hover:bg-sky-500 text-white rounded text-xs font-semibold whitespace-nowrap">All Developer Guides →</a>
+<div class="not-prose p-4 mb-8 rounded-xl border border-sky-200 bg-sky-50 text-sky-950 text-sm flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 shadow-xs">
+  <span class="leading-relaxed"><strong class="font-bold text-sky-900">Quick Summary:</strong> An engineering paradigm shifting the single source of truth from raw code to versioned technical contracts (OpenAPI / AsyncAPI), driving autonomous AI coding agents toward zero-defect delivery.</span>
+  <a href="/guides/" class="shrink-0 px-3.5 py-1.5 bg-sky-700 hover:bg-sky-800 text-white rounded-md text-xs font-semibold whitespace-nowrap transition shadow-xs">All Developer Guides →</a>
 </div>
 
 For decades, the standard software engineering dogma was unequivocal: *"The code is the ultimate source of truth."* Architectural documents, OpenAPI schemas, and wikis were treated as secondary artifacts—frequently lagging behind production releases, becoming outdated within sprints, and introducing breaking changes that disrupted downstream integrations.
@@ -42,21 +39,18 @@ In traditional engineering teams, feature delivery follows an ad-hoc cycle: prod
 
 At Notion, Ryan Nystrom inverted this relationship: **Code is a derivative of the specification, never the reverse.**
 
-<div class="my-8 rounded-2xl overflow-hidden border border-slate-800 shadow-2xl bg-slate-900/60 not-prose">
+<figure>
   <img 
     src="/images/guides/spesifikasyon-odakli-gelistirme/spesifikasyon-kod-dogrulama-dongusu-01.webp" 
     alt="Spec-Driven Autonomous Verification and Engineering Workflow Loop" 
-    class="w-full h-auto block"
+    class="w-full h-auto rounded-xl shadow-md block"
     loading="lazy"
     decoding="async"
     width="1376"
     height="768"
   />
-  <div class="px-4 py-3 bg-slate-950/80 border-t border-slate-800/80 text-xs text-slate-400 flex items-center justify-between">
-    <span>Diagram 1.1: The In-Repo Markdown Contract as SSOT and Autonomous Agent Verification</span>
-    <span class="text-accent font-mono text-[11px]">printzen.app/guides</span>
-  </div>
-</div>
+  <figcaption>Diagram 1.1: The In-Repo Markdown Contract as SSOT and Autonomous Agent Verification (printzen.app/guides)</figcaption>
+</figure>
 
 This operational framework rests upon four core pillars:
 
@@ -73,21 +67,18 @@ Organizations often invest in generative coding agents without seeing anticipate
 
 Human developers can context-switch or take breaks while awaiting test suite runs. For autonomous agents operating in loop-based execution, slow CI causes complete idle blocking.
 
-<div class="my-8 rounded-2xl overflow-hidden border border-slate-800 shadow-2xl bg-slate-900/60 not-prose">
+<figure>
   <img 
     src="/images/guides/spesifikasyon-odakli-gelistirme/hizli-ci-ve-otonom-ajan-mimarisi-02.webp" 
     alt="Sub-3-Minute High-Speed Continuous Integration Pipeline" 
-    class="w-full h-auto block"
+    class="w-full h-auto rounded-xl shadow-md block"
     loading="lazy"
     decoding="async"
     width="1376"
     height="768"
   />
-  <div class="px-4 py-3 bg-slate-950/80 border-t border-slate-800/80 text-xs text-slate-400 flex items-center justify-between">
-    <span>Diagram 1.2: Rapid Feedback Loops Unlocking 20x Autonomous Agent Iteration Cadence</span>
-    <span class="text-accent font-mono text-[11px]">Printzen Core CI Engine</span>
-  </div>
-</div>
+  <figcaption>Diagram 1.2: Rapid Feedback Loops Unlocking 20x Autonomous Agent Iteration Cadence (Printzen Core CI Engine)</figcaption>
+</figure>
 
 Consider the mathematical divergence:
 
@@ -123,21 +114,18 @@ export interface PrintJobContract {
 }
 ```
 
-<div class="my-8 rounded-2xl overflow-hidden border border-slate-800 shadow-2xl bg-slate-900/60 not-prose">
+<figure>
   <img 
     src="/images/guides/spesifikasyon-odakli-gelistirme/donanim-protokol-sozlesmesi-ve-mocking-03.webp" 
     alt="Hardware Protocol Contract Testing and Virtual Simulation Station" 
-    class="w-full h-auto block"
+    class="w-full h-auto rounded-xl shadow-md block"
     loading="lazy"
     decoding="async"
     width="1376"
     height="768"
   />
-  <div class="px-4 py-3 bg-slate-950/80 border-t border-slate-800/80 text-xs text-slate-400 flex items-center justify-between">
-    <span>Diagram 1.3: Byte-Level Protocol Verification and Virtual Hardware Socket Simulation</span>
-    <span class="text-accent font-mono text-[11px]">Printzen Hardware Bridge</span>
-  </div>
-</div>
+  <figcaption>Diagram 1.3: Byte-Level Protocol Verification and Virtual Hardware Socket Simulation (Printzen Hardware Bridge)</figcaption>
+</figure>
 
 Contract-first enforcement provides three foundational benefits:
 
@@ -153,21 +141,18 @@ The principal bottleneck for developers building hardware integrations is lack o
 
 Spec-Driven Development resolves this through **Virtual Hardware Simulators**:
 
-<div class="my-8 rounded-2xl overflow-hidden border border-slate-800 shadow-2xl bg-slate-900/60 not-prose">
+<figure>
   <img 
     src="/images/guides/spesifikasyon-odakli-gelistirme/printzen-api-sdk-spesifikasyon-entegrasyonu-04.webp" 
     alt="Printzen SDK Driverless Web Printing Integration via Web Bluetooth and WebUSB" 
-    class="w-full h-auto block"
+    class="w-full h-auto rounded-xl shadow-md block"
     loading="lazy"
     decoding="async"
     width="1376"
     height="768"
   />
-  <div class="px-4 py-3 bg-slate-950/80 border-t border-slate-800/80 text-xs text-slate-400 flex items-center justify-between">
-    <span>Diagram 1.4: Driverless Thermal Printing Flow and High-Performance API Stream</span>
-    <span class="text-accent font-mono text-[11px]">Printzen Core SDK</span>
-  </div>
-</div>
+  <figcaption>Diagram 1.4: Driverless Thermal Printing Flow and High-Performance API Stream (Printzen Core SDK)</figcaption>
+</figure>
 
 The simulation validation workflow operates in three distinct stages:
 
@@ -188,13 +173,14 @@ The simulation validation workflow operates in three distinct stages:
 | **Hardware Testing** | Requires physical test devices on developer desk | 100% automated via virtual socket simulators |
 | **Documentation Fidelity** | Stale, post-facto, frequently inaccurate | Living contracts updated prior to code execution |
 
-<div class="my-8 p-6 rounded-2xl border border-emerald-800/60 bg-emerald-950/20 text-emerald-200">
-  <h4 class="text-base font-semibold text-white mb-2">Engineering Takeaway</h4>
-  <p class="text-sm leading-relaxed mb-4">
+<div class="not-prose my-8 p-6 rounded-2xl border border-emerald-200 bg-emerald-50/80 text-emerald-950 shadow-xs">
+  <h4 class="text-base font-bold text-emerald-950 mb-2">Engineering Takeaway</h4>
+  <p class="text-sm leading-relaxed text-emerald-900 mb-4">
     Accelerating product velocity in developer tools and hardware APIs is achieved not by writing more code faster, but by elevating specifications into enforceable contracts. By anchoring your repository in machine-verifiable specifications, AI coding agents operate with precision, while production APIs achieve zero-defect reliability.
   </p>
-  <a href="https://printzen.app" class="inline-flex items-center px-4 py-2 rounded-lg bg-emerald-600 hover:bg-emerald-500 text-white text-xs font-bold transition-all">
-    Explore the Printzen Cloud Print API Documentation →
+  <a href="https://printzen.app" class="inline-flex items-center gap-2 px-4 py-2.5 rounded-lg bg-emerald-700 hover:bg-emerald-800 text-white text-xs font-bold transition-all shadow-xs">
+    <span>Explore the Printzen Cloud Print API Documentation</span>
+    <span aria-hidden="true">→</span>
   </a>
 </div>
 

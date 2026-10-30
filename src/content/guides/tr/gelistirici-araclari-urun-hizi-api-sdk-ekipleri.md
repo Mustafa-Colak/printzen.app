@@ -7,21 +7,18 @@ publishDate: 2026-10-30
 translationKey: "gelistirici-araclari-urun-hizi-api-sdk-ekipleri"
 ---
 
-<div class="my-8 rounded-2xl overflow-hidden border border-slate-800 shadow-2xl bg-slate-900/60 not-prose">
+<figure>
   <img 
     src="/images/guides/gelistirici-araclari-urun-hizi/cover.webp" 
     alt="Geliştirici Araçlarında Ürün Hızı ve API SDK Mimari Haritası" 
-    class="w-full h-auto block"
+    class="w-full h-auto rounded-xl shadow-md block"
     loading="eager"
     decoding="async"
     width="1376"
     height="768"
   />
-  <div class="px-4 py-3 bg-slate-950/80 border-t border-slate-800/80 text-xs text-slate-400 flex items-center justify-between">
-    <span>Şema 1.0: Modern Geliştirici Araçları ve Yüksek Hızlı Ürün Çevrimi</span>
-    <span class="text-accent font-mono text-[11px]">Printzen Mühendislik Masası</span>
-  </div>
-</div>
+  <figcaption>Şema 1.0: Modern Geliştirici Araçları ve Yüksek Hızlı Ürün Çevrimi (Printzen Mühendislik Masası)</figcaption>
+</figure>
 
 Yazılım dünyasında rekabetin belirleyicisi artık yalnızca "ne inşa ettiğiniz" değil, "hangi hızda doğrulayıp dağıttığınızdır". Özellikle yazılım geliştiricileri hedefleyen araçlarda (API'ler, yazılım geliştirme kitleri / SDK'lar, komut satırı arayüzleri ve donanım köprüleri), geliştirici deneyimi (Developer Experience - DX) doğrudan şirketin büyüme motoruna dönüşmektedir.
 
@@ -35,21 +32,18 @@ Klasik kurumsal yazılım geliştirme süreçlerinde ürün takvimleri çeyrek d
 
 Cat Wu'nun Anthropic'teki gözlemlerine göre en başarılı geliştirici ekiplerinin ortak özelliği, **sürüm döngüsünü (shipping cadence) aylardan haftalara ve nihayetinde günlere indirmeleridir**.
 
-<div class="my-8 rounded-2xl overflow-hidden border border-slate-800 shadow-2xl bg-slate-900/60 not-prose">
+<figure>
   <img 
     src="/images/guides/gelistirici-araclari-urun-hizi/hizli-dagitim-dongusu-ve-geri-bildirim-01.webp" 
     alt="Aylardan Günlere İnen Hızlı Dağıtım ve Geri Bildirim Döngüsü" 
-    class="w-full h-auto block"
+    class="w-full h-auto rounded-xl shadow-md block"
     loading="lazy"
     decoding="async"
     width="1376"
     height="768"
   />
-  <div class="px-4 py-3 bg-slate-950/80 border-t border-slate-800/80 text-xs text-slate-400 flex items-center justify-between">
-    <span>Şema 1.1: Sürekli Dağıtım Boru Hattı ve Gerçek Zamanlı Geliştirici Telemetrisi</span>
-    <span class="text-accent font-mono text-[11px]">printzen.app/rehber</span>
-  </div>
-</div>
+  <figcaption>Şema 1.1: Sürekli Dağıtım Boru Hattı ve Gerçek Zamanlı Geliştirici Telemetrisi (printzen.app/rehber)</figcaption>
+</figure>
 
 Bu hız artışını sağlayan üç temel ilke şunlardır:
 
@@ -65,21 +59,18 @@ Cat Wu'nun paylaştığı en sarsıcı stratejik ilkelerden biri şudur: **"Gele
 
 Teknoloji dünyasında pek çok ekip, altyapının %100 kusursuz hale gelmesini bekler. Ancak altyapı olgunlaştığı gün, pazar zaten yüzlerce rakip tarafından kuşatılmış olur.
 
-<div class="my-8 rounded-2xl overflow-hidden border border-slate-800 shadow-2xl bg-slate-900/60 not-prose">
+<figure>
   <img 
     src="/images/guides/gelistirici-araclari-urun-hizi/henuz-calismayan-urunleri-insa-etmek-02.webp" 
     alt="Önleyici Ürün Tasarımı ve Donanım Yazılım Köprüsü" 
-    class="w-full h-auto block"
+    class="w-full h-auto rounded-xl shadow-md block"
     loading="lazy"
     decoding="async"
     width="1376"
     height="768"
   />
-  <div class="px-4 py-3 bg-slate-950/80 border-t border-slate-800/80 text-xs text-slate-400 flex items-center justify-between">
-    <span>Şema 1.2: Geleceğin Altyapısını Bugünden Şekillendiren Proaktif SDK Katmanı</span>
-    <span class="text-accent font-mono text-[11px]">Cat Wu Ürün Metodolojisi</span>
-  </div>
-</div>
+  <figcaption>Şema 1.2: Geleceğin Altyapısını Bugünden Şekillendiren Proaktif SDK Katmanı (Cat Wu Ürün Metodolojisi)</figcaption>
+</figure>
 
 Bu ilkenin geliştirici araçlarına uygulanışı:
 
@@ -94,21 +85,18 @@ Cat Wu'nun en az anlaşılan ama en yüksek etkiye sahip beceri olarak nitelendi
 
 Geliştirici araçlarında hata ayıklama (debugging), kullanıcı deneyiminin kalbidir. Bir API geliştiriciye sadece `500 Internal Server Error` dönerse geliştirici o aracı terk eder. Ancak hata anında neyin yanlış gittiğini, hangi parametrenin sınır aştığını ve nasıl düzeltileceğini söyleyen akıllı denetim mekanizmaları bağlılık yaratır.
 
-<div class="my-8 rounded-2xl overflow-hidden border border-slate-800 shadow-2xl bg-slate-900/60 not-prose">
+<figure>
   <img 
     src="/images/guides/gelistirici-araclari-urun-hizi/oz-elestirel-yapay-zeka-ve-hata-denetimi-03.webp" 
     alt="Otomatik Geri Bildirim Döngüleri ve Hata Teşhis İstasyonu" 
-    class="w-full h-auto block"
+    class="w-full h-auto rounded-xl shadow-md block"
     loading="lazy"
     decoding="async"
     width="1376"
     height="768"
   />
-  <div class="px-4 py-3 bg-slate-950/80 border-t border-slate-800/80 text-xs text-slate-400 flex items-center justify-between">
-    <span>Şema 1.3: Kendi Kendini Denetleyen Hata Yakalama ve Tanılama Protokolü</span>
-    <span class="text-accent font-mono text-[11px]">Anthropic & Printzen Mühendislik Kıyası</span>
-  </div>
-</div>
+  <figcaption>Şema 1.3: Kendi Kendini Denetleyen Hata Yakalama ve Tanılama Protokolü (Anthropic & Printzen Mühendislik Kıyası)</figcaption>
+</figure>
 
 ### Modern SDK'larda Öz-Denetim Mimarisi
 
@@ -156,21 +144,18 @@ SaaS yazılımcılarının en çok korktuğu alan, fiziksel dünya donanımları
 
 Printzen'in misyonu, Cat Wu'nun yazılım dünyasında savunduğu "sürtünmesiz geliştirici hızı" ilkesini fiziksel yazdırma donanımlarına uygulamaktır:
 
-<div class="my-8 rounded-2xl overflow-hidden border border-slate-800 shadow-2xl bg-slate-900/60 not-prose">
+<figure>
   <img 
     src="/images/guides/gelistirici-araclari-urun-hizi/printzen-sdk-ve-donanim-entegrasyonu-04.webp" 
     alt="Printzen SDK ile Sürücüsüz Web Yazdırma Entegrasyonu" 
-    class="w-full h-auto block"
+    class="w-full h-auto rounded-xl shadow-md block"
     loading="lazy"
     decoding="async"
     width="1376"
     height="768"
   />
-  <div class="px-4 py-3 bg-slate-950/80 border-t border-slate-800/80 text-xs text-slate-400 flex items-center justify-between">
-    <span>Şema 1.4: Web Standartlarıyla Sürücüsüz Termal Yazdırma ve API Akışı</span>
-    <span class="text-accent font-mono text-[11px]">Printzen Core SDK</span>
-  </div>
-</div>
+  <figcaption>Şema 1.4: Web Standartlarıyla Sürücüsüz Termal Yazdırma ve API Akışı (Printzen Core SDK)</figcaption>
+</figure>
 
 ### Geleneksel Entegrasyon vs. Modern SDK Modeli
 
