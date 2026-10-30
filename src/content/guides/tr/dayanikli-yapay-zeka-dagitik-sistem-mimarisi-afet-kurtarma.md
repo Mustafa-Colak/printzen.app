@@ -7,25 +7,22 @@ publishDate: 2026-10-31
 translationKey: "dayanikli-yapay-zeka-dagitik-sistem-mimarisi-afet-kurtarma"
 ---
 
-<div class="my-8 rounded-2xl overflow-hidden border border-slate-800 shadow-2xl bg-slate-900/60 not-prose">
+<figure>
   <img 
     src="/images/guides/dayanikli-yapay-zeka-dagitik-sistemler/cover.webp" 
     alt="Dayanıklı Yapay Zekâ Destekli Dağıtık Sistem Mimarisi ve Afet Kurtarma" 
-    class="w-full h-auto block"
+    class="w-full h-auto rounded-xl shadow-md block"
     loading="eager"
     decoding="async"
     width="1376"
     height="768"
   />
-  <div class="px-4 py-3 bg-slate-950/80 border-t border-slate-800/80 text-xs text-slate-400 flex items-center justify-between">
-    <span>Şema 1.0: Dağıtık Bulut ve Yapay Zekâ Ajanlarında Afet Kurtarma Mimarisi</span>
-    <span class="text-accent font-mono text-[11px]">Printzen Sistem Mühendisliği</span>
-  </div>
-</div>
+  <figcaption>Şema 1.0: Dağıtık Bulut ve Yapay Zekâ Ajanlarında Afet Kurtarma Mimarisi (Printzen Sistem Mühendisliği)</figcaption>
+</figure>
 
-<div class="p-4 mb-6 rounded-xl border border-sky-800/50 bg-sky-950/30 text-sky-200 text-sm flex items-center justify-between">
-  <span><strong>Hızlı Özet:</strong> Dağıtık sistemler uzmanı Sam Newman'ın O'Reilly Media tarafından yayımlanan <em>Building Resilient Distributed Systems</em> kitabındaki temel ilkeler: RPO/RTO dengesi, 4 kritik afet kurtarma deseni, yapay zekâ model sağlayıcılarının kırılganlığı ve donanım kıtlığına karşı kademeli bozulma mühendisliği.</span>
-  <a href="/guides/" class="ml-4 px-3 py-1 bg-sky-600 hover:bg-sky-500 text-white rounded text-xs font-semibold whitespace-nowrap">Tüm Rehberler →</a>
+<div class="not-prose p-4 mb-8 rounded-xl border border-sky-200 bg-sky-50 text-sky-950 text-sm flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 shadow-xs">
+  <span class="leading-relaxed"><strong class="font-bold text-sky-900">Hızlı Özet:</strong> Dağıtık sistemler uzmanı Sam Newman'ın O'Reilly Media tarafından yayımlanan <em>Building Resilient Distributed Systems</em> kitabındaki temel ilkeler: RPO/RTO dengesi, 4 kritik afet kurtarma deseni, yapay zekâ model sağlayıcılarının kırılganlığı ve donanım kıtlığına karşı kademeli bozulma mühendisliği.</span>
+  <a href="/tr/rehberler/" class="shrink-0 px-3.5 py-1.5 bg-sky-700 hover:bg-sky-800 text-white rounded-md text-xs font-semibold whitespace-nowrap transition shadow-xs">Tüm Rehberler →</a>
 </div>
 
 Yapay zekâ destekli otonom kodlama ajanlarının yazılım ekiplerine dahil olmasıyla birlikte üretim ortamına (production) gönderilen sürüm sayısı ve kod hacmi tarihin en yüksek seviyesine ulaşmıştır. Ancak yazılımı daha hızlı geliştirmek, operasyonel karmaşıklığı azaltmamış; aksine daha fazla servis bağımlılığı, öngörülemeyen çalışma zamanı hataları ve tedarik zincirinde geniş çaplı kesintiler doğurmuştur. Coinbase'in tek bir bulut erişim alanı (availability zone) kesintisi yüzünden milyarlarca dolarlık işlem hacmini saatlerce dondurması gibi çarpıcı vakalar, modern mühendislik ekiplerine en temel kuralı hatırlatmaktadır: **Bir sistemin dayanıklılığı, mükemmel çalıştığı anlarda değil; bileşenleri peş peşe çökerken ayakta kalabilme yeteneğinde ölçülür.**
@@ -50,8 +47,8 @@ Doğru yaklaşım, iş yüklerini kritiklik derecesine göre katmanlara ayırmak
 *   Finansal ödeme alma veya endüstriyel sevkiyat etiketleme akışlarında RPO saniyeler, RTO ise dakikalar mertebesinde tutulmalıdır.
 *   Kullanıcı profil güncellemesi veya geçmiş analitik raporlama gibi ikincil servislerde ise saatler süren RTO ve RPO değerleri kabul edilebilir kabul edilerek bütçe ve mühendislik eforu korunur.
 
-<div class="my-6 p-4 rounded-xl border border-amber-800/40 bg-amber-950/20 text-amber-200 text-sm">
-  <strong>Mühendislik Notu (Neden RPO ve RTO Birer Klasik SLO Değildir?):</strong> Hizmet Seviyesi Hedefleri (SLO), üretim ortamında sürekli toplanan Hizmet Seviyesi Göstergeleri (SLI) ile (örneğin p99 gecikme süresi) ölçülür. Oysa felaketler her gün yaşanmadığı için düzenli SLI toplamak mümkün değildir. Bu nedenle RPO ve RTO, günlük işletim metriklerinden ziyade tatbikatlarla doğrulanan stratejik mimari taahhütlerdir.
+<div class="not-prose my-6 p-4 rounded-xl border border-amber-200 bg-amber-50 text-amber-950 text-sm shadow-xs">
+  <strong class="font-bold text-amber-900">Mühendislik Notu (Neden RPO ve RTO Birer Klasik SLO Değildir?):</strong> Hizmet Seviyesi Hedefleri (SLO), üretim ortamında sürekli toplanan Hizmet Seviyesi Göstergeleri (SLI) ile (örneğin p99 gecikme süresi) ölçülür. Oysa felaketler her gün yaşanmadığı için düzenli SLI toplamak mümkün değildir. Bu nedenle RPO ve RTO, günlük işletim metriklerinden ziyade tatbikatlarla doğrulanan stratejik mimari taahhütlerdir.
 </div>
 
 ---
@@ -60,21 +57,18 @@ Doğru yaklaşım, iş yüklerini kritiklik derecesine göre katmanlara ayırmak
 
 Sam Newman, sistemin tolere edebileceği kesinti süresine ve bütçe kısıtlarına göre uygulanabilecek dört temel kurtarma desenini aşamalı olarak tanımlar:
 
-<div class="my-8 rounded-2xl overflow-hidden border border-slate-800 shadow-2xl bg-slate-900/60 not-prose">
+<figure>
   <img 
     src="/images/guides/dayanikli-yapay-zeka-dagitik-sistemler/afet-kurtarma-dort-desen-01.webp" 
     alt="Dört Afet Kurtarma Deseni: Yedekle-Geri Yükle, Pilot Işığı, Ilık Yük Devretme ve Aktif-Aktif" 
-    class="w-full h-auto block"
+    class="w-full h-auto rounded-xl shadow-md block"
     loading="lazy"
     decoding="async"
     width="1376"
     height="768"
   />
-  <div class="px-4 py-3 bg-slate-950/80 border-t border-slate-800/80 text-xs text-slate-400 flex items-center justify-between">
-    <span>Şema 2.0: Artan Maliyet ve Azalan Kesinti Süresine Göre Dört Kurtarma Mimarisi</span>
-    <span class="text-accent font-mono text-[11px]">Newman Dağıtık Mimari Çerçevesi</span>
-  </div>
-</div>
+  <figcaption>Şema 2.0: Artan Maliyet ve Azalan Kesinti Süresine Göre Dört Kurtarma Mimarisi (Newman Dağıtık Mimari Çerçevesi)</figcaption>
+</figure>
 
 ### 1. Yedekle ve Geri Yükle (Backup and Restore)
 En düşük maliyetli ve en basit desendir. Veriler periyodik olarak ikincil bir depolama alanına kopyalanır. Ana bölge (primary region) çöktüğünde yedek bölgede yeni sunucular tahsis edilir, yedek veri tabanına yüklenir ve trafik yönlendirilir. Otomasyon eksikse veya veri hacmi terabaytlar seviyesindeyse RTO saatler hatta günler sürebilir.
@@ -96,21 +90,18 @@ Afet kurtarma planlarında en sık yapılan ölümcül varsayım şudur: *"Ana v
 
 Sam Newman, 2025 ve 2026 yıllarında yaşanan küresel çip tedarik krizine, yapay zekâ iş yüklerinin tükettiği devasa sunucu kapasitesine ve bellek (RAM) maliyetlerindeki ani sıçramalara dikkat çekmektedir. Büyük bir bulut sağlayıcısının ana veri merkezinde büyük bir kesinti yaşandığında, binlerce şirket aynı anda ikincil bölgeden sunucu talep eder. Bulut sağlayıcının boşta hazır kapasitesi dakikalar içinde tükenir ve şirketler tabir yerindeyse "kırıntılar için savaşmak" zorunda kalır.
 
-<div class="my-8 rounded-2xl overflow-hidden border border-slate-800 shadow-2xl bg-slate-900/60 not-prose">
+<figure>
   <img 
     src="/images/guides/dayanikli-yapay-zeka-dagitik-sistemler/bulut-kaynak-kitligi-ve-onceliklendirme-03.webp" 
     alt="Bulut Kaynak Kıtlığı ve Kritik İş Yükü Önceliklendirme Matrisi" 
-    class="w-full h-auto block"
+    class="w-full h-auto rounded-xl shadow-md block"
     loading="lazy"
     decoding="async"
     width="1376"
     height="768"
   />
-  <div class="px-4 py-3 bg-slate-950/80 border-t border-slate-800/80 text-xs text-slate-400 flex items-center justify-between">
-    <span>Şema 3.0: Kapasite Kıtlığı Anında Öncelikli Kaynak Tahsisi ve Çekirdek Servis İzolasyonu</span>
-    <span class="text-accent font-mono text-[11px]">Kapasite ve Rezervasyon Analitiği</span>
-  </div>
-</div>
+  <figcaption>Şema 3.0: Kapasite Kıtlığı Anında Öncelikli Kaynak Tahsisi ve Çekirdek Servis İzolasyonu (Kapasite ve Rezervasyon Analitiği)</figcaption>
+</figure>
 
 Bu darboğazı aşmak için modern mimarilerde üç savunma hattı kurulur:
 
@@ -124,21 +115,18 @@ Bu darboğazı aşmak için modern mimarilerde üç savunma hattı kurulur:
 
 Yazılıma yapay zekâ modelleri entegre edildiğinde geleneksel hata ayıklama yöntemleri yetersiz kalır. Büyük dil modelleri (LLM) belirleyici değildir; aynı girdiye farklı zamanlarda farklı çıktılar verebilir. Sam Newman'ın dikkat çektiği üç temel yapay zekâ risk faktörü şunlardır:
 
-<div class="my-8 rounded-2xl overflow-hidden border border-slate-800 shadow-2xl bg-slate-900/60 not-prose">
+<figure>
   <img 
     src="/images/guides/dayanikli-yapay-zeka-dagitik-sistemler/coklu-model-ve-kademeli-bozulma-02.webp" 
     alt="Çoklu Model Sağlayıcı ve Kademeli Bozulma Mimarisi" 
-    class="w-full h-auto block"
+    class="w-full h-auto rounded-xl shadow-md block"
     loading="lazy"
     decoding="async"
     width="1376"
     height="768"
   />
-  <div class="px-4 py-3 bg-slate-950/80 border-t border-slate-800/80 text-xs text-slate-400 flex items-center justify-between">
-    <span>Şema 4.0: Model Kesintilerinde Devre Kesici, Yedek Sağlayıcı ve Yerel Kural Motoruna Geçiş</span>
-    <span class="text-accent font-mono text-[11px]">Yapay Zekâ Ağ Geçidi Mimarisi</span>
-  </div>
-</div>
+  <figcaption>Şema 4.0: Model Kesintilerinde Devre Kesici, Yedek Sağlayıcı ve Yerel Kural Motoruna Geçiş (Yapay Zekâ Ağ Geçidi Mimarisi)</figcaption>
+</figure>
 
 ### Model Sağlayıcı Kırılganlığı ve Çoklu Sağlayıcı (Multi-Vendor)
 OpenAI, Anthropic veya Google gibi sağlayıcılar geleneksel bulut altyapılarına kıyasla çok daha sık kesinti ve hız sınırı (rate limit) sorunları yaşar. Kritik bir iş akışını tek bir sağlayıcının API ucuna bağlamak büyük bir risk taşır. Çözüm; aynı modeli veya dengini yedek sağlayıcılar üzerinden de çağırabilecek bir yönlendirme katmanı kurmaktır (örneğin doğrudan OpenAI yerine Azure OpenAI, Anthropic yerine Google Cloud Vertex AI üzerinden alternatif uçlar hazır tutulmalıdır).
@@ -164,27 +152,35 @@ Teknoloji dünyasında tek bir yapay zekâ sağlayıcısına körü körüne ba�
 
 Bulut altyapılarında veya yapay zekâ servislerinde yaşanan kesintiler, fiziksel dünyadaki lojistik depolarında, fabrika üretim hatlarında ve e-ticaret paketleme istasyonlarında duruşa yol açmamalıdır. Bir kargo dağıtım merkezinde etiket yazıcısının 10 dakika durması, yüzlerce paletin sevkiyatının aksaması ve gecikme cezaları demektir.
 
-<div class="my-8 rounded-2xl overflow-hidden border border-slate-800 shadow-2xl bg-slate-900/60 not-prose">
+<figure>
   <img 
     src="/images/guides/dayanikli-yapay-zeka-dagitik-sistemler/printzen-edge-baski-dayaniklilik-04.webp" 
     alt="Printzen Edge Yerel Arabellek ve Çevrimdışı Endüstriyel Baskı Mimarisi" 
-    class="w-full h-auto block"
+    class="w-full h-auto rounded-xl shadow-md block"
     loading="lazy"
     decoding="async"
     width="1376"
     height="768"
   />
-  <div class="px-4 py-3 bg-slate-950/80 border-t border-slate-800/80 text-xs text-slate-400 flex items-center justify-between">
-    <span>Şema 5.0: Bulut Kesintisinde Printzen Edge Yerel Kuyruk ve Çevrimdışı ZPL Üretimi</span>
-    <span class="text-accent font-mono text-[11px]">Printzen Endüstriyel Donanım Entegrasyonu</span>
-  </div>
-</div>
+  <figcaption>Şema 5.0: Bulut Kesintisinde Printzen Edge Yerel Kuyruk ve Çevrimdışı ZPL Üretimi (Printzen Endüstriyel Donanım Entegrasyonu)</figcaption>
+</figure>
 
 Printzen'in dağıtık mimarisi, Sam Newman'ın ortaya koyduğu dayanıklılık ilkelerini doğrudan donanım katmanında uygular:
 
 *   **Yerel Edge Kuyruklama (Local Spooler):** Merkezi bulut veya internet bağlantısı kopsa dahi sahada çalışan Printzen Edge istemcisi son geçerli şablonları ve sipariş verilerini yerel SQLite / bellek arabelleğinde tutar. Yazıcılar tek bir milisaniye dahi durmadan ZPL etiket üretmeye devam eder.
 *   **Bağlantı Kurulduğunda Çift Yönlü Mutabakat:** İnternet erişimi sağlandığında yerelde basılan tüm etiketler merkezi denetim kaydına (audit log) güvenli şekilde aktarılır; mükerrer basım veya sıra kayması yaşanmaz.
 *   **Deterministik Donanım Sözleşmesi:** Yapay zekâ ajanları etiket tasarımı veya dinamik metin oluşturma süreçlerinde yer alsa bile, yazıcıya giden nihai ZPL ve TSPL komutları deterministik bir şema doğrulamasından geçer; yazıcının kilitlenmesi veya hatalı boyutta etiket basması donanım seviyesinde engellenir.
+
+<div class="not-prose my-8 p-6 rounded-2xl border border-emerald-200 bg-emerald-50/80 text-emerald-950 shadow-xs">
+  <h4 class="text-base font-bold text-emerald-950 mb-2">Mühendislik Karar Özeti</h4>
+  <p class="text-sm leading-relaxed text-emerald-900 mb-4">
+    Dağıtık mimarilerde ve yapay zekâ entegrasyonlarında yüksek dayanıklılığın sırrı felaketlerin asla yaşanmayacağını ummak değil; her harici servis ve bulut bölgesinin her an çökebileceğini kabul ederek kademeli bozulma ve yerel uç (edge) tamponları inşa etmektir. Printzen'in endüstriyel ZPL ve etiketleme boru hattında uyguladığı yerel çevrimdışı önbellekleme mimarisi sayesinde, merkezi bulut veya yapay zekâ servislerinde kesinti yaşansa bile saha operasyonları ve sevkiyatlar kesintisiz akar.
+  </p>
+  <a href="https://printzen.app" class="inline-flex items-center gap-2 px-4 py-2.5 rounded-lg bg-emerald-700 hover:bg-emerald-800 text-white text-xs font-bold transition-all shadow-xs">
+    <span>Printzen Dayanıklı Bulut ve Edge Baskı Altyapısını İnceleyin</span>
+    <span aria-hidden="true">→</span>
+  </a>
+</div>
 
 ---
 

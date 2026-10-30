@@ -7,25 +7,22 @@ publishDate: 2026-10-31
 translationKey: "dayanikli-yapay-zeka-dagitik-sistem-mimarisi-afet-kurtarma"
 ---
 
-<div class="my-8 rounded-2xl overflow-hidden border border-slate-800 shadow-2xl bg-slate-900/60 not-prose">
+<figure>
   <img 
     src="/images/guides/dayanikli-yapay-zeka-dagitik-sistemler/cover.webp" 
     alt="Building Resilient AI-Powered Distributed Systems Architecture" 
-    class="w-full h-auto block"
+    class="w-full h-auto rounded-xl shadow-md block"
     loading="eager"
     decoding="async"
     width="1376"
     height="768"
   />
-  <div class="px-4 py-3 bg-slate-950/80 border-t border-slate-800/80 text-xs text-slate-400 flex items-center justify-between">
-    <span>Figure 1.0: Multi-Region Disaster Recovery and AI Agent Telemetry Architecture</span>
-    <span class="text-accent font-mono text-[11px]">Printzen Systems Engineering</span>
-  </div>
-</div>
+  <figcaption>Figure 1.0: Multi-Region Disaster Recovery and AI Agent Telemetry Architecture (Printzen Systems Engineering)</figcaption>
+</figure>
 
-<div class="p-4 mb-6 rounded-xl border border-sky-800/50 bg-sky-950/30 text-sky-200 text-sm flex items-center justify-between">
-  <span><strong>Executive Summary:</strong> Core architectural insights from distributed systems pioneer Sam Newman's book <em>Building Resilient Distributed Systems</em> (O'Reilly Media, October 2026): Calibrating RPO vs RTO trade-offs, four disaster recovery patterns, mitigating foundation model vendor fragility, and engineering graceful degradation amidst cloud hardware shortages.</span>
-  <a href="/guides/" class="ml-4 px-3 py-1 bg-sky-600 hover:bg-sky-500 text-white rounded text-xs font-semibold whitespace-nowrap">All Guides →</a>
+<div class="not-prose p-4 mb-8 rounded-xl border border-sky-200 bg-sky-50 text-sky-950 text-sm flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 shadow-xs">
+  <span class="leading-relaxed"><strong class="font-bold text-sky-900">Executive Summary:</strong> Core architectural insights from distributed systems pioneer Sam Newman's book <em>Building Resilient Distributed Systems</em> (O'Reilly Media, October 2026): Calibrating RPO vs RTO trade-offs, four disaster recovery patterns, mitigating foundation model vendor fragility, and engineering graceful degradation amidst cloud hardware shortages.</span>
+  <a href="/guides/" class="shrink-0 px-3.5 py-1.5 bg-sky-700 hover:bg-sky-800 text-white rounded-md text-xs font-semibold whitespace-nowrap transition shadow-xs">All Guides →</a>
 </div>
 
 The adoption of artificial intelligence coding agents across software engineering teams has accelerated deployment frequency and expanded code volume to unprecedented levels. Yet, shipping code faster has not simplified operations. Instead, it has introduced deeper dependency graphs, non-deterministic failure modes, and widespread supply-chain fragility. Widespread incidents—such as major outages across financial exchanges following isolated cloud availability zone failures—serve as a stark reminder: **A distributed system's resilience is defined not by how smoothly it operates in steady state, but by how gracefully it degrades when its foundational components fail simultaneously.**
@@ -50,8 +47,8 @@ Effective reliability engineering partitions workloads into discrete criticality
 *   **Tier 0 (Mission-Critical):** Transaction authorization, warehouse dispatch, and physical ZPL printing pipelines demand near-zero RPO (sub-second database replication) and single-digit minute RTO.
 *   **Tier 1 & Tier 2 (Supporting Services):** Historical business intelligence reporting or user avatar rendering can tolerate hours of RTO and daily RPO, preserving capital and engineering bandwidth for core infrastructure.
 
-<div class="my-6 p-4 rounded-xl border border-amber-800/40 bg-amber-950/20 text-amber-200 text-sm">
-  <strong>Engineering Note (Why RPO and RTO Cannot Function as Traditional SLOs):</strong> Service Level Objectives (SLOs) rely on continuous Service Level Indicators (SLIs) collected under production operation (such as 99th percentile request latency). Because catastrophic regional disasters occur infrequently, teams cannot collect statistically meaningful SLIs. RPO and RTO are operational commitments validated through scheduled game days and automated chaos engineering drills rather than real-time monitoring charts.
+<div class="not-prose my-6 p-4 rounded-xl border border-amber-200 bg-amber-50 text-amber-950 text-sm shadow-xs">
+  <strong class="font-bold text-amber-900">Engineering Note (Why RPO and RTO Cannot Function as Traditional SLOs):</strong> Service Level Objectives (SLOs) rely on continuous Service Level Indicators (SLIs) collected under production operation (such as 99th percentile request latency). Because catastrophic regional disasters occur infrequently, teams cannot collect statistically meaningful SLIs. RPO and RTO are operational commitments validated through scheduled game days and automated chaos engineering drills rather than real-time monitoring charts.
 </div>
 
 ---
@@ -60,21 +57,18 @@ Effective reliability engineering partitions workloads into discrete criticality
 
 Sam Newman structures disaster recovery approaches into four progressive architectural patterns, ordered by increasing complexity, rising operational expenditure, and decreasing recovery times:
 
-<div class="my-8 rounded-2xl overflow-hidden border border-slate-800 shadow-2xl bg-slate-900/60 not-prose">
+<figure>
   <img 
     src="/images/guides/dayanikli-yapay-zeka-dagitik-sistemler/afet-kurtarma-dort-desen-01.webp" 
     alt="Four Disaster Recovery Patterns: Backup and Restore, Pilot Light, Warm Failover, and Active-Active" 
-    class="w-full h-auto block"
+    class="w-full h-auto rounded-xl shadow-md block"
     loading="lazy"
     decoding="async"
     width="1376"
     height="768"
   />
-  <div class="px-4 py-3 bg-slate-950/80 border-t border-slate-800/80 text-xs text-slate-400 flex items-center justify-between">
-    <span>Figure 2.0: Progressive Disaster Recovery Patterns Across Recovery Time and Infrastructure Cost</span>
-    <span class="text-accent font-mono text-[11px]">Newman Distributed Systems Architecture</span>
-  </div>
-</div>
+  <figcaption>Figure 2.0: Progressive Disaster Recovery Patterns Across Recovery Time and Infrastructure Cost (Newman Distributed Systems Architecture)</figcaption>
+</figure>
 
 ### 1. Backup and Restore
 The most straightforward and cost-effective approach. Snapshots and database dumps are archived periodically to a secondary geographical cloud bucket. If the primary site fails, replacement virtual machines and storage clusters are provisioned from scratch, the latest snapshot is downloaded and restored, and DNS records are redirected. For multi-terabyte data stores, network ingress and disk decompression can extend RTO to multiple hours or days.
@@ -96,21 +90,18 @@ Many disaster recovery runbooks harbor a fatal assumption: *"If Region A fails, 
 
 Sam Newman underscores that ongoing global hardware constraints, surging AI inference demand, and skyrocketing DRAM costs in 2025 and 2026 have upended dynamic elasticity assumptions. When a major cloud availability zone or regional hub fails, tens of thousands of engineering organizations execute automated failovers simultaneously. Secondary regions rapidly exhaust available compute pools, forcing competing companies to "fight over scraps."
 
-<div class="my-8 rounded-2xl overflow-hidden border border-slate-800 shadow-2xl bg-slate-900/60 not-prose">
+<figure>
   <img 
     src="/images/guides/dayanikli-yapay-zeka-dagitik-sistemler/bulut-kaynak-kitligi-ve-onceliklendirme-03.webp" 
     alt="Cloud Infrastructure Scarcity and Workload Prioritization Matrix" 
-    class="w-full h-auto block"
+    class="w-full h-auto rounded-xl shadow-md block"
     loading="lazy"
     decoding="async"
     width="1376"
     height="768"
   />
-  <div class="px-4 py-3 bg-slate-950/80 border-t border-slate-800/80 text-xs text-slate-400 flex items-center justify-between">
-    <span>Figure 3.0: Capacity Allocation Framework: Reserved Compute, Graceful Throttling, and Secondary Utility</span>
-    <span class="text-accent font-mono text-[11px]">Infrastructure Capacity Planning</span>
-  </div>
-</div>
+  <figcaption>Figure 3.0: Capacity Allocation Framework: Reserved Compute, Graceful Throttling, and Secondary Utility (Infrastructure Capacity Planning)</figcaption>
+</figure>
 
 Modern infrastructure architectures implement three strategies to counter capacity deficits:
 
@@ -124,21 +115,18 @@ Modern infrastructure architectures implement three strategies to counter capaci
 
 Integrating generative AI models into production software introduces failure modes fundamentally distinct from deterministic microservices:
 
-<div class="my-8 rounded-2xl overflow-hidden border border-slate-800 shadow-2xl bg-slate-900/60 not-prose">
+<figure>
   <img 
     src="/images/guides/dayanikli-yapay-zeka-dagitik-sistemler/coklu-model-ve-kademeli-bozulma-02.webp" 
     alt="Multi-Model Failover Routing and Circuit Breaking Architecture" 
-    class="w-full h-auto block"
+    class="w-full h-auto rounded-xl shadow-md block"
     loading="lazy"
     decoding="async"
     width="1376"
     height="768"
   />
-  <div class="px-4 py-3 bg-slate-950/80 border-t border-slate-800/80 text-xs text-slate-400 flex items-center justify-between">
-    <span>Figure 4.0: AI Gateway Topology: Circuit Breakers, Multi-Vendor Fallbacks, and Deterministic Rules</span>
-    <span class="text-accent font-mono text-[11px]">AI Gateway & Observability Pipeline</span>
-  </div>
-</div>
+  <figcaption>Figure 4.0: AI Gateway Topology: Circuit Breakers, Multi-Vendor Fallbacks, and Deterministic Rules (AI Gateway & Observability Pipeline)</figcaption>
+</figure>
 
 ### Model Provider Volatility and Multi-Vendor Fallbacks
 Frontier foundation model providers exhibit significantly higher rates of service degradation, rate-limiting volatility, and sudden API latency spikes compared to established cloud hyper-scalers. Routing critical application paths through an intelligent AI Gateway enables automated multi-vendor failovers (e.g., routing OpenAI prompts to Azure OpenAI instances, or redirecting Anthropic calls to Google Cloud Vertex AI if primary provider latency exceeds predetermined thresholds).
@@ -164,27 +152,35 @@ Over-reliance on a single commercial model provider creates severe technical and
 
 In high-throughput manufacturing, cold-chain logistics, and automated fulfillment centers, software downtime carries immediate physical penalties. If a central cloud connection drops for ten minutes, assembly lines halt, delivery couriers cannot scan shipments, and contractual carrier penalties accrue.
 
-<div class="my-8 rounded-2xl overflow-hidden border border-slate-800 shadow-2xl bg-slate-900/60 not-prose">
+<figure>
   <img 
     src="/images/guides/dayanikli-yapay-zeka-dagitik-sistemler/printzen-edge-baski-dayaniklilik-04.webp" 
     alt="Printzen Edge Local Spooler and Offline Industrial Print Architecture" 
-    class="w-full h-auto block"
+    class="w-full h-auto rounded-xl shadow-md block"
     loading="lazy"
     decoding="async"
     width="1376"
     height="768"
   />
-  <div class="px-4 py-3 bg-slate-950/80 border-t border-slate-800/80 text-xs text-slate-400 flex items-center justify-between">
-    <span>Figure 5.0: Printzen Edge Architecture: Local Spooling, Network Isolation, and ZPL Serialization</span>
-    <span class="text-accent font-mono text-[11px]">Industrial Printing Hardware Architecture</span>
-  </div>
-</div>
+  <figcaption>Figure 5.0: Printzen Edge Architecture: Local Spooling, Network Isolation, and ZPL Serialization (Industrial Printing Hardware Architecture)</figcaption>
+</figure>
 
 Printzen's distributed architecture translates Sam Newman's resilience principles into physical hardware reliability:
 
 *   **Printzen Edge Local Spooling:** Operating directly within local warehouse networks, the Printzen Edge service maintains cached print templates and offline sequence queues in local embedded storage. If wide-area internet connectivity fails, thermal barcode printers continue streaming ZPL and TSPL commands without missing a beat.
 *   **Bi-Directional Event Reconciliation:** Upon wide-area network restoration, local edge spoolers replay signed audit logs to the central Printzen cloud, synchronizing serial numbers and carrier tracking identifiers with zero sequence duplication.
 *   **Deterministic Hardware Contracts:** While upstream generative AI agents assist in document layout optimization, all payload commands sent to industrial thermal printheads undergo strict schema validation, completely preventing command injection, invalid byte encodings, and printer buffer locks.
+
+<div class="not-prose my-8 p-6 rounded-2xl border border-emerald-200 bg-emerald-50/80 text-emerald-950 shadow-xs">
+  <h4 class="text-base font-bold text-emerald-950 mb-2">Engineering Decision Summary</h4>
+  <p class="text-sm leading-relaxed text-emerald-900 mb-4">
+    In modern AI-integrated distributed architectures, achieving high resilience is never about assuming underlying services will never fail; it requires assuming every external dependency will inevitably fail and engineering deterministic fallbacks at the edge. By combining local caching, transactional spooling, and strict hardware protocol contracts, Printzen ensures physical label printing and logistics operations remain completely immune to wider cloud or model vendor outages.
+  </p>
+  <a href="https://printzen.app" class="inline-flex items-center gap-2 px-4 py-2.5 rounded-lg bg-emerald-700 hover:bg-emerald-800 text-white text-xs font-bold transition-all shadow-xs">
+    <span>Explore Printzen Cloud & Edge Print Architecture</span>
+    <span aria-hidden="true">→</span>
+  </a>
+</div>
 
 ---
 
