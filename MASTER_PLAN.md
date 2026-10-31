@@ -65,6 +65,7 @@ c:\edev\printzen.app\
   - Canlı Cloudflare Worker üzerinde doğrulandı (HTTP 200, slash'lı linkler, noindex).
 - [x] **GSC Doğrulaması:** Kullanıcı Search Console panelinden 'Düzeltmeyi Doğrula' butonuna bastı (Google tarama ve doğrulama döngüsü başlatıldı).
 - [x] **31 Ekim 2026 — Dayanıklı Dağıtık Sistem Mimarisi & Sam Newman (PRN-003):** Çift dilli (TR & EN) kılavuz 5 FLUX WebP görseliyle yayına alındı.
+- [x] **31 Ekim 2026 — Yüksek Performanslı Kod Mimarisi & Casey Muratori (PRN-004):** Çift dilli (TR & EN) kılavuz 5 FLUX WebP görseliyle yayına alındı.
 - [ ] **WooCommerce Çoklu Mağaza Senkronizasyon Sayfası (woo-multi-sync):** TR versiyonu ve i18n altyapısı.
 
 ---
@@ -98,3 +99,9 @@ c:\edev\printzen.app\
   - 1 kapak + 4 gövde olmak üzere 5 adet 1376x768 WebP görsel ComfyUI FLUX.1-Dev motoruyla üretildi.
   - 
 ode scripts/qa-agent-audit.mjs ve check-terminology.mjs (0 hata) doğrulandı; 209 sayfa derlendi, GitHub master dalına push edildi, canlıda HTTP 200 ve IndexNow (200 OK) ile mühürlendi.
+
+- **31 Ekim 2026 - 08:05 (PRN-004 Yüksek Performanslı Kod Mimarisi & Casey Muratori — Çift Dilli Rehber Yayında):**
+  - src/content/guides/tr/yuksek-performansli-kod-mimarisi-donanim-ve-cpu-verimliligi.md ve src/content/guides/en/why-performant-code-matters-hardware-cpu-efficiency.md (	ranslationKey: yuksek-performansli-kod-mimarisi-donanim-ve-cpu-verimliligi) yayınlandı.
+  - 1 kapak + 4 gövde olmak üzere 5 adet 1376x768 WebP görsel ComfyUI FLUX.1-Dev motoruyla üretildi (Pillow rozetleri, sıfır yabancı harf).
+  - 
+ode scripts/qa-agent-audit.mjs ve check-terminology.mjs (0 hata) doğrulandı; 211 sayfa derlendi, Cloudflare Workers ve GitHub master dalına push edildi, canlıda HTTP 200 ve IndexNow (211 URL, 200 OK) ile mühürlendi.
