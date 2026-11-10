@@ -28,3 +28,9 @@
 /tr/rehberler/react-vue-termal-yazici-entegrasyon-kancalari-hooks/      /tr/rehberler/react-nextjs-vue-icin-usethermalprinter-kancasi/ 301
 /tr/rehberler/react-vue-termal-yazici-entegrasyon-kancalari-hooks       /tr/rehberler/react-nextjs-vue-icin-usethermalprinter-kancasi/ 301
 
+
+# Host duplikasyonu: www ve http varyantları 200 dönüp kopya içerik üretiyordu (GSC "Doğru standart etikete sahip alternatif sayfa").
+# Kanonik host: https://printzen.app
+https://www.printzen.app/*  https://printzen.app/:splat  301
+http://printzen.app/*       https://printzen.app/:splat  301
+http://www.printzen.app/*   https://printzen.app/:splat  301
