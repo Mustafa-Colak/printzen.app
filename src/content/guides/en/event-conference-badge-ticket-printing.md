@@ -68,7 +68,7 @@ When using a [Zebra printer ZPL](/guides/zebra-zpl-label-printing/) workflow (or
 ^FO80,278^FR^A0N,42,42^FB652,1,0,C^FDSPEAKER / VIP ACCESS^FS
 
 ^FX === Check-In & Lead Retrieval QR Code ===
-^FO330,360^BQN,2,6^FDQA,https://printzen.app/badge/PRZ-2026-8841^FS
+^FO330,360^BQN,2,6^FDQA,https://example.com/badge/PRZ-2026-8841^FS
 ^FO50,550^A0N,22,22^FB712,1,0,C^FDBADGE ID: #PRZ-2026-8841^FS
 ^XZ
 ```

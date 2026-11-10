@@ -66,7 +66,7 @@ QR koda metin veya URL yüklerken veri alanı şu formatta başlamalıdır:
 #### Örnek ZPL QR Kod Kodu:
 ```zpl
 ^XA
-^FO500,100^BQN,2,6^FDQA,https://printzen.app/track/TR98124765^FS
+^FO500,100^BQN,2,6^FDQA,https://example.com/track/TR98124765^FS
 ^XZ
 ```
 

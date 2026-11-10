@@ -48,7 +48,7 @@ At 203 DPI, a 4x6 inch label maps to an active grid of **812 × 1218 dots**.
 ^FO70,610^A0N,22,22^FDWeight / Dimensions: 2.15 KG / 4.7 LBS^FS
 
 ^FX === SECTION 5: Courier Verification QR ===
-^FO550,495^BQN,2,6^FDQA,https://printzen.app/track/PRZ-GB-98214^FS
+^FO550,495^BQN,2,6^FDQA,https://example.com/track/PRZ-GB-98214^FS
 ^FO550,625^A0N,18,18^FDSCAN FOR POD^FS
 
 ^FX === SECTION 6: Legal Footer ===

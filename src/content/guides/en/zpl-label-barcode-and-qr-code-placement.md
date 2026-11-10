@@ -66,7 +66,7 @@ The field data parameter must start with a two-character prefix:
 #### Complete QR Code Snippet:
 ```zpl
 ^XA
-^FO500,100^BQN,2,6^FDQA,https://printzen.app/track/TR98124765^FS
+^FO500,100^BQN,2,6^FDQA,https://example.com/track/TR98124765^FS
 ^XZ
 ```
 

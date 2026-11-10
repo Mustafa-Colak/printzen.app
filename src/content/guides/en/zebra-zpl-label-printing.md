@@ -71,7 +71,7 @@ Code 128 is the default specification for parcel shipping and pallet tracking. T
 
 ### 3.2. 2D QR Code Architecture (`^BQ`)
 ```zpl
-^FO500,200^BQN,2,6^FDQA,https://printzen.app/track/142857^FS
+^FO500,200^BQN,2,6^FDQA,https://example.com/track/142857^FS
 ```
 - `^BQN,2,6`: Standard Model 2, magnification factor of 6 dots per module.
 - `^FDQA,...`: `Q` error correction level (High 25%), `A` automatic data serialization mode.
@@ -115,7 +115,7 @@ The following complete ZPL II template includes sender/recipient addresses, high
 ^FO70,635^A0N,24,24^FDSTATUS: Prepaid (Credit Card)^FS
 
 ^FX --- QR Code & Mobile Verification ---
-^FO550,525^BQN,2,6^FDQA,https://printzen.app/track/PRZ-2026-981245^FS
+^FO550,525^BQN,2,6^FDQA,https://example.com/track/PRZ-2026-981245^FS
 ^FO550,660^A0N,18,18^FDSPEC SCAN FOR DISPATCH^FS
 
 ^FX --- Legal Footer ---

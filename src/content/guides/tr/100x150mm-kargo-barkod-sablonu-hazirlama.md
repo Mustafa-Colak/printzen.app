@@ -50,7 +50,7 @@ Aşağıdaki kod bloğu; Trendyol Express, HepsiJet, Yurtiçi Kargo veya özel d
 ^FO70,610^A0N,22,22^FDAgirlik / Hacim: 2.15 KG / 3 DESI^FS
 
 ^FX === 5. BÖLÜM: QR Kod & Kurye Doğrulama ===
-^FO550,495^BQN,2,6^FDQA,https://printzen.app/track/PRZ-TR-98214^FS
+^FO550,495^BQN,2,6^FDQA,https://example.com/track/PRZ-TR-98214^FS
 ^FO550,625^A0N,18,18^FDKURYEYE OKUTUN^FS
 
 ^FX === 6. BÖLÜM: Alt Yasal Metin ===

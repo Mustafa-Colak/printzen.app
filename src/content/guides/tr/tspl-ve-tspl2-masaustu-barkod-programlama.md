@@ -36,7 +36,7 @@ PRINT 1,1
 ## TSPL ile QR Kod ve 2D Barkod Basımı
 
 ```tspl
-QRCODE 50,250,L,5,A,0,"M2,S7","https://printzen.app/track/TR123"
+QRCODE 50,250,L,5,A,0,"M2,S7","https://example.com/track/TR123"
 ```
 
 - **L | M | Q | H:** Hata düzeltme (Error Correction) seviyesi. Kargo etiketlerinde genellikle 'M' (%15) veya 'Q' (%25) tercih edilir.

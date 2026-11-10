@@ -71,7 +71,7 @@ E-ticaret ve kargo paketlerinde en yaygın kullanılan barkod standardı Code 12
 
 ### 3.2. 2D QR Kod Mimarisi (`^BQ`)
 ```
-^FO500,200^BQN,2,6^FDQA,https://printzen.app/track/142857^FS
+^FO500,200^BQN,2,6^FDQA,https://example.com/track/142857^FS
 ```
 - `^BQN,2,6`: Model 2, Büyüklük katsayısı 6 nokta.
 - `^FDQA,...`: `Q` hata düzeltme seviyesi (High %25), `A` otomatik veri tipi.
@@ -115,7 +115,7 @@ Aşağıdaki hazır ZPL II şablonu, modern bir kargo/sevkiyat etiketinde bulunm
 ^FO70,635^A0N,24,24^FDDURUM: Pesin Odendi (Kredi Karti)^FS
 
 ^FX --- QR Kod & Mobil Takip ---
-^FO550,525^BQN,2,6^FDQA,https://printzen.app/track/PRZ-2026-981245^FS
+^FO550,525^BQN,2,6^FDQA,https://example.com/track/PRZ-2026-981245^FS
 ^FO550,660^A0N,18,18^FDKAREKOD OKUTUN^FS
 
 ^FX --- Alt Bilgi ---
